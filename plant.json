@@ -1,0 +1,18 @@
+[
+  {
+    "commonName": "Tulsi",
+    "botanicalName": "Ocimum sanctum",
+    "image": "tulsi.png",
+    "uses": "Boosts immunity and helps in cold",
+    "habitat": "Grows in tropical climates",
+    "cultivation": "Needs sunlight and moderate watering"
+  },
+  {
+    "commonName": "Neem",
+    "botanicalName": "Azadirachta indica",
+    "image": "neem.jpg",
+    "uses": "Purifies blood and improves skin",
+    "habitat": "Dry and tropical regions",
+    "cultivation": "Low water, grows easily in sunlight"
+  }
+]
