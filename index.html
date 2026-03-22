@@ -8,140 +8,226 @@
 <style>
 body{
 margin:0;
-font-family:Arial, sans-serif;
+font-family:'Segoe UI', sans-serif;
 background:linear-gradient(to right,#eef7ee,#d0f0d0);
 }
 
-header{
+/* HEADER */
+.header{
+display:flex;
+align-items:center;
+gap:15px;
 background:linear-gradient(45deg,#2e7d32,#1b5e20);
 color:white;
-text-align:center;
-padding:20px;
-font-size:32px;
+padding:15px 25px;
+box-shadow:0 4px 10px rgba(0,0,0,0.2);
 }
 
+.logo{
+width:60px;
+height:60px;
+border-radius:50%;
+border:2px solid white;
+}
+
+.header h1{
+margin:0;
+font-size:28px;
+letter-spacing:1px;
+}
+
+/* NAVBAR */
 nav{
 display:flex;
 justify-content:center;
-gap:30px;
-background:#1b4d1b;
-padding:12px;
+gap:40px;
+background:#133d13;
+padding:14px;
 position:sticky;
 top:0;
+z-index:1000;
 }
 
 nav a{
 color:white;
 text-decoration:none;
-font-weight:bold;
+font-weight:600;
+position:relative;
+}
+
+nav a::after{
+content:'';
+position:absolute;
+width:0%;
+height:2px;
+bottom:-5px;
+left:0;
+background:#90ee90;
 transition:0.3s;
 }
 
-nav a:hover{
-color:#90ee90;
+nav a:hover::after{
+width:100%;
 }
 
+/* HERO SECTION */
 .hero{
-width:100%;              
 height:500px;
-background:url("pic1.png") no-repeat center;
-background-size:cover;   
+background:url("pic1.png") no-repeat center/cover;
 display:flex;
-flex-direction:column;
 align-items:center;
 justify-content:center;
-color:white;
 text-align:center;
+position:relative;
+}
+
+.hero::before{
+content:'';
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.5);
 }
 
 .hero h1{
-background:rgba(0,0,0,0.6);
-padding:20px;
-border-radius:10px;
+position:relative;
+color:white;
+font-size:36px;
+padding:20px 30px;
+border-radius:12px;
+backdrop-filter:blur(5px);
 }
 
+/* CARDS */
 .card-container{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:20px;
-padding:40px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:30px;
+padding:50px;
 }
 
+/* CARD DESIGN */
 .card{
-width:250px;
-background:white;
-padding:20px;
-border-radius:10px;
+background:rgba(255,255,255,0.85);
+padding:25px;
+border-radius:18px;
 text-align:center;
-box-shadow:0 5px 15px rgba(0,0,0,0.1);
-transition:0.3s;
+box-shadow:0 8px 25px rgba(0,0,0,0.15);
+transition:all 0.4s ease;
 cursor:pointer;
+position:relative;
+overflow:hidden;
+backdrop-filter:blur(10px);
 }
 
+/* TOP GLOW LINE */
+.card::before{
+content:'';
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:5px;
+background:linear-gradient(90deg,#00c853,#b2ff59);
+}
+
+/* HOVER EFFECT */
 .card:hover{
-transform:scale(1.05);
+transform:translateY(-10px) scale(1.05);
+box-shadow:0 20px 40px rgba(0,0,0,0.25);
 }
 
+/* ICON STYLE */
 .card img{
-width:70px;
+width:80px;
+margin-bottom:10px;
+transition:0.3s;
 }
 
+/* ICON ANIMATION */
+.card:hover img{
+transform:rotate(8deg) scale(1.1);
+}
+
+/* TITLE */
+.card h3{
+margin-top:10px;
+font-size:18px;
+color:#1b5e20;
+}
+
+/* DETAILS */
+.details{
+display:none;
+margin-top:12px;
+font-size:14px;
+color:#444;
+line-height:1.5;
+}
+
+/* SOFT BACKGROUND HOVER EFFECT */
+.card::after{
+content:'';
+position:absolute;
+width:200%;
+height:200%;
+background:radial-gradient(circle,#a5d6a7 10%, transparent 60%);
+top:-50%;
+left:-50%;
+opacity:0;
+transition:0.5s;
+}
+
+.card:hover::after{
+opacity:0.2;
+}
 .details{
 display:none;
 margin-top:10px;
-color:#444;
+color:#555;
+font-size:14px;
+line-height:1.5;
+}
+
+/* FOOTER */
+footer{
+background:#1b5e20;
+color:white;
+text-align:center;
+padding:18px;
+margin-top:30px;
 font-size:14px;
 }
 
-footer{
-background:#2e7d32;
-color:white;
-text-align:center;
-padding:15px;
-}
-
-.header{
-margin:0;
-display:flex;
-align-items:left;
-justify-content:left;
-gap: 5px;
-background:linear-gradient(45deg,#2e7d32,#1b5e20);
-color:white;
-padding: 10px;
-}
-
-.header h1{
-margin:0;
-font: size 30px; 
-}
-
-.logo{
-width: 70px;
-height: 70px;
-border-radius:50%;
-}
-
 </style>
+
+<script>
+function toggleDetails(card){
+    const detail = card.querySelector('.details');
+    detail.style.display = detail.style.display === 'block' ? 'none' : 'block';
+}
+</script>
+
 </head>
 
 <body>
 
 <header class="header">
     <img src="logo.png" class="logo">
-    <h1><i><u>E-Herbal Garden</u></i></h1>
+    <h1><i>E-Herbal Garden</i></h1>
 </header>
 
 <nav>
 <a href="#">Home</a>
 <a href="plant.html">Plants</a>
-<a href="#">About</a>
+<a href="about.html">About</a>
 <a href="#">Contact</a>
 </nav>
 
 <div class="hero">
-<h1>Welcome to the Digital Herbal Garden</h1>
+<h1>🌿 Welcome to the Digital Herbal Garden 🌿</h1>
 </div>
 
 <div class="card-container">
@@ -149,42 +235,107 @@ border-radius:50%;
 <div class="card" onclick="toggleDetails(this)">
 <img src="origin.png">
 <h3>Vedic Origin</h3>
-<div class="details">Ayurveda started in Vedic period linked with Atharva Veda.</div>
+<div class="details">
+Ayurveda is believed to have originated during the Atharva Veda, one of the four sacred Vedas.<br>
+The Atharva Veda contains early knowledge about:<br>
+Healing herbs 🌱<br>
+Diseases 🦠<br>
+Spiritual therapies 🧘<br>
+Ayurveda means:<br>
+👉 “Ayur” = life<br>
+👉 “Veda” = knowledge<br>
+➤ So, Ayurveda = “Science of Life”<br>
+It was developed by ancient sages (Rishis) who combined:<br>
+Observation of nature 🌍<br>
+Meditation 🧘<br>
+Experience of human body<br>
+Later, this knowledge was expanded in classical texts like:<br>
+Charaka Samhita (medicine & internal health)<br>
+Sushruta Samhita (surgery & anatomy)</div>
 </div>
 
 <div class="card" onclick="toggleDetails(this)">
 <img src="vedic.png">
 <h3>Ancient Texts</h3>
-<div class="details">Charaka and Sushruta Samhita are key texts.</div>
+<div class="details">
+The knowledge of Ayurveda was systematically written in ancient Indian scriptures known as Samhitas.<br>
+🌿 Key Texts:<br>
+<u>Charaka Samhita</u><br>
+Focuses on medicine, diagnosis, and internal healing. It explains how to maintain health and treat diseases using natural methods.<br>
+<u>Sushruta Samhita</u><br>
+Deals with surgery and anatomy. It describes surgical techniques, instruments, and is why Sushruta is called the Father of Surgery.<br>
+<u>Ashtanga Hridaya</u><br>
+A simplified and well-organized text combining teachings of Charaka and Sushruta, widely used for learning Ayurveda.</div>
 </div>
 
 <div class="card" onclick="toggleDetails(this)">
 <img src="doctor.png">
 <h3>Sushruta</h3>
-<div class="details">Known as Father of Surgery.</div>
+<div class="details">
+Sushruta was one of the greatest ancient Indian physicians and a pioneer of surgery in Ayurveda.<br>
+
+🌿 Key Contributions:<br>
+Author of the Sushruta Samhita<br>
+Known as the “Father of Surgery” 🏥<br>
+Described over 300 surgical procedures<br>
+Used 120+ surgical instruments 🔪<br>
+Performed early forms of plastic surgery (like nose reconstruction)<br>
+Explained human anatomy in detail, including bones, muscles, and veins<br>
+Emphasized cleanliness and hygiene during surgeries (early concept of sterilization)<br>
+Trained students using practical methods like practicing on fruits and dead bodies
+</div>
 </div>
 
 <div class="card" onclick="toggleDetails(this)">
 <img src="plant.png">
 <h3>Branches</h3>
-<div class="details">Includes pediatrics, surgery and psychiatry.</div>
+<div class="details">
+    Ayurveda is divided into eight main branches, known as Ashtanga Ayurveda.<br>
+
+🌱 The 8 Branches:<br>
+<b><u>Kayachikitsa</u></b>– General medicine (treatment of diseases)<br>
+<b><u>Shalya Tantra</u></b> – Surgery<br>
+<b><u>Shalakya Tantra</u></b> – Eye, ear, nose, and throat (ENT)<br>
+<b><u>Kaumarbhritya</u></b> – Pediatrics (child care) 👶<br>
+<b><u>Agada Tantra</u></b> – Toxicology (treatment of poisons) ☠️<br>
+<b><u>Bhuta Vidya</u></b> – Psychiatry (mental health) 🧠<br>
+<b><u>Rasayana</u></b> – Rejuvenation and immunity boosting 🌿<br>
+<b><u>Vajikarana</u></b> – Reproductive health and vitality<br>
+</div>
 </div>
 
 <div class="card" onclick="toggleDetails(this)">
 <img src="spread.png">
 <h3>Global Spread</h3>
-<div class="details">Spread to China, Tibet and Middle East.</div>
+<div class="details">
+    Ayurveda gradually spread beyond India and influenced many other traditional healing systems.<br>
+
+🌿 Key Points:<br>
+Ayurveda spread to countries like China, Tibet, and the Middle East through trade and cultural exchange<br>
+Its knowledge influenced systems like Traditional Chinese Medicine and Tibetan medicine<br>
+Ancient scholars and travelers carried Ayurvedic texts and practices across regions<br>
+Today, Ayurveda is practiced worldwide as a form of natural and holistic healing 🌿<br>
+</div>
 </div>
 
 <div class="card" onclick="toggleDetails(this)">
 <img src="book.png">
 <h3>Modern Use</h3>
-<div class="details">Promoted by Ministry of AYUSH.</div>
+<div class="details">
+   <b> Promoted by the Ministry of AYUSH in India </b><br>
+Used for improving immunity, digestion, and overall wellness<br>
+Includes practices like:<br>
+Herbal medicines 🌱<br>
+Yoga and meditation 🧘<br>
+Detox therapies (Panchakarma)<br>
+Gaining popularity worldwide as an alternative and preventive medicine system<br>
+Used alongside modern medicine for a balanced lifestyle<br>
+</div>
 </div>
 
 </div>
 
-<footer>© 2026 E-Herbal Garden</footer>
+<footer>© 2026 E-Herbal Garden | Designed with 🌱 | Created by Team Beginners | </footer>
 
 </body>
 </html>
