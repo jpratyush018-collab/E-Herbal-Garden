@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About - E-Herbal Garden</title>
+
+<style>
+body{
+margin:0;
+font-family:'Segoe UI', sans-serif;
+background:linear-gradient(to right,#eef7ee,#d0f0d0);
+}
+
+/* HEADER */
+.header{
+display:flex;
+align-items:center;
+gap:15px;
+background:linear-gradient(45deg,#2e7d32,#1b5e20);
+color:white;
+padding:15px 25px;
+}
+
+.logo{
+width:60px;
+height:60px;
+border-radius:50%;
+}
+
+.header h1{
+margin:0;
+}
+
+/* NAV */
+nav{
+display:flex;
+justify-content:center;
+gap:30px;
+background:#133d13;
+padding:12px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+font-weight:bold;
+}
+
+/* IMAGE BANNER */
+.about-banner{
+position:relative;
+height:320px;
+overflow:hidden;
+}
+
+.about-banner img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+/* TEXT OVER IMAGE */
+.banner-text{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+color:white;
+background:rgba(0,0,0,0.5);
+padding:20px 30px;
+border-radius:12px;
+font-size:28px;
+text-align:center;
+}
+
+/* ABOUT SECTION */
+.about{
+padding:50px;
+text-align:center;
+}
+
+.about h2{
+font-size:32px;
+color:#1b5e20;
+margin-bottom:20px;
+}
+
+.about p{
+max-width:800px;
+margin:auto;
+font-size:18px;
+line-height:1.6;
+color:#333;
+}
+
+/* CARDS */
+.features{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+padding:40px;
+}
+
+.feature-card{
+background:white;
+padding:20px;
+border-radius:15px;
+box-shadow:0 8px 20px rgba(0,0,0,0.15);
+transition:0.3s;
+}
+
+.feature-card:hover{
+transform:translateY(-8px);
+}
+
+.feature-card h3{
+color:#2e7d32;
+}
+
+/* FOOTER */
+footer{
+background:#1b5e20;
+color:white;
+text-align:center;
+padding:15px;
+margin-top:30px;
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+<img src="logo.png" class="logo">
+<h1>E-Herbal Garden</h1>
+</header>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="plant.html">Plants</a>
+<a href="about.html">About</a>
+<a href="#">Contact</a>
+</nav>
+
+<!-- 🌿 IMAGE BANNER -->
+<div class="about-banner">
+    <img src="about.jpeg" alt="About Herbal Garden">
+    <div class="banner-text">
+        🌿 About E-Herbal Garden 🌿
+    </div>
+</div>
+
+<!-- ABOUT CONTENT -->
+<section class="about">
+<h2>Welcome to E-Herbal Garden</h2>
+
+<p>
+E-Herbal Garden is a digital platform designed to spread awareness about medicinal plants and Ayurveda. 
+It combines traditional knowledge with modern technology to create an interactive and engaging learning experience.
+</p>
+
+<p>
+Our platform allows users to explore different plants, understand their uses, and learn about the importance of Ayurveda in daily life. 
+We aim to make ancient knowledge simple, accessible, and useful for everyone.
+</p>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+
+<div class="feature-card">
+<h3>🌱 Our Mission</h3>
+<p>To promote awareness about medicinal plants and natural healing methods.</p>
+</div>
+
+<div class="feature-card">
+<h3>💡 What We Offer</h3>
+<p>Interactive plant data, Ayurvedic knowledge, and upcoming 3D visualization features.</p>
+</div>
+
+<div class="feature-card">
+<h3>🚀 Future Vision</h3>
+<p>To integrate AI chatbot, smart search, and advanced 3D plant models.</p>
+</div>
+
+</section>
+
+<footer>
+© 2026 E-Herbal Garden | Made with 🌿
+</footer>
+
+</body>
+</html>
