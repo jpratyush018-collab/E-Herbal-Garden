@@ -7,6 +7,7 @@
 
 <!-- THREE JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/examples/js/controls/OrbitControls.js"></script>
+
 <style>
 
 /* BODY */
@@ -14,6 +15,48 @@ body{
 margin:0;
 font-family:Arial;
 background:#eef7ee;
+}
+
+/* HEADER */
+.header{
+display:flex;
+align-items:center;
+gap:15px;
+background:linear-gradient(45deg,#2e7d32,#1b5e20);
+color:white;
+padding:15px 25px;
+}
+
+.logo{
+width:60px;
+height:60px;
+border-radius:50%;
+}
+
+.header h1{
+margin:0;
+}
+
+/* NAVBAR */
+nav{
+display:flex;
+justify-content:center;
+gap:30px;
+background:#133d13;
+padding:12px;
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+font-weight:bold;
+}
+
+nav a:hover{
+color:#90ee90;
 }
 
 /* SEARCH */
@@ -68,9 +111,10 @@ transform:scale(1.05);
 
 .plant-card img{
 width:100%;
-height:120px;
-object-fit:cover;
-border-radius:8px;
+height:150px;
+object-fit:contain;
+display:block;
+margin:0 auto 10px;
 }
 
 .plant-card p{
@@ -113,7 +157,7 @@ font-size:18px;
 margin-top:10px;
 width:100%;
 height:200px;
-background:#ddd; /* helps visibility */
+background:#ddd;
 }
 
 </style>
@@ -122,7 +166,23 @@ background:#ddd; /* helps visibility */
 
 <body>
 
-<h2 style="text-align:center; color:#2e7d32;">Medicinal Plants</h2>
+<!-- HEADER -->
+<header class="header">
+    <img src="logo.png" class="logo">
+    <h1>E-Herbal Garden</h1>
+</header>
+
+<!-- NAVBAR -->
+<nav>
+<a href="index.html">Home</a>
+<a href="plant.html">Plants</a>
+<a href="about.html">About</a>
+<a href="#">Contact</a>
+</nav>
+
+<h2 style="text-align:center; color:#2e7d32; margin-top:20px;">
+🌿 Medicinal Plants
+</h2>
 
 <!-- SEARCH -->
 <div class="search">
@@ -211,7 +271,7 @@ let light = new THREE.DirectionalLight(0xffffff, 1);
 light.position.set(2,2,5);
 scene.add(light);
 
-// model (plant-like)
+// model
 let geometry = new THREE.ConeGeometry(0.8, 2, 32);
 let material = new THREE.MeshStandardMaterial({color: 0x228B22});
 let model = new THREE.Mesh(geometry, material);
@@ -244,7 +304,7 @@ document.getElementById("plantInfo").innerHTML = `
 
 document.getElementById("popup").style.display = "flex";
 
-// delay fix (important)
+// delay fix
 setTimeout(loadModel, 100);
 }
 
