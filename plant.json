@@ -3,16 +3,363 @@
     "commonName": "Tulsi",
     "botanicalName": "Ocimum sanctum",
     "image": "tulsi.png",
-    "uses": "Boosts immunity and helps in cold",
-    "habitat": "Grows in tropical climates",
+    "model3d": "",
+    "uses": "Boosts immunity and treats cold",
+    "habitat": "Tropical regions",
     "cultivation": "Needs sunlight and moderate watering"
   },
   {
     "commonName": "Neem",
     "botanicalName": "Azadirachta indica",
-    "image": "neem.jpg",
-    "uses": "Purifies blood and improves skin",
-    "habitat": "Dry and tropical regions",
-    "cultivation": "Low water, grows easily in sunlight"
+    "image": "neem.png",
+    "model3d": "",
+    "uses": "Antibacterial and skin treatment",
+    "habitat": "Dry and tropical climates",
+    "cultivation": "Low maintenance, drought resistant"
+  },
+  {
+    "commonName": "Aloe Vera",
+    "botanicalName": "Aloe barbadensis",
+    "image": "Aloe Veraaa.png",
+    "model3d": "",
+    "uses": "Heals burns and skin care",
+    "habitat": "Arid regions",
+    "cultivation": "Requires less water and good drainage"
+  },
+  {
+    "commonName": "Ashwagandha",
+    "botanicalName": "Withania somnifera",
+    "image": "ashugaanda.png",
+    "model3d": "",
+    "uses": "Reduces stress and boosts energy",
+    "habitat": "Dry regions",
+    "cultivation": "Needs sandy soil and sunlight"
+  },
+  {
+    "commonName": "Mint",
+    "botanicalName": "Mentha",
+    "image": "minntu.png",
+    "model3d": "",
+    "uses": "Improves digestion",
+    "habitat": "Moist areas",
+    "cultivation": "Grows quickly with regular watering"
+  },
+  {
+    "commonName": "Ginger",
+    "botanicalName": "Zingiber officinale",
+    "image": "ginger.png",
+    "model3d": "",
+    "uses": "Relieves nausea and cold",
+    "habitat": "Warm climates",
+    "cultivation": "Needs moist soil and shade"
+  },
+  {
+    "commonName": "Turmeric",
+    "botanicalName": "Curcuma longa",
+    "image": "termeric.png",
+    "model3d": "",
+    "uses": "Anti-inflammatory",
+    "habitat": "Tropical climates",
+    "cultivation": "Needs rainfall and fertile soil"
+  },
+  {
+    "commonName": "Brahmi",
+    "botanicalName": "Bacopa monnieri",
+    "image": "brahi.png",
+    "model3d": "",
+    "uses": "Improves memory",
+    "habitat": "Wetlands",
+    "cultivation": "Requires moist soil"
+  },
+  {
+    "commonName": "Amla",
+    "botanicalName": "Phyllanthus emblica",
+    "image": "amla.png",
+    "model3d": "",
+    "uses": "Rich in Vitamin C",
+    "habitat": "Subtropical regions",
+    "cultivation": "Needs well-drained soil"
+  },
+  {
+    "commonName": "Giloy",
+    "botanicalName": "Tinospora cordifolia",
+    "image": "gioli.png",
+    "model3d": "",
+    "uses": "Boosts immunity",
+    "habitat": "Tropical forests",
+    "cultivation": "Climber, needs support"
+  },
+
+  {
+    "commonName": "Lemongrass",
+    "botanicalName": "Cymbopogon",
+    "image": "lemongrass.png",
+    "model3d": "",
+    "uses": "Relieves anxiety",
+    "habitat": "Warm climates",
+    "cultivation": "Needs sunlight"
+  },
+  {
+    "commonName": "Shatavari",
+    "botanicalName": "Asparagus racemosus",
+    "image": "satvari.png",
+    "model3d": "",
+    "uses": "Women's health",
+    "habitat": "Tropical regions",
+    "cultivation": "Requires fertile soil"
+  },
+  {
+    "commonName": "Arjuna",
+    "botanicalName": "Terminalia arjuna",
+    "image": "arjuna.png",
+    "model3d": "",
+    "uses": "Heart health",
+    "habitat": "Riverbanks",
+    "cultivation": "Needs moist soil"
+  },
+  {
+    "commonName": "Bael",
+    "botanicalName": "Aegle marmelos",
+    "image": "bael.png",
+    "model3d": "",
+    "uses": "Digestive aid",
+    "habitat": "Dry forests",
+    "cultivation": "Drought resistant"
+  },
+  {
+    "commonName": "Clove",
+    "botanicalName": "Syzygium aromaticum",
+    "image": "clove.png",
+    "model3d": "",
+    "uses": "Toothache relief",
+    "habitat": "Tropical climates",
+    "cultivation": "Needs humidity"
+  },
+  {
+    "commonName": "Cinnamon",
+    "botanicalName": "Cinnamomum verum",
+    "image": "cinimum.png",
+    "model3d": "",
+    "uses": "Controls blood sugar",
+    "habitat": "Warm climates",
+    "cultivation": "Needs rainfall"
+  },
+  {
+    "commonName": "Black Pepper",
+    "botanicalName": "Piper nigrum",
+    "image": "Black pepper.png",
+    "model3d": "",
+    "uses": "Improves digestion",
+    "habitat": "Tropical regions",
+    "cultivation": "Climber plant"
+  },
+  {
+    "commonName": "Cardamom",
+    "botanicalName": "Elettaria cardamomum",
+    "image": "cardomom.png",
+    "model3d": "",
+    "uses": "Freshens breath",
+    "habitat": "Rainforests",
+    "cultivation": "Needs shade"
+  },
+  {
+    "commonName": "Saffron",
+    "botanicalName": "Crocus sativus",
+    "image": "saffron.png",
+    "model3d": "",
+    "uses": "Enhances mood",
+    "habitat": "Cold climates",
+    "cultivation": "Requires dry soil"
+  },
+  {
+    "commonName": "Fenugreek",
+    "botanicalName": "Trigonella foenum-graecum",
+    "image": "Fenugreek.png",
+    "model3d": "",
+    "uses": "Controls diabetes",
+    "habitat": "Mediterranean",
+    "cultivation": "Easy to grow"
+  },
+
+  {
+    "commonName": "Curry Leaves",
+    "botanicalName": "Murraya koenigii",
+    "image": "Curry Leaves.png",
+    "model3d": "",
+    "uses": "Improves digestion",
+    "habitat": "Tropical regions",
+    "cultivation": "Needs sunlight"
+  },
+  {
+    "commonName": "Drumstick",
+    "botanicalName": "Moringa oleifera",
+    "image": "Drumstick.png",
+    "model3d": "",
+    "uses": "Nutrient-rich",
+    "habitat": "Dry areas",
+    "cultivation": "Fast growing"
+  },
+  {
+    "commonName": "Hibiscus",
+    "botanicalName": "Hibiscus rosa-sinensis",
+    "image": "Hibu.png",
+    "model3d": "",
+    "uses": "Hair growth",
+    "habitat": "Tropical climates",
+    "cultivation": "Needs sunlight"
+  },
+  {
+    "commonName": "Rosemary",
+    "botanicalName": "Salvia rosmarinus",
+    "image": "Rosemar.png",
+    "model3d": "",
+    "uses": "Improves memory",
+    "habitat": "Mediterranean",
+    "cultivation": "Needs sunlight"
+  },
+  {
+    "commonName": "Lavender",
+    "botanicalName": "Lavandula",
+    "image": "lavenderr.png",
+    "model3d": "",
+    "uses": "Reduces stress",
+    "habitat": "Dry climates",
+    "cultivation": "Needs sunlight"
+  },
+  {
+    "commonName": "Chamomile",
+    "botanicalName": "Matricaria chamomilla",
+    "image": "Chamomilee.png",
+    "model3d": "",
+    "uses": "Improves sleep",
+    "habitat": "Temperate regions",
+    "cultivation": "Needs sunlight"
+  },
+  {
+    "commonName": "Dandelion",
+    "botanicalName": "Taraxacum",
+    "image": "Dandelion.png",
+    "model3d": "",
+    "uses": "Detoxifies liver",
+    "habitat": "Grasslands",
+    "cultivation": "Easy to grow"
+  },
+  {
+    "commonName": "Eucalyptus",
+    "botanicalName": "Eucalyptus globulus",
+    "image": "Eucalyptuss.png",
+    "model3d": "",
+    "uses": "Relieves cold",
+    "habitat": "Warm climates",
+    "cultivation": "Fast growing"
+  },
+  {
+    "commonName": "Garlic",
+    "botanicalName": "Allium sativum",
+    "image": "Garlic.png",
+    "model3d": "",
+    "uses": "Boosts immunity",
+    "habitat": "Temperate regions",
+    "cultivation": "Needs sunlight"
+  },
+  {
+    "commonName": "Onion",
+    "botanicalName": "Allium cepa",
+    "image": "Onionnn.png",
+    "model3d": "",
+    "uses": "Heart health",
+    "habitat": "Temperate climates",
+    "cultivation": "Needs fertile soil"
+  },
+
+  {
+    "commonName": "Spinach",
+    "botanicalName": "Spinacia oleracea",
+    "image": "Spinachhh.png",
+    "model3d": "",
+    "uses": "Rich in iron",
+    "habitat": "Cool climates",
+    "cultivation": "Needs moist soil"
+  },
+  {
+    "commonName": "Coriander",
+    "botanicalName": "Coriandrum sativum",
+    "image": "coriander.png",
+    "model3d": "",
+    "uses": "Improves digestion",
+    "habitat": "Temperate regions",
+    "cultivation": "Easy to grow"
+  },
+  {
+    "commonName": "Parsley",
+    "botanicalName": "Petroselinum crispum",
+    "image": "parcly.png",
+    "model3d": "",
+    "uses": "Rich in vitamins",
+    "habitat": "Temperate regions",
+    "cultivation": "Needs sunlight"
+  },
+  {
+    "commonName": "Thyme",
+    "botanicalName": "Thymus vulgaris",
+    "image": "Thyme.png",
+    "model3d": "",
+    "uses": "Antimicrobial",
+    "habitat": "Dry climates",
+    "cultivation": "Needs sunlight"
+  },
+  {
+    "commonName": "Oregano",
+    "botanicalName": "Origanum vulgare",
+    "image": "oregano.png",
+    "model3d": "",
+    "uses": "Boosts immunity",
+    "habitat": "Mediterranean",
+    "cultivation": "Needs sunlight"
+  },
+  {
+    "commonName": "Basil",
+    "botanicalName": "Ocimum basilicum",
+    "image": "Basil.png",
+    "model3d": "",
+    "uses": "Improves digestion",
+    "habitat": "Warm climates",
+    "cultivation": "Needs sunlight"
+  },
+  {
+    "commonName": "Peppermint",
+    "botanicalName": "Mentha piperita",
+    "image": "Pepperminn.png",
+    "model3d": "",
+    "uses": "Relieves headache",
+    "habitat": "Moist regions",
+    "cultivation": "Needs water"
+  },
+  {
+    "commonName": "Sage",
+    "botanicalName": "Salvia officinalis",
+    "image": "sage.png",
+    "model3d": "",
+    "uses": "Improves memory",
+    "habitat": "Dry climates",
+    "cultivation": "Needs sunlight"
+  },
+  {
+    "commonName": "Fennel",
+    "botanicalName": "Foeniculum vulgare",
+    "image": "Fennel.png",
+    "model3d": "",
+    "uses": "Aids digestion",
+    "habitat": "Temperate regions",
+    "cultivation": "Needs sunlight"
+  },
+  {
+    "commonName": "Mustard",
+    "botanicalName": "Brassica",
+    "image": "mustard.png",
+    "model3d": "",
+    "uses": "Improves metabolism",
+    "habitat": "Cool climates",
+    "cultivation": "Needs fertile soil"
   }
 ]
