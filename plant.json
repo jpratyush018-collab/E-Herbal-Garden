@@ -12,7 +12,7 @@
     "commonName": "Neem",
     "botanicalName": "Azadirachta indica",
     "image": "neem.png",
-    "model3d": "",
+    "model": "",
     "uses": "Antibacterial and skin treatment",
     "habitat": "Dry and tropical climates",
     "cultivation": "Low maintenance, drought resistant"
