@@ -1,13 +1,13 @@
 [
-  {
-    "commonName": "Tulsi",
+  {   "commonName": "Tulsi",
     "botanicalName": "Ocimum sanctum",
+    "uses": "Boosts immunity",
+    "habitat": "India",
+    "cultivation": "Easy",
     "image": "tulsi.png",
-    "model3d": "",
-    "uses": "Boosts immunity and treats cold",
-    "habitat": "Tropical regions",
-    "cultivation": "Needs sunlight and moderate watering"
+    "model": "models/tulsi.glb"
   },
+ 
   {
     "commonName": "Neem",
     "botanicalName": "Azadirachta indica",
