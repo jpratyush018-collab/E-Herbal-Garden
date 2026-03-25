@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cardamom - E-Herbal Garden</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #eaf5ea;
+}
+
+header {
+    background: linear-gradient(to right, #1b5e20, #2e7d32);
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+nav {
+    background: #145a1f;
+    padding: 10px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.main {
+    display: flex;
+    gap: 20px;
+    padding: 30px;
+}
+
+.left {
+    flex: 1;
+}
+
+.right {
+    flex: 1;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+h2 {
+    color: #2e7d32;
+}
+
+p {
+    line-height: 1.6;
+}
+
+.model-container {
+    width: 100%;
+    height: 500px;
+}
+
+footer {
+    background: #145a1f;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>🌿 Cardamom (Elaichi)</h1>
+<p>The Queen of Spices</p>
+</header>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="hellochalja.html">Plants</a>
+<a href="about.html">About</a>
+<a href="#">Contact</a>
+</nav>
+
+<div class="main">
+
+<div class="left">
+
+<h2>🌱 Basic Information</h2>
+<p><b>Common Name:</b> Cardamom / Elaichi</p>
+<p><b>Botanical Name:</b> Elettaria cardamomum</p>
+<p><b>Family:</b> Zingiberaceae</p>
+<p><b>Origin:</b> India</p>
+
+<h2>🌿 Medicinal Uses</h2>
+<p>Cardamom is widely used to improve digestion and relieve acidity.</p>
+<p>It helps in freshening breath and maintaining oral health.</p>
+<p>It also supports respiratory health and acts as a natural detoxifier.</p>
+
+<h2>🌍 Habitat</h2>
+<p>Cardamom grows in tropical forests with high humidity and shade.</p>
+
+<h2>🌾 Cultivation</h2>
+<p>It is cultivated from seeds and requires rich soil, shade, and regular watering.</p>
+
+<h2>⚠️ Precautions</h2>
+<p>Excess consumption may cause allergic reactions in rare cases.</p>
+
+<h2>🧪 Chemical Compounds</h2>
+<p><b>Cineole:</b> Respiratory support<br>
+<b>Terpenes:</b> Antioxidant<br>
+<b>Flavonoids:</b> Anti-inflammatory</p>
+
+</div>
+
+<div class="right">
+<h2 style="text-align:center;">🌐 3D Cardamom Model</h2>
+<div class="model-container" id="model"></div>
+</div>
+
+</div>
+
+<footer>
+© 2026 E-Herbal Garden | Designed with 🌱 | Created by Team Beginners
+</footer>
+
+<!-- Three.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+
+<script>
+const scene = new THREE.Scene();
+const container = document.getElementById("model");
+
+const camera = new THREE.PerspectiveCamera(
+    75,
+    container.clientWidth / container.clientHeight,
+    0.1,
+    1000
+);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setSize(container.clientWidth, container.clientHeight);
+container.appendChild(renderer.domElement);
+
+const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
+scene.add(light);
+
+let cardamomModel;
+
+const loader = new THREE.GLTFLoader();
+
+/* ✅ Correct path */
+loader.load('models/cardamom.glb', function(gltf) {
+
+    cardamomModel = gltf.scene;
+
+    const box = new THREE.Box3().setFromObject(cardamomModel);
+    const center = box.getCenter(new THREE.Vector3());
+
+    cardamomModel.position.sub(center);
+
+    scene.add(cardamomModel);
+
+}, undefined, function(error) {
+    console.error("Error loading model:", error);
+});
+
+const controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+camera.position.z = 5;
+
+function animate() {
+    requestAnimationFrame(animate);
+
+    if (cardamomModel) {
+        cardamomModel.rotation.y += 0.005;
+    }
+
+    renderer.render(scene, camera);
+}
+
+animate();
+</script>
+
+</body>
+</html>
