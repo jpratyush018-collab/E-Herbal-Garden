@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Turmeric - E-Herbal Garden</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #eaf5ea;
+}
+
+header {
+    background: linear-gradient(to right, #1b5e20, #2e7d32);
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+nav {
+    background: #145a1f;
+    padding: 10px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.main {
+    display: flex;
+    gap: 20px;
+    padding: 30px;
+}
+
+.left {
+    flex: 1;
+}
+
+.right {
+    flex: 1;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+h2 {
+    color: #2e7d32;
+}
+
+p {
+    line-height: 1.6;
+}
+
+.model-container {
+    width: 100%;
+    height: 500px;
+}
+
+footer {
+    background: #145a1f;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>🌿 Turmeric (Haldi)</h1>
+<p>The Golden Spice</p>
+</header>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="hellochalja.html">Plants</a>
+<a href="about.html">About</a>
+<a href="#">Contact</a>
+</nav>
+
+<div class="main">
+
+<div class="left">
+
+<h2>🌱 Basic Information</h2>
+<p><b>Common Name:</b> Turmeric / Haldi</p>
+<p><b>Botanical Name:</b> Curcuma longa</p>
+<p><b>Family:</b> Zingiberaceae</p>
+<p><b>Origin:</b> South Asia (India)</p>
+
+<h2>🌿 Medicinal Uses</h2>
+<p>Turmeric is widely known for its powerful anti-inflammatory and antioxidant properties. It is commonly used to boost immunity and improve overall health.</p>
+<p>It helps in healing wounds, improving digestion, and reducing joint pain.</p>
+<p>Turmeric milk (Haldi doodh) is a traditional remedy for cold and cough.</p>
+
+<h2>🌍 Habitat</h2>
+<p>Turmeric grows best in warm and humid climates with temperatures between 20°C to 30°C.</p>
+
+<h2>🌾 Cultivation</h2>
+<p>Turmeric is grown from rhizomes and requires well-drained fertile soil.</p>
+
+<h2>⚠️ Precautions</h2>
+<p>Excess consumption may cause stomach upset or allergic reactions in some individuals.</p>
+
+<h2>🧪 Chemical Compounds</h2>
+<p><b>Curcumin:</b> Anti-inflammatory<br>
+<b>Turmerone:</b> Brain health support<br>
+<b>Zingiberene:</b> Antioxidant</p>
+
+</div>
+
+<div class="right">
+<h2 style="text-align:center;">🌐 3D Turmeric Model</h2>
+<div class="model-container" id="model"></div>
+</div>
+
+</div>
+
+<footer>
+© 2026 E-Herbal Garden | Designed with 🌱 | Created by Team Beginners
+</footer>
+
+<!-- Three.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+
+<script>
+const scene = new THREE.Scene();
+const container = document.getElementById("model");
+
+const camera = new THREE.PerspectiveCamera(
+    75,
+    container.clientWidth / container.clientHeight,
+    0.1,
+    1000
+);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setSize(container.clientWidth, container.clientHeight);
+container.appendChild(renderer.domElement);
+
+const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
+scene.add(light);
+
+let turmericModel;
+
+const loader = new THREE.GLTFLoader();
+
+/* ✅ Correct path */
+loader.load('models/turmeric.glb', function(gltf) {
+
+    turmericModel = gltf.scene;
+
+    const box = new THREE.Box3().setFromObject(turmericModel);
+    const center = box.getCenter(new THREE.Vector3());
+
+    turmericModel.position.sub(center);
+
+    scene.add(turmericModel);
+
+}, undefined, function(error) {
+    console.error("Error loading model:", error);
+});
+
+const controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+camera.position.z = 5;
+
+function animate() {
+    requestAnimationFrame(animate);
+
+    if (turmericModel) {
+        turmericModel.rotation.y += 0.005;
+    }
+
+    renderer.render(scene, camera);
+}
+
+animate();
+</script>
+
+</body>
+</html>
