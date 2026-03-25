@@ -47,8 +47,8 @@ nav a {
     background: white;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    padding: 0; /* FIXED */
-    overflow: hidden; /* FIXED */
+    padding: 0;
+    overflow: hidden;
 }
 
 h2 {
@@ -62,8 +62,6 @@ p {
 .model-container {
     width: 100%;
     height: 500px;
-    margin: 0;
-    padding: 0;
 }
 </style>
 </head>
@@ -84,7 +82,6 @@ p {
 
 <div class="main">
 
-<!-- LEFT SIDE -->
 <div class="left">
 
 <h2>🌱 Basic Information</h2>
@@ -94,64 +91,31 @@ p {
 <p><b>Origin:</b> Indian Subcontinent</p>
 
 <h2>🌿 Medicinal Uses</h2>
-<p>
-Tulsi is one of the most important medicinal herbs in Ayurveda. It acts as a natural immunity booster by enhancing the body's defense system. It is widely used in treating cold, cough, asthma, and bronchitis due to its ability to clear respiratory pathways.
-</p>
-<p>
-Tulsi also works as an adaptogen, helping the body manage stress by reducing cortisol levels. It has strong antimicrobial properties that help fight bacteria, viruses, and fungal infections. Additionally, it supports digestion by reducing acidity, bloating, and improving gut health.
-</p>
-<p>
-Its anti-inflammatory and analgesic properties make it useful in relieving headaches, joint pain, and inflammation.
-</p>
+<p>Tulsi is one of the most important medicinal herbs in Ayurveda. It acts as a natural immunity booster by enhancing the body's defense system. It is widely used in treating cold, cough, asthma, and bronchitis due to its ability to clear respiratory pathways.</p>
+<p>Tulsi also works as an adaptogen, helping the body manage stress by reducing cortisol levels. It has strong antimicrobial properties that help fight bacteria, viruses, and fungal infections. Additionally, it supports digestion by reducing acidity, bloating, and improving gut health.</p>
+<p>Its anti-inflammatory and analgesic properties make it useful in relieving headaches, joint pain, and inflammation.</p>
 
 <h2>🌍 Habitat</h2>
-<p>
-Tulsi grows naturally in tropical and subtropical regions, especially in India and Southeast Asia. It thrives in warm climates with temperatures ranging between 20°C to 35°C.
-</p>
-<p>
-The plant requires full sunlight exposure for at least 4–6 hours daily. It grows best in well-drained soil with a slightly neutral to alkaline pH (6–7.5). Tulsi cannot tolerate frost and grows poorly in extremely cold environments.
-</p>
-<p>
-It adapts well to both rural and urban environments and can be easily grown in gardens, balconies, or indoor pots with proper sunlight.
-</p>
+<p>Tulsi grows naturally in tropical and subtropical regions, especially in India and Southeast Asia. It thrives in warm climates with temperatures ranging between 20°C to 35°C.</p>
+<p>The plant requires full sunlight exposure for at least 4–6 hours daily. It grows best in well-drained soil with a slightly neutral to alkaline pH (6–7.5). Tulsi cannot tolerate frost and grows poorly in extremely cold environments.</p>
 
 <h2>🌾 Cultivation</h2>
-<p>
-Tulsi is easy to cultivate and can be grown from seeds or stem cuttings. Seeds usually germinate within 1–2 weeks under suitable conditions.
-</p>
-<p>
-It requires moderate watering; overwatering should be avoided as it may lead to root rot. The plant grows best in well-drained, nutrient-rich soil such as sandy-loamy soil mixed with organic compost.
-</p>
-<p>
-Regular pruning encourages bushier growth and increases leaf production. Removing flowers helps the plant focus on leaf development. Tulsi can also be grown indoors in pots if placed near a sunny window or balcony.
-</p>
+<p>Tulsi is easy to cultivate and can be grown from seeds or stem cuttings. Seeds usually germinate within 1–2 weeks under suitable conditions.</p>
+<p>It requires moderate watering; overwatering should be avoided as it may lead to root rot. The plant grows best in well-drained, nutrient-rich soil such as sandy-loamy soil mixed with organic compost.</p>
 
 <h2>⚠️ Precautions</h2>
-<p>
-Although Tulsi is highly beneficial, excessive consumption may lead to certain side effects. It can significantly lower blood sugar levels, so diabetic individuals should monitor their levels carefully.
-</p>
-<p>
-Pregnant and breastfeeding women are advised to consult a doctor before regular use. Tulsi may also interact with medications such as blood thinners and diabetes drugs.
-</p>
-<p>
-Some studies suggest that long-term excessive consumption may affect fertility, although more research is needed. Therefore, Tulsi should always be consumed in moderate amounts.
-</p>
+<p>Although Tulsi is highly beneficial, excessive consumption may lead to certain side effects. It can significantly lower blood sugar levels, so diabetic individuals should monitor their levels carefully.</p>
+<p>Pregnant and breastfeeding women are advised to consult a doctor before regular use. Tulsi may also interact with medications such as blood thinners and diabetes drugs.</p>
 
 <h2>🧪 Chemical Compounds</h2>
-<p>
-Tulsi contains several bioactive compounds responsible for its medicinal properties:
-</p>
-<p>
-<b>Eugenol:</b> Provides anti-inflammatory and pain-relieving effects.<br>
-<b>Ursolic Acid:</b> Known for anti-cancer and anti-inflammatory properties.<br>
-<b>Rosmarinic Acid:</b> Acts as a powerful antioxidant protecting cells from damage.<br>
-<b>Linalool:</b> Helps reduce stress and anxiety.<br>
-<b>Flavonoids:</b> Boost immunity and fight harmful free radicals.
-</p>
+<p><b>Eugenol:</b> Anti-inflammatory and pain relief<br>
+<b>Ursolic Acid:</b> Anti-cancer potential<br>
+<b>Rosmarinic Acid:</b> Antioxidant<br>
+<b>Linalool:</b> Stress reduction<br>
+<b>Flavonoids:</b> Immunity boost</p>
 
 </div>
 
-<!-- RIGHT SIDE -->
 <div class="right">
 <h2 style="text-align:center;">🌐 3D Tulsi Model</h2>
 <div class="model-container" id="model"></div>
@@ -166,9 +130,9 @@ Tulsi contains several bioactive compounds responsible for its medicinal propert
 
 <script>
 const scene = new THREE.Scene();
-
 const container = document.getElementById("model");
 
+// CAMERA
 const camera = new THREE.PerspectiveCamera(
     75,
     container.clientWidth / container.clientHeight,
@@ -176,28 +140,35 @@ const camera = new THREE.PerspectiveCamera(
     1000
 );
 
+// RENDERER
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
-// Lighting
+// LIGHT
 const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
 scene.add(light);
 
 let tulsiModel;
 
+// LOAD MODEL
 const loader = new THREE.GLTFLoader();
 loader.load('tulsi.glb', function(gltf) {
 
     tulsiModel = gltf.scene;
 
-    // CENTER MODEL (IMPORTANT FIX)
     const box = new THREE.Box3().setFromObject(tulsiModel);
+    const size = box.getSize(new THREE.Vector3());
     const center = box.getCenter(new THREE.Vector3());
+
     tulsiModel.position.sub(center);
 
-    tulsiModel.scale.set(2,2,2);
+    const maxDim = Math.max(size.x, size.y, size.z);
+    const fov = camera.fov * (Math.PI / 180);
+    let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
+
+    camera.position.z = cameraZ * 1.5;
 
     scene.add(tulsiModel);
 
@@ -205,12 +176,12 @@ loader.load('tulsi.glb', function(gltf) {
     console.error(error);
 });
 
-camera.position.z = 5;
-
+// CONTROLS
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
 controls.enableZoom = true;
+controls.enablePan = false;
 
-// RESPONSIVE FIX
+// RESPONSIVE
 window.addEventListener('resize', () => {
     const width = container.clientWidth;
     const height = container.clientHeight;
