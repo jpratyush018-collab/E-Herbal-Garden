@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aloe Vera - E-Herbal Garden</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #eaf5ea;
+}
+
+/* HEADER */
+header {
+    background: linear-gradient(to right, #1b5e20, #2e7d32);
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+/* NAVBAR */
+nav {
+    background: #145a1f;
+    padding: 10px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* MAIN */
+.main {
+    display: flex;
+    gap: 20px;
+    padding: 30px;
+}
+
+.left {
+    flex: 1;
+}
+
+.right {
+    flex: 1;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 0;
+    overflow: hidden;
+}
+
+h2 {
+    color: #2e7d32;
+}
+
+p {
+    line-height: 1.6;
+}
+
+.model-container {
+    width: 100%;
+    height: 500px;
+}
+
+/* FOOTER */
+footer {
+    background: #145a1f;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 20px;
+    font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>🌿 Aloe Vera</h1>
+<p>The Plant of Immortality</p>
+</header>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="hellochalja.html">Plants</a>
+<a href="about.html">About</a>
+<a href="#">Contact</a>
+</nav>
+
+<div class="main">
+
+<div class="left">
+
+<h2>🌱 Basic Information</h2>
+<p><b>Common Name:</b> Aloe Vera</p>
+<p><b>Botanical Name:</b> Aloe barbadensis miller</p>
+<p><b>Family:</b> Asphodelaceae</p>
+<p><b>Origin:</b> Arabian Peninsula</p>
+
+<h2>🌿 Medicinal Uses</h2>
+<p>Aloe Vera is widely used for its healing properties. The gel inside its leaves is applied to burns, cuts, and wounds to promote faster healing.</p>
+<p>It has anti-inflammatory and antibacterial properties, making it effective in treating acne and skin irritation.</p>
+<p>Aloe Vera juice helps in improving digestion, reducing constipation, and detoxifying the body.</p>
+
+<h2>🌍 Habitat</h2>
+<p>Aloe Vera grows best in tropical and semi-tropical regions. It prefers warm temperatures between 20°C to 30°C.</p>
+<p>The plant requires well-drained sandy soil and plenty of sunlight. It does not tolerate waterlogged conditions.</p>
+
+<h2>🌾 Cultivation</h2>
+<p>Aloe Vera is grown from small offsets (baby plants) that grow beside the main plant.</p>
+<p>It requires very little watering and grows well in pots or garden soil with good drainage.</p>
+
+<h2>⚠️ Precautions</h2>
+<p>Excess consumption of Aloe Vera juice may cause stomach cramps or diarrhea.</p>
+<p>Pregnant women should avoid consuming Aloe Vera without medical advice.</p>
+
+<h2>🧪 Chemical Compounds</h2>
+<p><b>Aloin:</b> Laxative effect<br>
+<b>Aloe-emodin:</b> Anti-inflammatory<br>
+<b>Saponins:</b> Antimicrobial<br>
+<b>Polysaccharides:</b> Healing properties</p>
+
+</div>
+
+<div class="right">
+<h2 style="text-align:center;">🌐 3D Aloe Vera Model</h2>
+<div class="model-container" id="model"></div>
+</div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+© 2026 E-Herbal Garden | Designed with 🌱 | Created by Team Beginners
+</footer>
+
+<!-- Three.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+
+<script>
+const scene = new THREE.Scene();
+const container = document.getElementById("model");
+
+const camera = new THREE.PerspectiveCamera(
+    75,
+    container.clientWidth / container.clientHeight,
+    0.1,
+    1000
+);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setSize(container.clientWidth, container.clientHeight);
+renderer.setPixelRatio(window.devicePixelRatio);
+container.appendChild(renderer.domElement);
+
+const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
+scene.add(light);
+
+let aloeModel;
+
+const loader = new THREE.GLTFLoader();
+loader.load('model/aloevera.glb', function(gltf) {
+
+    aloeModel = gltf.scene;
+
+    const box = new THREE.Box3().setFromObject(aloeModel);
+    const size = box.getSize(new THREE.Vector3());
+    const center = box.getCenter(new THREE.Vector3());
+
+    aloeModel.position.sub(center);
+
+    const maxDim = Math.max(size.x, size.y, size.z);
+    const fov = camera.fov * (Math.PI / 180);
+    let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
+
+    camera.position.z = cameraZ * 1.5;
+
+    scene.add(aloeModel);
+
+}, undefined, function(error) {
+    console.error("Error loading model:", error);
+});
+
+const controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.enableZoom = true;
+controls.enablePan = false;
+
+window.addEventListener('resize', () => {
+    const width = container.clientWidth;
+    const height = container.clientHeight;
+
+    renderer.setSize(width, height);
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+});
+
+function animate() {
+    requestAnimationFrame(animate);
+
+    if (aloeModel) {
+        aloeModel.rotation.y += 0.005;
+    }
+
+    renderer.render(scene, camera);
+}
+
+animate();
+</script>
+
+</body>
+</html>
