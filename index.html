@@ -12,6 +12,38 @@ font-family:'Segoe UI', sans-serif;
 background:linear-gradient(to right,#eef7ee,#d0f0d0);
 }
 
+/* ANNOUNCEMENT BAR (COMPACT) */
+.announcement{
+width:100%;
+margin:5px auto;          /* reduced outer space */
+background:linear-gradient(90deg,#1b5e20,#2e7d32);
+color:#fff;
+overflow:hidden;
+white-space:nowrap;
+border-radius:8px;
+box-shadow:0 3px 8px rgba(0,0,0,0.2);
+}
+
+.announcement p{
+display:inline-block;
+padding:2px 0;
+margin:0;                 /* 🔥 removes extra top/bottom space */
+font-size:13px;
+font-weight:500;
+line-height:1.2;          /* 🔥 tight vertical spacing */
+white-space:nowrap;
+animation:scrollText 20s linear infinite;
+}
+
+/* SMOOTH CONTINUOUS SCROLL */
+@keyframes scrollText{
+0%{
+    transform: translateX(100%);
+}
+100%{
+    transform: translateX(-100%);
+}
+}
 /* HEADER */
 .header{
 display:flex;
@@ -183,13 +215,6 @@ transition:0.5s;
 .card:hover::after{
 opacity:0.2;
 }
-.details{
-display:none;
-margin-top:10px;
-color:#555;
-font-size:14px;
-line-height:1.5;
-}
 
 /* FOOTER */
 footer{
@@ -200,7 +225,6 @@ padding:18px;
 margin-top:30px;
 font-size:14px;
 }
-
 </style>
 
 <script>
@@ -213,6 +237,13 @@ function toggleDetails(card){
 </head>
 
 <body>
+
+<div class="announcement">
+  <p>
+    🌿 Explore our 3D Plant Viewer! Rotate, zoom and interact with herbal plants in 3D 🌱 ➤ Available now in Plants section &nbsp;&nbsp;&nbsp;&nbsp;
+    🌿 Explore our 3D Plant Viewer! Rotate, zoom and interact with herbal plants in 3D 🌱 ➤ Available now in Plants section
+  </p>
+</div>
 
 <header class="header">
     <img src="logo.png" class="logo">
