@@ -9,103 +9,180 @@
 
 /* BODY */
 body{
-  margin:0;
-  font-family:Arial;
-  background:#eef7ee;
+margin:0;
+font-family:Arial;
+background:#eef7ee;
 }
 
 /* HEADER */
 .header{
-  display:flex;
-  align-items:center;
-  gap:15px;
-  background:linear-gradient(45deg,#2e7d32,#1b5e20);
-  color:white;
-  padding:15px 25px;
+display:flex;
+align-items:center;
+gap:15px;
+background:linear-gradient(45deg,#2e7d32,#1b5e20);
+color:white;
+padding:15px 25px;
 }
+
 .logo{
-  width:60px;
-  height:60px;
-  border-radius:50%;
+width:60px;
+height:60px;
+border-radius:50%;
 }
+
 .header h1{
-  margin:0;
+margin:0;
 }
 
 /* NAVBAR */
 nav{
-  display:flex;
-  justify-content:center;
-  gap:30px;
-  background:#133d13;
-  padding:12px;
-  position:sticky;
-  top:0;
-  z-index:1000;
+display:flex;
+justify-content:center;
+gap:30px;
+background:#133d13;
+padding:12px;
+position:sticky;
+top:0;
+z-index:1000;
 }
+
 nav a{
-  color:white;
-  text-decoration:none;
-  font-weight:bold;
+color:white;
+text-decoration:none;
+font-weight:bold;
 }
+
 nav a:hover{
-  color:#90ee90;
+color:#90ee90;
 }
 
 /* SEARCH */
-.search{
-  text-align:center;
-  margin:20px;
-}
-.search input{
-  padding:10px;
-  width:250px;
-  border-radius:5px;
-  border:1px solid #ccc;
-}
-.search button{
-  padding:10px;
-  background:#2e7d32;
-  color:white;
-  border:none;
-  border-radius:5px;
-  cursor:pointer;
-}
-.search button:hover{
-  background:#1b5e20;
+.search-box{
+display:flex;
+flex-direction:column;
+align-items:center;
+margin:30px;
 }
 
-/* PLANT CARDS */
+.search-row{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.input-container{
+display:flex;
+align-items:center;
+background:white;
+border-radius:10px;
+box-shadow:0 2px 8px rgba(0,0,0,0.1);
+position:relative;
+overflow:visible;
+}
+
+.input-container input{
+padding:8px;
+width:200px;
+border:none;
+outline:none;
+font-size:14px;
+}
+
+.clear-btn{
+padding:8px;
+cursor:pointer;
+color:#777;
+}
+
+.search-btn{
+background:#8bc34a;
+border:none;
+padding:8px 10px;
+cursor:pointer;
+color:white;
+font-size:14px;
+}
+
+/* FILTER */
+.filter-select{
+display:flex;
+align-items:center;
+background:white;
+border-radius:10px;
+box-shadow:0 2px 8px rgba(0,0,0,0.1);
+padding:0 6px;
+}
+
+.filter-select svg{
+width:16px;
+height:16px;
+margin-right:4px;
+fill:#2e7d32;
+}
+
+.filter-select select{
+border:none;
+outline:none;
+padding:8px;
+background:transparent;
+cursor:pointer;
+font-size:13px;
+}
+
+/* SUGGESTION DROPDOWN */
+.suggestion-box{
+position:absolute;
+top:100%;
+left:0;
+width:100%;
+background:white;
+border-radius:0 0 10px 10px;
+box-shadow:0 4px 8px rgba(0,0,0,0.1);
+padding:10px;
+display:none;
+cursor:pointer;
+text-align:left;
+z-index:999;
+border-top:1px solid #ddd;
+}
+
+.suggestion-box:hover{
+background:#f1f8e9;
+}
+
+/* PLANTS */
 .plant-container{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:20px;
-  padding:20px;
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:20px;
+padding:20px;
 }
+
 .plant-card{
-  width:220px;
-  background:white;
-  padding:15px;
-  border-radius:10px;
-  text-align:center;
-  box-shadow:0 5px 10px rgba(0,0,0,0.1);
-  transition:0.3s;
-  cursor:pointer;
+width:220px;
+background:white;
+padding:15px;
+border-radius:10px;
+text-align:center;
+box-shadow:0 5px 10px rgba(0,0,0,0.1);
+transition:0.3s;
 }
+
 .plant-card:hover{
-  transform:scale(1.05);
+transform:scale(1.05);
 }
+
 .plant-card img{
-  width:100%;
-  height:150px;
-  object-fit:contain;
-  display:block;
-  margin:0 auto 10px;
+width:100%;
+height:150px;
+object-fit:contain;
+margin-bottom:10px;
 }
+
 .plant-card p{
-  font-size:12px;
-  color:#555;
+font-size:12px;
+color:#555;
 }
 
 </style>
@@ -114,24 +191,67 @@ nav a:hover{
 <body>
 
 <header class="header">
-  <img src="logo.png" class="logo">
-  <h1>E-Herbal Garden</h1>
+<img src="logo.png" class="logo">
+<h1>E-Herbal Garden</h1>
 </header>
 
 <nav>
-  <a href="index.html">Home</a>
-  <a href="plant.html">Plants</a>
-  <a href="about.html">About</a>
-  <a href="#">Contact</a>
+<a href="index.html">Home</a>
+<a href="plant.html">Plants</a>
+<a href="about.html">About</a>
+<a href="#">Contact</a>
 </nav>
 
 <h2 style="text-align:center; color:#2e7d32; margin-top:20px;">
 🌿 Medicinal Plants
 </h2>
 
-<div class="search">
-  <input type="text" id="plantName" placeholder="Search plant (Tulsi, Neem)">
-  <button onclick="searchPlant()">Search</button>
+<div class="search-box">
+
+<div class="search-row">
+
+<div class="input-container">
+
+<input type="text" id="plantName" placeholder="Search plants..." 
+oninput="showSuggestion()" 
+onkeypress="handleEnter(event)">
+
+<span class="clear-btn" onclick="clearSearch()">✖</span>
+
+<button class="search-btn" onclick="applyFilters()">🔍</button>
+
+<div id="suggestionBox" class="suggestion-box" onclick="applySuggestion()"></div>
+
+</div>
+
+<div class="filter-select">
+<svg viewBox="0 0 24 24">
+<path d="M3 5h18l-7 8v5l-4 2v-7z"/>
+</svg>
+
+<select id="filterOption" onchange="applyFilters()">
+<option value="">Filter</option>
+
+<optgroup label="Uses">
+<option value="immunity">Immunity</option>
+<option value="skin">Skin</option>
+<option value="digestion">Digestion</option>
+<option value="stress">Stress</option>
+<option value="heart">Heart</option>
+</optgroup>
+
+<optgroup label="Habitat">
+<option value="tropical">Tropical</option>
+<option value="dry">Dry</option>
+<option value="temperate">Temperate</option>
+<option value="wet">Wet</option>
+</optgroup>
+
+</select>
+</div>
+
+</div>
+
 </div>
 
 <div class="plant-container" id="plantContainer"></div>
@@ -140,53 +260,84 @@ nav a:hover{
 
 let plantsData = [];
 
-// FETCH JSON
 fetch("plant.json")
 .then(res => res.json())
 .then(data => {
-  plantsData = data;
-  displayPlants(plantsData);
+plantsData = data;
+displayPlants(plantsData);
 });
 
-// 🔗 LINK MAPPING
 const plantLinks = {
-  "Tulsi": "tulsi.html",
-  "Aloe Vera": "aloe.html",
-  "Neem": "neem.html",
-  "Mint": "mint.html",
-  "Onion": "onion.html"
+"Tulsi": "tulsi.html",
+"Aloe Vera": "aloe.html",
+"Neem": "neem.html",
+"Mint": "mint.html",
+"Onion": "onion.html"
 };
 
-// DISPLAY PLANTS
 function displayPlants(data){
-  let container = document.getElementById("plantContainer");
-  container.innerHTML = "";
+let container = document.getElementById("plantContainer");
+container.innerHTML = "";
 
-  data.forEach(plant => {
+data.forEach(plant => {
+let link = plantLinks[plant.commonName] || "#";
 
-    let link = plantLinks[plant.commonName] || "#";
-
-    container.innerHTML += `
-      <div class="plant-card">
-        <a href="${link}" style="text-decoration:none; color:inherit;">
-          <img src="${plant.image}" alt="${plant.commonName}">
-          <h3>${plant.commonName}</h3>
-          <p>${plant.botanicalName}</p>
-        </a>
-      </div>
-    `;
-  });
+container.innerHTML += `
+<div class="plant-card">
+<a href="${link}" style="text-decoration:none; color:inherit;">
+<img src="${plant.image}">
+<h3>${plant.commonName}</h3>
+<p>${plant.botanicalName}</p>
+</a>
+</div>
+`;
+});
 }
 
-// SEARCH FUNCTION
-function searchPlant(){
-  let input = document.getElementById("plantName").value.toLowerCase();
+function handleEnter(e){
+if(e.key==="Enter") applyFilters();
+}
 
-  let filtered = plantsData.filter(plant =>
-    plant.commonName.toLowerCase().includes(input)
-  );
+function applyFilters(){
+let input = document.getElementById("plantName").value.toLowerCase();
+let option = document.getElementById("filterOption").value;
 
-  displayPlants(filtered);
+let filtered = plantsData.filter(p =>
+p.commonName.toLowerCase().includes(input)
+);
+
+if(["immunity","skin","digestion","stress","heart"].includes(option)){
+filtered = filtered.filter(p => p.uses.toLowerCase().includes(option));
+}
+else if(["tropical","dry","temperate","wet"].includes(option)){
+filtered = filtered.filter(p => p.habitat.toLowerCase().includes(option));
+}
+
+displayPlants(filtered);
+}
+
+function showSuggestion(){
+let input = document.getElementById("plantName").value;
+let box = document.getElementById("suggestionBox");
+
+if(input.trim()===""){
+box.style.display="none";
+return;
+}
+
+box.style.display="block";
+box.innerHTML = `Search for "<b>${input}</b>"`;
+}
+
+function applySuggestion(){
+applyFilters();
+document.getElementById("suggestionBox").style.display="none";
+}
+
+function clearSearch(){
+document.getElementById("plantName").value="";
+document.getElementById("suggestionBox").style.display="none";
+displayPlants(plantsData);
 }
 
 </script>
