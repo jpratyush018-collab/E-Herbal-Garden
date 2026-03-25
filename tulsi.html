@@ -62,9 +62,9 @@ p {
     width: 100%;
     height: 500px;
 }
-
 </style>
 </head>
+
 <body>
 
 <header>
@@ -73,9 +73,9 @@ p {
 </header>
 
 <nav>
-<a href="#">Home</a>
-<a href="#">Plants</a>
-<a href="#">About</a>
+<a href="index.html">Home</a>
+<a href="plant.html">Plants</a>
+<a href="about.html">About</a>
 <a href="#">Contact</a>
 </nav>
 
@@ -91,23 +91,64 @@ p {
 <p><b>Origin:</b> Indian Subcontinent</p>
 
 <h2>🌿 Medicinal Uses</h2>
-<p>Tulsi is widely known for its medicinal properties. It helps boost immunity, fights infections, and reduces stress. It is commonly used in treating cold, cough, respiratory disorders, and digestive issues.</p>
+<p>
+Tulsi is one of the most important medicinal herbs in Ayurveda. It acts as a natural immunity booster by enhancing the body's defense system. It is widely used in treating cold, cough, asthma, and bronchitis due to its ability to clear respiratory pathways.
+</p>
+<p>
+Tulsi also works as an adaptogen, helping the body manage stress by reducing cortisol levels. It has strong antimicrobial properties that help fight bacteria, viruses, and fungal infections. Additionally, it supports digestion by reducing acidity, bloating, and improving gut health.
+</p>
+<p>
+Its anti-inflammatory and analgesic properties make it useful in relieving headaches, joint pain, and inflammation.
+</p>
 
 <h2>🌍 Habitat</h2>
-<p>Tulsi grows best in tropical and subtropical climates. It requires warm temperatures and thrives in regions with plenty of sunlight.</p>
+<p>
+Tulsi grows naturally in tropical and subtropical regions, especially in India and Southeast Asia. It thrives in warm climates with temperatures ranging between 20°C to 35°C.
+</p>
+<p>
+The plant requires full sunlight exposure for at least 4–6 hours daily. It grows best in well-drained soil with a slightly neutral to alkaline pH (6–7.5). Tulsi cannot tolerate frost and grows poorly in extremely cold environments.
+</p>
+<p>
+It adapts well to both rural and urban environments and can be easily grown in gardens, balconies, or indoor pots with proper sunlight.
+</p>
 
 <h2>🌾 Cultivation</h2>
-<p>Tulsi requires 4–6 hours of sunlight daily. It should be watered moderately and grown in well-drained soil. It can be easily cultivated in pots or gardens.</p>
+<p>
+Tulsi is easy to cultivate and can be grown from seeds or stem cuttings. Seeds usually germinate within 1–2 weeks under suitable conditions.
+</p>
+<p>
+It requires moderate watering; overwatering should be avoided as it may lead to root rot. The plant grows best in well-drained, nutrient-rich soil such as sandy-loamy soil mixed with organic compost.
+</p>
+<p>
+Regular pruning encourages bushier growth and increases leaf production. Removing flowers helps the plant focus on leaf development. Tulsi can also be grown indoors in pots if placed near a sunny window or balcony.
+</p>
 
 <h2>⚠️ Precautions</h2>
-<p>Excess consumption of Tulsi may lower blood sugar levels significantly. Pregnant women and people on medication should consult a doctor before regular use.</p>
+<p>
+Although Tulsi is highly beneficial, excessive consumption may lead to certain side effects. It can significantly lower blood sugar levels, so diabetic individuals should monitor their levels carefully.
+</p>
+<p>
+Pregnant and breastfeeding women are advised to consult a doctor before regular use. Tulsi may also interact with medications such as blood thinners and diabetes drugs.
+</p>
+<p>
+Some studies suggest that long-term excessive consumption may affect fertility, although more research is needed. Therefore, Tulsi should always be consumed in moderate amounts.
+</p>
 
 <h2>🧪 Chemical Compounds</h2>
-<p>Tulsi contains important compounds like Eugenol, Ursolic Acid, Rosmarinic Acid, and Linalool, which contribute to its healing properties.</p>
+<p>
+Tulsi contains several bioactive compounds responsible for its medicinal properties:
+</p>
+<p>
+<b>Eugenol:</b> Provides anti-inflammatory and pain-relieving effects.<br>
+<b>Ursolic Acid:</b> Known for anti-cancer and anti-inflammatory properties.<br>
+<b>Rosmarinic Acid:</b> Acts as a powerful antioxidant protecting cells from damage.<br>
+<b>Linalool:</b> Helps reduce stress and anxiety.<br>
+<b>Flavonoids:</b> Boost immunity and fight harmful free radicals.
+</p>
 
 </div>
 
-<!-- RIGHT SIDE (3D MODEL) -->
+<!-- RIGHT SIDE -->
 <div class="right">
 <h2 style="text-align:center;">🌐 3D Tulsi Model</h2>
 <div class="model-container" id="model"></div>
@@ -115,7 +156,7 @@ p {
 
 </div>
 
-<!-- Three.js CDN -->
+<!-- Three.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
@@ -134,12 +175,11 @@ scene.add(light);
 
 let tulsiModel;
 
-// Load GLB
 const loader = new THREE.GLTFLoader();
 loader.load('tulsi.glb', function(gltf) {
     tulsiModel = gltf.scene;
     scene.add(tulsiModel);
-    tulsiModel.scale.set(2 ,2,2);
+    tulsiModel.scale.set(2,2,2);
 }, undefined, function(error) {
     console.error(error);
 });
@@ -149,7 +189,6 @@ camera.position.z = 5;
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
 controls.enableZoom = true;
 
-// Auto rotate
 function animate() {
     requestAnimationFrame(animate);
 
