@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tulsi - E-Herbal Garden</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #eaf5ea;
+}
+
+header {
+    background: linear-gradient(to right, #1b5e20, #2e7d32);
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+nav {
+    background: #145a1f;
+    padding: 10px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.main {
+    display: flex;
+    gap: 20px;
+    padding: 30px;
+}
+
+.left {
+    flex: 1;
+}
+
+.right {
+    flex: 1;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 10px;
+}
+
+h2 {
+    color: #2e7d32;
+}
+
+p {
+    line-height: 1.6;
+}
+
+.model-container {
+    width: 100%;
+    height: 500px;
+}
+
+</style>
+</head>
+<body>
+
+<header>
+<h1>🌿 Tulsi (Holy Basil)</h1>
+<p>The Queen of Medicinal Herbs</p>
+</header>
+
+<nav>
+<a href="#">Home</a>
+<a href="#">Plants</a>
+<a href="#">About</a>
+<a href="#">Contact</a>
+</nav>
+
+<div class="main">
+
+<!-- LEFT SIDE -->
+<div class="left">
+
+<h2>🌱 Basic Information</h2>
+<p><b>Common Name:</b> Tulsi / Holy Basil</p>
+<p><b>Botanical Name:</b> Ocimum sanctum (Ocimum tenuiflorum)</p>
+<p><b>Family:</b> Lamiaceae</p>
+<p><b>Origin:</b> Indian Subcontinent</p>
+
+<h2>🌿 Medicinal Uses</h2>
+<p>Tulsi is widely known for its medicinal properties. It helps boost immunity, fights infections, and reduces stress. It is commonly used in treating cold, cough, respiratory disorders, and digestive issues.</p>
+
+<h2>🌍 Habitat</h2>
+<p>Tulsi grows best in tropical and subtropical climates. It requires warm temperatures and thrives in regions with plenty of sunlight.</p>
+
+<h2>🌾 Cultivation</h2>
+<p>Tulsi requires 4–6 hours of sunlight daily. It should be watered moderately and grown in well-drained soil. It can be easily cultivated in pots or gardens.</p>
+
+<h2>⚠️ Precautions</h2>
+<p>Excess consumption of Tulsi may lower blood sugar levels significantly. Pregnant women and people on medication should consult a doctor before regular use.</p>
+
+<h2>🧪 Chemical Compounds</h2>
+<p>Tulsi contains important compounds like Eugenol, Ursolic Acid, Rosmarinic Acid, and Linalool, which contribute to its healing properties.</p>
+
+</div>
+
+<!-- RIGHT SIDE (3D MODEL) -->
+<div class="right">
+<h2 style="text-align:center;">🌐 3D Tulsi Model</h2>
+<div class="model-container" id="model"></div>
+</div>
+
+</div>
+
+<!-- Three.js CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+
+<script>
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(document.getElementById("model").clientWidth, 500);
+document.getElementById("model").appendChild(renderer.domElement);
+
+// Lighting
+const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
+scene.add(light);
+
+let tulsiModel;
+
+// Load GLB
+const loader = new THREE.GLTFLoader();
+loader.load('tulsi.glb', function(gltf) {
+    tulsiModel = gltf.scene;
+    scene.add(tulsiModel);
+    tulsiModel.scale.set(2 ,2,2);
+}, undefined, function(error) {
+    console.error(error);
+});
+
+camera.position.z = 5;
+
+const controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.enableZoom = true;
+
+// Auto rotate
+function animate() {
+    requestAnimationFrame(animate);
+
+    if (tulsiModel) {
+        tulsiModel.rotation.y += 0.005;
+    }
+
+    renderer.render(scene, camera);
+}
+
+animate();
+</script>
+
+</body>
+</html>
