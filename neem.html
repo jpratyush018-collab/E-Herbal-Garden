@@ -167,7 +167,10 @@ let neemModel;
 
 // UPDATED PATH
 const loader = new THREE.GLTFLoader();
-loader.load('neem.glb', function(gltf) {
+
+loader.load(
+        'tulsi.glb',   // ✅ make sure this path is correct
+    function (gltf) {
 
     neemModel = gltf.scene;
 
