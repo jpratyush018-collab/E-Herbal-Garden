@@ -171,8 +171,7 @@ const controls = new THREE.OrbitControls(camera, renderer.domElement);
 let model;
 const loader = new THREE.GLTFLoader();
 
-loader.load(
-    'neem.glb',   /* ✅ FIXED PATH */
+loader.load('neem.glb'),   /* ✅ FIXED PATH */
     function (gltf) {
 
         console.log("✅ Model Loaded");
