@@ -12,7 +12,6 @@ body {
     background: #eaf5ea;
 }
 
-/* HEADER */
 header {
     background: linear-gradient(to right, #1b5e20, #2e7d32);
     color: white;
@@ -20,7 +19,6 @@ header {
     text-align: center;
 }
 
-/* NAVBAR */
 nav {
     background: #145a1f;
     padding: 10px;
@@ -34,7 +32,6 @@ nav a {
     font-weight: bold;
 }
 
-/* MAIN */
 .main {
     display: flex;
     flex-wrap: wrap;
@@ -60,23 +57,17 @@ h2 {
     color: #2e7d32;
 }
 
-p {
-    line-height: 1.6;
-}
-
 .model-container {
     width: 100%;
     height: 500px;
 }
 
-/* FOOTER */
 footer {
     background: #145a1f;
     color: white;
     text-align: center;
     padding: 15px;
     margin-top: 20px;
-    font-size: 14px;
 }
 </style>
 </head>
@@ -92,57 +83,28 @@ footer {
 <a href="index.html">Home</a>
 <a href="hellochalja.html">Plants</a>
 <a href="about.html">About</a>
-<a href="#">Contact</a>
 </nav>
 
 <div class="main">
 
 <div class="left">
-
 <h2>🌱 Basic Information</h2>
-<p><b>Common Name:</b> Tulsi / Holy Basil</p>
+<p><b>Common Name:</b> Tulsi</p>
 <p><b>Botanical Name:</b> Ocimum sanctum</p>
-<p><b>Family:</b> Lamiaceae</p>
-<p><b>Origin:</b> Indian Subcontinent</p>
 
-<h2>🌿 Medicinal Uses</h2>
-<p>
-Tulsi is a powerful medicinal herb used in Ayurveda. It boosts immunity, helps in cold, cough, asthma, and reduces stress. It also has antibacterial and anti-inflammatory properties.
-</p>
-
-<h2>🌍 Habitat</h2>
-<p>
-Grows in tropical climates like India. Needs sunlight and warm temperature.
-</p>
-
-<h2>🌾 Cultivation</h2>
-<p>
-Can be grown easily using seeds or stem cuttings.
-</p>
-
-<h2>⚠️ Precautions</h2>
-<p>
-Avoid excessive use. Consult doctor if needed.
-</p>
-
-<h2>🧪 Chemical Compounds</h2>
-<p>
-<b>Eugenol:</b> Anti-inflammatory<br>
-<b>Ursolic Acid:</b> Anti-cancer<br>
-<b>Rosmarinic Acid:</b> Antioxidant
-</p>
-
+<h2>🌿 Uses</h2>
+<p>Boosts immunity, helps in cold, cough, stress, and infections.</p>
 </div>
 
 <div class="right">
-<h2 style="text-align:center;">🌐 3D Tulsi Model</h2>
+<h2 style="text-align:center;">🌐 3D Model</h2>
 <div class="model-container" id="model"></div>
 </div>
 
 </div>
 
 <footer>
-© 2026 E-Herbal Garden | Designed with 🌱
+© 2026 E-Herbal Garden
 </footer>
 
 <!-- THREE JS -->
@@ -169,10 +131,9 @@ camera.position.set(0, 1, 3);
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
-renderer.setClearColor(0x000000, 0);
 container.appendChild(renderer.domElement);
 
-/* LIGHTS */
+/* LIGHTING */
 const hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
 scene.add(hemiLight);
 
@@ -182,32 +143,33 @@ scene.add(dirLight);
 
 /* CONTROLS */
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
-controls.enableZoom = true;
-controls.enablePan = false;
 
 /* LOAD MODEL */
 let model;
 const loader = new THREE.GLTFLoader();
 
 loader.load(
-    'model/tulsi.glb',  // 🔥 IMPORTANT: Put file in same folder
+    'models/tulsi.glb',   // ✅ CORRECT PATH
     function (gltf) {
+
+        console.log("✅ Model Loaded");
 
         model = gltf.scene;
 
-        model.scale.set(0.8, 0.8, 0.8);
+        // Scale
+        model.scale.set(0.7, 0.7, 0.7);
 
+        // Center model
         const box = new THREE.Box3().setFromObject(model);
         const center = box.getCenter(new THREE.Vector3());
-
         model.position.sub(center);
 
         scene.add(model);
     },
     undefined,
     function (error) {
-        alert("❌ Model not loading! Check file path or size.");
-        console.error(error);
+        console.error("❌ Error:", error);
+        alert("Model not loading!\nCheck:\n1. Path\n2. File name\n3. File size");
     }
 );
 
