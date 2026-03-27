@@ -157,7 +157,7 @@ let cardamomModel;
 const loader = new THREE.GLTFLoader();
 
 /* ✅ Correct path */
-loader.load('Cardamon.glb', function(gltf) {
+loader.load('Cardamon.glb'), function(gltf) {
 
     cardamomModel = gltf.scene;
 
