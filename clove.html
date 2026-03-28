@@ -157,7 +157,7 @@ let cloveModel;
 const loader = new THREE.GLTFLoader();
 
 /* ✅ Correct path */
-loader.load('Clove.glb', function(gltf) {
+loader.load('Clove.glb'), function(gltf) {
 
     cloveModel = gltf.scene;
 
