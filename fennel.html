@@ -162,7 +162,9 @@ let model;
 const loader = new THREE.GLTFLoader();
 
 /* 🔁 Change path if needed */
-loader.load('Fennel.glb'), function(gltf) {
+loader.load(
+    './Fennel.glb', // ✅ IMPORTANT for GitHub
+    function (gltf) {
 
     model = gltf.scene;
 
