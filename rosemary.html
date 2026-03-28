@@ -162,7 +162,9 @@ let model;
 const loader = new THREE.GLTFLoader();
 
 /* 🔁 Change path if needed */
-loader.load('Rosemary.glb'), function(gltf) {
+loader.load(
+    './Rosemary.glb', // ✅ IMPORTANT for GitHub
+    function (gltf) {
 
     model = gltf.scene;
 
