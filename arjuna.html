@@ -157,7 +157,7 @@ let arjunaModel;
 const loader = new THREE.GLTFLoader();
 
 /* ✅ Correct path */
-loader.load('Arjuna.glb', function(gltf) {
+loader.load('Arjuna.glb'), function(gltf) {
 
     arjunaModel = gltf.scene;
 
