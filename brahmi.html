@@ -157,7 +157,7 @@ let brahmiModel;
 const loader = new THREE.GLTFLoader();
 
 /* ✅ Correct path */
-loader.load('Brahmi.glb', function(gltf) {
+loader.load('Brahmi.glb'), function(gltf) {
 
     brahmiModel = gltf.scene;
 
