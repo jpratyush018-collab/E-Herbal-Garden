@@ -157,7 +157,7 @@ let turmericModel;
 const loader = new THREE.GLTFLoader();
 
 /* ✅ Correct path */
-loader.load('Turmeric.glb', function(gltf) {
+loader.load('Turmeric.glb'), function(gltf) {
 
     turmericModel = gltf.scene;
 
