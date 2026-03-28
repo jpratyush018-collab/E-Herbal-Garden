@@ -162,7 +162,9 @@ let model;
 const loader = new THREE.GLTFLoader();
 
 /* 🔁 Change path if needed */
-loader.load('Dandelion.glb), function(gltf) {
+loader.load(
+    './Dandelion.glb', // ✅ IMPORTANT for GitHub
+    function (gltf) {
 
     model = gltf.scene;
 
