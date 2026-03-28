@@ -162,7 +162,9 @@ let model;
 const loader = new THREE.GLTFLoader();
 
 /* 🔁 Update path if needed */
-loader.load('Drumstick.glb'), function(gltf) {
+loader.load(
+    './Bael.glb', // ✅ IMPORTANT for GitHub
+    function (gltf) {
 
     model = gltf.scene;
 
