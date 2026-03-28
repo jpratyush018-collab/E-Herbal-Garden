@@ -165,7 +165,9 @@ const controls = new THREE.OrbitControls(camera, renderer.domElement);
 let model;
 const loader = new THREE.GLTFLoader();
 
-loader.load('Tulsi.glb'), function (gltf) {
+loader.load(
+    './Tulsi.glb', // ✅ IMPORTANT for GitHub
+    function (gltf) {
 
         console.log("✅ Model Loaded");
 
