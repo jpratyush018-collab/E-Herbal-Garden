@@ -157,7 +157,7 @@ let giloyModel;
 const loader = new THREE.GLTFLoader();
 
 /* ✅ Correct path */
-loader.load('Giloy.glb', function(gltf) {
+loader.load('Giloy.glb'), function(gltf) {
 
     giloyModel = gltf.scene;
 
