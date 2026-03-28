@@ -158,7 +158,7 @@ let saffronModel;
 const loader = new THREE.GLTFLoader();
 
 /* ✅ Correct path */
-loader.load('Saffron.glb', function(gltf) {
+loader.load('Saffron.glb'), function(gltf) {
 
     saffronModel = gltf.scene;
 
