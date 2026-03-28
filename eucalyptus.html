@@ -162,8 +162,9 @@ let model;
 const loader = new THREE.GLTFLoader();
 
 /* 🔁 Change path if needed */
-loader.load('Eucalyptus.glb'), function(gltf) {
-
+loader.load(
+    './Eucalyptus.glb', // ✅ IMPORTANT for GitHub
+    function (gltf) {
     model = gltf.scene;
 
     model.scale.set(1.5,1.5,1.5);
