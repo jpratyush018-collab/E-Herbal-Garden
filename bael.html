@@ -126,18 +126,20 @@ footer {
 </div>
 
 <footer>
-© 2026 E-Herbal Garden | Designed with 🌱 | Created by Team Beginners
+© 2026 E-Herbal Garden | Designed with 🌱
 </footer>
 
-<!-- Three.js -->
+<!-- Three.js CDN -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
 
 <script>
+// Scene setup
 const scene = new THREE.Scene();
 const container = document.getElementById("model");
 
+// Camera
 const camera = new THREE.PerspectiveCamera(
     75,
     container.clientWidth / container.clientHeight,
@@ -145,28 +147,29 @@ const camera = new THREE.PerspectiveCamera(
     1000
 );
 
+// Renderer
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize(container.clientWidth, container.clientHeight);
 container.appendChild(renderer.domElement);
 
-// Lighting
+// Light
 const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
 scene.add(light);
 
 // Controls
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
 
-// Model
+// Model loader
 let baelModel;
 const loader = new THREE.GLTFLoader();
 
 loader.load(
-    'Bael.glb', // make sure file exists here
-    function(gltf) {
+    './Bael.glb', // ✅ IMPORTANT for GitHub
+    function (gltf) {
 
         baelModel = gltf.scene;
 
-        // Center model
+        // Center the model
         const box = new THREE.Box3().setFromObject(baelModel);
         const center = box.getCenter(new THREE.Vector3());
         baelModel.position.sub(center);
@@ -174,13 +177,13 @@ loader.load(
         scene.add(baelModel);
     },
     undefined,
-    function(error) {
+    function (error) {
         console.error("Error loading model:", error);
     }
 );
 
 // Camera position
-camera.position.z = 5;
+camera.position.set(0, 1, 5);
 
 // Resize fix
 window.addEventListener('resize', () => {
@@ -189,7 +192,7 @@ window.addEventListener('resize', () => {
     renderer.setSize(container.clientWidth, container.clientHeight);
 });
 
-// Animation loop
+// Animation
 function animate() {
     requestAnimationFrame(animate);
 
