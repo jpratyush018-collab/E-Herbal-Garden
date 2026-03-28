@@ -167,8 +167,9 @@ scene.add(light);
 let aloeModel;
 
 const loader = new THREE.GLTFLoader();
-loader.load('Aloevera.glb'), function(gltf) {
-
+loader.load(
+    './Aloevera.glb', // ✅ IMPORTANT for GitHub
+    function (gltf) {
     aloeModel = gltf.scene;
 
     const box = new THREE.Box3().setFromObject(aloeModel);
