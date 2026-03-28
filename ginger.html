@@ -157,7 +157,7 @@ let gingerModel;
 const loader = new THREE.GLTFLoader();
 
 /* ✅ Correct path */
-loader.load('Ginger.glb', function(gltf) {
+loader.load('Ginger.glb'), function(gltf) {
 
     gingerModel = gltf.scene;
 
