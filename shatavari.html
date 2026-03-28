@@ -157,7 +157,9 @@ let shatavariModel;
 const loader = new THREE.GLTFLoader();
 
 /* ✅ Correct path */
-loader.load('Shatavari.glb'), function(gltf) {
+loader.load(
+    './Shatavri.glb', // ✅ IMPORTANT for GitHub
+    function (gltf) {
 
     shatavariModel = gltf.scene;
 
