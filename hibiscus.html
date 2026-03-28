@@ -157,7 +157,9 @@ let hibiscusModel;
 const loader = new THREE.GLTFLoader();
 
 /* ✅ Correct path */
-loader.load('Hibiscuss.glb'), function(gltf) {
+loader.load(
+    './Hibiscus.glb', // ✅ IMPORTANT for GitHub
+    function (gltf) {
 
     hibiscusModel = gltf.scene;
 
