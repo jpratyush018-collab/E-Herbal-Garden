@@ -157,7 +157,7 @@ let lemongrassModel;
 const loader = new THREE.GLTFLoader();
 
 /* ✅ Correct path */
-loader.load('Lemongrass.glb', function(gltf) {
+loader.load('Lemongrass.glb'), function(gltf) {
 
     lemongrassModel = gltf.scene;
 
