@@ -157,7 +157,7 @@ let amlaModel;
 const loader = new THREE.GLTFLoader();
 
 /* ✅ Correct path */
-loader.load('Amla.glb', function(gltf) {
+loader.load('Amla.glb'), function(gltf) {
 
     amlaModel = gltf.scene;
 
