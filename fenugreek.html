@@ -157,7 +157,9 @@ let fenugreekModel;
 const loader = new THREE.GLTFLoader();
 
 /* ✅ Your requested path */
-loader.load('Fenugreek.glb') , function(gltf) {
+loader.load(
+    './Bael.glb', // ✅ IMPORTANT for GitHub
+    function (gltf) {
 
     fenugreekModel = gltf.scene;
 
