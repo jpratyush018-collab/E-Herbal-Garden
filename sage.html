@@ -7,8 +7,244 @@
 
 <style>
 body {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sage - E-Herbal Garden</title>
+
+<style>
+body {
     margin: 0;
     font-family: Arial, sans-serif;
+    background: #eaf5ea;
+}
+
+header {
+    background: linear-gradient(to right, #1b5e20, #2e7d32);
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+nav {
+    background: #145a1f;
+    padding: 10px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.main {
+    display: flex;
+    gap: 20px;
+    padding: 30px;
+    flex-wrap: wrap;
+}
+
+.left {
+    flex: 1;
+    min-width: 300px;
+}
+
+.right {
+    flex: 1;
+    min-width: 300px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+    padding: 10px;
+}
+
+h2 {
+    color: #2e7d32;
+}
+
+p {
+    line-height: 1.6;
+}
+
+/* ✅ Reduced height */
+.model-container {
+    width: 100%;
+    height: 300px;
+}
+
+footer {
+    background: #145a1f;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>🌿 Sage</h1>
+<p>The Wisdom Herb</p>
+</header>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="hellochalja.html">Plants</a>
+<a href="about.html">About</a>
+<a href="#">Contact</a>
+</nav>
+
+<div class="main">
+
+<div class="left">
+
+<h2>🌱 Basic Information</h2>
+<p><b>Common Name:</b> Sage</p>
+<p><b>Botanical Name:</b> Salvia officinalis</p>
+<p><b>Family:</b> Lamiaceae</p>
+<p><b>Origin:</b> Mediterranean Region</p>
+
+<h2>🌿 Medicinal Uses</h2>
+<p>Sage is known for improving memory and brain function.</p>
+<p>It helps in relieving sore throat and digestive problems.</p>
+<p>It also has strong antibacterial and anti-inflammatory properties.</p>
+
+<h2>🌍 Habitat</h2>
+<p>Sage grows in dry, sunny climates with well-drained soil.</p>
+
+<h2>🌾 Cultivation</h2>
+<p>It is grown from seeds or cuttings and requires moderate watering.</p>
+
+<h2>⚠️ Precautions</h2>
+<p>Excess consumption may cause dizziness; avoid overuse.</p>
+
+<h2>🧪 Chemical Compounds</h2>
+<p><b>Thujone:</b> Antimicrobial<br>
+<b>Cineole:</b> Respiratory support<br>
+<b>Rosmarinic Acid:</b> Anti-inflammatory</p>
+
+</div>
+
+<div class="right">
+<h2 style="text-align:center;">🌐 3D Sage Model</h2>
+<div class="model-container" id="model"></div>
+</div>
+
+</div>
+
+<footer>
+© 2026 E-Herbal Garden | Designed with 🌱 | Created by Team Beginners
+</footer>
+
+<!-- Three.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+
+<script>
+// Scene
+const scene = new THREE.Scene();
+const container = document.getElementById("model");
+
+// Camera
+const camera = new THREE.PerspectiveCamera(
+    60,
+    container.clientWidth / container.clientHeight,
+    0.1,
+    1000
+);
+
+// Renderer
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setSize(container.clientWidth, container.clientHeight);
+renderer.setPixelRatio(window.devicePixelRatio);
+container.appendChild(renderer.domElement);
+
+// Lighting
+const light1 = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
+scene.add(light1);
+
+const light2 = new THREE.DirectionalLight(0xffffff, 2);
+light2.position.set(5,5,5);
+scene.add(light2);
+
+// Controls
+const controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.minDistance = 1;
+controls.maxDistance = 10;
+
+// Model
+let model;
+const loader = new THREE.GLTFLoader();
+
+loader.load(
+    './Sage.glb', // ✅ SAME NAME
+    function (gltf) {
+
+        model = gltf.scene;
+
+        // 🔥 Center + scale fix
+        const box = new THREE.Box3().setFromObject(model);
+        const size = box.getSize(new THREE.Vector3()).length();
+        const center = box.getCenter(new THREE.Vector3());
+
+        model.position.sub(center);
+
+        // 🔥 remove bottom gap
+        model.position.y -= 0.4;
+
+        // 🔥 auto scale
+        const scaleFactor = 3.5 / size;
+        model.scale.setScalar(scaleFactor);
+
+        scene.add(model);
+
+        // 🔥 camera position
+        camera.position.set(0, size / 3, size * 1.2);
+
+        // 🔥 focus center
+        controls.target.set(0, -0.3, 0);
+        controls.update();
+
+    },
+    undefined,
+    function(error) {
+        console.error("Error loading model:", error);
+    }
+);
+
+// Resize fix
+window.addEventListener('resize', () => {
+    camera.aspect = container.clientWidth / container.clientHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(container.clientWidth, container.clientHeight);
+});
+
+// Animation
+function animate() {
+    requestAnimationFrame(animate);
+
+    if (model) {
+        model.rotation.y += 0.005;
+    }
+
+    controls.update();
+    renderer.render(scene, camera);
+}
+
+animate();
+</script>
+
+</body>
+</html>    font-family: Arial, sans-serif;
     background: #eaf5ea;
 }
 
