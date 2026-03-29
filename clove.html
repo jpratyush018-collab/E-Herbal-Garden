@@ -36,18 +36,22 @@ nav a {
     display: flex;
     gap: 20px;
     padding: 30px;
+    flex-wrap: wrap;
 }
 
 .left {
     flex: 1;
+    min-width: 300px;
 }
 
 .right {
     flex: 1;
+    min-width: 300px;
     background: white;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     overflow: hidden;
+    padding: 10px;
 }
 
 h2 {
@@ -58,9 +62,10 @@ p {
     line-height: 1.6;
 }
 
+/* ✅ Reduced height */
 .model-container {
     width: 100%;
-    height: 500px;
+    height: 300px;
 }
 
 footer {
@@ -135,49 +140,82 @@ footer {
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
 
 <script>
+// Scene
 const scene = new THREE.Scene();
 const container = document.getElementById("model");
 
+// Camera
 const camera = new THREE.PerspectiveCamera(
-    75,
+    60,
     container.clientWidth / container.clientHeight,
     0.1,
     1000
 );
 
+// Renderer
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize(container.clientWidth, container.clientHeight);
+renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
+// Light
 const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
 scene.add(light);
 
-let cloveModel;
+// Controls
+const controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.minDistance = 1;
+controls.maxDistance = 10;
 
+// Model
+let cloveModel;
 const loader = new THREE.GLTFLoader();
 
-/* ✅ Correct path */
 loader.load(
-    './Clove.glb', // ✅ IMPORTANT for GitHub
+    './Clove.glb', // ✅ SAME NAME
     function (gltf) {
 
-    cloveModel = gltf.scene;
+        cloveModel = gltf.scene;
 
-    const box = new THREE.Box3().setFromObject(cloveModel);
-    const center = box.getCenter(new THREE.Vector3());
+        // 🔥 Center + scale
+        const box = new THREE.Box3().setFromObject(cloveModel);
+        const size = box.getSize(new THREE.Vector3()).length();
+        const center = box.getCenter(new THREE.Vector3());
 
-    cloveModel.position.sub(center);
+        cloveModel.position.sub(center);
 
-    scene.add(cloveModel);
+        // 🔥 remove bottom gap
+        cloveModel.position.y -= 0.4;
 
-}, undefined, function(error) {
-    console.error("Error loading model:", error);
+        // 🔥 auto scale
+        const scaleFactor = 3.5 / size;
+        cloveModel.scale.setScalar(scaleFactor);
+
+        scene.add(cloveModel);
+
+        // 🔥 camera adjust
+        camera.position.set(0, size / 3, size * 1.2);
+
+        // 🔥 focus center
+        controls.target.set(0, -0.3, 0);
+        controls.update();
+
+    },
+    undefined,
+    function(error) {
+        console.error("Error loading model:", error);
+    }
+);
+
+// Resize fix
+window.addEventListener('resize', () => {
+    camera.aspect = container.clientWidth / container.clientHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(container.clientWidth, container.clientHeight);
 });
 
-const controls = new THREE.OrbitControls(camera, renderer.domElement);
-
-camera.position.z = 5;
-
+// Animation
 function animate() {
     requestAnimationFrame(animate);
 
@@ -185,6 +223,7 @@ function animate() {
         cloveModel.rotation.y += 0.005;
     }
 
+    controls.update();
     renderer.render(scene, camera);
 }
 
