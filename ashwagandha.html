@@ -167,8 +167,9 @@ scene.add(light);
 let ashwagandhaModel;
 
 const loader = new THREE.GLTFLoader();
-loader.load('models/ashwagandha.glb', function(gltf) {
-
+loader.load(
+    './Ashwagandha.glb', // ✅ IMPORTANT for GitHub
+    function (gltf) {
     ashwagandhaModel = gltf.scene;
 
     const box = new THREE.Box3().setFromObject(ashwagandhaModel);
