@@ -51,7 +51,12 @@ nav a {
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     overflow: hidden;
-    padding: 10px;
+}
+
+/* 🔥 Tight container */
+.model-container {
+    width: 100%;
+    height: 260px;
 }
 
 h2 {
@@ -60,12 +65,6 @@ h2 {
 
 p {
     line-height: 1.6;
-}
-
-/* ✅ Reduced height */
-.model-container {
-    width: 100%;
-    height: 300px;
 }
 
 footer {
@@ -140,7 +139,6 @@ footer {
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
 
 <script>
-// Scene
 const scene = new THREE.Scene();
 const container = document.getElementById("model");
 
@@ -165,48 +163,40 @@ scene.add(light);
 // Controls
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
-controls.minDistance = 1;
-controls.maxDistance = 10;
+controls.enableZoom = false; // 🔥 cleaner look
 
-// Model
 let giloyModel;
 const loader = new THREE.GLTFLoader();
 
-loader.load(
-    './Giloy.glb', // ✅ SAME NAME
-    function (gltf) {
+loader.load('./Giloy.glb', function (gltf) {
 
-        giloyModel = gltf.scene;
+    giloyModel = gltf.scene;
 
-        // 🔥 Center + scale
-        const box = new THREE.Box3().setFromObject(giloyModel);
-        const size = box.getSize(new THREE.Vector3()).length();
-        const center = box.getCenter(new THREE.Vector3());
+    // 🔥 Auto center + perfect ground alignment
+    const box = new THREE.Box3().setFromObject(giloyModel);
+    const size = box.getSize(new THREE.Vector3()).length();
+    const center = box.getCenter(new THREE.Vector3());
 
-        giloyModel.position.sub(center);
+    giloyModel.position.sub(center);
 
-        // 🔥 remove bottom gap
-        giloyModel.position.y -= 0.4;
+    // ✅ remove bottom gap perfectly
+    giloyModel.position.y -= box.min.y;
 
-        // 🔥 auto scale
-        const scaleFactor = 3.5 / size;
-        giloyModel.scale.setScalar(scaleFactor);
+    // 🔥 Auto scale
+    const scaleFactor = 3.5 / size;
+    giloyModel.scale.setScalar(scaleFactor);
 
-        scene.add(giloyModel);
+    scene.add(giloyModel);
 
-        // 🔥 camera adjust
-        camera.position.set(0, size / 3, size * 1.2);
+    // 🔥 Perfect camera
+    camera.position.set(0, size / 3, size * 1.2);
 
-        // 🔥 focus center
-        controls.target.set(0, -0.3, 0);
-        controls.update();
+    controls.target.set(0, 0, 0);
+    controls.update();
 
-    },
-    undefined,
-    function(error) {
-        console.error("Error loading model:", error);
-    }
-);
+}, undefined, function(error) {
+    console.error("Error loading model:", error);
+});
 
 // Resize fix
 window.addEventListener('resize', () => {
