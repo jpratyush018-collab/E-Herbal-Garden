@@ -36,18 +36,26 @@ nav a {
     display: flex;
     gap: 20px;
     padding: 30px;
+    flex-wrap: wrap;
 }
 
 .left {
     flex: 1;
+    min-width: 300px;
 }
 
 .right {
     flex: 1;
+    min-width: 300px;
     background: white;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     overflow: hidden;
+}
+
+.model-container {
+    width: 100%;
+    height: 260px;
 }
 
 h2 {
@@ -56,11 +64,6 @@ h2 {
 
 p {
     line-height: 1.6;
-}
-
-.model-container {
-    width: 100%;
-    height: 500px;
 }
 
 footer {
@@ -138,53 +141,75 @@ footer {
 const scene = new THREE.Scene();
 const container = document.getElementById("model");
 
+// Camera
 const camera = new THREE.PerspectiveCamera(
-    75,
+    60,
     container.clientWidth / container.clientHeight,
     0.1,
     1000
 );
 
+// Renderer
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize(container.clientWidth, container.clientHeight);
+renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
-/* Lighting */
-const light1 = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
-scene.add(light1);
+// Lighting
+const hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
+scene.add(hemiLight);
 
-const light2 = new THREE.DirectionalLight(0xffffff, 2);
-light2.position.set(5,5,5);
-scene.add(light2);
+const dirLight = new THREE.DirectionalLight(0xffffff, 2);
+dirLight.position.set(5,5,5);
+scene.add(dirLight);
 
+// Controls
+const controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.enableZoom = false;
+
+// Model
 let model;
-
 const loader = new THREE.GLTFLoader();
 
-/* 🔁 Change path if needed */
-loader.load(
-    './Onion.glb', // ✅ IMPORTANT for GitHub
-    function (gltf) {
+loader.load('./Onion.glb', function (gltf) {
 
     model = gltf.scene;
 
-    model.scale.set(1.5,1.5,1.5);
-
+    // Auto center + align
     const box = new THREE.Box3().setFromObject(model);
+    const size = box.getSize(new THREE.Vector3()).length();
     const center = box.getCenter(new THREE.Vector3());
 
     model.position.sub(center);
 
+    // Remove bottom gap
+    model.position.y -= box.min.y;
+
+    // Auto scale
+    const scaleFactor = 3.5 / size;
+    model.scale.setScalar(scaleFactor);
+
     scene.add(model);
+
+    // Camera fit
+    camera.position.set(0, size / 3, size * 1.2);
+
+    controls.target.set(0, 0, 0);
+    controls.update();
 
 }, undefined, function(error) {
     console.error("Error loading model:", error);
 });
 
-const controls = new THREE.OrbitControls(camera, renderer.domElement);
+// Resize
+window.addEventListener('resize', () => {
+    camera.aspect = container.clientWidth / container.clientHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(container.clientWidth, container.clientHeight);
+});
 
-camera.position.set(0,2,5);
-
+// Animation
 function animate() {
     requestAnimationFrame(animate);
 
