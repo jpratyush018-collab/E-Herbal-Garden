@@ -93,7 +93,6 @@ footer {
 <div class="main">
 
 <div class="left">
-
 <h2>🌱 Basic Information</h2>
 <p><b>Common Name:</b> Onion / Pyaz</p>
 <p><b>Botanical Name:</b> Allium cepa</p>
@@ -118,7 +117,6 @@ footer {
 <p><b>Quercetin:</b> Antioxidant<br>
 <b>Sulfur Compounds:</b> Heart health<br>
 <b>Flavonoids:</b> Anti-inflammatory</p>
-
 </div>
 
 <div class="right">
@@ -155,7 +153,7 @@ renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
-// Lighting
+// Lights
 const hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
 scene.add(hemiLight);
 
@@ -168,7 +166,10 @@ const controls = new THREE.OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 controls.enableZoom = false;
 
-// Model
+// 🔥 GROUP for center rotation
+const group = new THREE.Group();
+scene.add(group);
+
 let model;
 const loader = new THREE.GLTFLoader();
 
@@ -176,23 +177,23 @@ loader.load('./Onion.glb', function (gltf) {
 
     model = gltf.scene;
 
-    // Auto center + align
     const box = new THREE.Box3().setFromObject(model);
     const size = box.getSize(new THREE.Vector3()).length();
     const center = box.getCenter(new THREE.Vector3());
 
+    // Center model inside group
     model.position.sub(center);
 
-    // Remove bottom gap
+    // Ground alignment
     model.position.y -= box.min.y;
 
     // Auto scale
     const scaleFactor = 3.5 / size;
     model.scale.setScalar(scaleFactor);
 
-    scene.add(model);
+    group.add(model);
 
-    // Camera fit
+    // Camera
     camera.position.set(0, size / 3, size * 1.2);
 
     controls.target.set(0, 0, 0);
@@ -213,9 +214,8 @@ window.addEventListener('resize', () => {
 function animate() {
     requestAnimationFrame(animate);
 
-    if (model) {
-        model.rotation.y += 0.005;
-    }
+    // ✅ ROTATE GROUP (center rotation)
+    group.rotation.y += 0.005;
 
     controls.update();
     renderer.render(scene, camera);
