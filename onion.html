@@ -12,6 +12,7 @@ body {
     background: #eaf5ea;
 }
 
+/* HEADER */
 header {
     background: linear-gradient(to right, #1b5e20, #2e7d32);
     color: white;
@@ -19,6 +20,7 @@ header {
     text-align: center;
 }
 
+/* NAVBAR */
 nav {
     background: #145a1f;
     padding: 10px;
@@ -32,30 +34,23 @@ nav a {
     font-weight: bold;
 }
 
+/* MAIN */
 .main {
     display: flex;
     gap: 20px;
     padding: 30px;
-    flex-wrap: wrap;
 }
 
 .left {
     flex: 1;
-    min-width: 300px;
 }
 
 .right {
     flex: 1;
-    min-width: 300px;
     background: white;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     overflow: hidden;
-}
-
-.model-container {
-    width: 100%;
-    height: 260px;
 }
 
 h2 {
@@ -66,12 +61,19 @@ p {
     line-height: 1.6;
 }
 
+.model-container {
+    width: 100%;
+    height: 500px;
+}
+
+/* FOOTER */
 footer {
     background: #145a1f;
     color: white;
     text-align: center;
     padding: 15px;
     margin-top: 20px;
+    font-size: 14px;
 }
 </style>
 </head>
@@ -93,6 +95,7 @@ footer {
 <div class="main">
 
 <div class="left">
+
 <h2>🌱 Basic Information</h2>
 <p><b>Common Name:</b> Onion / Pyaz</p>
 <p><b>Botanical Name:</b> Allium cepa</p>
@@ -117,6 +120,7 @@ footer {
 <p><b>Quercetin:</b> Antioxidant<br>
 <b>Sulfur Compounds:</b> Heart health<br>
 <b>Flavonoids:</b> Anti-inflammatory</p>
+
 </div>
 
 <div class="right">
@@ -141,7 +145,7 @@ const container = document.getElementById("model");
 
 // Camera
 const camera = new THREE.PerspectiveCamera(
-    60,
+    75,
     container.clientWidth / container.clientHeight,
     0.1,
     1000
@@ -153,71 +157,64 @@ renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
-// Lights
-const hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
-scene.add(hemiLight);
+// Lighting
+const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
+scene.add(light);
 
-const dirLight = new THREE.DirectionalLight(0xffffff, 2);
-dirLight.position.set(5,5,5);
-scene.add(dirLight);
+// Model
+let onionModel;
 
-// Controls
-const controls = new THREE.OrbitControls(camera, renderer.domElement);
-controls.enableDamping = true;
-controls.enableZoom = false;
-
-// 🔥 GROUP for center rotation
-const group = new THREE.Group();
-scene.add(group);
-
-let model;
 const loader = new THREE.GLTFLoader();
+loader.load(
+    './Onion.glb',
+    function (gltf) {
 
-loader.load('./Onion.glb', function (gltf) {
+    onionModel = gltf.scene;
 
-    model = gltf.scene;
-
-    const box = new THREE.Box3().setFromObject(model);
-    const size = box.getSize(new THREE.Vector3()).length();
+    // 🔥 EXACT SAME AS ASHWAGANDHA
+    const box = new THREE.Box3().setFromObject(onionModel);
+    const size = box.getSize(new THREE.Vector3());
     const center = box.getCenter(new THREE.Vector3());
 
-    // Center model inside group
-    model.position.sub(center);
+    // Center model perfectly
+    onionModel.position.sub(center);
 
-    // Ground alignment
-    model.position.y -= box.min.y;
+    // Camera auto fit
+    const maxDim = Math.max(size.x, size.y, size.z);
+    const fov = camera.fov * (Math.PI / 180);
+    let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
 
-    // Auto scale
-    const scaleFactor = 3.5 / size;
-    model.scale.setScalar(scaleFactor);
+    camera.position.z = cameraZ * 1.5;
 
-    group.add(model);
-
-    // Camera
-    camera.position.set(0, size / 3, size * 1.2);
-
-    controls.target.set(0, 0, 0);
-    controls.update();
+    scene.add(onionModel);
 
 }, undefined, function(error) {
     console.error("Error loading model:", error);
 });
 
-// Resize
+// Controls
+const controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.enableZoom = true;
+controls.enablePan = false;
+
+// Resize fix
 window.addEventListener('resize', () => {
-    camera.aspect = container.clientWidth / container.clientHeight;
+    const width = container.clientWidth;
+    const height = container.clientHeight;
+
+    renderer.setSize(width, height);
+    camera.aspect = width / height;
     camera.updateProjectionMatrix();
-    renderer.setSize(container.clientWidth, container.clientHeight);
 });
 
 // Animation
 function animate() {
     requestAnimationFrame(animate);
 
-    // ✅ ROTATE GROUP (center rotation)
-    group.rotation.y += 0.005;
+    if (onionModel) {
+        onionModel.rotation.y += 0.005;
+    }
 
-    controls.update();
     renderer.render(scene, camera);
 }
 
