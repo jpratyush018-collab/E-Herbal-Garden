@@ -36,27 +36,22 @@ nav a {
     display: flex;
     gap: 20px;
     padding: 30px;
+    flex-wrap: wrap;
 }
 
-.left {
-    flex: 1;
-}
+.left { flex: 1; min-width: 300px; }
 
 .right {
     flex: 1;
+    min-width: 300px;
     background: white;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     overflow: hidden;
 }
 
-h2 {
-    color: #2e7d32;
-}
-
-p {
-    line-height: 1.6;
-}
+h2 { color: #2e7d32; }
+p { line-height: 1.6; }
 
 .model-container {
     width: 100%;
@@ -90,32 +85,22 @@ footer {
 <div class="main">
 
 <div class="left">
-
 <h2>🌱 Basic Information</h2>
 <p><b>Common Name:</b> Oregano</p>
 <p><b>Botanical Name:</b> Origanum vulgare</p>
 <p><b>Family:</b> Lamiaceae</p>
-<p><b>Origin:</b> Mediterranean Region</p>
 
 <h2>🌿 Medicinal Uses</h2>
-<p>Oregano has strong antibacterial and antifungal properties.</p>
-<p>It helps in boosting immunity and fighting infections.</p>
-<p>It also supports digestion and respiratory health.</p>
+<p>Antibacterial, boosts immunity, supports digestion.</p>
 
 <h2>🌍 Habitat</h2>
-<p>It grows in warm, dry climates with well-drained soil and sunlight.</p>
+<p>Warm, dry climates with sunlight.</p>
 
 <h2>🌾 Cultivation</h2>
-<p>Oregano is grown from seeds or cuttings and requires minimal watering.</p>
+<p>Grows easily with minimal water.</p>
 
 <h2>⚠️ Precautions</h2>
-<p>Excess use of oregano oil may cause irritation; use in moderation.</p>
-
-<h2>🧪 Chemical Compounds</h2>
-<p><b>Carvacrol:</b> Antibacterial<br>
-<b>Thymol:</b> Antiseptic<br>
-<b>Flavonoids:</b> Antioxidant</p>
-
+<p>Use oil in moderation.</p>
 </div>
 
 <div class="right">
@@ -126,10 +111,9 @@ footer {
 </div>
 
 <footer>
-© 2026 E-Herbal Garden | Designed with 🌱 | Created by Team Beginners
+© 2026 E-Herbal Garden
 </footer>
 
-<!-- Three.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
@@ -147,44 +131,56 @@ const camera = new THREE.PerspectiveCamera(
 
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize(container.clientWidth, container.clientHeight);
+renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
-/* Lighting */
-const light1 = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
-scene.add(light1);
+// Lighting
+const hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
+scene.add(hemiLight);
 
-const light2 = new THREE.DirectionalLight(0xffffff, 2);
-light2.position.set(5,5,5);
-scene.add(light2);
+const dirLight = new THREE.DirectionalLight(0xffffff, 1);
+dirLight.position.set(5,5,5);
+scene.add(dirLight);
+
+const controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.enableZoom = true;
+controls.enablePan = false;
 
 let model;
 
 const loader = new THREE.GLTFLoader();
-
-/* 🔁 Change path if needed */
-loader.load(
-    './Oregano.glb', // ✅ IMPORTANT for GitHub
-    function (gltf) {
+loader.load('./Oregano.glb', function (gltf) {
 
     model = gltf.scene;
 
-    model.scale.set(1.5,1.5,1.5);
-
+    // ✅ CENTER MODEL
     const box = new THREE.Box3().setFromObject(model);
+    const size = box.getSize(new THREE.Vector3());
     const center = box.getCenter(new THREE.Vector3());
 
     model.position.sub(center);
 
-    scene.add(model);
+    // ✅ AUTO CAMERA FIT
+    const maxDim = Math.max(size.x, size.y, size.z);
+    const fov = camera.fov * (Math.PI / 180);
+    let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
 
-}, undefined, function(error) {
-    console.error("Error loading model:", error);
+    camera.position.z = cameraZ * 1.5;
+
+    scene.add(model);
 });
 
-const controls = new THREE.OrbitControls(camera, renderer.domElement);
+// Resize
+window.addEventListener('resize', () => {
+    const width = container.clientWidth;
+    const height = container.clientHeight;
 
-camera.position.set(0,2,5);
+    renderer.setSize(width, height);
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+});
 
+// Animation
 function animate() {
     requestAnimationFrame(animate);
 
@@ -192,7 +188,6 @@ function animate() {
         model.rotation.y += 0.005;
     }
 
-    controls.update();
     renderer.render(scene, camera);
 }
 
