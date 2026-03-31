@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Plant - E-Herbal Garden</title>
+<title>Mustard - E-Herbal Garden</title>
 
 <style>
 body {
@@ -79,8 +79,8 @@ footer {
 <body>
 
 <header>
-<h1>🌿 Mustard </h1>
-<p>Tagline of the Plant</p>
+<h1>🌿 Mustard (Sarson)</h1>
+<p>The Golden Oil Seed Plant</p>
 </header>
 
 <nav>
@@ -95,32 +95,43 @@ footer {
 <div class="left">
 
 <h2>🌱 Basic Information</h2>
-<p><b>Common Name:</b> </p>
-<p><b>Botanical Name:</b> </p>
+<p><b>Common Name:</b> Mustard / Sarson</p>
+<p><b>Botanical Name:</b> Brassica juncea</p>
+<p><b>Family:</b> Brassicaceae</p>
+<p><b>Origin:</b> Asia & Europe</p>
 
 <h2>🌿 Medicinal Uses</h2>
-<p>Write here...</p>
+<p>Mustard seeds are rich in antioxidants and help improve digestion.</p>
+<p>Mustard oil is used for massage and improves blood circulation.</p>
+<p>It helps relieve muscle pain, cold, and respiratory issues.</p>
 
 <h2>🌍 Habitat</h2>
-<p>Write here...</p>
+<p>Mustard grows best in cool climates and requires moderate rainfall.</p>
 
 <h2>🌾 Cultivation</h2>
-<p>Write here...</p>
+<p>It is grown from seeds and requires well-drained soil and sunlight.</p>
 
 <h2>⚠️ Precautions</h2>
-<p>Write here...</p>
+<p>Excess consumption may cause irritation or stomach issues.</p>
+
+<h2>🧪 Chemical Compounds</h2>
+<p>
+<b>Glucosinolates:</b> Anti-cancer properties<br>
+<b>Omega-3 Fatty Acids:</b> Heart health<br>
+<b>Allyl Isothiocyanate:</b> Anti-inflammatory
+</p>
 
 </div>
 
 <div class="right">
-<h2 style="text-align:center;">🌐 3D Model</h2>
+<h2 style="text-align:center;">🌐 3D Mustard Model</h2>
 <div class="model-container" id="model"></div>
 </div>
 
 </div>
 
 <footer>
-© 2026 E-Herbal Garden
+© 2026 E-Herbal Garden | Designed with 🌱
 </footer>
 
 <!-- Three.js -->
@@ -157,19 +168,19 @@ let model;
 
 const loader = new THREE.GLTFLoader();
 loader.load(
-    './Mustard.glb', // 🔥 CHANGE THIS FILE NAME
+    './Mustard.glb',
     function (gltf) {
 
         model = gltf.scene;
 
-        // ✅ CENTER MODEL
+        // Center model
         const box = new THREE.Box3().setFromObject(model);
         const size = box.getSize(new THREE.Vector3());
         const center = box.getCenter(new THREE.Vector3());
 
         model.position.sub(center);
 
-        // ✅ AUTO CAMERA FIT
+        // Auto-fit camera
         const maxDim = Math.max(size.x, size.y, size.z);
         const fov = camera.fov * (Math.PI / 180);
         let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
@@ -184,7 +195,7 @@ loader.load(
     }
 );
 
-// Resize fix
+// Resize
 window.addEventListener('resize', () => {
     const width = container.clientWidth;
     const height = container.clientHeight;
