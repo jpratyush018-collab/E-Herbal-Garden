@@ -38,9 +38,7 @@ nav a {
     padding: 30px;
 }
 
-.left {
-    flex: 1;
-}
+.left { flex: 1; }
 
 .right {
     flex: 1;
@@ -50,13 +48,9 @@ nav a {
     overflow: hidden;
 }
 
-h2 {
-    color: #2e7d32;
-}
+h2 { color: #2e7d32; }
 
-p {
-    line-height: 1.6;
-}
+p { line-height: 1.6; }
 
 .model-container {
     width: 100%;
@@ -90,7 +84,6 @@ footer {
 <div class="main">
 
 <div class="left">
-
 <h2>🌱 Basic Information</h2>
 <p><b>Common Name:</b> Thyme</p>
 <p><b>Botanical Name:</b> Thymus vulgaris</p>
@@ -115,7 +108,6 @@ footer {
 <p><b>Thymol:</b> Antiseptic<br>
 <b>Carvacrol:</b> Antibacterial<br>
 <b>Flavonoids:</b> Antioxidant</p>
-
 </div>
 
 <div class="right">
@@ -126,7 +118,7 @@ footer {
 </div>
 
 <footer>
-© 2026 E-Herbal Garden | Designed with 🌱 | Created by Team Beginners
+© 2026 E-Herbal Garden
 </footer>
 
 <!-- Three.js -->
@@ -147,52 +139,65 @@ const camera = new THREE.PerspectiveCamera(
 
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize(container.clientWidth, container.clientHeight);
+renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
-/* Lighting */
-const light1 = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
-scene.add(light1);
+// Light (same as Ashwagandha)
+const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
+scene.add(light);
 
-const light2 = new THREE.DirectionalLight(0xffffff, 2);
-light2.position.set(5,5,5);
-scene.add(light2);
-
-let model;
+let thymeModel;
 
 const loader = new THREE.GLTFLoader();
-
-/* 🔁 Change path if needed */
 loader.load(
-    './Thyme.glb', // ✅ IMPORTANT for GitHub
+    './Thyme.glb',
     function (gltf) {
 
-    model = gltf.scene;
+    thymeModel = gltf.scene;
 
-    model.scale.set(1.5,1.5,1.5);
-
-    const box = new THREE.Box3().setFromObject(model);
+    // 🔥 PERFECT CENTER LOGIC
+    const box = new THREE.Box3().setFromObject(thymeModel);
+    const size = box.getSize(new THREE.Vector3());
     const center = box.getCenter(new THREE.Vector3());
 
-    model.position.sub(center);
+    thymeModel.position.sub(center);
 
-    scene.add(model);
+    // 🔥 AUTO CAMERA FIT
+    const maxDim = Math.max(size.x, size.y, size.z);
+    const fov = camera.fov * (Math.PI / 180);
+    let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
+
+    camera.position.z = cameraZ * 1.5;
+
+    scene.add(thymeModel);
 
 }, undefined, function(error) {
     console.error("Error loading model:", error);
 });
 
+// Controls
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.enableZoom = true;
+controls.enablePan = false;
 
-camera.position.set(0,2,5);
+// Resize
+window.addEventListener('resize', () => {
+    const width = container.clientWidth;
+    const height = container.clientHeight;
 
+    renderer.setSize(width, height);
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+});
+
+// Animation
 function animate() {
     requestAnimationFrame(animate);
 
-    if (model) {
-        model.rotation.y += 0.005;
+    if (thymeModel) {
+        thymeModel.rotation.y += 0.005;
     }
 
-    controls.update();
     renderer.render(scene, camera);
 }
 
