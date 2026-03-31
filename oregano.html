@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Oregano - E-Herbal Garden</title>
+<title>Plant - E-Herbal Garden</title>
 
 <style>
 body {
@@ -39,7 +39,10 @@ nav a {
     flex-wrap: wrap;
 }
 
-.left { flex: 1; min-width: 300px; }
+.left {
+    flex: 1;
+    min-width: 300px;
+}
 
 .right {
     flex: 1;
@@ -50,8 +53,13 @@ nav a {
     overflow: hidden;
 }
 
-h2 { color: #2e7d32; }
-p { line-height: 1.6; }
+h2 {
+    color: #2e7d32;
+}
+
+p {
+    line-height: 1.6;
+}
 
 .model-container {
     width: 100%;
@@ -71,8 +79,8 @@ footer {
 <body>
 
 <header>
-<h1>🌿 Oregano</h1>
-<p>The Powerful Healing Herb</p>
+<h1>🌿 Oregano </h1>
+<p>Tagline of the Plant</p>
 </header>
 
 <nav>
@@ -85,26 +93,27 @@ footer {
 <div class="main">
 
 <div class="left">
+
 <h2>🌱 Basic Information</h2>
-<p><b>Common Name:</b> Oregano</p>
-<p><b>Botanical Name:</b> Origanum vulgare</p>
-<p><b>Family:</b> Lamiaceae</p>
+<p><b>Common Name:</b> </p>
+<p><b>Botanical Name:</b> </p>
 
 <h2>🌿 Medicinal Uses</h2>
-<p>Antibacterial, boosts immunity, supports digestion.</p>
+<p>Write here...</p>
 
 <h2>🌍 Habitat</h2>
-<p>Warm, dry climates with sunlight.</p>
+<p>Write here...</p>
 
 <h2>🌾 Cultivation</h2>
-<p>Grows easily with minimal water.</p>
+<p>Write here...</p>
 
 <h2>⚠️ Precautions</h2>
-<p>Use oil in moderation.</p>
+<p>Write here...</p>
+
 </div>
 
 <div class="right">
-<h2 style="text-align:center;">🌐 3D Oregano Model</h2>
+<h2 style="text-align:center;">🌐 3D Model</h2>
 <div class="model-container" id="model"></div>
 </div>
 
@@ -114,6 +123,7 @@ footer {
 © 2026 E-Herbal Garden
 </footer>
 
+<!-- Three.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
@@ -135,13 +145,10 @@ renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
 // Lighting
-const hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
-scene.add(hemiLight);
+const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
+scene.add(light);
 
-const dirLight = new THREE.DirectionalLight(0xffffff, 1);
-dirLight.position.set(5,5,5);
-scene.add(dirLight);
-
+// Controls
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
 controls.enableZoom = true;
 controls.enablePan = false;
@@ -149,28 +156,35 @@ controls.enablePan = false;
 let model;
 
 const loader = new THREE.GLTFLoader();
-loader.load('./Oregano.glb', function (gltf) {
+loader.load(
+    './Oregano.glb', // 🔥 CHANGE THIS FILE NAME
+    function (gltf) {
 
-    model = gltf.scene;
+        model = gltf.scene;
 
-    // ✅ CENTER MODEL
-    const box = new THREE.Box3().setFromObject(model);
-    const size = box.getSize(new THREE.Vector3());
-    const center = box.getCenter(new THREE.Vector3());
+        // ✅ CENTER MODEL
+        const box = new THREE.Box3().setFromObject(model);
+        const size = box.getSize(new THREE.Vector3());
+        const center = box.getCenter(new THREE.Vector3());
 
-    model.position.sub(center);
+        model.position.sub(center);
 
-    // ✅ AUTO CAMERA FIT
-    const maxDim = Math.max(size.x, size.y, size.z);
-    const fov = camera.fov * (Math.PI / 180);
-    let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
+        // ✅ AUTO CAMERA FIT
+        const maxDim = Math.max(size.x, size.y, size.z);
+        const fov = camera.fov * (Math.PI / 180);
+        let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
 
-    camera.position.z = cameraZ * 1.5;
+        camera.position.z = cameraZ * 1.5;
 
-    scene.add(model);
-});
+        scene.add(model);
+    },
+    undefined,
+    function (error) {
+        console.error("Error loading model:", error);
+    }
+);
 
-// Resize
+// Resize fix
 window.addEventListener('resize', () => {
     const width = container.clientWidth;
     const height = container.clientHeight;
