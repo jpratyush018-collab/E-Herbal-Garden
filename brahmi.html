@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Plant - E-Herbal Garden</title>
+<title>Brahmi - E-Herbal Garden</title>
 
 <style>
 body {
@@ -79,8 +79,8 @@ footer {
 <body>
 
 <header>
-<h1>🌿 Plant Name</h1>
-<p>Tagline of the Plant</p>
+<h1>🌿 Brahmi</h1>
+<p>The Brain Booster Herb</p>
 </header>
 
 <nav>
@@ -95,32 +95,43 @@ footer {
 <div class="left">
 
 <h2>🌱 Basic Information</h2>
-<p><b>Common Name:</b> </p>
-<p><b>Botanical Name:</b> </p>
+<p><b>Common Name:</b> Brahmi</p>
+<p><b>Botanical Name:</b> Bacopa monnieri</p>
+<p><b>Family:</b> Plantaginaceae</p>
+<p><b>Origin:</b> India & Southeast Asia</p>
 
 <h2>🌿 Medicinal Uses</h2>
-<p>Write here...</p>
+<p>Improves memory, concentration, and brain function.</p>
+<p>Reduces stress, anxiety, and boosts mental clarity.</p>
+<p>Supports nervous system health.</p>
 
 <h2>🌍 Habitat</h2>
-<p>Write here...</p>
+<p>Grows in wet, marshy areas and prefers warm climates.</p>
 
 <h2>🌾 Cultivation</h2>
-<p>Write here...</p>
+<p>Grows easily from cuttings in moist soil.</p>
 
 <h2>⚠️ Precautions</h2>
-<p>Write here...</p>
+<p>Excess consumption may cause nausea or stomach issues.</p>
+
+<h2>🧪 Chemical Compounds</h2>
+<p>
+<b>Bacosides:</b> Memory enhancement<br>
+<b>Alkaloids:</b> Nervous system support<br>
+<b>Saponins:</b> Antioxidant
+</p>
 
 </div>
 
 <div class="right">
-<h2 style="text-align:center;">🌐 3D Model</h2>
+<h2 style="text-align:center;">🌐 3D Brahmi Model</h2>
 <div class="model-container" id="model"></div>
 </div>
 
 </div>
 
 <footer>
-© 2026 E-Herbal Garden
+© 2026 E-Herbal Garden | Designed with 🌱 | Created by Team Beginners
 </footer>
 
 <!-- Three.js -->
@@ -153,30 +164,30 @@ const controls = new THREE.OrbitControls(camera, renderer.domElement);
 controls.enableZoom = true;
 controls.enablePan = false;
 
-let model;
+let brahmiModel;
 
 const loader = new THREE.GLTFLoader();
 loader.load(
-    './YourModel.glb', // 🔥 CHANGE THIS FILE NAME
+    './Brahmi.glb',
     function (gltf) {
 
-        model = gltf.scene;
+        brahmiModel = gltf.scene;
 
-        // ✅ CENTER MODEL
-        const box = new THREE.Box3().setFromObject(model);
+        // ✅ Center model
+        const box = new THREE.Box3().setFromObject(brahmiModel);
         const size = box.getSize(new THREE.Vector3());
         const center = box.getCenter(new THREE.Vector3());
 
-        model.position.sub(center);
+        brahmiModel.position.sub(center);
 
-        // ✅ AUTO CAMERA FIT
+        // ✅ Auto-fit camera
         const maxDim = Math.max(size.x, size.y, size.z);
         const fov = camera.fov * (Math.PI / 180);
         let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
 
         camera.position.z = cameraZ * 1.5;
 
-        scene.add(model);
+        scene.add(brahmiModel);
     },
     undefined,
     function (error) {
@@ -198,8 +209,8 @@ window.addEventListener('resize', () => {
 function animate() {
     requestAnimationFrame(animate);
 
-    if (model) {
-        model.rotation.y += 0.005;
+    if (brahmiModel) {
+        brahmiModel.rotation.y += 0.005;
     }
 
     renderer.render(scene, camera);
