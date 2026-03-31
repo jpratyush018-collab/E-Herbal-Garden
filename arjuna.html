@@ -36,27 +36,22 @@ nav a {
     display: flex;
     gap: 20px;
     padding: 30px;
+    flex-wrap: wrap;
 }
 
-.left {
-    flex: 1;
-}
+.left { flex: 1; min-width: 300px; }
 
 .right {
     flex: 1;
+    min-width: 300px;
     background: white;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     overflow: hidden;
 }
 
-h2 {
-    color: #2e7d32;
-}
-
-p {
-    line-height: 1.6;
-}
+h2 { color: #2e7d32; }
+p { line-height: 1.6; }
 
 .model-container {
     width: 100%;
@@ -90,7 +85,6 @@ footer {
 <div class="main">
 
 <div class="left">
-
 <h2>🌱 Basic Information</h2>
 <p><b>Common Name:</b> Arjuna</p>
 <p><b>Botanical Name:</b> Terminalia arjuna</p>
@@ -98,24 +92,24 @@ footer {
 <p><b>Origin:</b> India</p>
 
 <h2>🌿 Medicinal Uses</h2>
-<p>Arjuna is well known for its benefits in improving heart health and strengthening cardiac muscles.</p>
-<p>It helps in controlling blood pressure, reducing cholesterol levels, and improving blood circulation.</p>
-<p>It is also used for treating wounds, fractures, and improving overall vitality.</p>
+<p>Improves heart health and blood circulation.</p>
+<p>Helps control blood pressure and cholesterol.</p>
 
 <h2>🌍 Habitat</h2>
-<p>Arjuna trees are commonly found near riverbanks and grow well in tropical climates.</p>
+<p>Grows near riverbanks in tropical climates.</p>
 
 <h2>🌾 Cultivation</h2>
-<p>It is grown from seeds and requires well-drained soil and plenty of sunlight.</p>
+<p>Requires sunlight and well-drained soil.</p>
 
 <h2>⚠️ Precautions</h2>
-<p>Should be taken under medical supervision, especially for heart-related conditions.</p>
+<p>Use under medical supervision.</p>
 
 <h2>🧪 Chemical Compounds</h2>
-<p><b>Tannins:</b> Heart protection<br>
+<p>
+<b>Tannins:</b> Heart protection<br>
 <b>Flavonoids:</b> Antioxidant<br>
-<b>Arjunolic Acid:</b> Cardio-protective</p>
-
+<b>Arjunolic Acid:</b> Cardio-protective
+</p>
 </div>
 
 <div class="right">
@@ -126,7 +120,7 @@ footer {
 </div>
 
 <footer>
-© 2026 E-Herbal Garden | Designed with 🌱 | Created by Team Beginners
+© 2026 E-Herbal Garden
 </footer>
 
 <!-- Three.js -->
@@ -147,37 +141,56 @@ const camera = new THREE.PerspectiveCamera(
 
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize(container.clientWidth, container.clientHeight);
+renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
+// Light
 const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
 scene.add(light);
+
+// Controls
+const controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.enableZoom = true;
+controls.enablePan = false;
 
 let arjunaModel;
 
 const loader = new THREE.GLTFLoader();
-
-/* ✅ Correct path */
 loader.load(
-    './Arjuna.glb', // ✅ IMPORTANT for GitHub
+    './Arjuna.glb',
     function (gltf) {
 
-    arjunaModel = gltf.scene;
+        arjunaModel = gltf.scene;
 
-    const box = new THREE.Box3().setFromObject(arjunaModel);
-    const center = box.getCenter(new THREE.Vector3());
+        // 🔥 CENTER MODEL
+        const box = new THREE.Box3().setFromObject(arjunaModel);
+        const size = box.getSize(new THREE.Vector3());
+        const center = box.getCenter(new THREE.Vector3());
 
-    arjunaModel.position.sub(center);
+        arjunaModel.position.sub(center);
 
-    scene.add(arjunaModel);
+        // 🔥 AUTO CAMERA FIT
+        const maxDim = Math.max(size.x, size.y, size.z);
+        const fov = camera.fov * (Math.PI / 180);
+        let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
 
-}, undefined, function(error) {
-    console.error("Error loading model:", error);
+        camera.position.z = cameraZ * 1.5;
+
+        scene.add(arjunaModel);
+    }
+);
+
+// Resize
+window.addEventListener('resize', () => {
+    const width = container.clientWidth;
+    const height = container.clientHeight;
+
+    renderer.setSize(width, height);
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
 });
 
-const controls = new THREE.OrbitControls(camera, renderer.domElement);
-
-camera.position.z = 5;
-
+// Animation
 function animate() {
     requestAnimationFrame(animate);
 
