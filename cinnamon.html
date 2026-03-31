@@ -36,14 +36,17 @@ nav a {
     display: flex;
     gap: 20px;
     padding: 30px;
+    flex-wrap: wrap;
 }
 
 .left {
     flex: 1;
+    min-width: 300px;
 }
 
 .right {
     flex: 1;
+    min-width: 300px;
     background: white;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -98,23 +101,25 @@ footer {
 <p><b>Origin:</b> Sri Lanka</p>
 
 <h2>🌿 Medicinal Uses</h2>
-<p>Cinnamon is known for its ability to regulate blood sugar levels.</p>
-<p>It helps improve metabolism, digestion, and heart health.</p>
-<p>It also has strong antioxidant and anti-inflammatory properties.</p>
+<p>Helps regulate blood sugar levels.</p>
+<p>Improves digestion and metabolism.</p>
+<p>Rich in antioxidants and anti-inflammatory compounds.</p>
 
 <h2>🌍 Habitat</h2>
-<p>Cinnamon grows in tropical climates with warm temperatures and high humidity.</p>
+<p>Grows in tropical climates with high humidity.</p>
 
 <h2>🌾 Cultivation</h2>
-<p>It is cultivated from cuttings and requires fertile, well-drained soil.</p>
+<p>Grown from cuttings in fertile, well-drained soil.</p>
 
 <h2>⚠️ Precautions</h2>
-<p>Excess consumption may cause liver issues due to coumarin content.</p>
+<p>Excess consumption may affect liver due to coumarin.</p>
 
 <h2>🧪 Chemical Compounds</h2>
-<p><b>Cinnamaldehyde:</b> Antimicrobial<br>
+<p>
+<b>Cinnamaldehyde:</b> Antimicrobial<br>
 <b>Coumarin:</b> Blood thinner<br>
-<b>Polyphenols:</b> Antioxidant</p>
+<b>Polyphenols:</b> Antioxidant
+</p>
 
 </div>
 
@@ -126,7 +131,7 @@ footer {
 </div>
 
 <footer>
-© 2026 E-Herbal Garden | Designed with 🌱 | Created by Team Beginners
+© 2026 E-Herbal Garden | Designed with 🌱
 </footer>
 
 <!-- Three.js -->
@@ -147,26 +152,42 @@ const camera = new THREE.PerspectiveCamera(
 
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize(container.clientWidth, container.clientHeight);
+renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
-const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
-scene.add(light);
+// Lighting
+const hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
+scene.add(hemiLight);
+
+const dirLight = new THREE.DirectionalLight(0xffffff, 1);
+dirLight.position.set(5,5,5);
+scene.add(dirLight);
+
+// Controls
+const controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.enableZoom = true;
+controls.enablePan = false;
 
 let cinnamonModel;
 
 const loader = new THREE.GLTFLoader();
-
-/* ✅ Correct path */
-loader.load(
-    './Cinnamon.glb', // ✅ IMPORTANT for GitHub
-    function (gltf) {
+loader.load('./Cinnamon.glb', function (gltf) {
 
     cinnamonModel = gltf.scene;
 
+    // Center model
     const box = new THREE.Box3().setFromObject(cinnamonModel);
+    const size = box.getSize(new THREE.Vector3());
     const center = box.getCenter(new THREE.Vector3());
 
     cinnamonModel.position.sub(center);
+
+    // Auto camera fit
+    const maxDim = Math.max(size.x, size.y, size.z);
+    const fov = camera.fov * (Math.PI / 180);
+    let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
+
+    camera.position.z = cameraZ * 1.5;
 
     scene.add(cinnamonModel);
 
@@ -174,10 +195,17 @@ loader.load(
     console.error("Error loading model:", error);
 });
 
-const controls = new THREE.OrbitControls(camera, renderer.domElement);
+// Resize fix
+window.addEventListener('resize', () => {
+    const width = container.clientWidth;
+    const height = container.clientHeight;
 
-camera.position.z = 5;
+    renderer.setSize(width, height);
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+});
 
+// Animation
 function animate() {
     requestAnimationFrame(animate);
 
