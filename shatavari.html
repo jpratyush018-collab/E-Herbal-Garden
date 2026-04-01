@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shatavari - E-Herbal Garden</title>
+<title>Plant - E-Herbal Garden</title>
 
 <style>
 body {
@@ -36,14 +36,17 @@ nav a {
     display: flex;
     gap: 20px;
     padding: 30px;
+    flex-wrap: wrap;
 }
 
 .left {
     flex: 1;
+    min-width: 300px;
 }
 
 .right {
     flex: 1;
+    min-width: 300px;
     background: white;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -76,8 +79,8 @@ footer {
 <body>
 
 <header>
-<h1>🌿 Shatavari</h1>
-<p>The Queen of Herbs for Vitality</p>
+<h1> Shatavari </h1>
+<p>Tagline of the Plant</p>
 </header>
 
 <nav>
@@ -92,41 +95,32 @@ footer {
 <div class="left">
 
 <h2>🌱 Basic Information</h2>
-<p><b>Common Name:</b> Shatavari</p>
-<p><b>Botanical Name:</b> Asparagus racemosus</p>
-<p><b>Family:</b> Asparagaceae</p>
-<p><b>Origin:</b> India</p>
+<p><b>Common Name:</b> </p>
+<p><b>Botanical Name:</b> </p>
 
 <h2>🌿 Medicinal Uses</h2>
-<p>Shatavari is widely known for its role in supporting female reproductive health.</p>
-<p>It helps in balancing hormones, improving fertility, and enhancing lactation.</p>
-<p>It also acts as an adaptogen, helping the body cope with stress and boosting immunity.</p>
+<p>Write here...</p>
 
 <h2>🌍 Habitat</h2>
-<p>Shatavari grows in tropical and subtropical regions and prefers well-drained soil.</p>
+<p>Write here...</p>
 
 <h2>🌾 Cultivation</h2>
-<p>It is cultivated using roots and requires moderate watering and sunlight.</p>
+<p>Write here...</p>
 
 <h2>⚠️ Precautions</h2>
-<p>Should be used under guidance in case of hormonal conditions.</p>
-
-<h2>🧪 Chemical Compounds</h2>
-<p><b>Saponins:</b> Hormonal balance<br>
-<b>Alkaloids:</b> Anti-inflammatory<br>
-<b>Flavonoids:</b> Antioxidant</p>
+<p>Write here...</p>
 
 </div>
 
 <div class="right">
-<h2 style="text-align:center;">🌐 3D Shatavari Model</h2>
+<h2 style="text-align:center;">🌐 3D Model</h2>
 <div class="model-container" id="model"></div>
 </div>
 
 </div>
 
 <footer>
-© 2026 E-Herbal Garden | Designed with 🌱 | Created by Team Beginners
+© 2026 E-Herbal Garden
 </footer>
 
 <!-- Three.js -->
@@ -147,42 +141,65 @@ const camera = new THREE.PerspectiveCamera(
 
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize(container.clientWidth, container.clientHeight);
+renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
+// Lighting
 const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
 scene.add(light);
 
-let shatavariModel;
+// Controls
+const controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.enableZoom = true;
+controls.enablePan = false;
+
+let model;
 
 const loader = new THREE.GLTFLoader();
-
-/* ✅ Correct path */
 loader.load(
-    './Shatavri.glb', // ✅ IMPORTANT for GitHub
+    './Shatavari.glb', // 🔥 CHANGE THIS FILE NAME
     function (gltf) {
 
-    shatavariModel = gltf.scene;
+        model = gltf.scene;
 
-    const box = new THREE.Box3().setFromObject(shatavariModel);
-    const center = box.getCenter(new THREE.Vector3());
+        // ✅ CENTER MODEL
+        const box = new THREE.Box3().setFromObject(model);
+        const size = box.getSize(new THREE.Vector3());
+        const center = box.getCenter(new THREE.Vector3());
 
-    shatavariModel.position.sub(center);
+        model.position.sub(center);
 
-    scene.add(shatavariModel);
+        // ✅ AUTO CAMERA FIT
+        const maxDim = Math.max(size.x, size.y, size.z);
+        const fov = camera.fov * (Math.PI / 180);
+        let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
 
-}, undefined, function(error) {
-    console.error("Error loading model:", error);
+        camera.position.z = cameraZ * 1.5;
+
+        scene.add(model);
+    },
+    undefined,
+    function (error) {
+        console.error("Error loading model:", error);
+    }
+);
+
+// Resize fix
+window.addEventListener('resize', () => {
+    const width = container.clientWidth;
+    const height = container.clientHeight;
+
+    renderer.setSize(width, height);
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
 });
 
-const controls = new THREE.OrbitControls(camera, renderer.domElement);
-
-camera.position.z = 5;
-
+// Animation
 function animate() {
     requestAnimationFrame(animate);
 
-    if (shatavariModel) {
-        shatavariModel.rotation.y += 0.005;
+    if (model) {
+        model.rotation.y += 0.005;
     }
 
     renderer.render(scene, camera);
