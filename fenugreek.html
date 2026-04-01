@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fenugreek - E-Herbal Garden</title>
+<title>Plant - E-Herbal Garden</title>
 
 <style>
 body {
@@ -36,14 +36,17 @@ nav a {
     display: flex;
     gap: 20px;
     padding: 30px;
+    flex-wrap: wrap;
 }
 
 .left {
     flex: 1;
+    min-width: 300px;
 }
 
 .right {
     flex: 1;
+    min-width: 300px;
     background: white;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -76,8 +79,8 @@ footer {
 <body>
 
 <header>
-<h1>🌿 Fenugreek (Methi)</h1>
-<p>The Healing Kitchen Herb</p>
+<h1> Fenugreek </h1>
+<p>Tagline of the Plant</p>
 </header>
 
 <nav>
@@ -92,41 +95,32 @@ footer {
 <div class="left">
 
 <h2>🌱 Basic Information</h2>
-<p><b>Common Name:</b> Fenugreek / Methi</p>
-<p><b>Botanical Name:</b> Trigonella foenum-graecum</p>
-<p><b>Family:</b> Fabaceae</p>
-<p><b>Origin:</b> Mediterranean Region & India</p>
+<p><b>Common Name:</b> </p>
+<p><b>Botanical Name:</b> </p>
 
 <h2>🌿 Medicinal Uses</h2>
-<p>Fenugreek is widely used for controlling blood sugar levels and managing diabetes.</p>
-<p>It helps improve digestion, reduce cholesterol, and boost metabolism.</p>
-<p>It is also beneficial for hair growth and improving skin health.</p>
+<p>Write here...</p>
 
 <h2>🌍 Habitat</h2>
-<p>Fenugreek grows in warm climates and is commonly cultivated in India.</p>
+<p>Write here...</p>
 
 <h2>🌾 Cultivation</h2>
-<p>It is grown from seeds and requires well-drained soil and moderate watering.</p>
+<p>Write here...</p>
 
 <h2>⚠️ Precautions</h2>
-<p>Excess consumption may cause stomach upset or allergic reactions.</p>
-
-<h2>🧪 Chemical Compounds</h2>
-<p><b>Diosgenin:</b> Hormonal balance<br>
-<b>Alkaloids:</b> Medicinal effects<br>
-<b>Fiber:</b> Digestive health</p>
+<p>Write here...</p>
 
 </div>
 
 <div class="right">
-<h2 style="text-align:center;">🌐 3D Fenugreek Model</h2>
+<h2 style="text-align:center;">🌐 3D Model</h2>
 <div class="model-container" id="model"></div>
 </div>
 
 </div>
 
 <footer>
-© 2026 E-Herbal Garden | Designed with 🌱 | Created by Team Beginners
+© 2026 E-Herbal Garden
 </footer>
 
 <!-- Three.js -->
@@ -147,42 +141,65 @@ const camera = new THREE.PerspectiveCamera(
 
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize(container.clientWidth, container.clientHeight);
+renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
+// Lighting
 const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
 scene.add(light);
 
-let fenugreekModel;
+// Controls
+const controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.enableZoom = true;
+controls.enablePan = false;
+
+let model;
 
 const loader = new THREE.GLTFLoader();
-
-/* ✅ Your requested path */
 loader.load(
-    './Bael.glb', // ✅ IMPORTANT for GitHub
+    './Fenugreek.glb', // 🔥 CHANGE THIS FILE NAME
     function (gltf) {
 
-    fenugreekModel = gltf.scene;
+        model = gltf.scene;
 
-    const box = new THREE.Box3().setFromObject(fenugreekModel);
-    const center = box.getCenter(new THREE.Vector3());
+        // ✅ CENTER MODEL
+        const box = new THREE.Box3().setFromObject(model);
+        const size = box.getSize(new THREE.Vector3());
+        const center = box.getCenter(new THREE.Vector3());
 
-    fenugreekModel.position.sub(center);
+        model.position.sub(center);
 
-    scene.add(fenugreekModel);
+        // ✅ AUTO CAMERA FIT
+        const maxDim = Math.max(size.x, size.y, size.z);
+        const fov = camera.fov * (Math.PI / 180);
+        let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
 
-}, undefined, function(error) {
-    console.error("Error loading model:", error);
+        camera.position.z = cameraZ * 1.5;
+
+        scene.add(model);
+    },
+    undefined,
+    function (error) {
+        console.error("Error loading model:", error);
+    }
+);
+
+// Resize fix
+window.addEventListener('resize', () => {
+    const width = container.clientWidth;
+    const height = container.clientHeight;
+
+    renderer.setSize(width, height);
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
 });
 
-const controls = new THREE.OrbitControls(camera, renderer.domElement);
-
-camera.position.z = 5;
-
+// Animation
 function animate() {
     requestAnimationFrame(animate);
 
-    if (fenugreekModel) {
-        fenugreekModel.rotation.y += 0.005;
+    if (model) {
+        model.rotation.y += 0.005;
     }
 
     renderer.render(scene, camera);
