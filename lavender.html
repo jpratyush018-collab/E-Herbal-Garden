@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lavender - E-Herbal Garden</title>
+<title>Plant - E-Herbal Garden</title>
 
 <style>
 body {
@@ -36,14 +36,17 @@ nav a {
     display: flex;
     gap: 20px;
     padding: 30px;
+    flex-wrap: wrap;
 }
 
 .left {
     flex: 1;
+    min-width: 300px;
 }
 
 .right {
     flex: 1;
+    min-width: 300px;
     background: white;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -76,8 +79,8 @@ footer {
 <body>
 
 <header>
-<h1>🌿 Lavender</h1>
-<p>The Fragrant Healing Herb</p>
+<h1>🌿Hibiscus </h1>
+<p>Tagline of the Plant</p>
 </header>
 
 <nav>
@@ -92,41 +95,32 @@ footer {
 <div class="left">
 
 <h2>🌱 Basic Information</h2>
-<p><b>Common Name:</b> Lavender</p>
-<p><b>Botanical Name:</b> Lavandula angustifolia</p>
-<p><b>Family:</b> Lamiaceae</p>
-<p><b>Origin:</b> Mediterranean Region</p>
+<p><b>Common Name:</b> </p>
+<p><b>Botanical Name:</b> </p>
 
 <h2>🌿 Medicinal Uses</h2>
-<p>Lavender is known for reducing stress and promoting relaxation.</p>
-<p>It helps improve sleep and relieve anxiety.</p>
-<p>It is also used for skin care and healing minor burns and cuts.</p>
+<p>Write here...</p>
 
 <h2>🌍 Habitat</h2>
-<p>It grows in sunny areas with well-drained soil and moderate climate.</p>
+<p>Write here...</p>
 
 <h2>🌾 Cultivation</h2>
-<p>It is grown from cuttings and requires less water and good sunlight.</p>
+<p>Write here...</p>
 
 <h2>⚠️ Precautions</h2>
-<p>Excess use may cause skin irritation in sensitive individuals.</p>
-
-<h2>🧪 Chemical Compounds</h2>
-<p><b>Linalool:</b> Relaxation<br>
-<b>Linalyl Acetate:</b> Anti-anxiety<br>
-<b>Camphor:</b> Antimicrobial</p>
+<p>Write here...</p>
 
 </div>
 
 <div class="right">
-<h2 style="text-align:center;">🌐 3D Lavender Model</h2>
+<h2 style="text-align:center;">🌐 3D Model</h2>
 <div class="model-container" id="model"></div>
 </div>
 
 </div>
 
 <footer>
-© 2026 E-Herbal Garden | Designed with 🌱 | Created by Team Beginners
+© 2026 E-Herbal Garden
 </footer>
 
 <!-- Three.js -->
@@ -147,44 +141,60 @@ const camera = new THREE.PerspectiveCamera(
 
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize(container.clientWidth, container.clientHeight);
+renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
-/* Lighting */
-const light1 = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
-scene.add(light1);
+// Lighting
+const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
+scene.add(light);
 
-const light2 = new THREE.DirectionalLight(0xffffff, 2);
-light2.position.set(5,5,5);
-scene.add(light2);
+// Controls
+const controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.enableZoom = true;
+controls.enablePan = false;
 
 let model;
 
 const loader = new THREE.GLTFLoader();
-
-/* 🔁 Change path if needed */
 loader.load(
-    './Lavender.glb', // ✅ IMPORTANT for GitHub
+    './Hibiscus.glb', // 🔥 CHANGE THIS FILE NAME
     function (gltf) {
 
-    model = gltf.scene;
+        model = gltf.scene;
 
-    model.scale.set(1.5,1.5,1.5);
+        // ✅ CENTER MODEL
+        const box = new THREE.Box3().setFromObject(model);
+        const size = box.getSize(new THREE.Vector3());
+        const center = box.getCenter(new THREE.Vector3());
 
-    const box = new THREE.Box3().setFromObject(model);
-    const center = box.getCenter(new THREE.Vector3());
+        model.position.sub(center);
 
-    model.position.sub(center);
+        // ✅ AUTO CAMERA FIT
+        const maxDim = Math.max(size.x, size.y, size.z);
+        const fov = camera.fov * (Math.PI / 180);
+        let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
 
-    scene.add(model);
+        camera.position.z = cameraZ * 1.5;
 
-}, undefined, function(error) {
-    console.error("Error loading model:", error);
+        scene.add(model);
+    },
+    undefined,
+    function (error) {
+        console.error("Error loading model:", error);
+    }
+);
+
+// Resize fix
+window.addEventListener('resize', () => {
+    const width = container.clientWidth;
+    const height = container.clientHeight;
+
+    renderer.setSize(width, height);
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
 });
 
-const controls = new THREE.OrbitControls(camera, renderer.domElement);
-
-camera.position.set(0,2,5);
-
+// Animation
 function animate() {
     requestAnimationFrame(animate);
 
@@ -192,7 +202,6 @@ function animate() {
         model.rotation.y += 0.005;
     }
 
-    controls.update();
     renderer.render(scene, camera);
 }
 
