@@ -32,38 +32,41 @@ nav a {
     font-weight: bold;
 }
 
-.main {
-    display: flex;
-    gap: 20px;
+.content {
     padding: 30px;
-    flex-wrap: wrap;
-}
-
-.left {
-    flex: 1;
-    min-width: 300px;
-}
-
-.right {
-    flex: 1;
-    min-width: 300px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    overflow: hidden;
+    max-width: 1000px;
+    margin: auto;
 }
 
 h2 {
     color: #2e7d32;
+    margin-top: 25px;
 }
 
 p {
     line-height: 1.6;
 }
 
+/* 🔥 MODEL SECTION */
+.model-section {
+    margin: 40px auto;
+    max-width: 900px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    padding: 20px;
+}
+
 .model-container {
     width: 100%;
-    height: 500px;
+    height: 400px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .model-container {
+        height: 280px;
+    }
 }
 
 footer {
@@ -90,82 +93,48 @@ footer {
 <a href="#">Contact</a>
 </nav>
 
-<div class="main">
-
-<div class="left">
+<div class="content">
 
 <h2>🌱 Basic Information</h2>
 <p><b>Common Name:</b> Spinach / Palak</p>
 <p><b>Botanical Name:</b> Spinacia oleracea</p>
 <p><b>Family:</b> Amaranthaceae</p>
 <p><b>Origin:</b> Central Asia</p>
-<p><b>Plant Type:</b> Annual leafy green vegetable</p>
-<p><b>Parts Used:</b> Leaves</p>
 
 <h2>🧬 Overview</h2>
-<p>Spinach is a nutrient-dense leafy vegetable known for its high content of vitamins, minerals, and antioxidants. It is widely used both in culinary and medicinal applications for its health-promoting properties.</p>
+<p>Spinach is a nutrient-rich leafy vegetable packed with vitamins, minerals, and antioxidants.</p>
 
 <h2>🌿 Medicinal Uses</h2>
-<p>✅ Rich source of iron, magnesium, and calcium supporting overall health</p>
-<p>✅ Supports cardiovascular health and reduces blood pressure</p>
-<p>✅ Anti-inflammatory and antioxidant properties combat oxidative stress</p>
-<p>✅ Aids digestion and supports healthy bones</p>
-<p>✅ Enhances immunity and reduces anemia risk</p>
+<p>✅ Rich in iron and vitamins</p>
+<p>✅ Supports heart health</p>
+<p>✅ Anti-inflammatory & antioxidant</p>
+<p>✅ Boosts immunity</p>
 
 <h2>🌍 Habitat</h2>
-<p>Spinach thrives in cool, temperate climates with well-drained, fertile soil. It prefers full to partial sunlight and moderate watering.</p>
+<p>Thrives in cool climates with fertile, well-drained soil.</p>
 
 <h2>🌾 Cultivation</h2>
-<p>Propagation: From seeds directly sown in soil</p>
-<p>Soil: Fertile, well-drained, and rich in organic matter</p>
-<p>Sunlight: Full sun to partial shade</p>
-<p>Watering: Regular to maintain moist soil</p>
-<p>Harvest: Leaves can be harvested 40–50 days after sowing, depending on variety</p>
+<p>Grown from seeds, needs moderate watering and sunlight.</p>
 
 <h2>⚠️ Precautions</h2>
-<p>Excessive consumption may contribute to kidney stones due to high oxalate content. People with kidney disorders should consume in moderation.</p>
+<p>Excess intake may cause kidney stone issues due to oxalates.</p>
 
-<h2>🧪 Bioactive Compounds</h2>
-<p><b>Vitamins:</b> A, C, K, folate</p>
-<p><b>Minerals:</b> Iron, magnesium, calcium, potassium</p>
-<p><b>Flavonoids:</b> Kaempferol, Quercetin</p>
-<p><b>Chlorophyll:</b> Detoxifying and antioxidant</p>
+<h2>🧪 Compounds</h2>
+<p>Vitamins A, C, K, Iron, Magnesium, Flavonoids</p>
 
-<h2>💊 Pharmacological Properties</h2>
-<p>Antioxidant</p>
-<p>Anti-inflammatory</p>
-<p>Anti-anemic</p>
-<p>Cardioprotective</p>
-<p>Digestive support</p>
-
-<h2>🩺 Therapeutic Applications</h2>
-<p>Supports healthy blood and reduces anemia</p>
-<p>Maintains bone health through vitamin K and calcium</p>
-<p>Regulates blood pressure and promotes heart health</p>
-<p>Helps in detoxification and boosting immunity</p>
-
-<h2>⚙️ Mechanism of Action</h2>
-<p>Vitamins and flavonoids neutralize free radicals, chlorophyll supports detoxification, and minerals improve hemoglobin synthesis and cardiovascular function.</p>
-
-<h2>🌍 Modern Relevance</h2>
-<p>Spinach is recognized by WHO and NCBI for its nutritional and medicinal value. It is widely researched for cardiovascular health, anemia prevention, and antioxidant effects.</p>
-
-<h2>📚 Sources</h2>
-<p>NCBI</p>
-<p>WHO</p>
-<p>Ministry of AYUSH</p>
+<h2>💊 Applications</h2>
+<p>Supports blood health, immunity, and digestion.</p>
 
 </div>
 
-<div class="right">
+<!-- 🔥 MODEL AT BOTTOM -->
+<div class="model-section">
 <h2 style="text-align:center;">🌐 3D Spinach Model</h2>
 <div class="model-container" id="model"></div>
 </div>
 
-</div>
-
 <footer>
-© 2026 E-Herbal Garden | Designed with 🌱 | Created by Team Beginners
+© 2026 E-Herbal Garden | Designed with 🌱
 </footer>
 
 <!-- Three.js -->
@@ -189,9 +158,11 @@ renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
+// Light
 const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
 scene.add(light);
 
+// Controls
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
 controls.enableZoom = true;
 controls.enablePan = false;
@@ -202,6 +173,7 @@ const loader = new THREE.GLTFLoader();
 loader.load(
     './Spinach.glb',
     function (gltf) {
+
         model = gltf.scene;
 
         const box = new THREE.Box3().setFromObject(model);
@@ -214,16 +186,17 @@ loader.load(
         const fov = camera.fov * (Math.PI / 180);
         let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
 
-        camera.position.z = cameraZ * 1.5;
+        camera.position.z = cameraZ * 1.8;
 
         scene.add(model);
     },
     undefined,
-    function(error) {
+    function (error) {
         console.error("Error loading model:", error);
     }
 );
 
+// Responsive
 window.addEventListener('resize', () => {
     const width = container.clientWidth;
     const height = container.clientHeight;
@@ -233,11 +206,17 @@ window.addEventListener('resize', () => {
     camera.updateProjectionMatrix();
 });
 
+// Animation
 function animate() {
     requestAnimationFrame(animate);
-    if (model) model.rotation.y += 0.005;
+
+    if (model) {
+        model.rotation.y += 0.005;
+    }
+
     renderer.render(scene, camera);
 }
+
 animate();
 </script>
 
