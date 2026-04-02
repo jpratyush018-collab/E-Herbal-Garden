@@ -33,25 +33,9 @@ nav a {
 }
 
 .main {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
     padding: 30px;
-}
-
-.left {
-    flex: 1;
-    min-width: 300px;
-}
-
-.right {
-    flex: 1;
-    min-width: 300px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    overflow: hidden;
-    padding: 10px;
+    max-width: 900px;
+    margin: auto;
 }
 
 h2 {
@@ -60,6 +44,16 @@ h2 {
 
 p {
     line-height: 1.6;
+}
+
+/* MODEL AT BOTTOM */
+.model-section{
+    margin:40px auto;
+    max-width:900px;
+    background:white;
+    border-radius:12px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    padding:20px;
 }
 
 .model-container {
@@ -93,8 +87,6 @@ footer {
 
 <div class="main">
 
-<div class="left">
-
 <h2>🌱 Basic Information</h2>
 <p><b>Common Name:</b> Bael / Bilva</p>
 <p><b>Botanical Name:</b> Aegle marmelos</p>
@@ -119,8 +111,6 @@ footer {
 <p><b>Marmelosin:</b> Digestive aid<br>
 <b>Tannins:</b> Antimicrobial<br>
 <b>Coumarins:</b> Anti-inflammatory</p>
-
-<!-- NEW CONTENT -->
 
 <h2>🧬 Overview</h2>
 <p>Bael (Aegle marmelos) is a medicinal plant known for its digestive and antimicrobial properties.</p>
@@ -182,105 +172,84 @@ footer {
 
 </div>
 
-<div class="right">
+<!-- 🌐 3D MODEL AT BOTTOM -->
+<div class="model-section">
 <h2 style="text-align:center;">🌐 3D Bael Model</h2>
 <div class="model-container" id="model"></div>
-</div>
-
 </div>
 
 <footer>
 © 2026 E-Herbal Garden | Designed with 🌱
 </footer>
 
-<!-- Three.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
 
 <script>
-// Scene
 const scene = new THREE.Scene();
 const container = document.getElementById("model");
 
-// Camera
 const camera = new THREE.PerspectiveCamera(
-    60,
-    container.clientWidth / container.clientHeight,
-    0.1,
-    1000
+60,
+container.clientWidth / container.clientHeight,
+0.1,
+1000
 );
 
-// Renderer
-const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+const renderer = new THREE.WebGLRenderer({ antialias:true, alpha:true });
 renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
-// Lighting
 const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
 scene.add(light);
 
-// Controls
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
-controls.minDistance = 1;
-controls.maxDistance = 10;
 
-// Load Model
 let baelModel;
 const loader = new THREE.GLTFLoader();
 
-loader.load(
-    './Bael.glb',
-    function (gltf) {
+loader.load('./Bael.glb', function(gltf) {
 
-        baelModel = gltf.scene;
+    baelModel = gltf.scene;
 
-        // 🔥 Center model
-        const box = new THREE.Box3().setFromObject(baelModel);
-        const size = box.getSize(new THREE.Vector3()).length();
-        const center = box.getCenter(new THREE.Vector3());
+    const box = new THREE.Box3().setFromObject(baelModel);
+    const size = box.getSize(new THREE.Vector3()).length();
+    const center = box.getCenter(new THREE.Vector3());
 
-        baelModel.position.sub(center);
+    baelModel.position.sub(center);
 
-        // 🔥 Scale model to fit
-        const scaleFactor = 3 / size;
-        baelModel.scale.setScalar(scaleFactor);
+    const scale = 3 / size;
+    baelModel.scale.setScalar(scale);
 
-        scene.add(baelModel);
+    scene.add(baelModel);
 
-        // 🔥 Camera positioning
-        camera.position.set(0, size / 2, size * 1.5);
+    camera.position.set(0, size/2, size * 1.5);
+    controls.target.set(0,0,0);
+    controls.update();
 
-        controls.target.set(0, 0, 0);
-        controls.update();
-    },
-    undefined,
-    function (error) {
-        console.error("Error loading model:", error);
-    }
-);
+}, undefined, function(error) {
+    console.error(error);
+});
 
-// Resize
 window.addEventListener('resize', () => {
     camera.aspect = container.clientWidth / container.clientHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(container.clientWidth, container.clientHeight);
 });
 
-// Animation
 function animate() {
-    requestAnimationFrame(animate);
+requestAnimationFrame(animate);
 
-    if (baelModel) {
-        baelModel.rotation.y += 0.005;
-    }
-
-    controls.update();
-    renderer.render(scene, camera);
+if (baelModel) {
+    baelModel.rotation.y += 0.004;
 }
 
+controls.update();
+renderer.render(scene, camera);
+}
 animate();
 </script>
 
