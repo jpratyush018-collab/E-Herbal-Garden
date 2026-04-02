@@ -51,6 +51,7 @@ nav a {
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     overflow: hidden;
+    padding: 10px;
 }
 
 h2 { color: #2e7d32; }
@@ -59,7 +60,7 @@ p { line-height: 1.6; }
 
 .model-container {
     width: 100%;
-    height: 500px;
+    height: 300px;
 }
 
 footer {
@@ -160,44 +161,63 @@ footer {
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
 
 <script>
+// Scene
 const scene = new THREE.Scene();
 const container = document.getElementById("model");
 
+// Camera
 const camera = new THREE.PerspectiveCamera(
-    75,
+    60,
     container.clientWidth / container.clientHeight,
     0.1,
     1000
 );
 
+// Renderer
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
-const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
-scene.add(light);
+// Lighting (same as Basil)
+const light1 = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
+scene.add(light1);
 
+const light2 = new THREE.DirectionalLight(0xffffff, 2);
+light2.position.set(5,5,5);
+scene.add(light2);
+
+// Controls
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
-controls.enableZoom = true;
-controls.enablePan = false;
+controls.enableDamping = true;
+controls.minDistance = 1;
+controls.maxDistance = 10;
 
-let oreganoModel;
-
+// Model
+let model;
 const loader = new THREE.GLTFLoader();
+
 loader.load(
     './Oregano.glb',
     function (gltf) {
-        oreganoModel = gltf.scene;
-        const box = new THREE.Box3().setFromObject(oreganoModel);
-        const size = box.getSize(new THREE.Vector3());
+
+        model = gltf.scene;
+
+        const box = new THREE.Box3().setFromObject(model);
+        const size = box.getSize(new THREE.Vector3()).length();
         const center = box.getCenter(new THREE.Vector3());
-        oreganoModel.position.sub(center);
-        const maxDim = Math.max(size.x, size.y, size.z);
-        const fov = camera.fov * (Math.PI / 180);
-        let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
-        camera.position.z = cameraZ * 1.5;
-        scene.add(oreganoModel);
+
+        model.position.sub(center);
+        model.position.y -= 0.4;
+
+        const scaleFactor = 3.5 / size;
+        model.scale.setScalar(scaleFactor);
+
+        scene.add(model);
+
+        camera.position.set(0, size / 3, size * 1.2);
+        controls.target.set(0, -0.3, 0);
+        controls.update();
     },
     undefined,
     function(error) {
@@ -205,19 +225,23 @@ loader.load(
     }
 );
 
+// Resize
 window.addEventListener('resize', () => {
-    const width = container.clientWidth;
-    const height = container.clientHeight;
-    renderer.setSize(width, height);
-    camera.aspect = width / height;
+    camera.aspect = container.clientWidth / container.clientHeight;
     camera.updateProjectionMatrix();
+    renderer.setSize(container.clientWidth, container.clientHeight);
 });
 
+// Animation
 function animate() {
     requestAnimationFrame(animate);
-    if (oreganoModel) oreganoModel.rotation.y += 0.005;
+
+    if (model) model.rotation.y += 0.005;
+
+    controls.update();
     renderer.render(scene, camera);
 }
+
 animate();
 </script>
 
