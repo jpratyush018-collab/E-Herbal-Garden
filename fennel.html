@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Plant - E-Herbal Garden</title>
+<title>Fennel - E-Herbal Garden</title>
 
 <style>
 body {
@@ -79,15 +79,14 @@ footer {
 <body>
 
 <header>
-<h1>🌿 Fennel </h1>
-<p>Tagline of the Plant</p>
+<h1>🌿 Fennel</h1>
+<p>The Digestive Herb</p>
 </header>
 
 <nav>
 <a href="index.html">Home</a>
 <a href="hellochalja.html">Plants</a>
 <a href="about.html">About</a>
-<a href="#">Contact</a>
 </nav>
 
 <div class="main">
@@ -95,32 +94,48 @@ footer {
 <div class="left">
 
 <h2>🌱 Basic Information</h2>
-<p><b>Common Name:</b> </p>
-<p><b>Botanical Name:</b> </p>
+<p><b>Common Name:</b> Fennel (Saunf)</p>
+<p><b>Botanical Name:</b> Foeniculum vulgare</p>
+<p><b>Family:</b> Apiaceae</p>
+<p><b>Origin:</b> Mediterranean Region</p>
 
 <h2>🌿 Medicinal Uses</h2>
-<p>Write here...</p>
+<p>Fennel is widely used to improve digestion and reduce bloating.</p>
+<p>It helps relieve gas, acidity, and stomach cramps.</p>
+<p>Fennel seeds are also known to freshen breath and support hormonal balance.</p>
+<p>It has antioxidant, antimicrobial, and anti-inflammatory properties.</p>
 
 <h2>🌍 Habitat</h2>
-<p>Write here...</p>
+<p>Fennel grows best in sunny environments with well-drained soil.</p>
+<p>It is commonly found in temperate and tropical regions.</p>
 
 <h2>🌾 Cultivation</h2>
-<p>Write here...</p>
+<p>Fennel is grown from seeds and requires full sunlight.</p>
+<p>It needs moderate watering and grows well in loose, fertile soil.</p>
+<p>The plant typically matures in 90–120 days.</p>
 
 <h2>⚠️ Precautions</h2>
-<p>Write here...</p>
+<p>Excess consumption may cause allergic reactions in some individuals.</p>
+<p>Pregnant women should consult a doctor before consuming large amounts.</p>
+
+<h2>🧪 Chemical Compounds</h2>
+<p>
+<b>Anethole:</b> Digestive aid<br>
+<b>Fenchone:</b> Antimicrobial<br>
+<b>Estragole:</b> Aromatic compound
+</p>
 
 </div>
 
 <div class="right">
-<h2 style="text-align:center;">🌐 3D Model</h2>
+<h2 style="text-align:center;">🌐 3D Fennel Model</h2>
 <div class="model-container" id="model"></div>
 </div>
 
 </div>
 
 <footer>
-© 2026 E-Herbal Garden
+© 2026 E-Herbal Garden | Designed with 🌱
 </footer>
 
 <!-- Three.js -->
@@ -157,19 +172,17 @@ let model;
 
 const loader = new THREE.GLTFLoader();
 loader.load(
-    './Fennel.glb', // 🔥 CHANGE THIS FILE NAME
+    './Fennel.glb',
     function (gltf) {
 
         model = gltf.scene;
 
-        // ✅ CENTER MODEL
         const box = new THREE.Box3().setFromObject(model);
         const size = box.getSize(new THREE.Vector3());
         const center = box.getCenter(new THREE.Vector3());
 
         model.position.sub(center);
 
-        // ✅ AUTO CAMERA FIT
         const maxDim = Math.max(size.x, size.y, size.z);
         const fov = camera.fov * (Math.PI / 180);
         let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
@@ -177,10 +190,6 @@ loader.load(
         camera.position.z = cameraZ * 1.5;
 
         scene.add(model);
-    },
-    undefined,
-    function (error) {
-        console.error("Error loading model:", error);
     }
 );
 
