@@ -36,12 +36,17 @@ nav a {
     display: flex;
     gap: 20px;
     padding: 30px;
+    flex-wrap: wrap;
 }
 
-.left { flex: 1; }
+.left {
+    flex: 1;
+    min-width: 300px;
+}
 
 .right {
     flex: 1;
+    min-width: 300px;
     background: white;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -70,8 +75,8 @@ footer {
 <body>
 
 <header>
-<h1>🌿 Thyme</h1>
-<p>The Antiseptic Herb</p>
+<h1>🌿 Thyme (Thymus vulgaris)</h1>
+<p>The Antiseptic and Healing Herb</p>
 </header>
 
 <nav>
@@ -84,30 +89,58 @@ footer {
 <div class="main">
 
 <div class="left">
+
 <h2>🌱 Basic Information</h2>
 <p><b>Common Name:</b> Thyme</p>
 <p><b>Botanical Name:</b> Thymus vulgaris</p>
 <p><b>Family:</b> Lamiaceae</p>
 <p><b>Origin:</b> Mediterranean Region</p>
+<p><b>Plant Type:</b> Perennial herb</p>
+<p><b>Parts Used:</b> Leaves, flowering tops, essential oil</p>
 
 <h2>🌿 Medicinal Uses</h2>
-<p>Thyme is known for its strong antibacterial and antifungal properties.</p>
-<p>It helps in treating cough, cold, and respiratory issues.</p>
-<p>It also supports digestion and boosts immunity.</p>
+<p>✅ Natural antiseptic and antimicrobial</p>
+<p>✅ Relieves cough, cold, bronchitis, and respiratory infections</p>
+<p>✅ Supports digestive health and reduces bloating</p>
+<p>✅ Boosts immunity and antioxidant defense</p>
+<p>✅ May aid in managing blood sugar and inflammation</p>
 
 <h2>🌍 Habitat</h2>
-<p>It grows in dry, sunny climates with well-drained soil.</p>
+<p>Thyme thrives in sunny, dry climates with well-drained soil. It is widely cultivated in Mediterranean gardens and can grow in pots or herb beds.</p>
 
 <h2>🌾 Cultivation</h2>
-<p>Thyme is grown from seeds or cuttings and requires minimal watering.</p>
+<p><b>Propagation:</b> By seeds, cuttings, or division</p>
+<p><b>Soil:</b> Well-drained, sandy or loamy soil</p>
+<p><b>Sunlight:</b> Full sun</p>
+<p><b>Watering:</b> Moderate, allowing soil to dry between watering</p>
+<p><b>Harvest:</b> Leaves can be harvested after 4–6 months; flowering tops harvested during blooming</p>
 
 <h2>⚠️ Precautions</h2>
-<p>Excess use of thyme oil may cause irritation; use in moderation.</p>
+<p>Excessive use of thyme essential oil may cause skin irritation. Avoid high doses during pregnancy or breastfeeding without guidance. Use in moderation.</p>
 
 <h2>🧪 Chemical Compounds</h2>
-<p><b>Thymol:</b> Antiseptic<br>
-<b>Carvacrol:</b> Antibacterial<br>
-<b>Flavonoids:</b> Antioxidant</p>
+<p><b>Thymol:</b> Antiseptic, antifungal</p>
+<p><b>Carvacrol:</b> Antibacterial, anti-inflammatory</p>
+<p><b>Flavonoids:</b> Antioxidant, immune support</p>
+<p><b>Essential oils:</b> Boost respiratory and digestive health</p>
+
+<h2>💊 Pharmacological Properties</h2>
+<p>Antimicrobial, antiseptic, antioxidant, anti-inflammatory, digestive aid, respiratory support</p>
+
+<h2>🩺 Therapeutic Applications</h2>
+<p>Helps treat cough, bronchitis, cold, digestive upset, and mild infections. Promotes overall immunity and respiratory health.</p>
+
+<h2>⚙️ Mechanism of Action</h2>
+<p>Thymol and carvacrol disrupt bacterial and fungal cell walls. Flavonoids neutralize free radicals, reduce inflammation, and protect tissues.</p>
+
+<h2>🌍 Modern Relevance</h2>
+<p>Thyme is used in modern herbal medicine, aromatherapy, and natural preservatives due to its potent antimicrobial and antioxidant properties.</p>
+
+<h2>📚 Sources</h2>
+<p>WHO</p>
+<p>NCBI</p>
+<p>Ministry of AYUSH</p>
+
 </div>
 
 <div class="right">
@@ -118,7 +151,7 @@ footer {
 </div>
 
 <footer>
-© 2026 E-Herbal Garden
+© 2026 E-Herbal Garden | Designed with 🌱 | Created by Team Beginners
 </footer>
 
 <!-- Three.js -->
@@ -142,9 +175,12 @@ renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
-// Light (same as Ashwagandha)
 const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
 scene.add(light);
+
+const controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.enableZoom = true;
+controls.enablePan = false;
 
 let thymeModel;
 
@@ -152,55 +188,36 @@ const loader = new THREE.GLTFLoader();
 loader.load(
     './Thyme.glb',
     function (gltf) {
+        thymeModel = gltf.scene;
+        const box = new THREE.Box3().setFromObject(thymeModel);
+        const size = box.getSize(new THREE.Vector3());
+        const center = box.getCenter(new THREE.Vector3());
+        thymeModel.position.sub(center);
+        const maxDim = Math.max(size.x, size.y, size.z);
+        const fov = camera.fov * (Math.PI / 180);
+        let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
+        camera.position.z = cameraZ * 1.5;
+        scene.add(thymeModel);
+    },
+    undefined,
+    function(error) {
+        console.error("Error loading model:", error);
+    }
+);
 
-    thymeModel = gltf.scene;
-
-    // 🔥 PERFECT CENTER LOGIC
-    const box = new THREE.Box3().setFromObject(thymeModel);
-    const size = box.getSize(new THREE.Vector3());
-    const center = box.getCenter(new THREE.Vector3());
-
-    thymeModel.position.sub(center);
-
-    // 🔥 AUTO CAMERA FIT
-    const maxDim = Math.max(size.x, size.y, size.z);
-    const fov = camera.fov * (Math.PI / 180);
-    let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
-
-    camera.position.z = cameraZ * 1.5;
-
-    scene.add(thymeModel);
-
-}, undefined, function(error) {
-    console.error("Error loading model:", error);
-});
-
-// Controls
-const controls = new THREE.OrbitControls(camera, renderer.domElement);
-controls.enableZoom = true;
-controls.enablePan = false;
-
-// Resize
 window.addEventListener('resize', () => {
     const width = container.clientWidth;
     const height = container.clientHeight;
-
     renderer.setSize(width, height);
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
 });
 
-// Animation
 function animate() {
     requestAnimationFrame(animate);
-
-    if (thymeModel) {
-        thymeModel.rotation.y += 0.005;
-    }
-
+    if (thymeModel) thymeModel.rotation.y += 0.005;
     renderer.render(scene, camera);
 }
-
 animate();
 </script>
 
