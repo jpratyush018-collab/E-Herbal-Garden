@@ -39,14 +39,17 @@ nav a {
     display: flex;
     gap: 20px;
     padding: 30px;
+    flex-wrap: wrap;
 }
 
 .left {
     flex: 1;
+    min-width: 300px;
 }
 
 .right {
     flex: 1;
+    min-width: 300px;
     background: white;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -101,25 +104,61 @@ footer {
 <p><b>Botanical Name:</b> Allium cepa</p>
 <p><b>Family:</b> Amaryllidaceae</p>
 <p><b>Origin:</b> Central Asia</p>
+<p><b>Plant Type:</b> Biennial bulbous herb</p>
+<p><b>Parts Used:</b> Bulbs, leaves</p>
+
+<h2>🧬 Overview</h2>
+<p>Onion is a widely used vegetable and medicinal plant known for its flavor and therapeutic properties. It contains antioxidants, sulfur compounds, and flavonoids that promote cardiovascular health and immunity.</p>
 
 <h2>🌿 Medicinal Uses</h2>
-<p>Onion helps in boosting immunity and fighting infections.</p>
-<p>It supports heart health and helps regulate blood sugar levels.</p>
-<p>It also has anti-inflammatory and antioxidant properties.</p>
+<p>✅ Boosts immunity and helps fight infections</p>
+<p>✅ Supports heart health by lowering cholesterol and blood pressure</p>
+<p>✅ Anti-inflammatory and antioxidant properties help reduce oxidative stress</p>
+<p>✅ Helps regulate blood sugar and improves digestion</p>
 
 <h2>🌍 Habitat</h2>
-<p>It grows in temperate climates with well-drained soil and sunlight.</p>
+<p>Onions grow well in temperate regions with well-drained fertile soil, moderate sunlight, and adequate water. They are cultivated worldwide.</p>
 
 <h2>🌾 Cultivation</h2>
-<p>Onions are grown from seeds or bulbs and require regular watering.</p>
+<p>Propagation: From seeds, sets (small bulbs), or bulb divisions.</p>
+<p>Soil: Well-drained, rich in organic matter</p>
+<p>Sunlight: Full sun</p>
+<p>Watering: Regular, avoid waterlogging</p>
+<p>Harvest: When tops yellow and bulbs mature (90–120 days from sowing)</p>
 
 <h2>⚠️ Precautions</h2>
-<p>Excess consumption may cause acidity or stomach discomfort.</p>
+<p>Excess consumption may cause acidity, heartburn, or mild stomach upset.</p>
+<p>People with blood clotting disorders should consult a doctor before consuming concentrated onion supplements.</p>
 
-<h2>🧪 Chemical Compounds</h2>
-<p><b>Quercetin:</b> Antioxidant<br>
-<b>Sulfur Compounds:</b> Heart health<br>
-<b>Flavonoids:</b> Anti-inflammatory</p>
+<h2>🧪 Bioactive Compounds</h2>
+<p><b>Quercetin:</b> Powerful antioxidant, anti-inflammatory</p>
+<p><b>Sulfur Compounds:</b> Cardioprotective, antimicrobial</p>
+<p><b>Flavonoids:</b> Anti-inflammatory, free radical scavenging</p>
+<p><b>Fructooligosaccharides:</b> Prebiotic for gut health</p>
+
+<h2>💊 Pharmacological Properties</h2>
+<p>Antioxidant</p>
+<p>Anti-inflammatory</p>
+<p>Antimicrobial</p>
+<p>Cardioprotective</p>
+<p>Immune-stimulating</p>
+
+<h2>🩺 Therapeutic Applications</h2>
+<p>Supports heart health</p>
+<p>Reduces risk of infections</p>
+<p>Helps control blood sugar</p>
+<p>Supports gut health and digestion</p>
+
+<h2>⚙️ Mechanism of Action</h2>
+<p>Sulfur compounds and quercetin reduce inflammation, oxidative stress, and platelet aggregation while providing antimicrobial effects.</p>
+
+<h2>🌍 Modern Relevance</h2>
+<p>Recognized by WHO, NCBI, and Ministry of AYUSH for medicinal properties. Widely researched for cardiovascular benefits, anti-diabetic effects, and antimicrobial activity.</p>
+
+<h2>📚 Sources</h2>
+<p>NCBI</p>
+<p>WHO</p>
+<p>Ministry of AYUSH</p>
 
 </div>
 
@@ -168,36 +207,34 @@ const loader = new THREE.GLTFLoader();
 loader.load(
     './Onion.glb',
     function (gltf) {
+        onionModel = gltf.scene;
 
-    onionModel = gltf.scene;
+        const box = new THREE.Box3().setFromObject(onionModel);
+        const size = box.getSize(new THREE.Vector3());
+        const center = box.getCenter(new THREE.Vector3());
 
-    // 🔥 EXACT SAME AS ASHWAGANDHA
-    const box = new THREE.Box3().setFromObject(onionModel);
-    const size = box.getSize(new THREE.Vector3());
-    const center = box.getCenter(new THREE.Vector3());
+        onionModel.position.sub(center);
 
-    // Center model perfectly
-    onionModel.position.sub(center);
+        const maxDim = Math.max(size.x, size.y, size.z);
+        const fov = camera.fov * (Math.PI / 180);
+        let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
 
-    // Camera auto fit
-    const maxDim = Math.max(size.x, size.y, size.z);
-    const fov = camera.fov * (Math.PI / 180);
-    let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
+        camera.position.z = cameraZ * 1.5;
 
-    camera.position.z = cameraZ * 1.5;
-
-    scene.add(onionModel);
-
-}, undefined, function(error) {
-    console.error("Error loading model:", error);
-});
+        scene.add(onionModel);
+    },
+    undefined,
+    function(error) {
+        console.error("Error loading model:", error);
+    }
+);
 
 // Controls
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
 controls.enableZoom = true;
 controls.enablePan = false;
 
-// Resize fix
+// Resize
 window.addEventListener('resize', () => {
     const width = container.clientWidth;
     const height = container.clientHeight;
@@ -210,14 +247,9 @@ window.addEventListener('resize', () => {
 // Animation
 function animate() {
     requestAnimationFrame(animate);
-
-    if (onionModel) {
-        onionModel.rotation.y += 0.005;
-    }
-
+    if (onionModel) onionModel.rotation.y += 0.005;
     renderer.render(scene, camera);
 }
-
 animate();
 </script>
 
