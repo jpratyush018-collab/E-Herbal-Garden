@@ -44,19 +44,18 @@ nav a {
     min-width: 300px;
 }
 
-.right {
-    flex: 1;
-    min-width: 300px;
+/* 🔥 Bottom model section */
+.model-section {
+    margin: 20px;
     background: white;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    overflow: hidden;
+    padding: 15px;
 }
 
-/* 🔥 Tight container */
 .model-container {
     width: 100%;
-    height: 260px;
+    height: 350px;
 }
 
 h2 {
@@ -122,11 +121,12 @@ footer {
 
 </div>
 
-<div class="right">
-<h2 style="text-align:center;">🌐 3D Giloy Model</h2>
-<div class="model-container" id="model"></div>
 </div>
 
+<!-- 🔥 MOVED MODEL TO BOTTOM -->
+<div class="model-section">
+<h2 style="text-align:center;">🌐 3D Giloy Model</h2>
+<div class="model-container" id="model"></div>
 </div>
 
 <footer>
@@ -163,8 +163,9 @@ scene.add(light);
 // Controls
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
-controls.enableZoom = false; // 🔥 cleaner look
+controls.enableZoom = false;
 
+// Model
 let giloyModel;
 const loader = new THREE.GLTFLoader();
 
@@ -172,24 +173,24 @@ loader.load('./Giloy.glb', function (gltf) {
 
     giloyModel = gltf.scene;
 
-    // 🔥 Auto center + perfect ground alignment
     const box = new THREE.Box3().setFromObject(giloyModel);
     const size = box.getSize(new THREE.Vector3()).length();
     const center = box.getCenter(new THREE.Vector3());
 
+    // Center model
     giloyModel.position.sub(center);
 
-    // ✅ remove bottom gap perfectly
+    // Perfect ground alignment
     giloyModel.position.y -= box.min.y;
 
-    // 🔥 Auto scale
-    const scaleFactor = 3.5 / size;
+    // Better scaling (balanced)
+    const scaleFactor = 2.5 / size;
     giloyModel.scale.setScalar(scaleFactor);
 
     scene.add(giloyModel);
 
-    // 🔥 Perfect camera
-    camera.position.set(0, size / 3, size * 1.2);
+    // Camera
+    camera.position.set(0, size / 2, size * 1.5);
 
     controls.target.set(0, 0, 0);
     controls.update();
@@ -200,9 +201,12 @@ loader.load('./Giloy.glb', function (gltf) {
 
 // Resize fix
 window.addEventListener('resize', () => {
-    camera.aspect = container.clientWidth / container.clientHeight;
+    const width = container.clientWidth;
+    const height = container.clientHeight;
+
+    renderer.setSize(width, height);
+    camera.aspect = width / height;
     camera.updateProjectionMatrix();
-    renderer.setSize(container.clientWidth, container.clientHeight);
 });
 
 // Animation
