@@ -60,7 +60,7 @@ h2 {
 
 .model-container {
     width: 100%;
-    height: 300px; /* ✅ reduced */
+    height: 300px;
 }
 
 footer {
@@ -76,7 +76,7 @@ footer {
 <body>
 
 <header>
-<h1>🌿 Neem (Indian Lilac)</h1>
+<h1>🌿 Neem (Azadirachta indica)</h1>
 <p>The Village Pharmacy</p>
 </header>
 
@@ -90,14 +90,50 @@ footer {
 <div class="main">
 
 <div class="left">
-<h2>🌱 Basic Information</h2>
-<p><b>Common Name:</b> Neem</p>
-<p><b>Botanical Name:</b> Azadirachta indica</p>
-<p><b>Family:</b> Meliaceae</p>
-<p><b>Origin:</b> India</p>
 
-<h2>🌿 Uses</h2>
-<p>Neem is antibacterial, antiviral, and used for skin, immunity, and oral care.</p>
+<h2>🧬 Overview</h2>
+<p>Neem (Azadirachta indica) is a medicinal plant extensively studied for its therapeutic potential and widely used in traditional healthcare systems. It is recognized for its broad spectrum of biological activities, supported by scientific research and traditional knowledge systems.</p>
+<p>Different parts of the neem plant — including leaves, bark, seeds, flowers, and oil — are utilized due to their diverse pharmacological properties. Its relevance continues to grow in modern research for applications in healthcare, pharmaceuticals, and natural therapeutics.</p>
+
+<h2>🌱 Botanical & General Information</h2>
+<p><b>Family:</b> Meliaceae</p>
+<p><b>Common Name:</b> Neem</p>
+<p><b>Plant Type:</b> Evergreen tree</p>
+<p><b>Habitat:</b> Tropical and semi-tropical regions</p>
+<p><b>Parts Used:</b> Leaves, bark, seeds, oil, flowers, roots</p>
+<p>Neem is well-adapted to harsh environmental conditions and is known for its resilience and long lifespan.</p>
+
+<h2>🌿 Propagation & Cultivation</h2>
+<p><b>Seeds (Primary Method):</b> Fresh neem seeds are most commonly used and should be sown soon after collection as viability decreases quickly. Germination usually occurs within 1–3 weeks.</p>
+<p><b>Vegetative Propagation:</b> Methods such as stem cuttings or tissue culture can be used but are less common.</p>
+<p><b>Growth Requirements:</b> Prefers warm climates, full sunlight, and well-drained soil. Requires minimal maintenance once established.</p>
+
+<h2>🧪 Key Bioactive Compounds</h2>
+<p>Azadirachtin, Nimbin, Nimbidin, Nimbolide, Gedunin, Quercetin, Salannin</p>
+
+<h2>💊 Pharmacological & Medicinal Properties</h2>
+<p><b>Antimicrobial:</b> Effective against bacteria, fungi, and viruses.</p>
+<p><b>Anti-inflammatory:</b> Reduces inflammation and swelling.</p>
+<p><b>Antioxidant:</b> Protects cells from oxidative stress.</p>
+<p><b>Antidiabetic:</b> Supports blood glucose regulation.</p>
+<p><b>Immunomodulatory:</b> Enhances immune response.</p>
+<p><b>Anticancer Potential:</b> Studied for tumor inhibition.</p>
+
+<h2>🩺 Therapeutic Applications</h2>
+<p>Used in skin care, oral health, infections, digestive health, and metabolic disorders.</p>
+
+<h2>⚙️ Mechanism of Action</h2>
+<p>Free radical scavenging, antimicrobial inhibition, inflammation regulation, and immune modulation.</p>
+
+<h2>⚠️ Safety & Precautions</h2>
+<p>Excessive use may cause toxicity. Should be used with proper guidance and is not a substitute for medical treatment.</p>
+
+<h2>🌍 Modern Relevance</h2>
+<p>Recognized by NCBI, WHO, and Ministry of AYUSH as a multi-functional medicinal plant used in integrative medicine and research.</p>
+
+<h2>📚 Sources</h2>
+<p>NCBI, WHO, Ministry of AYUSH (Government of India)</p>
+
 </div>
 
 <div class="right">
@@ -111,7 +147,6 @@ footer {
 © 2026 E-Herbal Garden | Designed with 🌱 | Created by Team Beginners
 </footer>
 
-<!-- THREE JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
@@ -120,7 +155,6 @@ footer {
 const container = document.getElementById("model");
 const scene = new THREE.Scene();
 
-// Camera
 const camera = new THREE.PerspectiveCamera(
     60,
     container.clientWidth / container.clientHeight,
@@ -128,55 +162,42 @@ const camera = new THREE.PerspectiveCamera(
     1000
 );
 
-// Renderer
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
-// Light
 const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
 scene.add(light);
 
-// Controls
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 controls.minDistance = 1;
 controls.maxDistance = 10;
 
-// Model
 let model;
 const loader = new THREE.GLTFLoader();
 
 loader.load(
-    './neem.glb', // ✅ SAME NAME
+    './Neem.glb',
     function (gltf) {
-
         model = gltf.scene;
 
-        // 🔥 Perfect centering & scaling
         const box = new THREE.Box3().setFromObject(model);
         const size = box.getSize(new THREE.Vector3()).length();
         const center = box.getCenter(new THREE.Vector3());
 
         model.position.sub(center);
-
-        // 🔥 remove bottom gap
         model.position.y -= 0.4;
 
-        // 🔥 auto scale
         const scaleFactor = 3.5 / size;
         model.scale.setScalar(scaleFactor);
 
         scene.add(model);
 
-        // 🔥 camera adjustment
         camera.position.set(0, size / 3, size * 1.2);
-
-        // 🔥 focus center
         controls.target.set(0, -0.3, 0);
         controls.update();
-
     },
     undefined,
     function (error) {
@@ -185,7 +206,6 @@ loader.load(
     }
 );
 
-// Resize fix
 window.addEventListener('resize', () => {
     const width = container.clientWidth;
     const height = container.clientHeight;
@@ -195,7 +215,6 @@ window.addEventListener('resize', () => {
     camera.updateProjectionMatrix();
 });
 
-// Animation
 function animate() {
     requestAnimationFrame(animate);
 
