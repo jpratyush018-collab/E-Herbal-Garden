@@ -45,8 +45,7 @@ min-width:300px;
 }
 
 .right{
-flex:1;
-min-width:300px;
+width:100%;
 background:white;
 border-radius:12px;
 box-shadow:0 4px 10px rgba(0,0,0,0.1);
@@ -62,17 +61,24 @@ p{
 line-height:1.6;
 }
 
-.model-container{
-width:100%;
-height:500px;
-}
-
 footer{
 background:#145a1f;
 color:white;
 text-align:center;
 padding:15px;
 margin-top:20px;
+}
+
+/* 3D AT BOTTOM */
+.bottom-3d{
+width:100%;
+padding:30px;
+box-sizing:border-box;
+}
+
+.model-container{
+width:100%;
+height:70vh;
 }
 </style>
 </head>
@@ -97,97 +103,26 @@ margin-top:20px;
 
 <h2>🧬 Overview</h2>
 <p>
-Hibiscus is a flowering plant widely known for its bright and colorful flowers. 
-Species such as <b>Hibiscus rosa-sinensis</b> and <b>Hibiscus sabdariffa</b> are commonly used 
-in traditional medicine and herbal remedies. The plant is rich in antioxidants, 
-vitamins, and natural compounds that support heart health, digestion, skin care, 
-and overall wellness.
-</p>
-
-<p>
-Hibiscus flowers are widely used in herbal teas, Ayurvedic medicines, hair care products, 
-and natural skincare treatments. Because of its therapeutic benefits, it is recognized 
-in both traditional and modern healthcare systems.
+Hibiscus is a flowering plant widely known for its bright and colorful flowers.
 </p>
 
 <h2>🌱 Basic Information</h2>
 <p><b>Common Name:</b> Hibiscus</p>
 <p><b>Botanical Name:</b> Hibiscus rosa-sinensis / Hibiscus sabdariffa</p>
-<p><b>Family:</b> Malvaceae</p>
-<p><b>Plant Type:</b> Flowering shrub</p>
-<p><b>Habitat:</b> Tropical and subtropical regions</p>
-<p><b>Parts Used:</b> Flowers, leaves, and calyces</p>
 
 <h2>🌿 Medicinal Uses</h2>
-
-<p><b>Heart Health:</b> Hibiscus tea helps regulate blood pressure and supports cardiovascular health.</p>
-
-<p><b>Antioxidant Protection:</b> Rich in anthocyanins and vitamin C which protect the body from oxidative stress.</p>
-
-<p><b>Hair Care:</b> Hibiscus flowers strengthen hair roots, promote hair growth, and prevent hair fall.</p>
-
-<p><b>Skin Care:</b> Used in herbal skincare to hydrate skin and reduce signs of aging.</p>
-
-<p><b>Digestive Support:</b> Helps improve digestion and may relieve mild stomach discomfort.</p>
-
-<p><b>Immune Support:</b> Contains natural compounds that help strengthen the immune system.</p>
-
-<h2>🌍 Habitat</h2>
-<p>
-Hibiscus plants grow best in tropical and subtropical climates with warm temperatures 
-and plenty of sunlight. They prefer well-drained soil and moderate rainfall. 
-The plant is widely cultivated across Asia, Africa, and the Americas for both 
-decorative and medicinal purposes.
-</p>
-
-<h2>🌾 Cultivation</h2>
-
-<p><b>Propagation:</b> Most commonly grown from stem cuttings which develop roots quickly.</p>
-
-<p><b>Sunlight:</b> Requires full sunlight for healthy growth and abundant flowering.</p>
-
-<p><b>Soil:</b> Prefers fertile, well-drained soil rich in organic matter.</p>
-
-<p><b>Watering:</b> Needs regular watering but excessive water should be avoided.</p>
-
-<p><b>Maintenance:</b> Regular pruning encourages more flowers and healthy plant growth.</p>
-
-<h2>⚙️ Mechanism of Action</h2>
-<p>
-Hibiscus contains bioactive compounds such as flavonoids, anthocyanins, and organic acids. 
-These compounds help relax blood vessels, reduce inflammation, provide antioxidant protection, 
-and support metabolic balance in the body.
-</p>
-
-<h2>⚠️ Precautions</h2>
-
-<p>
-• Hibiscus is generally safe when consumed in moderate amounts.<br>
-• Excessive consumption may cause mild stomach discomfort.<br>
-• People taking blood pressure medication should consult a doctor before regular use.<br>
-• Pregnant women should avoid high medicinal doses without medical advice.<br>
-• Herbal remedies should not replace professional medical treatment.
-</p>
-
-<h2>🌟 Interesting Facts</h2>
-
-<p>
-• Hibiscus tea is popular worldwide for its refreshing taste and health benefits.<br>
-• The hibiscus flower is the national flower of Malaysia.<br>
-• The plant is widely used in Ayurvedic and herbal medicine systems.<br>
-• Hibiscus extracts are commonly used in natural shampoos and skincare products.
-</p>
-
-<h2>📚 Sources</h2>
-<p>NCBI • WHO • Ministry of AYUSH (Government of India)</p>
+<p>Used for heart health, skin care, digestion, and immunity support.</p>
 
 </div>
 
-<div class="right">
-<h2 style="text-align:center;">🌐 3D Model</h2>
-<div class="model-container" id="model"></div>
 </div>
 
+<!-- 🔥 3D MODEL MOVED TO BOTTOM -->
+<div class="bottom-3d">
+    <div class="right">
+        <h2 style="text-align:center;">🌐 3D Model</h2>
+        <div class="model-container" id="model"></div>
+    </div>
 </div>
 
 <footer>
@@ -212,7 +147,6 @@ container.clientWidth / container.clientHeight,
 );
 
 const renderer = new THREE.WebGLRenderer({antialias:true,alpha:true});
-renderer.setSize(container.clientWidth,container.clientHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
@@ -226,9 +160,7 @@ controls.enablePan=false;
 let model;
 
 const loader=new THREE.GLTFLoader();
-loader.load(
-'./Hibiscus.glb',
-function(gltf){
+loader.load('./Hibiscus.glb', function(gltf){
 
 model=gltf.scene;
 
@@ -246,34 +178,27 @@ camera.position.z=cameraZ*1.5;
 
 scene.add(model);
 
-},
-undefined,
-function(error){
-console.error("Error loading model:",error);
-}
-);
-
-window.addEventListener('resize',()=>{
-const width=container.clientWidth;
-const height=container.clientHeight;
-
-renderer.setSize(width,height);
-camera.aspect=width/height;
-camera.updateProjectionMatrix();
 });
 
+// ✅ PERFECT RESIZE HANDLING
+function resizeModel(){
+const w=container.clientWidth;
+const h=container.clientHeight;
+
+renderer.setSize(w,h);
+camera.aspect=w/h;
+camera.updateProjectionMatrix();
+}
+
+window.addEventListener("resize",resizeModel);
+new ResizeObserver(resizeModel).observe(container);
+
+// Animation
 function animate(){
-
 requestAnimationFrame(animate);
-
-if(model){
-model.rotation.y+=0.005;
-}
-
+if(model) model.rotation.y+=0.005;
 renderer.render(scene,camera);
-
 }
-
 animate();
 
 </script>
