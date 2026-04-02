@@ -44,6 +44,246 @@ nav a {
     min-width: 300px;
 }
 
+h2 {
+    color: #2e7d32;
+}
+
+p {
+    line-height: 1.6;
+}
+
+/* ✅ 3D MODEL SECTION MOVED TO BOTTOM */
+.model-section {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.model-container {
+    width: 100%;
+    height: 450px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+footer {
+    background: #145a1f;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1> Drumstick </h1>
+<p>Tagline of the Plant</p>
+</header>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="hellochalja.html">Plants</a>
+<a href="about.html">About</a>
+<a href="#">Contact</a>
+</nav>
+
+<div class="main">
+
+<div class="left">
+
+<h2>🌱 Basic Information</h2>
+<p><b>Common Name:</b> Drumstick Tree, Moringa</p>
+<p><b>Botanical Name:</b> Moringa oleifera</p>
+
+<h2>🌿 Medicinal Uses</h2>
+<p>
+Drumstick (Moringa) is known as a “superfood” because of its rich nutritional and medicinal properties. 
+The leaves, pods, seeds, and flowers are used in traditional medicine.
+</p>
+
+<p>
+• Helps boost immunity and overall health.<br>
+• Rich in vitamins A, C, and calcium which strengthen bones and improve vision.<br>
+• Helps control blood sugar levels and is beneficial for people with diabetes.<br>
+• Contains antioxidants that protect the body from harmful free radicals.<br>
+• Supports digestion and helps reduce stomach problems.<br>
+• Used to improve skin health and hair growth.
+</p>
+
+<h2>🌍 Habitat</h2>
+<p>
+The Drumstick tree is native to the foothills of the Himalayas in India but is now widely grown 
+in tropical and subtropical regions around the world. It grows well in warm climates with plenty 
+of sunlight and can tolerate dry conditions. The tree prefers well-drained sandy or loamy soil.
+</p>
+
+<h2>🌾 Cultivation</h2>
+<p>
+Drumstick trees are easy to grow and require minimal care.
+</p>
+
+<p>
+• Grown from seeds or stem cuttings.<br>
+• Requires full sunlight for healthy growth.<br>
+• Needs well-drained soil to avoid root rot.<br>
+• Moderate watering is sufficient.<br>
+• The tree grows quickly and can start producing pods within 6–8 months.
+</p>
+
+<h2>⚠️ Precautions</h2>
+<p>
+• Excess consumption may cause digestive discomfort.<br>
+• Pregnant women should consult a doctor before consuming moringa in medicinal amounts.<br>
+• Always wash leaves and pods properly before use.<br>
+• Use in moderate quantities as part of a balanced diet.
+</p>
+
+</div>
+</div>
+
+<!-- ✅ 3D MODEL MOVED TO BOTTOM -->
+<div class="model-section">
+<h2 style="text-align:center;">🌐 3D Model</h2>
+<div class="model-container" id="model"></div>
+</div>
+
+<footer>
+© 2026 E-Herbal Garden
+</footer>
+
+<!-- Three.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+
+<script>
+const scene = new THREE.Scene();
+const container = document.getElementById("model");
+
+const camera = new THREE.PerspectiveCamera(
+    75,
+    container.clientWidth / container.clientHeight,
+    0.1,
+    1000
+);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setSize(container.clientWidth, container.clientHeight);
+renderer.setPixelRatio(window.devicePixelRatio);
+container.appendChild(renderer.domElement);
+
+// Light
+const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
+scene.add(light);
+
+// Controls
+const controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.enableZoom = true;
+controls.enablePan = false;
+
+let model;
+
+const loader = new THREE.GLTFLoader();
+loader.load(
+    './Drum stick.glb',
+    function (gltf) {
+
+        model = gltf.scene;
+
+        // center model
+        const box = new THREE.Box3().setFromObject(model);
+        const size = box.getSize(new THREE.Vector3());
+        const center = box.getCenter(new THREE.Vector3());
+
+        model.position.sub(center);
+
+        // auto camera fit
+        const maxDim = Math.max(size.x, size.y, size.z);
+        const fov = camera.fov * (Math.PI / 180);
+        let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
+
+        camera.position.z = cameraZ * 1.5;
+
+        scene.add(model);
+    }
+);
+
+// ✅ RESPONSIVE FIX
+window.addEventListener('resize', () => {
+    const width = container.clientWidth;
+    const height = container.clientHeight;
+
+    renderer.setSize(width, height);
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+});
+
+// Animation
+function animate() {
+    requestAnimationFrame(animate);
+
+    if (model) {
+        model.rotation.y += 0.005;
+    }
+
+    renderer.render(scene, camera);
+}
+
+animate();
+</script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plant - E-Herbal Garden</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #eaf5ea;
+}
+
+header {
+    background: linear-gradient(to right, #1b5e20, #2e7d32);
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+nav {
+    background: #145a1f;
+    padding: 10px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.main {
+    display: flex;
+    gap: 20px;
+    padding: 30px;
+    flex-wrap: wrap;
+}
+
+.left {
+    flex: 1;
+    min-width: 300px;
+}
+
 .right {
     flex: 1;
     min-width: 300px;
