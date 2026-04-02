@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop - E-Herbal Garden</title>
+
+<style>
+body{
+margin:0;
+font-family:'Segoe UI', sans-serif;
+background:linear-gradient(to right,#eef7ee,#d0f0d0);
+}
+
+/* HEADER */
+.header {
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:linear-gradient(45deg,#2e7d32,#1b5e20,#0d3d0d);
+color:white;
+padding:15px 25px;
+box-shadow:0 4px 15px rgba(0,0,0,0.3);
+}
+.logo {
+width:60px;
+height:60px;
+border-radius:50%;
+border:2px solid white;
+}
+.cart { font-size:18px; }
+
+/* NAV */
+nav {
+display:flex;
+justify-content:center;
+gap:40px;
+background:linear-gradient(90deg,#133d13,#1b5e20);
+padding:14px;
+}
+nav a {
+color:white;
+text-decoration:none;
+font-weight:600;
+padding:8px 16px;
+border-radius:20px;
+}
+nav a:hover {
+background: rgba(144,238,144,0.2);
+}
+
+/* HERO */
+.hero {
+height:250px;
+background:url("banner.png") no-repeat center/cover;
+display:flex;
+align-items:center;
+justify-content:center;
+position:relative;
+}
+.hero::before {
+content:'';
+position:absolute;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.5);
+}
+.hero h1 {
+position:relative;
+color:white;
+padding:15px 30px;
+border-radius:15px;
+backdrop-filter:blur(10px);
+}
+
+/* CONTROLS */
+.controls {
+display:flex;
+justify-content:center;
+gap:20px;
+padding:30px;
+flex-wrap:wrap;
+}
+.controls input, .controls select {
+padding:12px;
+border-radius:10px;
+border:none;
+}
+
+/* CARDS */
+.card-container{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+padding:40px;
+}
+.card{
+background:white;
+padding:20px;
+border-radius:20px;
+text-align:center;
+box-shadow:0 10px 25px rgba(0,0,0,0.15);
+transition:0.4s;
+}
+.card:hover{ transform:scale(1.05); }
+.card img{ width:100px;height:100px; }
+.card h3{ color:#1b5e20; }
+.price{ font-weight:bold; margin:8px 0; }
+
+.btn-group{
+display:flex;
+gap:10px;
+justify-content:center;
+}
+button{
+border:none;
+padding:10px;
+border-radius:8px;
+cursor:pointer;
+}
+.add-cart{ background:#2e7d32;color:white; }
+.buy-now{ background:#ff9800;color:white; }
+
+/* FOOTER */
+footer{
+background:linear-gradient(135deg,#1b5e20,#2e7d32);
+color:white;
+text-align:center;
+padding:20px;
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+<div style="display:flex;align-items:center;gap:10px;">
+<img src="logo.png" class="logo">
+<h1>E-Herbal Garden</h1>
+</div>
+<div class="cart">🛒 Cart: <span id="cartCount">0</span></div>
+</header>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="plant.html">Plants</a>
+<a href="shop.html">Shop</a>
+<a href="about.html">About</a>
+</nav>
+
+<div class="hero">
+<h1>🌿 Ayurvedic Store 🌿</h1>
+</div>
+
+<div class="controls">
+<input type="text" id="search" placeholder="Search products...">
+<select id="filter">
+<option value="all">All</option>
+<option value="health">Health</option>
+<option value="hair">Hair</option>
+<option value="skin">Skin</option>
+</select>
+</div>
+
+<div class="card-container">
+
+<!-- 🌿 40 PRODUCTS -->
+
+<!-- HEALTH -->
+<script>
+const products = [
+["Ashwagandha","health","1.jpg"],["Giloy","health","2.png"],["Tulsi","health","3.png"],["Triphala","health","4.png"],
+["Chyawanprash","health","5.png"],["Turmeric","health","6.png"],["Neem","health","7.png"],["Aloe Juice","health","8.png"],
+["Brahmi","health","9.png"],["Shatavari","health","10.png"],["Herbal Tea","health","11.png"],["Green Tea Tulsi","health","12.png"],
+["Digestive Syrup","health","13.png"],["Immunity Booster","health","14.png"],["Detox Juice","health","15.png"],
+
+["Amla Oil","hair","16.png"],["Bhringraj Oil","hair","17.png"],["Herbal Shampoo","hair","18.png"],["Hibiscus Powder","hair","19.png"],
+["Hair Serum","hair","20.png"],["Onion Oil","hair","21.png"],["Shikakai","hair","22.png"],["Reetha","hair","23.png"],
+["Neem Hair Pack","hair","24.png"],["Coconut Herbal Oil","hair","25.png"],
+
+["Aloe Vera Gel","skin","26.png"],["Neem Face Wash","skin","27.png"],["Sandalwood Cream","skin","28.png"],["Face Pack","skin","29.png"],
+["Rose Water","skin","30.png"],["Ubtan","skin","31.png"],["Multani Mitti","skin","32.png"],["Charcoal Face Wash","skin","33.png"],
+["Herbal Soap","skin","34.png"],["Lavender Cream","skin","35.png"],["Haldi Cream","skin","36.png"],["Night Gel","skin","37.png"],
+["Herbal Scrub","skin","38.png"],["Face Serum","skin","39.png"],["Sun Cream","skin","40.png"]
+];
+
+const container = document.currentScript.parentElement;
+
+products.forEach(p=>{
+const card = document.createElement("div");
+card.className="card";
+card.setAttribute("data-category",p[1]);
+
+card.innerHTML = `
+<img src="product.png">
+<h3>${p[0]}</h3>
+<p>Natural Ayurvedic Product</p>
+<div class="price">₹${Math.floor(Math.random()*200+100)}</div>
+<div class="btn-group">
+<button class="add-cart" onclick="addToCart()">Add to Cart</button>
+<button class="buy-now" onclick="buyNow('${p[0]}')">Buy Now</button>
+</div>
+`;
+container.appendChild(card);
+});
+</script>
+
+</div>
+
+<footer>© 2026 E-Herbal Garden 🌿</footer>
+
+<script>
+let cart=0;
+function addToCart(){
+cart++;
+document.getElementById("cartCount").innerText=cart;
+}
+function buyNow(product){
+alert("Buying: "+product);
+}
+
+/* SEARCH + FILTER */
+const search=document.getElementById("search");
+const filter=document.getElementById("filter");
+
+function update(){
+let s=search.value.toLowerCase();
+let f=filter.value;
+
+document.querySelectorAll(".card").forEach(card=>{
+let name=card.innerText.toLowerCase();
+let cat=card.dataset.category;
+
+card.style.display=(name.includes(s)&&(f==="all"||f===cat))?"block":"none";
+});
+}
+
+search.addEventListener("keyup",update);
+filter.addEventListener("change",update);
+</script>
+
+</body>
+</html>
