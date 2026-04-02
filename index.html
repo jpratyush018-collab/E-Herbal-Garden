@@ -12,10 +12,9 @@ font-family:'Segoe UI', sans-serif;
 background:linear-gradient(to right,#eef7ee,#d0f0d0);
 }
 
-/* ANNOUNCEMENT BAR (COMPACT) */
 .announcement{
 width:100%;
-margin:5px auto;          /* reduced outer space */
+margin:5px auto;
 background:linear-gradient(90deg,#1b5e20,#2e7d32);
 color:#fff;
 overflow:hidden;
@@ -27,24 +26,18 @@ box-shadow:0 3px 8px rgba(0,0,0,0.2);
 .announcement p{
 display:inline-block;
 padding:2px 0;
-margin:0;                 /* 🔥 removes extra top/bottom space */
+margin:0;
 font-size:13px;
 font-weight:500;
-line-height:1.2;          /* 🔥 tight vertical spacing */
-white-space:nowrap;
+line-height:1.2;
 animation:scrollText 20s linear infinite;
 }
 
-/* SMOOTH CONTINUOUS SCROLL */
 @keyframes scrollText{
-0%{
-    transform: translateX(100%);
+0%{transform: translateX(100%);} 
+100%{transform: translateX(-100%);} 
 }
-100%{
-    transform: translateX(-100%);
-}
-}
-/* HEADER */
+
 .header{
 display:flex;
 align-items:center;
@@ -52,7 +45,6 @@ gap:15px;
 background:linear-gradient(45deg,#2e7d32,#1b5e20);
 color:white;
 padding:15px 25px;
-box-shadow:0 4px 10px rgba(0,0,0,0.2);
 }
 
 .logo{
@@ -62,237 +54,70 @@ border-radius:50%;
 border:2px solid white;
 }
 
-.header h1{
-margin:0;
-font-size:28px;
-letter-spacing:1px;
-}
-
-/* NAVBAR */
 nav{
 display:flex;
 justify-content:center;
 gap:40px;
 background:#133d13;
 padding:14px;
-position:sticky;
-top:0;
-z-index:1000;
 }
 
 nav a{
 color:white;
 text-decoration:none;
 font-weight:600;
-position:relative;
 }
 
-nav a::after{
-content:'';
-position:absolute;
-width:0%;
-height:2px;
-bottom:-5px;
-left:0;
-background:#90ee90;
-transition:0.3s;
-}
-
-nav a:hover::after{
-width:100%;
-}
-
-/* HERO SECTION */
 .hero{
-height:500px;
+height:400px;
 background:url("pic1.png") no-repeat center/cover;
 display:flex;
 align-items:center;
 justify-content:center;
-text-align:center;
-position:relative;
-}
-
-.hero::before{
-content:'';
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.5);
-}
-
-.hero h1{
-position:relative;
 color:white;
-font-size:36px;
-padding:20px 30px;
-border-radius:12px;
-backdrop-filter:blur(5px);
 }
 
-/* CARDS */
 .card-container{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-gap:30px;
-padding:50px;
+gap:20px;
+padding:30px;
 }
 
-/* CARD DESIGN */
 .card{
-background:rgba(255,255,255,0.85);
-padding:25px;
-border-radius:18px;
+background:white;
+padding:20px;
+border-radius:15px;
 text-align:center;
-box-shadow:0 8px 25px rgba(0,0,0,0.15);
-transition:all 0.4s ease;
-cursor:pointer;
-position:relative;
-overflow:hidden;
-backdrop-filter:blur(10px);
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
 }
 
-/* TOP GLOW LINE */
-.card::before{
-content:'';
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:5px;
-background:linear-gradient(90deg,#00c853,#b2ff59);
-}
-
-/* HOVER EFFECT */
-.card:hover{
-transform:translateY(-10px) scale(1.05);
-box-shadow:0 20px 40px rgba(0,0,0,0.25);
-}
-
-/* ICON STYLE */
 .card img{
 width:80px;
-margin-bottom:10px;
-transition:0.3s;
 }
 
-/* ICON ANIMATION */
-.card:hover img{
-transform:rotate(8deg) scale(1.1);
+#plant-container{
+padding:30px;
 }
 
-/* TITLE */
-.card h3{
-margin-top:10px;
-font-size:18px;
-color:#1b5e20;
-}
-
-/* DETAILS */
-.details{
-display:none;
-margin-top:12px;
-font-size:14px;
-color:#444;
-line-height:1.5;
-}
-
-/* SOFT BACKGROUND HOVER EFFECT */
-.card::after{
-content:'';
-position:absolute;
-width:200%;
-height:200%;
-background:radial-gradient(circle,#a5d6a7 10%, transparent 60%);
-top:-50%;
-left:-50%;
-opacity:0;
-transition:0.5s;
-}
-
-.card:hover::after{
-opacity:0.2;
-}
-
-/* FOOTER */
-footer{
-background:#1b5e20;
-color:white;
-text-align:center;
-padding:18px;
-margin-top:30px;
-font-size:14px;
-}
 </style>
-
-<script>
-const container = document.getElementById("plant-container");
-
-// Get plant from URL
-const params = new URLSearchParams(window.location.search);
-const plantName = params.get("plant");
-
-// Fetch JSON data
-fetch("plant.json")
-  .then(res => res.json())
-  .then(plants => {
-
-    if (plantName && plants[plantName]) {
-      const plant = plants[plantName];
-
-      container.innerHTML = `
-        <h1>${plant.name}</h1>
-        <img src="${plant.img}" alt="${plant.name}">
-        <p>${plant.desc}</p>
-
-        <model-viewer 
-          src="${plant.model}" 
-          auto-rotate 
-          camera-controls 
-          style="width:100%; height:300px;">
-        </model-viewer>
-      `;
-    } 
-    else {
-      // Home Page (List all plants)
-      let list = "<h2>Select a Plant 🌱</h2>";
-
-      for (let key in plants) {
-        list += `<a href="?plant=${key}">${plants[key].name}</a><br><br>`;
-      }
-
-      container.innerHTML = list;
-    }
-
-  })
-  .catch(err => {
-    container.innerHTML = "Error loading data!";
-    console.error(err);
-  });
-</script>
-
 </head>
 
 <body>
 
 <div class="announcement">
-  <p>
-    🌿 Explore our 3D Plant Viewer! Rotate, zoom and interact with herbal plants in 3D 🌱 ➤ Available now in Plants section &nbsp;&nbsp;&nbsp;&nbsp;
-    🌿 Explore our 3D Plant Viewer! Rotate, zoom and interact with herbal plants in 3D 🌱 ➤ Available now in Plants section
-  </p>
+<p>🌿 Explore our 3D Plant Viewer! Rotate, zoom and interact with herbal plants 🌱</p>
 </div>
 
 <header class="header">
-    <img src="logo.png" class="logo">
-    <h1><i>E-Herbal Garden</i></h1>
+<img src="logo.png" class="logo">
+<h1>E-Herbal Garden</h1>
 </header>
 
 <nav>
-<a href="#">Home</a>
-<a href="hellochalja.html">Plants</a>
-<a href="about.html">About</a>
+<a href="index.html">Home</a>
+<a href="index.html">Plants</a>
+<a href="#">About</a>
 <a href="#">Contact</a>
 </nav>
 
@@ -300,126 +125,67 @@ fetch("plant.json")
 <h1>🌿 Welcome to the Digital Herbal Garden 🌿</h1>
 </div>
 
-<div class="card-container">
+<!-- 🔥 Dynamic Content -->
+<div id="plant-container"></div>
 
-<div class="card" onclick="toggleDetails(this)">
-<img src="origin.png">
-<h3>Vedic Origin</h3>
-<div class="details">
-Ayurveda is believed to have originated during the Atharva Veda, one of the four sacred Vedas.<br>
-The Atharva Veda contains early knowledge about:<br>
-Healing herbs 🌱<br>
-Diseases 🦠<br>
-Spiritual therapies 🧘<br>
-Ayurveda means:<br>
-👉 “Ayur” = life<br>
-👉 “Veda” = knowledge<br>
-➤ So, Ayurveda = “Science of Life”<br>
-It was developed by ancient sages (Rishis) who combined:<br>
-Observation of nature 🌍<br>
-Meditation 🧘<br>
-Experience of human body<br>
-Later, this knowledge was expanded in classical texts like:<br>
-Charaka Samhita (medicine & internal health)<br>
-Sushruta Samhita (surgery & anatomy)</div>
+<footer style="background:#1b5e20;color:white;text-align:center;padding:15px;">
+© 2026 E-Herbal Garden
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+const container = document.getElementById("plant-container");
+const params = new URLSearchParams(window.location.search);
+const plantName = params.get("plant");
+
+fetch("plant.json")
+.then(res => res.json())
+.then(plants => {
+
+if (plantName && plants[plantName]) {
+const plant = plants[plantName];
+
+container.innerHTML = `
+<h1>${plant.name}</h1>
+<img src="${plant.img}" style="width:100%;max-width:400px;">
+<p>${plant.desc}</p>
+
+<model-viewer 
+src="${plant.model}" 
+auto-rotate 
+camera-controls 
+style="width:100%; height:300px;">
+</model-viewer>
+`;
+
+} else {
+let list = "<h2>Select a Plant 🌱</h2><div class='card-container'>";
+
+for (let key in plants) {
+list += `
+<div class="card">
+<a href="?plant=${key}">
+<img src="${plants[key].img}">
+<h3>${plants[key].name}</h3>
+</a>
 </div>
+`;
+}
 
-<div class="card" onclick="toggleDetails(this)">
-<img src="vedic.png">
-<h3>Ancient Texts</h3>
-<div class="details">
-The knowledge of Ayurveda was systematically written in ancient Indian scriptures known as Samhitas.<br>
-🌿 Key Texts:<br>
-<u>Charaka Samhita</u><br>
-Focuses on medicine, diagnosis, and internal healing. It explains how to maintain health and treat diseases using natural methods.<br>
-<u>Sushruta Samhita</u><br>
-Deals with surgery and anatomy. It describes surgical techniques, instruments, and is why Sushruta is called the Father of Surgery.<br>
-<u>Ashtanga Hridaya</u><br>
-A simplified and well-organized text combining teachings of Charaka and Sushruta, widely used for learning Ayurveda.</div>
-</div>
+list += "</div>";
+container.innerHTML = list;
+}
 
-<div class="card" onclick="toggleDetails(this)">
-<img src="doctor.png">
-<h3>Sushruta</h3>
-<div class="details">
-Sushruta was one of the greatest ancient Indian physicians and a pioneer of surgery in Ayurveda.<br>
+})
+.catch(err => {
+container.innerHTML = "Error loading data";
+});
 
-🌿 Key Contributions:<br>
-Author of the Sushruta Samhita<br>
-Known as the “Father of Surgery” 🏥<br>
-Described over 300 surgical procedures<br>
-Used 120+ surgical instruments 🔪<br>
-Performed early forms of plastic surgery (like nose reconstruction)<br>
-Explained human anatomy in detail, including bones, muscles, and veins<br>
-Emphasized cleanliness and hygiene during surgeries (early concept of sterilization)<br>
-Trained students using practical methods like practicing on fruits and dead bodies
-</div>
-</div>
+});
+</script>
 
-<div class="card" onclick="toggleDetails(this)">
-<img src="plant.png">
-<h3>Branches</h3>
-<div class="details">
-    Ayurveda is divided into eight main branches, known as Ashtanga Ayurveda.<br>
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
-🌱 The 8 Branches:<br>
-<b><u>Kayachikitsa</u></b>– General medicine (treatment of diseases)<br>
-<b><u>Shalya Tantra</u></b> – Surgery<br>
-<b><u>Shalakya Tantra</u></b> – Eye, ear, nose, and throat (ENT)<br>
-<b><u>Kaumarbhritya</u></b> – Pediatrics (child care) 👶<br>
-<b><u>Agada Tantra</u></b> – Toxicology (treatment of poisons) ☠️<br>
-<b><u>Bhuta Vidya</u></b> – Psychiatry (mental health) 🧠<br>
-<b><u>Rasayana</u></b> – Rejuvenation and immunity boosting 🌿<br>
-<b><u>Vajikarana</u></b> – Reproductive health and vitality<br>
-</div>
-</div>
-
-<div class="card" onclick="toggleDetails(this)">
-<img src="spread.png">
-<h3>Global Spread</h3>
-<div class="details">
-    Ayurveda gradually spread beyond India and influenced many other traditional healing systems.<br>
-
-🌿 Key Points:<br>
-Ayurveda spread to countries like China, Tibet, and the Middle East through trade and cultural exchange<br>
-Its knowledge influenced systems like Traditional Chinese Medicine and Tibetan medicine<br>
-Ancient scholars and travelers carried Ayurvedic texts and practices across regions<br>
-Today, Ayurveda is practiced worldwide as a form of natural and holistic healing 🌿<br>
-</div>
-</div>
-
-<div class="card" onclick="toggleDetails(this)">
-<img src="book.png">
-<h3>Modern Use</h3>
-<div class="details">
-   <b> Promoted by the Ministry of AYUSH in India </b><br>
-Used for improving immunity, digestion, and overall wellness<br>
-Includes practices like:<br>
-Herbal medicines 🌱<br>
-Yoga and meditation 🧘<br>
-Detox therapies (Panchakarma)<br>
-Gaining popularity worldwide as an alternative and preventive medicine system<br>
-Used alongside modern medicine for a balanced lifestyle<br>
-</div>
-</div>
-
-</div>
-
-<footer>© 2026 E-Herbal Garden | Designed with 🌱 | Created by Team Beginners | </footer>
-<footer>...</footer>
-
-🌿 CHATBOT 
-<iframe src="https://piyush-mathpal.github.io/herbal-chatbot/" style=" 
-position:fixed;
-bottom:0;
-right:0;
-width:350px;
-height:500px;
-border:none;
-z-index:9999;">
-</iframe>  
-
-</body>
-</html>
 </body>
 </html>
