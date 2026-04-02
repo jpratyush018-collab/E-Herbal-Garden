@@ -4,882 +4,366 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>E-Herbal Garden</title>
-
 <style>
-
-/* ANNOUNCEMENT BAR (COMPACT) */
-.announcement{
-width:100%;
-margin:5px auto;          /* reduced outer space */
-background:linear-gradient(90deg,#1b5e20,#2e7d32);
-color:#fff;
-overflow:hidden;
-white-space:nowrap;
-border-radius:8px;
-box-shadow:0 3px 8px rgba(0,0,0,0.2);
+/* FADE-UP BANNER WITH MARQUEE */
+.announcement {
+  width: 100%;
+  height: 80px;
+  background: linear-gradient(90deg,#1b5e20,#2e7d32,#4caf50);
+  color: #fff;
+  overflow: hidden;
+  white-space: nowrap;
+  border-radius: 0;
+  margin: 0;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUpBanner 1s ease forwards;
+  display: flex;
+  align-items: center;
+}
+.announcement p {
+  display: inline-block;
+  padding-left: 100%;
+  animation: scrollText 25s linear infinite;
+  font-size: 13px;
+  font-weight: 500;
+}
+.announcement:hover p {
+  animation-play-state: paused;
+}
+@keyframes fadeUpBanner {
+  0% { opacity:0; transform:translateY(30px);}
+  100% {opacity:1; transform:translateY(0);}
+}
+@keyframes scrollText {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
 }
 
-.announcement p{
-display:inline-block;
-padding:2px 0;
-margin:0;                 /* 🔥 removes extra top/bottom space */
-font-size:13px;
-font-weight:500;
-line-height:1.2;          /* 🔥 tight vertical spacing */
-white-space:nowrap;
-animation:scrollText 20s linear infinite;
-}
-
-/* SMOOTH CONTINUOUS SCROLL */
-@keyframes scrollText{
-0%{
-    transform: translateX(100%);
-}
-100%{
-    transform: translateX(-100%);
-}
-}
 /* HEADER */
-.header{
-display:flex;
-align-items:center;
-gap:15px;
-background:linear-gradient(45deg,#2e7d32,#1b5e20);
-color:white;
-padding:15px 25px;
-box-shadow:0 4px 10px rgba(0,0,0,0.2);
+.header {
+  display:flex;
+  align-items:center;
+  gap:15px;
+  background:linear-gradient(45deg,#2e7d32,#1b5e20,#0d3d0d);
+  color:white;
+  padding:15px 25px;
+  box-shadow:0 4px 15px rgba(0,0,0,0.3);
 }
-
-.logo{
-width:60px;
-height:60px;
-border-radius:50%;
-border:2px solid white;
+.logo {
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  border:2px solid white;
 }
-
-.header h1{
-margin:0;
-font-size:28px;
-letter-spacing:1px;
+.header h1 {
+  font-size:28px;
+  margin:0;
 }
 
 /* NAVBAR */
-nav{
-display:flex;
-justify-content:center;
-gap:40px;
-background:#133d13;
-padding:14px;
-position:sticky;
-top:0;
-z-index:1000;
+nav {
+  display:flex;
+  justify-content:center;
+  gap:40px;
+  background:linear-gradient(90deg,#133d13,#1b5e20);
+  padding:14px;
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+nav a {
+  color:white;
+  text-decoration:none;
+  font-weight:600;
+  padding:8px 16px;
+  border-radius:20px;
+  transition:all 0.3s ease;
+}
+nav a:hover {
+  background: rgba(144,238,144,0.2);
+  transform:translateY(-2px);
 }
 
-nav a{
-color:white;
-text-decoration:none;
-font-weight:600;
-position:relative;
+/* HERO */
+.hero {
+  height:500px;
+  background:url("pic1.png") no-repeat center/cover;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+}
+.hero::before {
+  content:'';
+  position:absolute;
+  top:0; left:0;
+  width:100%; height:100%;
+  background:rgba(0,0,0,0.5);
+}
+.hero h1 {
+  position:relative;
+  color:white;
+  font-size:36px;
+  padding:20px 40px;
+  border-radius:20px;
+  backdrop-filter:blur(15px);
+  box-shadow:0 10px 30px rgba(0,0,0,0.3);
+  animation:heroGlow 2s ease-in-out infinite alternate;
+}
+@keyframes heroGlow {
+  0%{box-shadow:0 10px 30px rgba(0,0,0,0.3);}
+  100%{box-shadow:0 10px 40px rgba(76,175,80,0.5);}
 }
 
-nav a::after{
-content:'';
-position:absolute;
-width:0%;
-height:2px;
-bottom:-5px;
-left:0;
-background:#90ee90;
-transition:0.3s;
+/* TIMELINE SECTION */
+.history-section{
+  background:linear-gradient(135deg,#e8f5e9,#c8e6c9);
+  padding:60px 50px;
+  position:relative;
 }
-
-nav a:hover::after{
-width:100%;
+.history-section h2{
+  text-align:center;
+  font-size:36px;
+  color:#1b5e20;
+  margin-bottom:40px;
 }
-
-/* HERO SECTION */
-.hero{
-height:500px;
-background:url("pic1.png") no-repeat center/cover;
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-position:relative;
+.history-timeline{
+  position: relative;
+  max-width:800px;
+  margin:0 auto;
+  padding-left:40px;
 }
-
-.hero::before{
-content:'';
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.5);
+.history-timeline::before{
+  content:'';
+  position:absolute;
+  left:20px;
+  top:0;
+  width:4px;
+  height:100%;
+  background:#4caf50;
+  border-radius:2px;
 }
-
-.hero h1{
-position:relative;
-color:white;
-font-size:36px;
-padding:20px 30px;
-border-radius:12px;
-backdrop-filter:blur(5px);
+.timeline-item{
+  position:relative;
+  background:rgba(255,255,255,0.9);
+  margin-bottom:40px;
+  padding:20px 25px;
+  border-radius:10px;
+  box-shadow:0 5px 20px rgba(0,0,0,0.1);
+  opacity:0;
+  transform: translateY(30px);
+  transition:0.6s ease;
 }
+.timeline-item::before{
+  content:'';
+  position:absolute;
+  left:-32px;
+  top:20px;
+  width:16px;
+  height:16px;
+  background:#4caf50;
+  border-radius:50%;
+  box-shadow:0 0 10px rgba(76,175,80,0.6);
+  transition:0.3s;
+}
+.timeline-item h3{ margin:0 0 10px; color:#1b5e20; }
+.timeline-item p{ margin:0; line-height:1.6; color:#444; }
 
 /* CARDS */
 .card-container{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-gap:30px;
-padding:50px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:30px;
+  padding:50px;
 }
-
-/* CARD DESIGN */
 .card{
-background:rgba(255,255,255,0.85);
-padding:25px;
-border-radius:18px;
-text-align:center;
-box-shadow:0 8px 25px rgba(0,0,0,0.15);
-transition:all 0.4s ease;
-cursor:pointer;
-position:relative;
-overflow:hidden;
-backdrop-filter:blur(10px);
+  background:rgba(255,255,255,0.95);
+  padding:30px;
+  border-radius:25px;
+  text-align:center;
+  box-shadow:0 12px 35px rgba(0,0,0,0.15);
+  transition:all 0.5s ease;
+  cursor:pointer;
+  position:relative;
+  overflow:hidden;
+  opacity:0;
+  transform:translateY(30px);
 }
-
-/* TOP GLOW LINE */
-.card::before{
-content:'';
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:5px;
-background:linear-gradient(90deg,#00c853,#b2ff59);
-}
-
-/* HOVER EFFECT */
 .card:hover{
-transform:translateY(-10px) scale(1.05);
-box-shadow:0 20px 40px rgba(0,0,0,0.25);
+  transform:scale(1.05);
+  box-shadow:0 20px 40px rgba(0,0,0,0.25);
 }
-
-/* ICON STYLE */
 .card img{
-width:80px;
-margin-bottom:10px;
-transition:0.3s;
+  width:90px;
+  height:90px;
+  margin-bottom:15px;
+  transition:0.4s;
 }
-
-/* ICON ANIMATION */
-.card:hover img{
-transform:rotate(8deg) scale(1.1);
-}
-
-/* TITLE */
-.card h3{
-margin-top:10px;
-font-size:18px;
-color:#1b5e20;
-}
+.card:hover img{ transform:rotate(360deg) scale(1.15);}
+.card h3{ margin:15px 0 10px; font-size:20px; color:#1b5e20; }
+.card:hover h3{ color:#4caf50; }
 
 /* DETAILS */
-.details{
-display:none;
-margin-top:12px;
-font-size:14px;
-color:#444;
-line-height:1.5;
-}
-
-/* SOFT BACKGROUND HOVER EFFECT */
-.card::after{
-content:'';
-position:absolute;
-width:200%;
-height:200%;
-background:radial-gradient(circle,#a5d6a7 10%, transparent 60%);
-top:-50%;
-left:-50%;
-opacity:0;
-transition:0.5s;
-}
-
-.card:hover::after{
-opacity:0.2;
-}
+.details{ display:none; margin-top:15px; font-size:14.5px; color:#555; line-height:1.6;}
 
 /* FOOTER */
 footer{
-background:#1b5e20;
-color:white;
-text-align:center;
-padding:18px;
-margin-top:30px;
-font-size:14px;
+  background:linear-gradient(135deg,#1b5e20,#2e7d32);
+  color:white;
+  text-align:center;
+  padding:25px;
+  font-size:14px;
 }
-/* CHATBOT BUTTON */
+
+/* CHATBOT */
 #chat-toggle{
-position:fixed;
-bottom:20px;
-right:20px;
-background:#2e7d32;
-color:white;
-width:60px;
-height:60px;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:28px;
-cursor:pointer;
-box-shadow:0 4px 12px rgba(0,0,0,0.3);
-z-index:99999;
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:linear-gradient(135deg,#4caf50,#2e7d32);
+  color:white;
+  width:65px;
+  height:65px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:28px;
+  cursor:pointer;
+  z-index:99999;
 }
 
-/* CHATBOX */
-#chatbox{
-position:fixed;
-bottom:90px;
-right:20px;
-width:350px;
-height:450px;
-background:white;
-border-radius:15px;
-box-shadow:0 5px 20px rgba(0,0,0,0.3);
-display:none;
-flex-direction:column;
-overflow:hidden;
-z-index:99999;
-}
-
-#chat-header{
-background:#1b5e20;
-color:white;
-padding:12px;
-font-weight:bold;
-}
-
-#chat-body{
-flex:1;
-padding:10px;
-overflow-y:auto;
-background:#f4fff4;
-}
-
-.bot,.user{
-margin:8px 0;
-padding:10px;
-border-radius:12px;
-max-width:80%;
-}
-
-.bot{
-background:#e8f5e9;
-color:#1b5e20;
-}
-
-.user{
-background:#c8e6c9;
-margin-left:auto;
-}
-
-#userInput{
-width:100%;
-border:none;
-border-top:1px solid #ccc;
-padding:10px;
-outline:none;
+@media (max-width:768px){
+  .history-timeline{padding-left:20px;}
+  .history-section{padding:40px 20px;}
+  .card-container{padding:20px;}
 }
 </style>
-
-
 <script>
 function toggleDetails(card){
-    const detail = card.querySelector('.details');
-    detail.style.display = detail.style.display === 'block' ? 'none' : 'block';
+  const detail = card.querySelector('.details');
+  const isVisible = detail.style.display === 'block';
+  document.querySelectorAll('.details').forEach(d=>d.style.display='none');
+  detail.style.display = isVisible?'none':'block';
+  card.classList.toggle('active',!isVisible);
 }
 
-
-// 🌿 YOUR PLANT DATABASE
-const plants = [
-  {
-    "commonName": "Tulsi",
-    "botanicalName": "Ocimum sanctum",
-    "image": "tulsi.png",
-    "model3d": "",
-    "uses": "Boosts immunity and treats cold",
-    "habitat": "Tropical regions",
-    "cultivation": "Needs sunlight and moderate watering"
-  },
-  {
-    "commonName": "Neem",
-    "botanicalName": "Azadirachta indica",
-    "image": "neem.png",
-    "model3d": "",
-    "uses": "Antibacterial and skin treatment",
-    "habitat": "Dry and tropical climates",
-    "cultivation": "Low maintenance, drought resistant"
-  },
-  {
-    "commonName": "Aloe Vera",
-    "botanicalName": "Aloe barbadensis",
-    "image": "Aloe Veraaa.png",
-    "model3d": "",
-    "uses": "Heals burns and skin care",
-    "habitat": "Arid regions",
-    "cultivation": "Requires less water and good drainage"
-  },
-  {
-    "commonName": "Ashwagandha",
-    "botanicalName": "Withania somnifera",
-    "image": "ashugaanda.png",
-    "model3d": "",
-    "uses": "Reduces stress and boosts energy",
-    "habitat": "Dry regions",
-    "cultivation": "Needs sandy soil and sunlight"
-  },
-  {
-    "commonName": "Mint",
-    "botanicalName": "Mentha",
-    "image": "minntu.png",
-    "model3d": "",
-    "uses": "Improves digestion",
-    "habitat": "Moist areas",
-    "cultivation": "Grows quickly with regular watering"
-  },
-  {
-    "commonName": "Ginger",
-    "botanicalName": "Zingiber officinale",
-    "image": "ginger.png",
-    "model3d": "",
-    "uses": "Relieves nausea and cold",
-    "habitat": "Warm climates",
-    "cultivation": "Needs moist soil and shade"
-  },
-  {
-    "commonName": "Turmeric",
-    "botanicalName": "Curcuma longa",
-    "image": "termeric.png",
-    "model3d": "",
-    "uses": "Anti-inflammatory",
-    "habitat": "Tropical climates",
-    "cultivation": "Needs rainfall and fertile soil"
-  },
-  {
-    "commonName": "Brahmi",
-    "botanicalName": "Bacopa monnieri",
-    "image": "brahi.png",
-    "model3d": "",
-    "uses": "Improves memory",
-    "habitat": "Wetlands",
-    "cultivation": "Requires moist soil"
-  },
-  {
-    "commonName": "Amla",
-    "botanicalName": "Phyllanthus emblica",
-    "image": "amla.png",
-    "model3d": "",
-    "uses": "Rich in Vitamin C",
-    "habitat": "Subtropical regions",
-    "cultivation": "Needs well-drained soil"
-  },
-  {
-    "commonName": "Giloy",
-    "botanicalName": "Tinospora cordifolia",
-    "image": "gioli.png",
-    "model3d": "",
-    "uses": "Boosts immunity",
-    "habitat": "Tropical forests",
-    "cultivation": "Climber, needs support"
-  },
-
-  {
-    "commonName": "Lemongrass",
-    "botanicalName": "Cymbopogon",
-    "image": "lemongrass.png",
-    "model3d": "",
-    "uses": "Relieves anxiety",
-    "habitat": "Warm climates",
-    "cultivation": "Needs sunlight"
-  },
-  {
-    "commonName": "Shatavari",
-    "botanicalName": "Asparagus racemosus",
-    "image": "satvari.png",
-    "model3d": "",
-    "uses": "Women's health",
-    "habitat": "Tropical regions",
-    "cultivation": "Requires fertile soil"
-  },
-  {
-    "commonName": "Arjuna",
-    "botanicalName": "Terminalia arjuna",
-    "image": "arjuna.png",
-    "model3d": "",
-    "uses": "Heart health",
-    "habitat": "Riverbanks",
-    "cultivation": "Needs moist soil"
-  },
-  {
-    "commonName": "Bael",
-    "botanicalName": "Aegle marmelos",
-    "image": "bael.png",
-    "model3d": "",
-    "uses": "Digestive aid",
-    "habitat": "Dry forests",
-    "cultivation": "Drought resistant"
-  },
-  {
-    "commonName": "Clove",
-    "botanicalName": "Syzygium aromaticum",
-    "image": "clove.png",
-    "model3d": "",
-    "uses": "Toothache relief",
-    "habitat": "Tropical climates",
-    "cultivation": "Needs humidity"
-  },
-  {
-    "commonName": "Cinnamon",
-    "botanicalName": "Cinnamomum verum",
-    "image": "cinimum.png",
-    "model3d": "",
-    "uses": "Controls blood sugar",
-    "habitat": "Warm climates",
-    "cultivation": "Needs rainfall"
-  },
-  {
-    "commonName": "Black Pepper",
-    "botanicalName": "Piper nigrum",
-    "image": "Black pepper.png",
-    "model3d": "",
-    "uses": "Improves digestion",
-    "habitat": "Tropical regions",
-    "cultivation": "Climber plant"
-  },
-  {
-    "commonName": "Cardamom",
-    "botanicalName": "Elettaria cardamomum",
-    "image": "cardomom.png",
-    "model3d": "",
-    "uses": "Freshens breath",
-    "habitat": "Rainforests",
-    "cultivation": "Needs shade"
-  },
-  {
-    "commonName": "Saffron",
-    "botanicalName": "Crocus sativus",
-    "image": "saffron.png",
-    "model3d": "",
-    "uses": "Enhances mood",
-    "habitat": "Cold climates",
-    "cultivation": "Requires dry soil"
-  },
-  {
-    "commonName": "Fenugreek",
-    "botanicalName": "Trigonella foenum-graecum",
-    "image": "Fenugreek.png",
-    "model3d": "",
-    "uses": "Controls diabetes",
-    "habitat": "Mediterranean",
-    "cultivation": "Easy to grow"
-  },
-
-  {
-    "commonName": "Curry Leaves",
-    "botanicalName": "Murraya koenigii",
-    "image": "Curry Leaves.png",
-    "model3d": "",
-    "uses": "Improves digestion",
-    "habitat": "Tropical regions",
-    "cultivation": "Needs sunlight"
-  },
-  {
-    "commonName": "Drumstick",
-    "botanicalName": "Moringa oleifera",
-    "image": "Drumstick.png",
-    "model3d": "",
-    "uses": "Nutrient-rich",
-    "habitat": "Dry areas",
-    "cultivation": "Fast growing"
-  },
-  {
-    "commonName": "Hibiscus",
-    "botanicalName": "Hibiscus rosa-sinensis",
-    "image": "Hibu.png",
-    "model3d": "",
-    "uses": "Hair growth",
-    "habitat": "Tropical climates",
-    "cultivation": "Needs sunlight"
-  },
-  {
-    "commonName": "Rosemary",
-    "botanicalName": "Salvia rosmarinus",
-    "image": "Rosemar.png",
-    "model3d": "",
-    "uses": "Improves memory",
-    "habitat": "Mediterranean",
-    "cultivation": "Needs sunlight"
-  },
-  {
-    "commonName": "Lavender",
-    "botanicalName": "Lavandula",
-    "image": "lavenderr.png",
-    "model3d": "",
-    "uses": "Reduces stress",
-    "habitat": "Dry climates",
-    "cultivation": "Needs sunlight"
-  },
-  {
-    "commonName": "Chamomile",
-    "botanicalName": "Matricaria chamomilla",
-    "image": "Chamomilee.png",
-    "model3d": "",
-    "uses": "Improves sleep",
-    "habitat": "Temperate regions",
-    "cultivation": "Needs sunlight"
-  },
-  {
-    "commonName": "Dandelion",
-    "botanicalName": "Taraxacum",
-    "image": "Dandelion.png",
-    "model3d": "",
-    "uses": "Detoxifies liver",
-    "habitat": "Grasslands",
-    "cultivation": "Easy to grow"
-  },
-  {
-    "commonName": "Eucalyptus",
-    "botanicalName": "Eucalyptus globulus",
-    "image": "Eucalyptuss.png",
-    "model3d": "",
-    "uses": "Relieves cold",
-    "habitat": "Warm climates",
-    "cultivation": "Fast growing"
-  },
-  {
-    "commonName": "Garlic",
-    "botanicalName": "Allium sativum",
-    "image": "Garlic.png",
-    "model3d": "",
-    "uses": "Boosts immunity",
-    "habitat": "Temperate regions",
-    "cultivation": "Needs sunlight"
-  },
-  {
-    "commonName": "Onion",
-    "botanicalName": "Allium cepa",
-    "image": "Onionnn.png",
-    "model3d": "",
-    "uses": "Heart health",
-    "habitat": "Temperate climates",
-    "cultivation": "Needs fertile soil"
-  },
-
-  {
-    "commonName": "Spinach",
-    "botanicalName": "Spinacia oleracea",
-    "image": "Spinachhh.png",
-    "model3d": "",
-    "uses": "Rich in iron",
-    "habitat": "Cool climates",
-    "cultivation": "Needs moist soil"
-  },
-  {
-    "commonName": "Coriander",
-    "botanicalName": "Coriandrum sativum",
-    "image": "coriander.png",
-    "model3d": "",
-    "uses": "Improves digestion",
-    "habitat": "Temperate regions",
-    "cultivation": "Easy to grow"
-  },
-  {
-    "commonName": "Parsley",
-    "botanicalName": "Petroselinum crispum",
-    "image": "parcly.png",
-    "model3d": "",
-    "uses": "Rich in vitamins",
-    "habitat": "Temperate regions",
-    "cultivation": "Needs sunlight"
-  },
-  {
-    "commonName": "Thyme",
-    "botanicalName": "Thymus vulgaris",
-    "image": "Thyme.png",
-    "model3d": "",
-    "uses": "Antimicrobial",
-    "habitat": "Dry climates",
-    "cultivation": "Needs sunlight"
-  },
-  {
-    "commonName": "Oregano",
-    "botanicalName": "Origanum vulgare",
-    "image": "oregano.png",
-    "model3d": "",
-    "uses": "Boosts immunity",
-    "habitat": "Mediterranean",
-    "cultivation": "Needs sunlight"
-  },
-  {
-    "commonName": "Basil",
-    "botanicalName": "Ocimum basilicum",
-    "image": "Basil.png",
-    "model3d": "",
-    "uses": "Improves digestion",
-    "habitat": "Warm climates",
-    "cultivation": "Needs sunlight"
-  },
-  {
-    "commonName": "Peppermint",
-    "botanicalName": "Mentha piperita",
-    "image": "Pepperminn.png",
-    "model3d": "",
-    "uses": "Relieves headache",
-    "habitat": "Moist regions",
-    "cultivation": "Needs water"
-  },
-  {
-    "commonName": "Sage",
-    "botanicalName": "Salvia officinalis",
-    "image": "sage.png",
-    "model3d": "",
-    "uses": "Improves memory",
-    "habitat": "Dry climates",
-    "cultivation": "Needs sunlight"
-  },
-  {
-    "commonName": "Fennel",
-    "botanicalName": "Foeniculum vulgare",
-    "image": "Fennel.png",
-    "model3d": "",
-    "uses": "Aids digestion",
-    "habitat": "Temperate regions",
-    "cultivation": "Needs sunlight"
-  },
-  {
-    "commonName": "Mustard",
-    "botanicalName": "Brassica",
-    "image": "mustard.png",
-    "model3d": "",
-    "uses": "Improves metabolism",
-    "habitat": "Cool climates",
-    "cultivation": "Needs fertile soil"
-  }
-];
-
-
-
-</script>
-<!-- CHATBOT BUTTON -->
-<div id="chat-toggle">💬</div>
-
-<!-- CHATBOX -->
-<div id="chatbox">
-<div id="chat-header">🌿 Herbal Bot</div>
-<div id="chat-body"></div>
-<input type="text" id="userInput" placeholder="Ask about plants...">
-</div>
-<script>
-
-const toggle = document.getElementById("chat-toggle");
-const box = document.getElementById("chatbox");
-const chat = document.getElementById("chat-body");
-const input = document.getElementById("userInput");
-
-toggle.onclick = () => {
-box.style.display = box.style.display === "flex" ? "none" : "flex";
-
-if(chat.innerHTML === ""){
-chat.innerHTML += `<div class="bot">Hi 👋 I am your Herbal Assistant. Ask me about plants!</div>`;
-}
-};
-
-function botMessage(msg){
-chat.innerHTML += `<div class="bot">${msg}</div>`;
-chat.scrollTop = chat.scrollHeight;
-}
-
-function userMessage(msg){
-chat.innerHTML += `<div class="user">${msg}</div>`;
-chat.scrollTop = chat.scrollHeight;
-}
-
-async function getAIResponse(message){
-try{
-const res = await fetch("https://herbal-chatbot.onrender.com/chat",{
-method:"POST",
-headers:{"Content-Type":"application/json"},
-body:JSON.stringify({message})
+document.addEventListener('DOMContentLoaded',()=>{
+  // Timeline & card animations
+  const observer = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.style.opacity='1';
+        entry.target.style.transform='translateY(0)';
+      }
+    });
+  });
+  document.querySelectorAll('.card, .timeline-item').forEach(el=>{
+    observer.observe(el);
+  });
 });
-
-const data = await res.json();
-
-return data.reply || "AI not responding";
-
-}catch(err){
-return "Server error";
-}
-}
-
-input.addEventListener("keypress",async function(e){
-
-if(e.key==="Enter"){
-
-let text = this.value.trim();
-
-if(!text) return;
-
-userMessage(text);
-
-this.value="";
-
-botMessage("Thinking...");
-
-let reply = await getAIResponse(text);
-
-chat.lastChild.remove();
-
-botMessage(reply);
-
-}
-
-});
-
 </script>
+</head>
 <body>
 
+<!-- Announcement Marquee -->
 <div class="announcement">
   <p>
-    🌿 Explore our 3D Plant Viewer! Rotate, zoom and interact with herbal plants in 3D 🌱 ➤ Available now in Plants section &nbsp;&nbsp;&nbsp;&nbsp;
-    🌿 Explore our 3D Plant Viewer! Rotate, zoom and interact with herbal plants in 3D 🌱 ➤ Available now in Plants section
+    🌿 Explore our 3D Plant Viewer! Rotate, zoom & interact with herbal plants 🌱 ➤ Available now in Plants section &nbsp;&nbsp;&nbsp;&nbsp;
+    🌿 Explore our 3D Plant Viewer! Rotate, zoom & interact with herbal plants 🌱 ➤ Available now in Plants section
   </p>
 </div>
 
 <header class="header">
-    <img src="logo.png" class="logo">
-    <h1><i>E-Herbal Garden</i></h1>
+  <img src="logo.png" class="logo">
+  <h1>E-Herbal Garden</h1>
 </header>
 
 <nav>
-<a href="#">Home</a>
-<a href="hellochalja.html">Plants</a>
-<a href="about.html">About</a>
-<a href="#">Contact</a>
+  <a href="#home">Home</a>
+  <a href="hellochalja.html">Plants</a>
+  <a href="about.html">About</a>
+  <a href="#contact">Contact</a>
 </nav>
 
 <div class="hero">
-<h1>🌿 Welcome to the Digital Herbal Garden 🌿</h1>
+  <h1>🌿 Welcome to the Digital Herbal Garden 🌿</h1>
 </div>
 
+<!-- Timeline Section -->
+<section class="history-section">
+<h2>📜 History of Ayurveda</h2>
+<div class="history-timeline">
+  <div class="timeline-item">
+    <h3>🌌 Vedic Period (5000+ years ago)</h3>
+    <p>Ayurveda originated in the Atharva Veda. Ancient sages observed nature and documented healing herbs, diseases, and spiritual therapies.</p>
+  </div>
+  <div class="timeline-item">
+    <h3>📚 Samhita Era (1000 BCE)</h3>
+    <p>Knowledge compiled in great texts: <strong>Charaka Samhita</strong>, <strong>Sushruta Samhita</strong>, <strong>Ashtanga Hridaya</strong>.</p>
+  </div>
+  <div class="timeline-item">
+    <h3>🏥 Golden Age (600 BCE - 200 CE)</h3>
+    <p>Sushruta performed world's first plastic surgery. Over 300 procedures and 120 instruments developed.</p>
+  </div>
+  <div class="timeline-item">
+    <h3>🌍 Global Spread (200 BCE onwards)</h3>
+    <p>Traveled via Silk Road to China, Tibet, Greece. Influenced Unani, TCM. Arab scholars translated texts.</p>
+  </div>
+  <div class="timeline-item">
+    <h3>✨ Modern Revival (20th Century)</h3>
+    <p>India's Ministry of AYUSH promotes globally. Now practiced in 100+ countries as complementary medicine.</p>
+  </div>
+</div>
+</section>
+
+<!-- Cards -->
 <div class="card-container">
-
 <div class="card" onclick="toggleDetails(this)">
-<img src="origin.png">
-<h3>Vedic Origin</h3>
+<img src="origin.png"><h3>Vedic Origin</h3>
 <div class="details">
-Ayurveda is believed to have originated during the Atharva Veda, one of the four sacred Vedas.<br>
-The Atharva Veda contains early knowledge about:<br>
-Healing herbs 🌱<br>
-Diseases 🦠<br>
-Spiritual therapies 🧘<br>
-Ayurveda means:<br>
-👉 “Ayur” = life<br>
-👉 “Veda” = knowledge<br>
-➤ So, Ayurveda = “Science of Life”<br>
-It was developed by ancient sages (Rishis) who combined:<br>
-Observation of nature 🌍<br>
-Meditation 🧘<br>
-Experience of human body<br>
-Later, this knowledge was expanded in classical texts like:<br>
-Charaka Samhita (medicine & internal health)<br>
-Sushruta Samhita (surgery & anatomy)</div>
-</div>
-
-<div class="card" onclick="toggleDetails(this)">
-<img src="vedic.png">
-<h3>Ancient Texts</h3>
-<div class="details">
-The knowledge of Ayurveda was systematically written in ancient Indian scriptures known as Samhitas.<br>
-🌿 Key Texts:<br>
-<u>Charaka Samhita</u><br>
-Focuses on medicine, diagnosis, and internal healing. It explains how to maintain health and treat diseases using natural methods.<br>
-<u>Sushruta Samhita</u><br>
-Deals with surgery and anatomy. It describes surgical techniques, instruments, and is why Sushruta is called the Father of Surgery.<br>
-<u>Ashtanga Hridaya</u><br>
-A simplified and well-organized text combining teachings of Charaka and Sushruta, widely used for learning Ayurveda.</div>
-</div>
-
-<div class="card" onclick="toggleDetails(this)">
-<img src="doctor.png">
-<h3>Sushruta</h3>
-<div class="details">
-Sushruta was one of the greatest ancient Indian physicians and a pioneer of surgery in Ayurveda.<br>
-
-🌿 Key Contributions:<br>
-Author of the Sushruta Samhita<br>
-Known as the “Father of Surgery” 🏥<br>
-Described over 300 surgical procedures<br>
-Used 120+ surgical instruments 🔪<br>
-Performed early forms of plastic surgery (like nose reconstruction)<br>
-Explained human anatomy in detail, including bones, muscles, and veins<br>
-Emphasized cleanliness and hygiene during surgeries (early concept of sterilization)<br>
-Trained students using practical methods like practicing on fruits and dead bodies
+Ayurveda is believed to have originated during the Atharva Veda. Healing herbs 🌱, diseases 🦠, spiritual therapies 🧘.
 </div>
 </div>
 
 <div class="card" onclick="toggleDetails(this)">
-<img src="plant.png">
-<h3>Branches</h3>
+<img src="vedic.png"><h3>Ancient Texts</h3>
 <div class="details">
-    Ayurveda is divided into eight main branches, known as Ashtanga Ayurveda.<br>
-
-🌱 The 8 Branches:<br>
-<b><u>Kayachikitsa</u></b>– General medicine (treatment of diseases)<br>
-<b><u>Shalya Tantra</u></b> – Surgery<br>
-<b><u>Shalakya Tantra</u></b> – Eye, ear, nose, and throat (ENT)<br>
-<b><u>Kaumarbhritya</u></b> – Pediatrics (child care) 👶<br>
-<b><u>Agada Tantra</u></b> – Toxicology (treatment of poisons) ☠️<br>
-<b><u>Bhuta Vidya</u></b> – Psychiatry (mental health) 🧠<br>
-<b><u>Rasayana</u></b> – Rejuvenation and immunity boosting 🌿<br>
-<b><u>Vajikarana</u></b> – Reproductive health and vitality<br>
+Knowledge of Ayurveda was systematically written in Samhitas: <strong>Charaka Samhita</strong>, <strong>Sushruta Samhita</strong>, <strong>Ashtanga Hridaya</strong>.
 </div>
 </div>
 
 <div class="card" onclick="toggleDetails(this)">
-<img src="spread.png">
-<h3>Global Spread</h3>
+<img src="doctor.png"><h3>Sushruta</h3>
 <div class="details">
-    Ayurveda gradually spread beyond India and influenced many other traditional healing systems.<br>
-
-🌿 Key Points:<br>
-Ayurveda spread to countries like China, Tibet, and the Middle East through trade and cultural exchange<br>
-Its knowledge influenced systems like Traditional Chinese Medicine and Tibetan medicine<br>
-Ancient scholars and travelers carried Ayurvedic texts and practices across regions<br>
-Today, Ayurveda is practiced worldwide as a form of natural and holistic healing 🌿<br>
+Pioneer of surgery. 300+ surgical procedures, 120 instruments, early plastic surgery, author of Sushruta Samhita.
 </div>
 </div>
 
 <div class="card" onclick="toggleDetails(this)">
-<img src="book.png">
-<h3>Modern Use</h3>
+<img src="plant.png"><h3>Branches</h3>
 <div class="details">
-   <b> Promoted by the Ministry of AYUSH in India </b><br>
-Used for improving immunity, digestion, and overall wellness<br>
-Includes practices like:<br>
-Herbal medicines 🌱<br>
-Yoga and meditation 🧘<br>
-Detox therapies (Panchakarma)<br>
-Gaining popularity worldwide as an alternative and preventive medicine system<br>
-Used alongside modern medicine for a balanced lifestyle<br>
+8 branches (Ashtanga Ayurveda): Kayachikitsa, Shalya Tantra, Shalakya Tantra, Kaumarbhritya, Agada Tantra, Bhuta Vidya, Rasayana, Vajikarana.
 </div>
 </div>
 
+<div class="card" onclick="toggleDetails(this)">
+<img src="spread.png"><h3>Global Spread</h3>
+<div class="details">
+Influenced China, Tibet, Middle East. Translated by Arab scholars. Practiced in 100+ countries.
+</div>
 </div>
 
-<footer>© 2026 E-Herbal Garden | Designed with 🌱 | Created by Team Beginners | </footer>
+<div class="card" onclick="toggleDetails(this)">
+<img src="book.png"><h3>Modern Use</h3>
+<div class="details">
+Promoted by Ministry of AYUSH. Immunity boost, Yoga & meditation, Panchakarma detox, Herbal medicines.
+</div>
+</div>
+</div>
 
+<footer id="contact">© 2026 E-Herbal Garden | Designed with 🌱 | Team Beginners</footer>
+<div id="chat-toggle">💬</div>
 </body>
 </html>
