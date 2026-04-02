@@ -62,9 +62,16 @@ p {
     line-height: 1.6;
 }
 
-.model-container {
-    width: 100%;
-    height: 300px;
+/* 🔥 Bigger and cleaner bottom model */
+.bottom-model {
+    margin: 40px auto;
+    width: 90%;
+    max-width: 900px;
+    height: 450px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    padding: 15px;
 }
 
 footer {
@@ -148,9 +155,15 @@ footer {
 
 <div class="right">
 <h2 style="text-align:center;">🌐 3D Basil Model</h2>
-<div class="model-container" id="model"></div>
+<p style="text-align:center;">Scroll down to view the interactive 3D model</p>
 </div>
 
+</div>
+
+<!-- 🔥 MOVED 3D MODEL TO BOTTOM -->
+<div class="bottom-model">
+<h2 style="text-align:center;">🌐 3D Basil Model</h2>
+<div id="model" style="width:100%; height:100%;"></div>
 </div>
 
 <footer>
@@ -163,11 +176,9 @@ footer {
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
 
 <script>
-// Scene
 const scene = new THREE.Scene();
 const container = document.getElementById("model");
 
-// Camera
 const camera = new THREE.PerspectiveCamera(
     60,
     container.clientWidth / container.clientHeight,
@@ -175,66 +186,64 @@ const camera = new THREE.PerspectiveCamera(
     1000
 );
 
-// Renderer
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
-// Lighting
 const light1 = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
 scene.add(light1);
+
 const light2 = new THREE.DirectionalLight(0xffffff, 2);
 light2.position.set(5,5,5);
 scene.add(light2);
 
-// Controls
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
-controls.minDistance = 1;
-controls.maxDistance = 10;
 
-// Model
 let model;
 const loader = new THREE.GLTFLoader();
 
-loader.load(
-    './Basil.glb',
-    function (gltf) {
-        model = gltf.scene;
-        const box = new THREE.Box3().setFromObject(model);
-        const size = box.getSize(new THREE.Vector3()).length();
-        const center = box.getCenter(new THREE.Vector3());
+loader.load('./Basil.glb', function (gltf) {
 
-        model.position.sub(center);
-        model.position.y -= 0.4;
+    model = gltf.scene;
 
-        const scaleFactor = 3.5 / size;
-        model.scale.setScalar(scaleFactor);
+    const box = new THREE.Box3().setFromObject(model);
+    const size = box.getSize(new THREE.Vector3()).length();
+    const center = box.getCenter(new THREE.Vector3());
 
-        scene.add(model);
-        camera.position.set(0, size / 3, size * 1.2);
-        controls.target.set(0, -0.3, 0);
-        controls.update();
-    },
-    undefined,
-    function(error) { console.error("Error loading model:", error); }
-);
+    model.position.sub(center);
+    model.position.y -= 0.3;
 
-// Resize fix
+    // 🔥 PERFECT RESIZE
+    const scaleFactor = 4.5 / size;
+    model.scale.setScalar(scaleFactor);
+
+    scene.add(model);
+
+    camera.position.set(0, size / 2, size * 1.5);
+    controls.target.set(0, 0, 0);
+    controls.update();
+
+}, undefined, function(error) {
+    console.error("Error loading model:", error);
+});
+
 window.addEventListener('resize', () => {
     camera.aspect = container.clientWidth / container.clientHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(container.clientWidth, container.clientHeight);
 });
 
-// Animation
 function animate() {
     requestAnimationFrame(animate);
-    if (model) model.rotation.y += 0.005;
+
+    if (model) model.rotation.y += 0.004;
+
     controls.update();
     renderer.render(scene, camera);
 }
+
 animate();
 </script>
 
