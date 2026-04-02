@@ -12,6 +12,272 @@ body {
     background: #eaf5ea;
 }
 
+/* PAGE FADE IN (ADDED) */
+body {
+    animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* HEADER */
+header {
+    background: linear-gradient(to right, #1b5e20, #2e7d32);
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+/* NAV */
+nav {
+    background: #145a1f;
+    padding: 10px;
+    text-align: center;
+}
+
+/* ORIGINAL LINKS (UNCHANGED) */
+nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+    position: relative;
+    transition: 0.3s;
+}
+
+/* 🌟 ADDED: GLASS HOVER EFFECT (ONLY ON HOVER) */
+nav a:hover {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 6px 12px;
+    border-radius: 20px;
+    backdrop-filter: blur(6px);
+}
+
+/* MAIN */
+.main {
+    display: flex;
+    gap: 20px;
+    padding: 30px;
+    flex-wrap: wrap;
+}
+
+.left {
+    flex: 1;
+    min-width: 300px;
+}
+
+.right {
+    flex: 1;
+    min-width: 300px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+h2 {
+    color: #2e7d32;
+}
+
+p {
+    line-height: 1.6;
+}
+
+.model-container {
+    width: 100%;
+    height: 500px;
+}
+
+footer {
+    background: #145a1f;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+/* 🌟 ADDED: LOADING OVERLAY FOR 3D MODEL */
+#loader {
+    position: absolute;
+    width: 100%;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.7);
+    font-weight: bold;
+    color: #1b5e20;
+    z-index: 10;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>🌿 Rosemary (Rosmarinus officinalis)</h1>
+<p>“Rosemary – The Herb of Memory and Vitality”</p>
+</header>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="hellochalja.html">Plants</a>
+<a href="about.html">About</a>
+<a href="#">Contact</a>
+</nav>
+
+<div class="main">
+
+<div class="left">
+
+<h2>🌱 Basic Information</h2>
+<p><b>Common Name:</b> Rosemary</p>
+<p><b>Botanical Name:</b> Rosmarinus officinalis</p>
+<p>Rosemary is a fragrant evergreen herb native to the Mediterranean region, widely known for its culinary, medicinal, and aromatic uses.</p>
+
+<h2>🌿 Medicinal Uses</h2>
+<p>🧠 <b>Memory Enhancement:</b> Improves concentration and brain function.</p>
+<p>💆 <b>Stress Relief:</b> Helps reduce stress and mental fatigue.</p>
+<p>🦠 <b>Antimicrobial:</b> Fights bacteria and infections.</p>
+<p>🔥 <b>Anti-inflammatory:</b> Reduces inflammation and pain.</p>
+<p>🫀 <b>Circulation Support:</b> Improves blood circulation.</p>
+
+<h2>🌍 Habitat</h2>
+<p>Rosemary grows naturally in warm, dry climates, especially in Mediterranean regions. It thrives in sunny environments with well-drained soil and is commonly cultivated in gardens worldwide.</p>
+
+<h2>🌾 Cultivation</h2>
+<p><b>Sunlight:</b> Requires full sunlight</p>
+<p><b>Soil:</b> Well-drained, sandy or loamy soil</p>
+<p><b>Watering:</b> Low to moderate (avoid overwatering)</p>
+<p><b>Propagation:</b> Grown from seeds or stem cuttings</p>
+<p>It is a hardy plant that requires minimal maintenance once established.</p>
+
+<h2>⚠️ Precautions</h2>
+<p>Generally safe when used in moderate amounts.</p>
+<p>Excessive use may cause digestive discomfort or allergic reactions.</p>
+<p>Pregnant women and individuals with medical conditions should consult a healthcare professional before use.</p>
+
+</div>
+
+<div class="right">
+<h2 style="text-align:center;">🌐 3D Model</h2>
+
+<!-- 🌟 ADDED LOADER (NO REMOVAL OF ANYTHING) -->
+<div id="loader">Loading 3D Model...</div>
+
+<div class="model-container" id="model"></div>
+</div>
+
+</div>
+
+<footer>
+© 2026 E-Herbal Garden
+</footer>
+
+<!-- Three.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+
+<script>
+const scene = new THREE.Scene();
+const container = document.getElementById("model");
+
+const camera = new THREE.PerspectiveCamera(
+    75,
+    container.clientWidth / container.clientHeight,
+    0.1,
+    1000
+);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setSize(container.clientWidth, container.clientHeight);
+renderer.setPixelRatio(window.devicePixelRatio);
+container.appendChild(renderer.domElement);
+
+// LIGHTING
+const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
+scene.add(light);
+
+// CONTROLS (IMPROVED - ADDED DAMPING)
+const controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.enableZoom = true;
+controls.enablePan = false;
+controls.enableDamping = true;   // ⭐ ADDED
+controls.dampingFactor = 0.05;   // ⭐ ADDED
+
+let model;
+
+const loader = new THREE.GLTFLoader();
+
+loader.load(
+    './Rosemary.glb',
+    function (gltf) {
+
+        model = gltf.scene;
+
+        const box = new THREE.Box3().setFromObject(model);
+        const size = box.getSize(new THREE.Vector3());
+        const center = box.getCenter(new THREE.Vector3());
+
+        model.position.sub(center);
+
+        const maxDim = Math.max(size.x, size.y, size.z);
+        const fov = camera.fov * (Math.PI / 180);
+        let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
+
+        camera.position.z = cameraZ * 1.5;
+
+        scene.add(model);
+
+        // ⭐ ADDED: hide loader
+        document.getElementById("loader").style.display = "none";
+    }
+);
+
+// RESIZE FIX
+window.addEventListener('resize', () => {
+    const width = container.clientWidth;
+    const height = container.clientHeight;
+
+    renderer.setSize(width, height);
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+});
+
+// ANIMATION LOOP
+function animate() {
+    requestAnimationFrame(animate);
+
+    if (model) {
+        model.rotation.y += 0.005;
+    }
+
+    controls.update(); // ⭐ ADDED
+
+    renderer.render(scene, camera);
+}
+
+animate();
+</script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rosemary - E-Herbal Garden</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #eaf5ea;
+}
+
 header {
     background: linear-gradient(to right, #1b5e20, #2e7d32);
     color: white;
