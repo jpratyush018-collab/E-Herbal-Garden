@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
+
 body{
 margin:0;
 font-family:'Poppins', sans-serif;
@@ -15,6 +17,7 @@ background:linear-gradient(to right,#eef7ee,#d0f0d0);
 }
 
 /* HEADER */
+
 .header{
 display:flex;
 align-items:center;
@@ -33,9 +36,15 @@ align-items:center;
 gap:10px;
 }
 
-.logo{width:50px;border-radius:50%;}
+.logo{
+width:50px;
+border-radius:50%;
+}
 
-nav{display:flex;gap:15px;}
+nav{
+display:flex;
+gap:15px;
+}
 
 nav a{
 text-decoration:none;
@@ -52,11 +61,12 @@ transform:translateY(-8px) scale(1.05);
 }
 
 @keyframes floatBtn{
-0%,100%{transform:translateY(0);} 
+0%,100%{transform:translateY(0);}
 50%{transform:translateY(-6px);}
 }
 
 /* HERO */
+
 .hero{
 height:500px;
 background:url("pic1.png") center/cover;
@@ -82,6 +92,7 @@ font-size:40px;
 }
 
 /* HISTORY */
+
 .history{
 display:flex;
 flex-wrap:wrap;
@@ -98,28 +109,18 @@ min-width:300px;
 line-height:1.6;
 }
 
-.history-left ul{
-padding-left:20px;
-}
-
 .timeline{
 margin-top:20px;
 border-left:3px solid #2e7d32;
 padding-left:15px;
 }
 
-.timeline div{margin-bottom:15px;}
-
-@keyframes fall{
-0%{transform:translate(0,-60px) rotate(0deg);}
-20%{transform:translate(25px,80px) rotate(90deg);}
-40%{transform:translate(-25px,160px) rotate(180deg);}
-60%{transform:translate(20px,240px) rotate(240deg);}
-80%{transform:translate(-15px,300px) rotate(300deg);}
-100%{transform:translate(10px,420px) rotate(360deg);opacity:0;}
+.timeline div{
+margin-bottom:15px;
 }
 
 /* CARDS */
+
 .card-container{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
@@ -160,18 +161,95 @@ transform:translateY(-10px);
 }
 
 /* FOOTER */
+
 footer{
 background:#1b5e20;
 color:white;
 text-align:center;
 padding:15px;
 }
+
+/* CHATBOT */
+
+#chat-toggle{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#2e7d32;
+color:white;
+width:60px;
+height:60px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:28px;
+cursor:pointer;
+box-shadow:0 4px 12px rgba(0,0,0,0.3);
+z-index:9999;
+}
+
+#chatbox{
+position:fixed;
+bottom:90px;
+right:20px;
+width:350px;
+height:450px;
+background:white;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,0.3);
+display:none;
+flex-direction:column;
+overflow:hidden;
+}
+
+#chat-header{
+background:#1b5e20;
+color:white;
+padding:12px;
+font-weight:bold;
+}
+
+#chat-body{
+flex:1;
+padding:10px;
+overflow-y:auto;
+background:#f4fff4;
+}
+
+.bot,.user{
+margin:8px 0;
+padding:10px;
+border-radius:12px;
+max-width:80%;
+}
+
+.bot{
+background:#e8f5e9;
+color:#1b5e20;
+}
+
+.user{
+background:#c8e6c9;
+margin-left:auto;
+}
+
+#userInput{
+width:100%;
+border:none;
+border-top:1px solid #ccc;
+padding:10px;
+outline:none;
+font-size:14px;
+}
+
 </style>
 </head>
 
 <body>
 
 <header class="header">
+
 <div class="header-left">
 <img src="logo.png" class="logo">
 <h2>E-Herbal Garden</h2>
@@ -183,6 +261,7 @@ padding:15px;
 <a href="about.html">About</a>
 <a href="#">Contact</a>
 </nav>
+
 </header>
 
 <div class="hero">
@@ -192,36 +271,27 @@ padding:15px;
 <section class="history">
 
 <div class="history-left">
+
 <h2>History of Ayurveda 🌿</h2>
 
-<p><b>Ayurveda</b>, meaning <i>"Science of Life"</i>, is one of the oldest healing systems in the world, originating over <b>5000 years ago</b> in India.</p>
-
-<p>It focuses on balance between <b>body, mind, and spirit</b> using natural remedies, herbs, diet, and lifestyle practices.</p>
+<p><b>Ayurveda</b> meaning <i>Science of Life</i> started more than <b>5000 years ago</b> in India.</p>
 
 <ul>
-<li><b>Vata</b> – Movement & nervous system</li>
-<li><b>Pitta</b> – Digestion & metabolism</li>
-<li><b>Kapha</b> – Stability & structure</li>
+<li><b>Vata</b> – Movement</li>
+<li><b>Pitta</b> – Digestion</li>
+<li><b>Kapha</b> – Stability</li>
 </ul>
 
 <div class="timeline">
 <div><strong>1500 BCE:</strong> Origin in Vedas</div>
-<div><strong>1000 BCE:</strong> Oral teachings by sages</div>
-<div><strong>500 BCE:</strong> Charaka & Sushruta contributions</div>
-<div><strong>Medieval:</strong> Spread across Asia</div>
-<div><strong>Colonial:</strong> Decline phase</div>
+<div><strong>500 BCE:</strong> Charaka & Sushruta</div>
 <div><strong>Modern:</strong> Global revival</div>
 </div>
 
-<p>Today Ayurveda is widely used for <b>immunity, stress relief, and wellness</b> worldwide.</p>
-
 </div>
-
-<div class="history-right" id="leaf-area"></div>
 
 </section>
 
-<!-- CARDS -->
 <div class="card-container">
 
 <div class="card">
@@ -256,12 +326,99 @@ padding:15px;
 
 </div>
 
-<footer>© 2026 E-Herbal Garden</footer>
+<footer>
+© 2026 E-Herbal Garden
+</footer>
+
+
+<!-- CHATBOT -->
+
+<div id="chat-toggle">💬</div>
+
+<div id="chatbox">
+
+<div id="chat-header">🌿 Herbal Bot (Online)</div>
+
+<div id="chat-body"></div>
+
+<input type="text" id="userInput" placeholder="Ask about herbs...">
+
+</div>
+
 
 <script>
-const area=document.getElementById('leaf-area');
+
+const toggle=document.getElementById("chat-toggle");
+const box=document.getElementById("chatbox");
+const chat=document.getElementById("chat-body");
+const input=document.getElementById("userInput");
+
+toggle.onclick=()=>{
+box.style.display=box.style.display==="flex"?"none":"flex";
+
+if(chat.innerHTML===""){
+botMessage("Hi 👋 I am your Herbal Assistant. Ask me about herbs, plants, or Ayurvedic remedies.");
+}
+};
+
+function botMessage(text){
+chat.innerHTML+=`<div class="bot">${text}</div>`;
+chat.scrollTop=chat.scrollHeight;
+}
+
+function userMessage(text){
+chat.innerHTML+=`<div class="user">${text}</div>`;
+chat.scrollTop=chat.scrollHeight;
+}
+
+async function getAIResponse(message){
+
+try{
+
+const response=await fetch("https://herbal-chatbot.onrender.com/chat",{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({message})
+});
+
+const data=await response.json();
+
+return data.reply || "⚠️ AI not responding";
+
+}
+catch{
+return "❌ Server error";
+}
+
+}
+
+input.addEventListener("keypress",async function(e){
+
+if(e.key==="Enter"){
+
+let msg=this.value.trim();
+if(!msg) return;
+
+userMessage(msg);
+
+this.value="";
+
+botMessage("Thinking...");
+
+const reply=await getAIResponse(msg);
+
+chat.lastChild.remove();
+
+botMessage(reply);
+
+}
+
+});
 
 </script>
 
 </body>
 </html>
+```
