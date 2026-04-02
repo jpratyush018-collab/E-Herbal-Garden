@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Plant - E-Herbal Garden</title>
+<title>Parsley - E-Herbal Garden</title>
 
 <style>
 body {
@@ -79,8 +79,8 @@ footer {
 <body>
 
 <header>
-<h1>🌿 Parsley </h1>
-<p>Tagline of the Plant</p>
+<h1>🌿 Parsley (Petroselinum crispum)</h1>
+<p>The Fresh Herb for Flavor & Health</p>
 </header>
 
 <nav>
@@ -95,32 +95,74 @@ footer {
 <div class="left">
 
 <h2>🌱 Basic Information</h2>
-<p><b>Common Name:</b> </p>
-<p><b>Botanical Name:</b> </p>
+<p><b>Common Name:</b> Parsley</p>
+<p><b>Botanical Name:</b> Petroselinum crispum</p>
+<p><b>Family:</b> Apiaceae</p>
+<p><b>Origin:</b> Mediterranean region</p>
+<p><b>Plant Type:</b> Biennial herb</p>
+<p><b>Parts Used:</b> Leaves, seeds, roots</p>
 
 <h2>🌿 Medicinal Uses</h2>
-<p>Write here...</p>
+<p>✅ Rich in antioxidants and vitamins (A, C, K)</p>
+<p>✅ Supports kidney and liver health</p>
+<p>✅ Acts as a natural diuretic to reduce water retention</p>
+<p>✅ Boosts immune system and aids digestion</p>
+<p>✅ Anti-inflammatory and antimicrobial properties</p>
 
 <h2>🌍 Habitat</h2>
-<p>Write here...</p>
+<p>Parsley thrives in temperate climates, preferring well-drained, fertile soil with full sunlight. It grows well in gardens, pots, and herb beds worldwide.</p>
 
 <h2>🌾 Cultivation</h2>
-<p>Write here...</p>
+<p><b>Propagation:</b> By seeds or transplants</p>
+<p><b>Soil:</b> Fertile, well-drained, slightly acidic to neutral</p>
+<p><b>Sunlight:</b> Full sun to partial shade</p>
+<p><b>Watering:</b> Regular watering to maintain moist soil</p>
+<p><b>Harvest:</b> Leaves can be harvested 70–90 days after sowing; roots harvested in the second year</p>
 
 <h2>⚠️ Precautions</h2>
-<p>Write here...</p>
+<p>Excessive consumption may cause digestive discomfort or allergic reactions in sensitive individuals. Avoid in large amounts during pregnancy due to uterotonic effects of essential oils.</p>
+
+<h2>🧪 Bioactive Compounds</h2>
+<p><b>Essential Oils:</b> Myristicin, apiol – antioxidant & antimicrobial</p>
+<p><b>Flavonoids:</b> Apigenin – anti-inflammatory</p>
+<p><b>Vitamins:</b> A, C, K – immune & bone support</p>
+<p><b>Minerals:</b> Iron, calcium, potassium – cardiovascular & metabolic support</p>
+
+<h2>💊 Pharmacological Properties</h2>
+<p>Antioxidant</p>
+<p>Anti-inflammatory</p>
+<p>Diuretic</p>
+<p>Digestive aid</p>
+<p>Immune booster</p>
+
+<h2>🩺 Therapeutic Applications</h2>
+<p>Supports kidney and liver detoxification</p>
+<p>Reduces inflammation and oxidative stress</p>
+<p>Helps improve digestion and nutrient absorption</p>
+<p>Strengthens immunity and prevents deficiencies</p>
+
+<h2>⚙️ Mechanism of Action</h2>
+<p>Parsley’s flavonoids and essential oils neutralize free radicals, reduce inflammation, and promote diuresis. Vitamins and minerals strengthen metabolic and immune functions.</p>
+
+<h2>🌍 Modern Relevance</h2>
+<p>Parsley is recognized globally for culinary, nutritional, and medicinal uses. Its extracts are studied for antioxidant, anti-inflammatory, and antimicrobial effects in scientific research.</p>
+
+<h2>📚 Sources</h2>
+<p>WHO</p>
+<p>NCBI</p>
+<p>Ministry of AYUSH</p>
 
 </div>
 
 <div class="right">
-<h2 style="text-align:center;">🌐 3D Model</h2>
+<h2 style="text-align:center;">🌐 3D Parsley Model</h2>
 <div class="model-container" id="model"></div>
 </div>
 
 </div>
 
 <footer>
-© 2026 E-Herbal Garden
+© 2026 E-Herbal Garden | Designed with 🌱 | Created by Team Beginners
 </footer>
 
 <!-- Three.js -->
@@ -144,11 +186,9 @@ renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
-// Lighting
 const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
 scene.add(light);
 
-// Controls
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
 controls.enableZoom = true;
 controls.enablePan = false;
@@ -157,54 +197,38 @@ let model;
 
 const loader = new THREE.GLTFLoader();
 loader.load(
-    './Parsley.glb', // 🔥 CHANGE THIS FILE NAME
+    './Parsley.glb',
     function (gltf) {
-
         model = gltf.scene;
-
-        // ✅ CENTER MODEL
         const box = new THREE.Box3().setFromObject(model);
         const size = box.getSize(new THREE.Vector3());
         const center = box.getCenter(new THREE.Vector3());
-
         model.position.sub(center);
-
-        // ✅ AUTO CAMERA FIT
         const maxDim = Math.max(size.x, size.y, size.z);
         const fov = camera.fov * (Math.PI / 180);
         let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
-
         camera.position.z = cameraZ * 1.5;
-
         scene.add(model);
     },
     undefined,
-    function (error) {
+    function(error) {
         console.error("Error loading model:", error);
     }
 );
 
-// Resize fix
 window.addEventListener('resize', () => {
     const width = container.clientWidth;
     const height = container.clientHeight;
-
     renderer.setSize(width, height);
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
 });
 
-// Animation
 function animate() {
     requestAnimationFrame(animate);
-
-    if (model) {
-        model.rotation.y += 0.005;
-    }
-
+    if (model) model.rotation.y += 0.005;
     renderer.render(scene, camera);
 }
-
 animate();
 </script>
 
