@@ -32,25 +32,9 @@ nav a {
     font-weight: bold;
 }
 
+/* 🔥 MAIN FULL WIDTH */
 .main {
-    display: flex;
-    gap: 20px;
     padding: 30px;
-    flex-wrap: wrap;
-}
-
-.left {
-    flex: 1;
-    min-width: 300px;
-}
-
-.right {
-    flex: 1;
-    min-width: 300px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    overflow: hidden;
 }
 
 h2 {
@@ -61,9 +45,18 @@ p {
     line-height: 1.6;
 }
 
+/* 🔥 MODEL AT BOTTOM */
+.model-section {
+    margin: 30px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 10px;
+}
+
 .model-container {
     width: 100%;
-    height: 500px;
+    height: 300px;
 }
 
 footer {
@@ -92,8 +85,6 @@ footer {
 
 <div class="main">
 
-<div class="left">
-
 <h2>🌱 Basic Information</h2>
 <p><b>Common Name:</b> Ginger</p>
 <p><b>Botanical Name:</b> Zingiber officinale</p>
@@ -109,8 +100,6 @@ footer {
 
 <h2>⚠️ Precautions</h2>
 <p>Excess consumption may cause mild irritation. Use in moderation.</p>
-
-<!-- NEW CONTENT -->
 
 <h2>🧬 Overview</h2>
 <p>Ginger (Zingiber officinale) is a widely used medicinal plant known for its therapeutic, culinary, and pharmacological significance. It is extensively studied for digestion, inflammation, and immune support.</p>
@@ -168,13 +157,13 @@ footer {
 <p>NCBI</p>
 <p>WHO</p>
 <p>Ministry of AYUSH</p>
+
 </div>
 
-<div class="right">
+<!-- 🔥 MODEL MOVED HERE -->
+<div class="model-section">
 <h2 style="text-align:center;">🌐 3D Model</h2>
 <div class="model-container" id="model"></div>
-</div>
-
 </div>
 
 <footer>
@@ -190,76 +179,72 @@ footer {
 const scene = new THREE.Scene();
 const container = document.getElementById("model");
 
+// Camera
 const camera = new THREE.PerspectiveCamera(
-    75,
+    60,
     container.clientWidth / container.clientHeight,
     0.1,
     1000
 );
 
+// Renderer
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
 // Lighting
-const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
-scene.add(light);
+const light1 = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
+scene.add(light1);
+
+const light2 = new THREE.DirectionalLight(0xffffff, 2);
+light2.position.set(5,5,5);
+scene.add(light2);
 
 // Controls
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
-controls.enableZoom = true;
-controls.enablePan = false;
+controls.enableDamping = true;
 
+// Model
 let model;
-
 const loader = new THREE.GLTFLoader();
-loader.load(
-    './Garlic.glb', // 🔥 CHANGE THIS FILE NAME
-    function (gltf) {
 
-        model = gltf.scene;
+loader.load('./Garlic.glb', function (gltf) {
 
-        // ✅ CENTER MODEL
-        const box = new THREE.Box3().setFromObject(model);
-        const size = box.getSize(new THREE.Vector3());
-        const center = box.getCenter(new THREE.Vector3());
+    model = gltf.scene;
 
-        model.position.sub(center);
+    const box = new THREE.Box3().setFromObject(model);
+    const size = box.getSize(new THREE.Vector3()).length();
+    const center = box.getCenter(new THREE.Vector3());
 
-        // ✅ AUTO CAMERA FIT
-        const maxDim = Math.max(size.x, size.y, size.z);
-        const fov = camera.fov * (Math.PI / 180);
-        let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
+    model.position.sub(center);
+    model.position.y -= 0.4;
 
-        camera.position.z = cameraZ * 1.5;
+    const scaleFactor = 3.5 / size;
+    model.scale.setScalar(scaleFactor);
 
-        scene.add(model);
-    },
-    undefined,
-    function (error) {
-        console.error("Error loading model:", error);
-    }
-);
+    scene.add(model);
 
-// Resize fix
+    camera.position.set(0, size / 3, size * 1.2);
+    controls.target.set(0, -0.3, 0);
+    controls.update();
+
+});
+
+// Resize
 window.addEventListener('resize', () => {
-    const width = container.clientWidth;
-    const height = container.clientHeight;
-
-    renderer.setSize(width, height);
-    camera.aspect = width / height;
+    camera.aspect = container.clientWidth / container.clientHeight;
     camera.updateProjectionMatrix();
+    renderer.setSize(container.clientWidth, container.clientHeight);
 });
 
 // Animation
 function animate() {
     requestAnimationFrame(animate);
 
-    if (model) {
-        model.rotation.y += 0.005;
-    }
+    if (model) model.rotation.y += 0.005;
 
+    controls.update();
     renderer.render(scene, camera);
 }
 
