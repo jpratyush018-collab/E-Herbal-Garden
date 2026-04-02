@@ -44,23 +44,25 @@ nav a {
     min-width: 300px;
 }
 
-.right {
-    flex: 1;
-    min-width: 300px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    overflow: hidden;
-    padding: 10px;
-}
-
 h2 {
     color: #2e7d32;
 }
 
+/* 🔥 MODEL SECTION AT BOTTOM */
+.model-section{
+    margin:40px auto;
+    width:90%;
+    max-width:900px;
+    background:white;
+    border-radius:15px;
+    box-shadow:0 6px 20px rgba(0,0,0,0.15);
+    padding:20px;
+    text-align:center;
+}
+
 .model-container {
     width: 100%;
-    height: 300px;
+    height: 420px;
 }
 
 footer {
@@ -135,12 +137,12 @@ footer {
 <p>NCBI, WHO, Ministry of AYUSH (Government of India)</p>
 
 </div>
-
-<div class="right">
-<h2 style="text-align:center;">🌐 3D Neem Model</h2>
-<div class="model-container" id="model"></div>
 </div>
 
+<!-- 🔥 MOVED 3D MODEL TO BOTTOM -->
+<div class="model-section">
+<h2>🌐 3D Neem Model</h2>
+<div class="model-container" id="model"></div>
 </div>
 
 <footer>
@@ -172,8 +174,6 @@ scene.add(light);
 
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
-controls.minDistance = 1;
-controls.maxDistance = 10;
 
 let model;
 const loader = new THREE.GLTFLoader();
@@ -181,6 +181,7 @@ const loader = new THREE.GLTFLoader();
 loader.load(
     './neem.glb',
     function (gltf) {
+
         model = gltf.scene;
 
         const box = new THREE.Box3().setFromObject(model);
@@ -188,15 +189,15 @@ loader.load(
         const center = box.getCenter(new THREE.Vector3());
 
         model.position.sub(center);
-        model.position.y -= 0.4;
 
-        const scaleFactor = 3.5 / size;
+        // 🔥 PERFECT RESIZE
+        const scaleFactor = 2.5 / size;
         model.scale.setScalar(scaleFactor);
 
         scene.add(model);
 
-        camera.position.set(0, size / 3, size * 1.2);
-        controls.target.set(0, -0.3, 0);
+        camera.position.set(0, 1, 3);
+        controls.target.set(0, 0, 0);
         controls.update();
     },
     undefined,
