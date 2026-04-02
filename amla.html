@@ -46,7 +46,7 @@ p {
     line-height: 1.6;
 }
 
-/* MODEL SECTION AT BOTTOM */
+/* MODEL SECTION */
 .model-section{
     margin:40px auto;
     max-width:900px;
@@ -174,7 +174,7 @@ footer {
 
 </div>
 
-<!-- 🌐 MODEL AT BOTTOM -->
+<!-- MODEL -->
 <div class="model-section">
 <h2 style="text-align:center;">🌐 3D Amla Model</h2>
 <div class="model-container" id="model"></div>
@@ -184,7 +184,6 @@ footer {
 © 2026 E-Herbal Garden | Designed with 🌱 | Created by Team Beginners
 </footer>
 
-<!-- Three.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
@@ -200,29 +199,63 @@ container.clientWidth / container.clientHeight,
 1000
 );
 
-const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+const renderer = new THREE.WebGLRenderer({ antialias:true, alpha:true });
 renderer.setSize(container.clientWidth, container.clientHeight);
+renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
+// Lighting
 const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
 scene.add(light);
 
+// Controls
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
 
 let amlaModel;
 const loader = new THREE.GLTFLoader();
 
 loader.load('./Amla.glb', function(gltf) {
+
     amlaModel = gltf.scene;
+
+    // 🔥 AUTO CENTER + RESIZE
+    const box = new THREE.Box3().setFromObject(amlaModel);
+    const size = box.getSize(new THREE.Vector3()).length();
+    const center = box.getCenter(new THREE.Vector3());
+
+    amlaModel.position.sub(center);
+
+    // 🔥 SCALE FIX (IMPORTANT)
+    const scale = 3 / size;
+    amlaModel.scale.setScalar(scale);
+
     scene.add(amlaModel);
-    camera.position.set(0,1,5);
+
+    // 🔥 PERFECT CAMERA VIEW
+    camera.position.set(0, size/2, size * 1.5);
+    controls.target.set(0,0,0);
+    controls.update();
+
 }, undefined, function(error) {
     console.error(error);
 });
 
+// Resize fix
+window.addEventListener('resize', () => {
+    camera.aspect = container.clientWidth / container.clientHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(container.clientWidth, container.clientHeight);
+});
+
+// Animation
 function animate() {
 requestAnimationFrame(animate);
-if (amlaModel) amlaModel.rotation.y += 0.005;
+
+if (amlaModel) {
+    amlaModel.rotation.y += 0.004;
+}
+
 controls.update();
 renderer.render(scene, camera);
 }
