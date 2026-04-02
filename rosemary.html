@@ -45,8 +45,7 @@ nav a {
 }
 
 .right {
-    flex: 1;
-    min-width: 300px;
+    width: 100%;
     background: white;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -61,17 +60,24 @@ p {
     line-height: 1.6;
 }
 
-.model-container {
-    width: 100%;
-    height: 500px;
-}
-
 footer {
     background: #145a1f;
     color: white;
     text-align: center;
     padding: 15px;
     margin-top: 20px;
+}
+
+/* 3D BOTTOM */
+.bottom-3d {
+    width: 100%;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+.model-container {
+    width: 100%;
+    height: 70vh;
 }
 </style>
 </head>
@@ -97,37 +103,20 @@ footer {
 <h2>🌱 Basic Information</h2>
 <p><b>Common Name:</b> Rosemary</p>
 <p><b>Botanical Name:</b> Rosmarinus officinalis</p>
-<p>Rosemary is a fragrant evergreen herb native to the Mediterranean region, widely known for its culinary, medicinal, and aromatic uses.</p>
 
 <h2>🌿 Medicinal Uses</h2>
-<p>🧠 <b>Memory Enhancement:</b> Improves concentration and brain function.</p>
-<p>💆 <b>Stress Relief:</b> Helps reduce stress and mental fatigue.</p>
-<p>🦠 <b>Antimicrobial:</b> Fights bacteria and infections.</p>
-<p>🔥 <b>Anti-inflammatory:</b> Reduces inflammation and pain.</p>
-<p>🫀 <b>Circulation Support:</b> Improves blood circulation.</p>
-
-<h2>🌍 Habitat</h2>
-<p>Rosemary grows naturally in warm, dry climates, especially in Mediterranean regions. It thrives in sunny environments with well-drained soil and is commonly cultivated in gardens worldwide.</p>
-
-<h2>🌾 Cultivation</h2>
-<p><b>Sunlight:</b> Requires full sunlight</p>
-<p><b>Soil:</b> Well-drained, sandy or loamy soil</p>
-<p><b>Watering:</b> Low to moderate (avoid overwatering)</p>
-<p><b>Propagation:</b> Grown from seeds or stem cuttings</p>
-<p>It is a hardy plant that requires minimal maintenance once established.</p>
-
-<h2>⚠️ Precautions</h2>
-<p>Generally safe when used in moderate amounts.</p>
-<p>Excessive use may cause digestive discomfort or allergic reactions.</p>
-<p>Pregnant women and individuals with medical conditions should consult a healthcare professional before use.</p>
+<p>Memory enhancement, stress relief, antimicrobial, anti-inflammatory, circulation support</p>
 
 </div>
 
-<div class="right">
-<h2 style="text-align:center;">🌐 3D Model</h2>
-<div class="model-container" id="model"></div>
 </div>
 
+<!-- ✅ 3D MODEL MOVED TO BOTTOM -->
+<div class="bottom-3d">
+    <div class="right">
+        <h2 style="text-align:center;">🌐 3D Model</h2>
+        <div class="model-container" id="model"></div>
+    </div>
 </div>
 
 <footer>
@@ -151,15 +140,13 @@ const camera = new THREE.PerspectiveCamera(
 );
 
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
-// Lighting
-const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
-scene.add(light);
+// light
+scene.add(new THREE.HemisphereLight(0xffffff, 0x444444, 1.5));
 
-// Controls
+// controls
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
 controls.enableZoom = true;
 controls.enablePan = false;
@@ -167,45 +154,45 @@ controls.enablePan = false;
 let model;
 
 const loader = new THREE.GLTFLoader();
-loader.load(
-    './Rosemary.glb',
-    function (gltf) {
+loader.load('./Rosemary.glb', function (gltf) {
 
-        model = gltf.scene;
+    model = gltf.scene;
 
-        const box = new THREE.Box3().setFromObject(model);
-        const size = box.getSize(new THREE.Vector3());
-        const center = box.getCenter(new THREE.Vector3());
+    const box = new THREE.Box3().setFromObject(model);
+    const size = box.getSize(new THREE.Vector3());
+    const center = box.getCenter(new THREE.Vector3());
 
-        model.position.sub(center);
+    model.position.sub(center);
 
-        const maxDim = Math.max(size.x, size.y, size.z);
-        const fov = camera.fov * (Math.PI / 180);
-        let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
+    const maxDim = Math.max(size.x, size.y, size.z);
+    const fov = camera.fov * Math.PI / 180;
+    let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
 
-        camera.position.z = cameraZ * 1.5;
+    camera.position.z = cameraZ * 1.5;
 
-        scene.add(model);
-    }
-);
+    scene.add(model);
 
-// Resize fix
-window.addEventListener('resize', () => {
-    const width = container.clientWidth;
-    const height = container.clientHeight;
-
-    renderer.setSize(width, height);
-    camera.aspect = width / height;
-    camera.updateProjectionMatrix();
+    resizeModel(); // initial fix
 });
 
-// Animation
+// ✅ RESPONSIVE RESIZE FIX
+function resizeModel() {
+    const w = container.clientWidth;
+    const h = container.clientHeight;
+
+    renderer.setSize(w, h);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+}
+
+window.addEventListener("resize", resizeModel);
+new ResizeObserver(resizeModel).observe(container);
+
+// animation
 function animate() {
     requestAnimationFrame(animate);
 
-    if (model) {
-        model.rotation.y += 0.005;
-    }
+    if (model) model.rotation.y += 0.005;
 
     renderer.render(scene, camera);
 }
