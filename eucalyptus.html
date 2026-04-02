@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Plant - E-Herbal Garden</title>
+<title>Eucalyptus - E-Herbal Garden</title>
 
 <style>
 body {
@@ -79,8 +79,8 @@ footer {
 <body>
 
 <header>
-<h1> Eucalyptus </h1>
-<p>Tagline of the Plant</p>
+<h1>🌿 Eucalyptus (Eucalyptus globulus)</h1>
+<p>“Eucalyptus – The Fragrant Healer of Lungs and Body”</p>
 </header>
 
 <nav>
@@ -95,20 +95,31 @@ footer {
 <div class="left">
 
 <h2>🌱 Basic Information</h2>
-<p><b>Common Name:</b> </p>
-<p><b>Botanical Name:</b> </p>
+<p><b>Common Name:</b> Eucalyptus</p>
+<p><b>Botanical Name:</b> Eucalyptus globulus</p>
+<p>Eucalyptus is a fast-growing evergreen tree known for its aromatic leaves and medicinal properties, especially in respiratory health.</p>
 
 <h2>🌿 Medicinal Uses</h2>
-<p>Write here...</p>
+<p>🫁 <b>Respiratory Relief:</b> Eucalyptus oil is used for colds, coughs, and asthma.</p>
+<p>🦠 <b>Antimicrobial:</b> Contains compounds that help fight bacteria and viruses.</p>
+<p>💆 <b>Pain Relief:</b> Used in ointments for muscle and joint pain.</p>
+<p>🌿 <b>Aromatherapy:</b> Eucalyptus scent helps reduce stress and mental fatigue.</p>
+<p>🩹 <b>Wound Healing:</b> Leaf extracts have anti-inflammatory and antiseptic properties.</p>
 
 <h2>🌍 Habitat</h2>
-<p>Write here...</p>
+<p>Native to Australia, eucalyptus trees grow in temperate and tropical climates. They thrive in well-drained soils and are often found in plantations and natural forests worldwide.</p>
 
 <h2>🌾 Cultivation</h2>
-<p>Write here...</p>
+<p><b>Sunlight:</b> Full sun</p>
+<p><b>Soil:</b> Well-drained sandy or loamy soil</p>
+<p><b>Watering:</b> Moderate; drought-tolerant once established</p>
+<p><b>Propagation:</b> From seeds or cuttings</p>
+<p>Fast-growing tree that can reach large sizes; commonly used for timber, oil, and landscaping.</p>
 
 <h2>⚠️ Precautions</h2>
-<p>Write here...</p>
+<p>Eucalyptus oil should never be ingested in large quantities; may cause nausea, vomiting, or seizures.</p>
+<p>Avoid applying undiluted oil directly to skin; may cause irritation.</p>
+<p>Keep away from children and pets. Consult a doctor if pregnant or on medication.</p>
 
 </div>
 
@@ -157,30 +168,18 @@ let model;
 
 const loader = new THREE.GLTFLoader();
 loader.load(
-    './Eucalyptus.glb', // 🔥 CHANGE THIS FILE NAME
+    './Eucalyptus.glb',  // 3D model of Eucalyptus
     function (gltf) {
-
         model = gltf.scene;
-
-        // ✅ CENTER MODEL
         const box = new THREE.Box3().setFromObject(model);
         const size = box.getSize(new THREE.Vector3());
         const center = box.getCenter(new THREE.Vector3());
-
         model.position.sub(center);
-
-        // ✅ AUTO CAMERA FIT
         const maxDim = Math.max(size.x, size.y, size.z);
         const fov = camera.fov * (Math.PI / 180);
         let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
-
         camera.position.z = cameraZ * 1.5;
-
         scene.add(model);
-    },
-    undefined,
-    function (error) {
-        console.error("Error loading model:", error);
     }
 );
 
@@ -188,7 +187,6 @@ loader.load(
 window.addEventListener('resize', () => {
     const width = container.clientWidth;
     const height = container.clientHeight;
-
     renderer.setSize(width, height);
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
@@ -197,11 +195,7 @@ window.addEventListener('resize', () => {
 // Animation
 function animate() {
     requestAnimationFrame(animate);
-
-    if (model) {
-        model.rotation.y += 0.005;
-    }
-
+    if (model) model.rotation.y += 0.005;
     renderer.render(scene, camera);
 }
 
