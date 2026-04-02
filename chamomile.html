@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Plant - E-Herbal Garden</title>
+<title>Chamomile - E-Herbal Garden</title>
 
 <style>
 body {
@@ -79,8 +79,8 @@ footer {
 <body>
 
 <header>
-<h1> Chamomile </h1>
-<p>Tagline of the Plant</p>
+<h1>🌼 Chamomile (Matricaria chamomilla)</h1>
+<p>“Chamomile – The Gentle Healer for Mind and Body”</p>
 </header>
 
 <nav>
@@ -95,20 +95,32 @@ footer {
 <div class="left">
 
 <h2>🌱 Basic Information</h2>
-<p><b>Common Name:</b> </p>
-<p><b>Botanical Name:</b> </p>
+<p><b>Common Name:</b> Chamomile</p>
+<p><b>Botanical Name:</b> Matricaria chamomilla</p>
+<p>Chamomile is a well-known medicinal herb famous for its calming properties and is widely used in herbal teas, skincare, and traditional medicine.</p>
 
 <h2>🌿 Medicinal Uses</h2>
-<p>Write here...</p>
+<p>😌 <b>Relaxation & Stress Relief:</b> Helps calm the mind and reduce anxiety.</p>
+<p>😴 <b>Sleep Aid:</b> Promotes better sleep and helps with insomnia.</p>
+<p>🦠 <b>Anti-inflammatory:</b> Reduces inflammation and soothes irritation.</p>
+<p>🍵 <b>Digestive Health:</b> Helps relieve indigestion, bloating, and stomach cramps.</p>
+<p>💆 <b>Skin Care:</b> Used for soothing skin, reducing redness, and healing wounds.</p>
 
 <h2>🌍 Habitat</h2>
-<p>Write here...</p>
+<p>Chamomile is native to Europe and Western Asia but is now cultivated worldwide. It grows well in temperate climates and open sunny areas.</p>
 
 <h2>🌾 Cultivation</h2>
-<p>Write here...</p>
+<p><b>Sunlight:</b> Prefers full sunlight</p>
+<p><b>Soil:</b> Well-drained, moderately fertile soil</p>
+<p><b>Watering:</b> Moderate watering required</p>
+<p><b>Propagation:</b> Grown from seeds</p>
+<p>Chamomile is easy to grow and is commonly cultivated in gardens and farms.</p>
 
 <h2>⚠️ Precautions</h2>
-<p>Write here...</p>
+<p>Generally safe when consumed in moderate amounts.</p>
+<p>May cause allergic reactions in individuals sensitive to daisy-family plants.</p>
+<p>Excessive use may lead to nausea or dizziness.</p>
+<p>Consult a healthcare professional if pregnant or under medication.</p>
 
 </div>
 
@@ -157,19 +169,17 @@ let model;
 
 const loader = new THREE.GLTFLoader();
 loader.load(
-    './Chamomile.glb', // 🔥 CHANGE THIS FILE NAME
+    './Chamomile.glb',
     function (gltf) {
 
         model = gltf.scene;
 
-        // ✅ CENTER MODEL
         const box = new THREE.Box3().setFromObject(model);
         const size = box.getSize(new THREE.Vector3());
         const center = box.getCenter(new THREE.Vector3());
 
         model.position.sub(center);
 
-        // ✅ AUTO CAMERA FIT
         const maxDim = Math.max(size.x, size.y, size.z);
         const fov = camera.fov * (Math.PI / 180);
         let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
@@ -177,10 +187,6 @@ loader.load(
         camera.position.z = cameraZ * 1.5;
 
         scene.add(model);
-    },
-    undefined,
-    function (error) {
-        console.error("Error loading model:", error);
     }
 );
 
