@@ -228,10 +228,49 @@ font-size:14px;
 </style>
 
 <script>
-function toggleDetails(card){
-    const detail = card.querySelector('.details');
-    detail.style.display = detail.style.display === 'block' ? 'none' : 'block';
-}
+const container = document.getElementById("plant-container");
+
+// Get plant from URL
+const params = new URLSearchParams(window.location.search);
+const plantName = params.get("plant");
+
+// Fetch JSON data
+fetch("plant.json")
+  .then(res => res.json())
+  .then(plants => {
+
+    if (plantName && plants[plantName]) {
+      const plant = plants[plantName];
+
+      container.innerHTML = `
+        <h1>${plant.name}</h1>
+        <img src="${plant.img}" alt="${plant.name}">
+        <p>${plant.desc}</p>
+
+        <model-viewer 
+          src="${plant.model}" 
+          auto-rotate 
+          camera-controls 
+          style="width:100%; height:300px;">
+        </model-viewer>
+      `;
+    } 
+    else {
+      // Home Page (List all plants)
+      let list = "<h2>Select a Plant 🌱</h2>";
+
+      for (let key in plants) {
+        list += `<a href="?plant=${key}">${plants[key].name}</a><br><br>`;
+      }
+
+      container.innerHTML = list;
+    }
+
+  })
+  .catch(err => {
+    container.innerHTML = "Error loading data!";
+    console.error(err);
+  });
 </script>
 
 </head>
