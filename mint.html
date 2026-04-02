@@ -42,15 +42,6 @@ nav a {
     flex: 1;
 }
 
-.right {
-    flex: 1;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    overflow: hidden;
-    padding: 10px;
-}
-
 h2 {
     color: #2e7d32;
 }
@@ -59,10 +50,21 @@ p {
     line-height: 1.6;
 }
 
-/* ✅ Reduced height */
+/* 🔥 MODEL AT BOTTOM */
+.model-section{
+    margin:40px auto;
+    width:90%;
+    max-width:900px;
+    background:white;
+    border-radius:15px;
+    box-shadow:0 6px 20px rgba(0,0,0,0.15);
+    padding:20px;
+    text-align:center;
+}
+
 .model-container {
     width: 100%;
-    height: 300px;
+    height: 400px;
 }
 
 footer {
@@ -131,56 +133,25 @@ footer {
 <th>Feature</th>
 <th>Details</th>
 </tr>
-<tr>
-<td>Common Name</td>
-<td>Mint / Pudina</td>
-</tr>
-<tr>
-<td>Botanical Name</td>
-<td>Mentha</td>
-</tr>
-<tr>
-<td>Family</td>
-<td>Lamiaceae</td>
-</tr>
-<tr>
-<td>Origin</td>
-<td>Europe and Asia</td>
-</tr>
-<tr>
-<td>Plant Type</td>
-<td>Perennial herb</td>
-</tr>
-<tr>
-<td>Parts Used</td>
-<td>Leaves, stems</td>
-</tr>
-<tr>
-<td>Key Compounds</td>
-<td>Menthol, Menthone, Flavonoids, Rosmarinic acid</td>
-</tr>
-<tr>
-<td>Main Uses</td>
-<td>Digestive aid, antimicrobial, cooling, anti-inflammatory</td>
-</tr>
-<tr>
-<td>Habitat</td>
-<td>Moist, partially sunny environments</td>
-</tr>
-<tr>
-<td>Precautions</td>
-<td>Excess use may cause acidity or irritation</td>
-</tr>
+<tr><td>Common Name</td><td>Mint / Pudina</td></tr>
+<tr><td>Botanical Name</td><td>Mentha</td></tr>
+<tr><td>Family</td><td>Lamiaceae</td></tr>
+<tr><td>Origin</td><td>Europe and Asia</td></tr>
+<tr><td>Plant Type</td><td>Perennial herb</td></tr>
+<tr><td>Parts Used</td><td>Leaves, stems</td></tr>
+<tr><td>Key Compounds</td><td>Menthol, Menthone, Flavonoids, Rosmarinic acid</td></tr>
+<tr><td>Main Uses</td><td>Digestive aid, antimicrobial, cooling, anti-inflammatory</td></tr>
+<tr><td>Habitat</td><td>Moist, partially sunny environments</td></tr>
+<tr><td>Precautions</td><td>Excess use may cause acidity or irritation</td></tr>
 </table>
 
-
+</div>
 </div>
 
-<div class="right">
-<h2 style="text-align:center;">🌐 3D Mint Model</h2>
+<!-- 🔥 3D MODEL MOVED TO BOTTOM -->
+<div class="model-section">
+<h2>🌐 3D Mint Model</h2>
 <div class="model-container" id="model"></div>
-</div>
-
 </div>
 
 <footer>
@@ -193,11 +164,9 @@ footer {
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
 
 <script>
-// Scene
 const scene = new THREE.Scene();
 const container = document.getElementById("model");
 
-// Camera
 const camera = new THREE.PerspectiveCamera(
     60,
     container.clientWidth / container.clientHeight,
@@ -205,7 +174,6 @@ const camera = new THREE.PerspectiveCamera(
     1000
 );
 
-// Renderer
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
@@ -218,10 +186,8 @@ scene.add(light);
 // Controls
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
-controls.minDistance = 1;
-controls.maxDistance = 10;
 
-// Load Model (UNCHANGED NAME)
+// Load Model
 let mintModel;
 const loader = new THREE.GLTFLoader();
 
@@ -229,35 +195,27 @@ loader.load('./Mint.glb', function (gltf) {
 
     mintModel = gltf.scene;
 
-    // 🔥 Center + Fit
     const box = new THREE.Box3().setFromObject(mintModel);
     const size = box.getSize(new THREE.Vector3()).length();
     const center = box.getCenter(new THREE.Vector3());
 
     mintModel.position.sub(center);
 
-    // 🔥 Fix bottom empty space
-    mintModel.position.y -= 0.4;
-
-    // 🔥 Scale properly
-    const scaleFactor = 3.5 / size;
+    // 🔥 PERFECT RESIZE
+    const scaleFactor = 2.5 / size;
     mintModel.scale.setScalar(scaleFactor);
 
     scene.add(mintModel);
 
-    // 🔥 Better camera
-    camera.position.set(0, size / 3, size * 1.2);
-
-    // 🔥 Focus adjustment
-    controls.target.set(0, -0.3, 0);
-
+    camera.position.set(0, 1, 3);
+    controls.target.set(0, 0, 0);
     controls.update();
 
 }, undefined, function(error) {
     console.error("Error loading model:", error);
 });
 
-// Resize
+// Resize fix
 window.addEventListener('resize', () => {
     camera.aspect = container.clientWidth / container.clientHeight;
     camera.updateProjectionMatrix();
