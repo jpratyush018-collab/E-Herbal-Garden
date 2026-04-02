@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Plant - E-Herbal Garden</title>
+<title>Rosemary - E-Herbal Garden</title>
 
 <style>
 body {
@@ -79,8 +79,8 @@ footer {
 <body>
 
 <header>
-<h1> Rosemary </h1>
-<p>Tagline of the Plant</p>
+<h1>🌿 Rosemary (Rosmarinus officinalis)</h1>
+<p>“Rosemary – The Herb of Memory and Vitality”</p>
 </header>
 
 <nav>
@@ -95,20 +95,31 @@ footer {
 <div class="left">
 
 <h2>🌱 Basic Information</h2>
-<p><b>Common Name:</b> </p>
-<p><b>Botanical Name:</b> </p>
+<p><b>Common Name:</b> Rosemary</p>
+<p><b>Botanical Name:</b> Rosmarinus officinalis</p>
+<p>Rosemary is a fragrant evergreen herb native to the Mediterranean region, widely known for its culinary, medicinal, and aromatic uses.</p>
 
 <h2>🌿 Medicinal Uses</h2>
-<p>Write here...</p>
+<p>🧠 <b>Memory Enhancement:</b> Improves concentration and brain function.</p>
+<p>💆 <b>Stress Relief:</b> Helps reduce stress and mental fatigue.</p>
+<p>🦠 <b>Antimicrobial:</b> Fights bacteria and infections.</p>
+<p>🔥 <b>Anti-inflammatory:</b> Reduces inflammation and pain.</p>
+<p>🫀 <b>Circulation Support:</b> Improves blood circulation.</p>
 
 <h2>🌍 Habitat</h2>
-<p>Write here...</p>
+<p>Rosemary grows naturally in warm, dry climates, especially in Mediterranean regions. It thrives in sunny environments with well-drained soil and is commonly cultivated in gardens worldwide.</p>
 
 <h2>🌾 Cultivation</h2>
-<p>Write here...</p>
+<p><b>Sunlight:</b> Requires full sunlight</p>
+<p><b>Soil:</b> Well-drained, sandy or loamy soil</p>
+<p><b>Watering:</b> Low to moderate (avoid overwatering)</p>
+<p><b>Propagation:</b> Grown from seeds or stem cuttings</p>
+<p>It is a hardy plant that requires minimal maintenance once established.</p>
 
 <h2>⚠️ Precautions</h2>
-<p>Write here...</p>
+<p>Generally safe when used in moderate amounts.</p>
+<p>Excessive use may cause digestive discomfort or allergic reactions.</p>
+<p>Pregnant women and individuals with medical conditions should consult a healthcare professional before use.</p>
 
 </div>
 
@@ -157,19 +168,17 @@ let model;
 
 const loader = new THREE.GLTFLoader();
 loader.load(
-    './Rosemary.glb', // 🔥 CHANGE THIS FILE NAME
+    './Rosemary.glb',
     function (gltf) {
 
         model = gltf.scene;
 
-        // ✅ CENTER MODEL
         const box = new THREE.Box3().setFromObject(model);
         const size = box.getSize(new THREE.Vector3());
         const center = box.getCenter(new THREE.Vector3());
 
         model.position.sub(center);
 
-        // ✅ AUTO CAMERA FIT
         const maxDim = Math.max(size.x, size.y, size.z);
         const fov = camera.fov * (Math.PI / 180);
         let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
@@ -177,10 +186,6 @@ loader.load(
         camera.position.z = cameraZ * 1.5;
 
         scene.add(model);
-    },
-    undefined,
-    function (error) {
-        console.error("Error loading model:", error);
     }
 );
 
