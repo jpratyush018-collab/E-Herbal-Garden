@@ -47,15 +47,6 @@ nav a {
     min-width: 300px;
 }
 
-.right {
-    flex: 1;
-    min-width: 300px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    overflow: hidden;
-}
-
 h2 {
     color: #2e7d32;
 }
@@ -64,9 +55,18 @@ p {
     line-height: 1.6;
 }
 
+/* 🔥 Bottom model section */
+.model-section {
+    margin: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 15px;
+}
+
 .model-container {
     width: 100%;
-    height: 500px;
+    height: 420px;
 }
 
 /* FOOTER */
@@ -162,11 +162,12 @@ footer {
 
 </div>
 
-<div class="right">
-<h2 style="text-align:center;">🌐 3D Onion Model</h2>
-<div class="model-container" id="model"></div>
 </div>
 
+<!-- 🔥 MODEL AT BOTTOM -->
+<div class="model-section">
+<h2 style="text-align:center;">🌐 3D Onion Model</h2>
+<div class="model-container" id="model"></div>
 </div>
 
 <footer>
@@ -184,7 +185,7 @@ const container = document.getElementById("model");
 
 // Camera
 const camera = new THREE.PerspectiveCamera(
-    75,
+    60,
     container.clientWidth / container.clientHeight,
     0.1,
     1000
@@ -200,39 +201,49 @@ container.appendChild(renderer.domElement);
 const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
 scene.add(light);
 
+// Controls
+const controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.enableZoom = true;
+controls.enablePan = false;
+
 // Model
 let onionModel;
-
 const loader = new THREE.GLTFLoader();
+
 loader.load(
     './Onion.glb',
     function (gltf) {
+
         onionModel = gltf.scene;
 
         const box = new THREE.Box3().setFromObject(onionModel);
-        const size = box.getSize(new THREE.Vector3());
+        const size = box.getSize(new THREE.Vector3()).length();
         const center = box.getCenter(new THREE.Vector3());
 
+        // Center model
         onionModel.position.sub(center);
 
-        const maxDim = Math.max(size.x, size.y, size.z);
-        const fov = camera.fov * (Math.PI / 180);
-        let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
+        // Ground alignment
+        onionModel.position.y -= box.min.y;
 
-        camera.position.z = cameraZ * 1.5;
+        // Better scale
+        const scaleFactor = 2.5 / size;
+        onionModel.scale.setScalar(scaleFactor);
 
         scene.add(onionModel);
+
+        // Camera adjustment
+        camera.position.set(0, size / 2, size * 1.5);
+
+        controls.target.set(0, 0, 0);
+        controls.update();
     },
     undefined,
     function(error) {
         console.error("Error loading model:", error);
     }
 );
-
-// Controls
-const controls = new THREE.OrbitControls(camera, renderer.domElement);
-controls.enableZoom = true;
-controls.enablePan = false;
 
 // Resize
 window.addEventListener('resize', () => {
@@ -247,7 +258,10 @@ window.addEventListener('resize', () => {
 // Animation
 function animate() {
     requestAnimationFrame(animate);
+
     if (onionModel) onionModel.rotation.y += 0.005;
+
+    controls.update();
     renderer.render(scene, camera);
 }
 animate();
