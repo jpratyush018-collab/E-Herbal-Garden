@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Plant - E-Herbal Garden</title>
+<title>Coriander - E-Herbal Garden</title>
 
 <style>
 body {
@@ -79,8 +79,8 @@ footer {
 <body>
 
 <header>
-<h1> Coriander </h1>
-<p>Tagline of the Plant</p>
+<h1>🌿 Coriander (Dhaniya)</h1>
+<p>The Aromatic Herb for Health & Flavor</p>
 </header>
 
 <nav>
@@ -95,32 +95,77 @@ footer {
 <div class="left">
 
 <h2>🌱 Basic Information</h2>
-<p><b>Common Name:</b> </p>
-<p><b>Botanical Name:</b> </p>
+<p><b>Common Name:</b> Coriander / Dhaniya</p>
+<p><b>Botanical Name:</b> Coriandrum sativum</p>
+<p><b>Family:</b> Apiaceae</p>
+<p><b>Origin:</b> Mediterranean and Western Asia</p>
+<p><b>Plant Type:</b> Annual herb</p>
+<p><b>Parts Used:</b> Leaves, seeds, roots</p>
+
+<h2>🧬 Overview</h2>
+<p>Coriander is a popular culinary and medicinal herb with aromatic leaves and seeds. It has been used traditionally for digestive, anti-inflammatory, and antimicrobial purposes.</p>
 
 <h2>🌿 Medicinal Uses</h2>
-<p>Write here...</p>
+<p>✅ Improves digestion and relieves bloating</p>
+<p>✅ Antioxidant and anti-inflammatory properties</p>
+<p>✅ Helps regulate blood sugar levels</p>
+<p>✅ Supports heart health and reduces cholesterol</p>
+<p>✅ Acts as a natural antimicrobial and detoxifying agent</p>
 
 <h2>🌍 Habitat</h2>
-<p>Write here...</p>
+<p>Coriander grows in temperate to subtropical climates, preferring well-drained, fertile soil with full sunlight. It is commonly cultivated in home gardens and agricultural fields worldwide.</p>
 
 <h2>🌾 Cultivation</h2>
-<p>Write here...</p>
+<p><b>Propagation:</b> From seeds sown directly into soil</p>
+<p><b>Soil:</b> Fertile, well-drained, rich in organic matter</p>
+<p><b>Sunlight:</b> Full sun for best growth</p>
+<p><b>Watering:</b> Moderate and consistent to keep soil moist</p>
+<p><b>Harvest:</b> Leaves harvested 3–4 weeks after sowing, seeds after flowering</p>
 
 <h2>⚠️ Precautions</h2>
-<p>Write here...</p>
+<p>Excessive consumption may cause mild allergic reactions in sensitive individuals. Use moderately if prone to allergies or digestive sensitivity.</p>
+
+<h2>🧪 Bioactive Compounds</h2>
+<p><b>Essential Oils:</b> Linalool, Geraniol – antimicrobial</p>
+<p><b>Flavonoids:</b> Quercetin – antioxidant</p>
+<p><b>Vitamins:</b> A, C, K – immune and bone health</p>
+<p><b>Minerals:</b> Iron, potassium – cardiovascular support</p>
+
+<h2>💊 Pharmacological Properties</h2>
+<p>Antioxidant</p>
+<p>Anti-inflammatory</p>
+<p>Antimicrobial</p>
+<p>Digestive support</p>
+<p>Blood sugar regulation</p>
+
+<h2>🩺 Therapeutic Applications</h2>
+<p>Promotes healthy digestion</p>
+<p>Reduces inflammation and oxidative stress</p>
+<p>Helps in managing diabetes and cholesterol</p>
+<p>Supports immunity and detoxification</p>
+
+<h2>⚙️ Mechanism of Action</h2>
+<p>Flavonoids and essential oils neutralize free radicals, improve lipid metabolism, and inhibit microbial growth. Leaves and seeds enhance digestion and stimulate metabolism.</p>
+
+<h2>🌍 Modern Relevance</h2>
+<p>Coriander is widely recognized by WHO and NCBI for its medicinal and culinary benefits. It is studied for its antioxidant, antimicrobial, and hypoglycemic properties.</p>
+
+<h2>📚 Sources</h2>
+<p>NCBI</p>
+<p>WHO</p>
+<p>Ministry of AYUSH</p>
 
 </div>
 
 <div class="right">
-<h2 style="text-align:center;">🌐 3D Model</h2>
+<h2 style="text-align:center;">🌐 3D Coriander Model</h2>
 <div class="model-container" id="model"></div>
 </div>
 
 </div>
 
 <footer>
-© 2026 E-Herbal Garden
+© 2026 E-Herbal Garden | Designed with 🌱 | Created by Team Beginners
 </footer>
 
 <!-- Three.js -->
@@ -144,11 +189,9 @@ renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
-// Lighting
 const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
 scene.add(light);
 
-// Controls
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
 controls.enableZoom = true;
 controls.enablePan = false;
@@ -157,19 +200,16 @@ let model;
 
 const loader = new THREE.GLTFLoader();
 loader.load(
-    './Coriander.glb', // 🔥 CHANGE THIS FILE NAME
+    './Coriander.glb',
     function (gltf) {
-
         model = gltf.scene;
 
-        // ✅ CENTER MODEL
         const box = new THREE.Box3().setFromObject(model);
         const size = box.getSize(new THREE.Vector3());
         const center = box.getCenter(new THREE.Vector3());
 
         model.position.sub(center);
 
-        // ✅ AUTO CAMERA FIT
         const maxDim = Math.max(size.x, size.y, size.z);
         const fov = camera.fov * (Math.PI / 180);
         let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
@@ -179,12 +219,11 @@ loader.load(
         scene.add(model);
     },
     undefined,
-    function (error) {
+    function(error) {
         console.error("Error loading model:", error);
     }
 );
 
-// Resize fix
 window.addEventListener('resize', () => {
     const width = container.clientWidth;
     const height = container.clientHeight;
@@ -194,17 +233,11 @@ window.addEventListener('resize', () => {
     camera.updateProjectionMatrix();
 });
 
-// Animation
 function animate() {
     requestAnimationFrame(animate);
-
-    if (model) {
-        model.rotation.y += 0.005;
-    }
-
+    if (model) model.rotation.y += 0.005;
     renderer.render(scene, camera);
 }
-
 animate();
 </script>
 
