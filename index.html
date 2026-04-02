@@ -5,107 +5,61 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>E-Herbal Garden</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
 <style>
 body{
 margin:0;
-font-family:'Segoe UI', sans-serif;
+font-family:'Poppins', sans-serif;
 background:linear-gradient(to right,#eef7ee,#d0f0d0);
 }
 
-/* ANNOUNCEMENT BAR (COMPACT) */
-.announcement{
-width:100%;
-margin:5px auto;          /* reduced outer space */
-background:linear-gradient(90deg,#1b5e20,#2e7d32);
-color:#fff;
-overflow:hidden;
-white-space:nowrap;
-border-radius:8px;
-box-shadow:0 3px 8px rgba(0,0,0,0.2);
-}
-
-.announcement p{
-display:inline-block;
-padding:2px 0;
-margin:0;                 /* 🔥 removes extra top/bottom space */
-font-size:13px;
-font-weight:500;
-line-height:1.2;          /* 🔥 tight vertical spacing */
-white-space:nowrap;
-animation:scrollText 20s linear infinite;
-}
-
-/* SMOOTH CONTINUOUS SCROLL */
-@keyframes scrollText{
-0%{
-    transform: translateX(100%);
-}
-100%{
-    transform: translateX(-100%);
-}
-}
 /* HEADER */
 .header{
 display:flex;
 align-items:center;
-gap:15px;
+justify-content:center;
 background:linear-gradient(45deg,#2e7d32,#1b5e20);
 color:white;
-padding:15px 25px;
-box-shadow:0 4px 10px rgba(0,0,0,0.2);
-}
-
-.logo{
-width:60px;
-height:60px;
-border-radius:50%;
-border:2px solid white;
-}
-
-.header h1{
-margin:0;
-font-size:28px;
-letter-spacing:1px;
-}
-
-/* NAVBAR */
-nav{
-display:flex;
-justify-content:center;
-gap:40px;
-background:#133d13;
-padding:14px;
-position:sticky;
-top:0;
-z-index:1000;
-}
-
-nav a{
-color:white;
-text-decoration:none;
-font-weight:600;
+padding:15px;
 position:relative;
 }
 
-nav a::after{
-content:'';
+.header-left{
 position:absolute;
-width:0%;
-height:2px;
-bottom:-5px;
-left:0;
-background:#90ee90;
-transition:0.3s;
+left:20px;
+display:flex;
+align-items:center;
+gap:10px;
 }
 
-nav a:hover::after{
-width:100%;
+.logo{width:50px;border-radius:50%;}
+
+nav{display:flex;gap:15px;}
+
+nav a{
+text-decoration:none;
+color:white;
+padding:10px 18px;
+border-radius:30px;
+background:rgba(255,255,255,0.1);
+animation:floatBtn 3s ease-in-out infinite;
 }
 
-/* HERO SECTION */
+nav a:hover{
+background:#66bb6a;
+transform:translateY(-8px) scale(1.05);
+}
+
+@keyframes floatBtn{
+0%,100%{transform:translateY(0);} 
+50%{transform:translateY(-6px);}
+}
+
+/* HERO */
 .hero{
 height:500px;
-background:url("pic1.png") no-repeat center/cover;
+background:url("pic1.png") center/cover;
 display:flex;
 align-items:center;
 justify-content:center;
@@ -116,8 +70,6 @@ position:relative;
 .hero::before{
 content:'';
 position:absolute;
-top:0;
-left:0;
 width:100%;
 height:100%;
 background:rgba(0,0,0,0.5);
@@ -126,94 +78,96 @@ background:rgba(0,0,0,0.5);
 .hero h1{
 position:relative;
 color:white;
-font-size:36px;
-padding:20px 30px;
-border-radius:12px;
-backdrop-filter:blur(5px);
+font-size:40px;
+}
+
+/* HISTORY */
+.history{
+display:flex;
+flex-wrap:wrap;
+padding:50px;
+margin:30px;
+background:linear-gradient(to right,#e8f5e9,#c8e6c9);
+border-radius:20px;
+gap:30px;
+}
+
+.history-left{
+flex:1;
+min-width:300px;
+line-height:1.6;
+}
+
+.history-left ul{
+padding-left:20px;
+}
+
+.timeline{
+margin-top:20px;
+border-left:3px solid #2e7d32;
+padding-left:15px;
+}
+
+.timeline div{margin-bottom:15px;}
+
+/* LEAF */
+.leaf{
+position:absolute;
+width:20px;
+height:20px;
+background:linear-gradient(45deg,#2e7d32,#66bb6a);
+border-radius:50% 0 50% 0;
+animation:fall linear infinite;
+opacity:0.8;
+}
+
+@keyframes fall{
+0%{transform:translate(0,-60px) rotate(0deg);}
+20%{transform:translate(25px,80px) rotate(90deg);}
+40%{transform:translate(-25px,160px) rotate(180deg);}
+60%{transform:translate(20px,240px) rotate(240deg);}
+80%{transform:translate(-15px,300px) rotate(300deg);}
+100%{transform:translate(10px,420px) rotate(360deg);opacity:0;}
 }
 
 /* CARDS */
 .card-container{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:30px;
-padding:50px;
+padding:40px;
 }
 
-/* CARD DESIGN */
 .card{
-background:rgba(255,255,255,0.85);
-padding:25px;
-border-radius:18px;
+background:white;
+padding:15px;
+border-radius:15px;
 text-align:center;
-box-shadow:0 8px 25px rgba(0,0,0,0.15);
-transition:all 0.4s ease;
-cursor:pointer;
-position:relative;
-overflow:hidden;
-backdrop-filter:blur(10px);
-}
-
-/* TOP GLOW LINE */
-.card::before{
-content:'';
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:5px;
-background:linear-gradient(90deg,#00c853,#b2ff59);
-}
-
-/* HOVER EFFECT */
-.card:hover{
-transform:translateY(-10px) scale(1.05);
-box-shadow:0 20px 40px rgba(0,0,0,0.25);
-}
-
-/* ICON STYLE */
-.card img{
-width:80px;
-margin-bottom:10px;
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
 transition:0.3s;
+cursor:pointer;
+overflow:hidden;
 }
 
-/* ICON ANIMATION */
+.card img{
+width:100%;
+height:160px;
+object-fit:cover;
+border-radius:12px;
+transition:0.4s;
+}
+
 .card:hover img{
-transform:rotate(8deg) scale(1.1);
+transform:scale(1.1);
 }
 
-/* TITLE */
 .card h3{
 margin-top:10px;
-font-size:18px;
 color:#1b5e20;
 }
 
-/* DETAILS */
-.details{
-display:none;
-margin-top:12px;
-font-size:14px;
-color:#444;
-line-height:1.5;
-}
-
-/* SOFT BACKGROUND HOVER EFFECT */
-.card::after{
-content:'';
-position:absolute;
-width:200%;
-height:200%;
-background:radial-gradient(circle,#a5d6a7 10%, transparent 60%);
-top:-50%;
-left:-50%;
-opacity:0;
-transition:0.5s;
-}
-
-.card:hover::after{
-opacity:0.2;
+.card:hover{
+transform:translateY(-10px);
 }
 
 /* FOOTER */
@@ -221,34 +175,18 @@ footer{
 background:#1b5e20;
 color:white;
 text-align:center;
-padding:18px;
-margin-top:30px;
-font-size:14px;
+padding:15px;
 }
 </style>
-
-<script>
-function toggleDetails(card){
-    const detail = card.querySelector('.details');
-    detail.style.display = detail.style.display === 'block' ? 'none' : 'block';
-}
-</script>
-
 </head>
 
 <body>
 
-<div class="announcement">
-  <p>
-    🌿 Explore our 3D Plant Viewer! Rotate, zoom and interact with herbal plants in 3D 🌱 ➤ Available now in Plants section &nbsp;&nbsp;&nbsp;&nbsp;
-    🌿 Explore our 3D Plant Viewer! Rotate, zoom and interact with herbal plants in 3D 🌱 ➤ Available now in Plants section
-  </p>
-</div>
-
 <header class="header">
-    <img src="logo.png" class="logo">
-    <h1><i>E-Herbal Garden</i></h1>
-</header>
+<div class="header-left">
+<img src="logo.png" class="logo">
+<h2>E-Herbal Garden</h2>
+</div>
 
 <nav>
 <a href="#">Home</a>
@@ -256,131 +194,95 @@ function toggleDetails(card){
 <a href="about.html">About</a>
 <a href="#">Contact</a>
 </nav>
+</header>
 
 <div class="hero">
-<h1>🌿 Welcome to the Digital Herbal Garden 🌿</h1>
+<h1>🌿 Welcome to Digital Herbal Garden 🌿</h1>
 </div>
 
+<section class="history">
+
+<div class="history-left">
+<h2>History of Ayurveda 🌿</h2>
+
+<p><b>Ayurveda</b>, meaning <i>"Science of Life"</i>, is one of the oldest healing systems in the world, originating over <b>5000 years ago</b> in India.</p>
+
+<p>It focuses on balance between <b>body, mind, and spirit</b> using natural remedies, herbs, diet, and lifestyle practices.</p>
+
+<ul>
+<li><b>Vata</b> – Movement & nervous system</li>
+<li><b>Pitta</b> – Digestion & metabolism</li>
+<li><b>Kapha</b> – Stability & structure</li>
+</ul>
+
+<div class="timeline">
+<div><strong>1500 BCE:</strong> Origin in Vedas</div>
+<div><strong>1000 BCE:</strong> Oral teachings by sages</div>
+<div><strong>500 BCE:</strong> Charaka & Sushruta contributions</div>
+<div><strong>Medieval:</strong> Spread across Asia</div>
+<div><strong>Colonial:</strong> Decline phase</div>
+<div><strong>Modern:</strong> Global revival</div>
+</div>
+
+<p>Today Ayurveda is widely used for <b>immunity, stress relief, and wellness</b> worldwide.</p>
+
+</div>
+
+<div class="history-right" id="leaf-area"></div>
+
+</section>
+
+<!-- CARDS -->
 <div class="card-container">
 
-<div class="card" onclick="toggleDetails(this)">
-<img src="origin.png">
+<div class="card">
+<img src="vedic.jpg">
 <h3>Vedic Origin</h3>
-<div class="details">
-Ayurveda is believed to have originated during the Atharva Veda, one of the four sacred Vedas.<br>
-The Atharva Veda contains early knowledge about:<br>
-Healing herbs 🌱<br>
-Diseases 🦠<br>
-Spiritual therapies 🧘<br>
-Ayurveda means:<br>
-👉 “Ayur” = life<br>
-👉 “Veda” = knowledge<br>
-➤ So, Ayurveda = “Science of Life”<br>
-It was developed by ancient sages (Rishis) who combined:<br>
-Observation of nature 🌍<br>
-Meditation 🧘<br>
-Experience of human body<br>
-Later, this knowledge was expanded in classical texts like:<br>
-Charaka Samhita (medicine & internal health)<br>
-Sushruta Samhita (surgery & anatomy)</div>
 </div>
 
-<div class="card" onclick="toggleDetails(this)">
-<img src="vedic.png">
+<div class="card">
+<img src="texts.jpg">
 <h3>Ancient Texts</h3>
-<div class="details">
-The knowledge of Ayurveda was systematically written in ancient Indian scriptures known as Samhitas.<br>
-🌿 Key Texts:<br>
-<u>Charaka Samhita</u><br>
-Focuses on medicine, diagnosis, and internal healing. It explains how to maintain health and treat diseases using natural methods.<br>
-<u>Sushruta Samhita</u><br>
-Deals with surgery and anatomy. It describes surgical techniques, instruments, and is why Sushruta is called the Father of Surgery.<br>
-<u>Ashtanga Hridaya</u><br>
-A simplified and well-organized text combining teachings of Charaka and Sushruta, widely used for learning Ayurveda.</div>
 </div>
 
-<div class="card" onclick="toggleDetails(this)">
-<img src="doctor.png">
+<div class="card">
+<img src="sushruta.jpg">
 <h3>Sushruta</h3>
-<div class="details">
-Sushruta was one of the greatest ancient Indian physicians and a pioneer of surgery in Ayurveda.<br>
-
-🌿 Key Contributions:<br>
-Author of the Sushruta Samhita<br>
-Known as the “Father of Surgery” 🏥<br>
-Described over 300 surgical procedures<br>
-Used 120+ surgical instruments 🔪<br>
-Performed early forms of plastic surgery (like nose reconstruction)<br>
-Explained human anatomy in detail, including bones, muscles, and veins<br>
-Emphasized cleanliness and hygiene during surgeries (early concept of sterilization)<br>
-Trained students using practical methods like practicing on fruits and dead bodies
-</div>
 </div>
 
-<div class="card" onclick="toggleDetails(this)">
-<img src="plant.png">
+<div class="card">
+<img src="branches.jpg">
 <h3>Branches</h3>
-<div class="details">
-    Ayurveda is divided into eight main branches, known as Ashtanga Ayurveda.<br>
-
-🌱 The 8 Branches:<br>
-<b><u>Kayachikitsa</u></b>– General medicine (treatment of diseases)<br>
-<b><u>Shalya Tantra</u></b> – Surgery<br>
-<b><u>Shalakya Tantra</u></b> – Eye, ear, nose, and throat (ENT)<br>
-<b><u>Kaumarbhritya</u></b> – Pediatrics (child care) 👶<br>
-<b><u>Agada Tantra</u></b> – Toxicology (treatment of poisons) ☠️<br>
-<b><u>Bhuta Vidya</u></b> – Psychiatry (mental health) 🧠<br>
-<b><u>Rasayana</u></b> – Rejuvenation and immunity boosting 🌿<br>
-<b><u>Vajikarana</u></b> – Reproductive health and vitality<br>
-</div>
 </div>
 
-<div class="card" onclick="toggleDetails(this)">
-<img src="spread.png">
-<h3>Global Spread</h3>
-<div class="details">
-    Ayurveda gradually spread beyond India and influenced many other traditional healing systems.<br>
-
-🌿 Key Points:<br>
-Ayurveda spread to countries like China, Tibet, and the Middle East through trade and cultural exchange<br>
-Its knowledge influenced systems like Traditional Chinese Medicine and Tibetan medicine<br>
-Ancient scholars and travelers carried Ayurvedic texts and practices across regions<br>
-Today, Ayurveda is practiced worldwide as a form of natural and holistic healing 🌿<br>
-</div>
+<div class="card">
+<img src="global.jpg">
+<h3>Global</h3>
 </div>
 
-<div class="card" onclick="toggleDetails(this)">
-<img src="book.png">
-<h3>Modern Use</h3>
-<div class="details">
-   <b> Promoted by the Ministry of AYUSH in India </b><br>
-Used for improving immunity, digestion, and overall wellness<br>
-Includes practices like:<br>
-Herbal medicines 🌱<br>
-Yoga and meditation 🧘<br>
-Detox therapies (Panchakarma)<br>
-Gaining popularity worldwide as an alternative and preventive medicine system<br>
-Used alongside modern medicine for a balanced lifestyle<br>
-</div>
+<div class="card">
+<img src="modern.jpg">
+<h3>Modern</h3>
 </div>
 
 </div>
 
-<footer>© 2026 E-Herbal Garden | Designed with 🌱 | Created by Team Beginners | </footer>
-<footer>...</footer>
+<footer>© 2026 E-Herbal Garden</footer>
 
-🌿 CHATBOT 
-<iframe src="https://piyush-mathpal.github.io/herbal-chatbot/" style=" 
-position:fixed;
-bottom:0;
-right:0;
-width:350px;
-height:500px;
-border:none;
-z-index:9999;">
-</iframe>  
+<script>
+const area=document.getElementById('leaf-area');
 
-</body>
-</html>
+for(let i=0;i<30;i++){
+let leaf=document.createElement('div');
+leaf.classList.add('leaf');
+
+leaf.style.left=Math.random()*100+'%';
+leaf.style.animationDuration=(8+Math.random()*6)+'s';
+leaf.style.animationDelay=Math.random()*6+'s';
+
+area.appendChild(leaf);
+}
+</script>
+
 </body>
 </html>
