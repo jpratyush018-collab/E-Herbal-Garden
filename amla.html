@@ -33,22 +33,9 @@ nav a {
 }
 
 .main {
-    display: flex;
-    gap: 20px;
     padding: 30px;
-}
-
-.left {
-    flex: 1;
-}
-
-.right {
-    flex: 1;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    overflow: hidden;
-    padding: 10px;
+    max-width: 900px;
+    margin: auto;
 }
 
 h2 {
@@ -59,10 +46,19 @@ p {
     line-height: 1.6;
 }
 
-/* ✅ Reduced height */
+/* MODEL SECTION AT BOTTOM */
+.model-section{
+    margin:40px auto;
+    max-width:900px;
+    background:white;
+    border-radius:12px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    padding:20px;
+}
+
 .model-container {
     width: 100%;
-    height: 300px;
+    height: 350px;
 }
 
 footer {
@@ -91,8 +87,6 @@ footer {
 
 <div class="main">
 
-<div class="left">
-
 <h2>🌱 Basic Information</h2>
 <p><b>Common Name:</b> Amla / Indian Gooseberry</p>
 <p><b>Botanical Name:</b> Phyllanthus emblica</p>
@@ -117,8 +111,6 @@ footer {
 <p><b>Vitamin C:</b> Immunity booster<br>
 <b>Tannins:</b> Antioxidant<br>
 <b>Gallic Acid:</b> Anti-inflammatory</p>
-
-<!-- NEW CONTENT -->
 
 <h2>🧬 Overview</h2>
 <p>Amla (Phyllanthus emblica), also known as Indian gooseberry, is a highly valued medicinal plant known for its antioxidant, immune-boosting, and rejuvenating effects.</p>
@@ -182,11 +174,10 @@ footer {
 
 </div>
 
-<div class="right">
+<!-- 🌐 MODEL AT BOTTOM -->
+<div class="model-section">
 <h2 style="text-align:center;">🌐 3D Amla Model</h2>
 <div class="model-container" id="model"></div>
-</div>
-
 </div>
 
 <footer>
@@ -199,89 +190,42 @@ footer {
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
 
 <script>
-// Scene
 const scene = new THREE.Scene();
 const container = document.getElementById("model");
 
-// Camera
 const camera = new THREE.PerspectiveCamera(
-    60,
-    container.clientWidth / container.clientHeight,
-    0.1,
-    1000
+60,
+container.clientWidth / container.clientHeight,
+0.1,
+1000
 );
 
-// Renderer
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize(container.clientWidth, container.clientHeight);
-renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
-// Lighting
 const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
 scene.add(light);
 
-// Controls
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
-controls.enableDamping = true;
-controls.minDistance = 1;
-controls.maxDistance = 10;
 
-// Load Model (UNCHANGED NAME)
 let amlaModel;
 const loader = new THREE.GLTFLoader();
 
 loader.load('./Amla.glb', function(gltf) {
-
     amlaModel = gltf.scene;
-
-    // 🔥 Center + Fit
-    const box = new THREE.Box3().setFromObject(amlaModel);
-    const size = box.getSize(new THREE.Vector3()).length();
-    const center = box.getCenter(new THREE.Vector3());
-
-    amlaModel.position.sub(center);
-
-    // 🔥 Fix bottom empty space
-    amlaModel.position.y -= 0.4;
-
-    // 🔥 Scale properly
-    const scaleFactor = 3.5 / size;
-    amlaModel.scale.setScalar(scaleFactor);
-
     scene.add(amlaModel);
-
-    // 🔥 Better camera
-    camera.position.set(0, size / 3, size * 1.2);
-
-    // 🔥 Focus adjustment
-    controls.target.set(0, -0.3, 0);
-
-    controls.update();
-
+    camera.position.set(0,1,5);
 }, undefined, function(error) {
-    console.error("Error loading model:", error);
+    console.error(error);
 });
 
-// Resize
-window.addEventListener('resize', () => {
-    camera.aspect = container.clientWidth / container.clientHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(container.clientWidth, container.clientHeight);
-});
-
-// Animation
 function animate() {
-    requestAnimationFrame(animate);
-
-    if (amlaModel) {
-        amlaModel.rotation.y += 0.005;
-    }
-
-    controls.update();
-    renderer.render(scene, camera);
+requestAnimationFrame(animate);
+if (amlaModel) amlaModel.rotation.y += 0.005;
+controls.update();
+renderer.render(scene, camera);
 }
-
 animate();
 </script>
 
