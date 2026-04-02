@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Plant - E-Herbal Garden</title>
+<title>Dandelion - E-Herbal Garden</title>
 
 <style>
 body {
@@ -79,8 +79,8 @@ footer {
 <body>
 
 <header>
-<h1> Dandelion </h1>
-<p>Tagline of the Plant</p>
+<h1>🌼 Dandelion (Taraxacum officinale)</h1>
+<p>“Dandelion – The Healing Weed of Nature”</p>
 </header>
 
 <nav>
@@ -95,20 +95,32 @@ footer {
 <div class="left">
 
 <h2>🌱 Basic Information</h2>
-<p><b>Common Name:</b> </p>
-<p><b>Botanical Name:</b> </p>
+<p><b>Common Name:</b> Dandelion</p>
+<p><b>Botanical Name:</b> Taraxacum officinale</p>
+<p>Dandelion is a common flowering plant often considered a weed, but it is highly valued in herbal medicine for its nutritional and healing properties.</p>
 
 <h2>🌿 Medicinal Uses</h2>
-<p>Write here...</p>
+<p>🩺 <b>Liver Health:</b> Supports liver detoxification and function.</p>
+<p>🍵 <b>Digestive Aid:</b> Helps improve digestion and appetite.</p>
+<p>💧 <b>Diuretic:</b> Promotes urine production and reduces water retention.</p>
+<p>🛡️ <b>Antioxidant:</b> Protects the body from oxidative stress.</p>
+<p>🩸 <b>Blood Purifier:</b> Traditionally used to cleanse the blood.</p>
 
 <h2>🌍 Habitat</h2>
-<p>Write here...</p>
+<p>Dandelion grows worldwide in temperate regions. It thrives in grasslands, gardens, roadsides, and disturbed soils, making it a very adaptable plant.</p>
 
 <h2>🌾 Cultivation</h2>
-<p>Write here...</p>
+<p><b>Sunlight:</b> Full sun to partial shade</p>
+<p><b>Soil:</b> Well-drained, fertile soil</p>
+<p><b>Watering:</b> Moderate watering</p>
+<p><b>Propagation:</b> Easily grown from seeds</p>
+<p>Dandelion is hardy and grows easily with minimal care.</p>
 
 <h2>⚠️ Precautions</h2>
-<p>Write here...</p>
+<p>Generally safe when consumed in moderate amounts.</p>
+<p>May cause allergic reactions in some individuals.</p>
+<p>Excessive use may lead to stomach discomfort.</p>
+<p>Consult a healthcare professional if pregnant or on medication.</p>
 
 </div>
 
@@ -157,19 +169,17 @@ let model;
 
 const loader = new THREE.GLTFLoader();
 loader.load(
-    './Dandeion.glb', // 🔥 CHANGE THIS FILE NAME
+    './Dandelion.glb',  // ✅ FIXED NAME
     function (gltf) {
 
         model = gltf.scene;
 
-        // ✅ CENTER MODEL
         const box = new THREE.Box3().setFromObject(model);
         const size = box.getSize(new THREE.Vector3());
         const center = box.getCenter(new THREE.Vector3());
 
         model.position.sub(center);
 
-        // ✅ AUTO CAMERA FIT
         const maxDim = Math.max(size.x, size.y, size.z);
         const fov = camera.fov * (Math.PI / 180);
         let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
@@ -177,10 +187,6 @@ loader.load(
         camera.position.z = cameraZ * 1.5;
 
         scene.add(model);
-    },
-    undefined,
-    function (error) {
-        console.error("Error loading model:", error);
     }
 );
 
