@@ -110,17 +110,6 @@ padding-left:15px;
 
 .timeline div{margin-bottom:15px;}
 
-/* LEAF */
-.leaf{
-position:absolute;
-width:20px;
-height:20px;
-background:linear-gradient(45deg,#2e7d32,#66bb6a);
-border-radius:50% 0 50% 0;
-animation:fall linear infinite;
-opacity:0.8;
-}
-
 @keyframes fall{
 0%{transform:translate(0,-60px) rotate(0deg);}
 20%{transform:translate(25px,80px) rotate(90deg);}
@@ -236,32 +225,32 @@ padding:15px;
 <div class="card-container">
 
 <div class="card">
-<img src="vedic.jpg">
+<img src="vedic.png">
 <h3>Vedic Origin</h3>
 </div>
 
 <div class="card">
-<img src="texts.jpg">
+<img src="texts.png">
 <h3>Ancient Texts</h3>
 </div>
 
 <div class="card">
-<img src="sushruta.jpg">
+<img src="sushruta.png">
 <h3>Sushruta</h3>
 </div>
 
 <div class="card">
-<img src="branches.jpg">
+<img src="branches.png">
 <h3>Branches</h3>
 </div>
 
 <div class="card">
-<img src="global.jpg">
+<img src="global.png">
 <h3>Global</h3>
 </div>
 
 <div class="card">
-<img src="modern.jpg">
+<img src="modern.png">
 <h3>Modern</h3>
 </div>
 
@@ -272,16 +261,6 @@ padding:15px;
 <script>
 const area=document.getElementById('leaf-area');
 
-for(let i=0;i<30;i++){
-let leaf=document.createElement('div');
-leaf.classList.add('leaf');
-
-leaf.style.left=Math.random()*100+'%';
-leaf.style.animationDuration=(8+Math.random()*6)+'s';
-leaf.style.animationDelay=Math.random()*6+'s';
-
-area.appendChild(leaf);
-}
 </script>
 
 </body>
