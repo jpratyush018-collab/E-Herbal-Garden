@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Plant - E-Herbal Garden</title>
+<title>Spinach - E-Herbal Garden</title>
 
 <style>
 body {
@@ -79,8 +79,8 @@ footer {
 <body>
 
 <header>
-<h1>🌿 Spinach </h1>
-<p>Tagline of the Plant</p>
+<h1>🌿 Spinach (Palak)</h1>
+<p>The Leafy Nutrient Powerhouse</p>
 </header>
 
 <nav>
@@ -95,32 +95,77 @@ footer {
 <div class="left">
 
 <h2>🌱 Basic Information</h2>
-<p><b>Common Name:</b> </p>
-<p><b>Botanical Name:</b> </p>
+<p><b>Common Name:</b> Spinach / Palak</p>
+<p><b>Botanical Name:</b> Spinacia oleracea</p>
+<p><b>Family:</b> Amaranthaceae</p>
+<p><b>Origin:</b> Central Asia</p>
+<p><b>Plant Type:</b> Annual leafy green vegetable</p>
+<p><b>Parts Used:</b> Leaves</p>
+
+<h2>🧬 Overview</h2>
+<p>Spinach is a nutrient-dense leafy vegetable known for its high content of vitamins, minerals, and antioxidants. It is widely used both in culinary and medicinal applications for its health-promoting properties.</p>
 
 <h2>🌿 Medicinal Uses</h2>
-<p>Write here...</p>
+<p>✅ Rich source of iron, magnesium, and calcium supporting overall health</p>
+<p>✅ Supports cardiovascular health and reduces blood pressure</p>
+<p>✅ Anti-inflammatory and antioxidant properties combat oxidative stress</p>
+<p>✅ Aids digestion and supports healthy bones</p>
+<p>✅ Enhances immunity and reduces anemia risk</p>
 
 <h2>🌍 Habitat</h2>
-<p>Write here...</p>
+<p>Spinach thrives in cool, temperate climates with well-drained, fertile soil. It prefers full to partial sunlight and moderate watering.</p>
 
 <h2>🌾 Cultivation</h2>
-<p>Write here...</p>
+<p>Propagation: From seeds directly sown in soil</p>
+<p>Soil: Fertile, well-drained, and rich in organic matter</p>
+<p>Sunlight: Full sun to partial shade</p>
+<p>Watering: Regular to maintain moist soil</p>
+<p>Harvest: Leaves can be harvested 40–50 days after sowing, depending on variety</p>
 
 <h2>⚠️ Precautions</h2>
-<p>Write here...</p>
+<p>Excessive consumption may contribute to kidney stones due to high oxalate content. People with kidney disorders should consume in moderation.</p>
+
+<h2>🧪 Bioactive Compounds</h2>
+<p><b>Vitamins:</b> A, C, K, folate</p>
+<p><b>Minerals:</b> Iron, magnesium, calcium, potassium</p>
+<p><b>Flavonoids:</b> Kaempferol, Quercetin</p>
+<p><b>Chlorophyll:</b> Detoxifying and antioxidant</p>
+
+<h2>💊 Pharmacological Properties</h2>
+<p>Antioxidant</p>
+<p>Anti-inflammatory</p>
+<p>Anti-anemic</p>
+<p>Cardioprotective</p>
+<p>Digestive support</p>
+
+<h2>🩺 Therapeutic Applications</h2>
+<p>Supports healthy blood and reduces anemia</p>
+<p>Maintains bone health through vitamin K and calcium</p>
+<p>Regulates blood pressure and promotes heart health</p>
+<p>Helps in detoxification and boosting immunity</p>
+
+<h2>⚙️ Mechanism of Action</h2>
+<p>Vitamins and flavonoids neutralize free radicals, chlorophyll supports detoxification, and minerals improve hemoglobin synthesis and cardiovascular function.</p>
+
+<h2>🌍 Modern Relevance</h2>
+<p>Spinach is recognized by WHO and NCBI for its nutritional and medicinal value. It is widely researched for cardiovascular health, anemia prevention, and antioxidant effects.</p>
+
+<h2>📚 Sources</h2>
+<p>NCBI</p>
+<p>WHO</p>
+<p>Ministry of AYUSH</p>
 
 </div>
 
 <div class="right">
-<h2 style="text-align:center;">🌐 3D Model</h2>
+<h2 style="text-align:center;">🌐 3D Spinach Model</h2>
 <div class="model-container" id="model"></div>
 </div>
 
 </div>
 
 <footer>
-© 2026 E-Herbal Garden
+© 2026 E-Herbal Garden | Designed with 🌱 | Created by Team Beginners
 </footer>
 
 <!-- Three.js -->
@@ -144,11 +189,9 @@ renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
-// Lighting
 const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
 scene.add(light);
 
-// Controls
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
 controls.enableZoom = true;
 controls.enablePan = false;
@@ -157,19 +200,16 @@ let model;
 
 const loader = new THREE.GLTFLoader();
 loader.load(
-    './Spinach.glb', // 🔥 CHANGE THIS FILE NAME
+    './Spinach.glb',
     function (gltf) {
-
         model = gltf.scene;
 
-        // ✅ CENTER MODEL
         const box = new THREE.Box3().setFromObject(model);
         const size = box.getSize(new THREE.Vector3());
         const center = box.getCenter(new THREE.Vector3());
 
         model.position.sub(center);
 
-        // ✅ AUTO CAMERA FIT
         const maxDim = Math.max(size.x, size.y, size.z);
         const fov = camera.fov * (Math.PI / 180);
         let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
@@ -179,12 +219,11 @@ loader.load(
         scene.add(model);
     },
     undefined,
-    function (error) {
+    function(error) {
         console.error("Error loading model:", error);
     }
 );
 
-// Resize fix
 window.addEventListener('resize', () => {
     const width = container.clientWidth;
     const height = container.clientHeight;
@@ -194,17 +233,11 @@ window.addEventListener('resize', () => {
     camera.updateProjectionMatrix();
 });
 
-// Animation
 function animate() {
     requestAnimationFrame(animate);
-
-    if (model) {
-        model.rotation.y += 0.005;
-    }
-
+    if (model) model.rotation.y += 0.005;
     renderer.render(scene, camera);
 }
-
 animate();
 </script>
 
