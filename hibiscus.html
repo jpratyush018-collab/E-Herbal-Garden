@@ -94,21 +94,44 @@ footer {
 
 <div class="left">
 
+<h2>🧬 Overview</h2>
+<p>Hibiscus (Hibiscus rosa-sinensis and Hibiscus sabdariffa) is a widely recognized medicinal and ornamental plant known for its antioxidant, cardiovascular, and therapeutic properties. It has been extensively studied for its role in supporting heart health, managing blood pressure, and promoting overall wellness.</p>
+<p>The flowers are the primary part used, although leaves and calyces (in some species) are also utilized for medicinal purposes. Hibiscus is commonly used in herbal teas, traditional remedies, and modern healthcare research.</p>
+
 <h2>🌱 Basic Information</h2>
-<p><b>Common Name:</b> </p>
-<p><b>Botanical Name:</b> </p>
+<p><b>Common Name:</b> Hibiscus</p>
+<p><b>Botanical Name:</b> Hibiscus rosa-sinensis / Hibiscus sabdariffa</p>
+<p><b>Family:</b> Malvaceae</p>
+<p><b>Plant Type:</b> Shrub or small tree</p>
+<p><b>Habitat:</b> Tropical and subtropical regions</p>
+<p><b>Parts Used:</b> Flowers (main), leaves, calyces</p>
 
 <h2>🌿 Medicinal Uses</h2>
-<p>Write here...</p>
+<p><b>Cardiovascular Support:</b> Helps maintain healthy blood pressure and supports heart health.</p>
+<p><b>Antioxidant:</b> Rich in anthocyanins and protects cells from oxidative stress.</p>
+<p><b>Metabolic Support:</b> May help regulate blood sugar and lipid levels.</p>
+<p><b>Anti-inflammatory:</b> Reduces inflammation.</p>
+<p><b>Digestive Support:</b> Supports digestion and gut health.</p>
 
 <h2>🌍 Habitat</h2>
-<p>Write here...</p>
+<p>Hibiscus grows in tropical and subtropical regions and is widely cultivated for both decorative and medicinal purposes.</p>
 
 <h2>🌾 Cultivation</h2>
-<p>Write here...</p>
+<p><b>Stem Cuttings:</b> The most effective and commonly used method where roots develop quickly.</p>
+<p><b>Seeds:</b> Also used but take longer to grow.</p>
+<p><b>Growth Requirements:</b> Prefers well-drained soil, warm climate, full sunlight to partial shade, and regular watering.</p>
+
+<h2>⚙️ Mechanism of Action</h2>
+<p>Relaxes blood vessels, provides antioxidant protection, regulates metabolic processes, and reduces inflammation.</p>
 
 <h2>⚠️ Precautions</h2>
-<p>Write here...</p>
+<p>Generally safe in moderate amounts. Excessive consumption may cause mild side effects. Should be used cautiously in concentrated forms and is not a substitute for medical treatment.</p>
+
+<h2>🌍 Modern Relevance</h2>
+<p>Recognized by NCBI, WHO, and Ministry of AYUSH for cardiovascular and antioxidant benefits. Widely used in herbal teas, pharmaceuticals, and preventive healthcare systems.</p>
+
+<h2>📚 Sources</h2>
+<p>NCBI, WHO, Ministry of AYUSH (Government of India)</p>
 
 </div>
 
@@ -157,19 +180,17 @@ let model;
 
 const loader = new THREE.GLTFLoader();
 loader.load(
-    './Hibiscus.glb', // 🔥 CHANGE THIS FILE NAME
+    './Hibiscus.glb',
     function (gltf) {
 
         model = gltf.scene;
 
-        // ✅ CENTER MODEL
         const box = new THREE.Box3().setFromObject(model);
         const size = box.getSize(new THREE.Vector3());
         const center = box.getCenter(new THREE.Vector3());
 
         model.position.sub(center);
 
-        // ✅ AUTO CAMERA FIT
         const maxDim = Math.max(size.x, size.y, size.z);
         const fov = camera.fov * (Math.PI / 180);
         let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
@@ -184,7 +205,6 @@ loader.load(
     }
 );
 
-// Resize fix
 window.addEventListener('resize', () => {
     const width = container.clientWidth;
     const height = container.clientHeight;
@@ -194,7 +214,6 @@ window.addEventListener('resize', () => {
     camera.updateProjectionMatrix();
 });
 
-// Animation
 function animate() {
     requestAnimationFrame(animate);
 
