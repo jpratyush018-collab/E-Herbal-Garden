@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Plant - E-Herbal Garden</title>
+<title>Lavender - E-Herbal Garden</title>
 
 <style>
 body {
@@ -79,8 +79,8 @@ footer {
 <body>
 
 <header>
-<h1> Lavender </h1>
-<p>Tagline of the Plant</p>
+<h1>🌿 Lavender (Lavandula angustifolia)</h1>
+<p>“Lavender – The Fragrance of Calm and Healing”</p>
 </header>
 
 <nav>
@@ -95,20 +95,32 @@ footer {
 <div class="left">
 
 <h2>🌱 Basic Information</h2>
-<p><b>Common Name:</b> </p>
-<p><b>Botanical Name:</b> </p>
+<p><b>Common Name:</b> Lavender</p>
+<p><b>Botanical Name:</b> Lavandula angustifolia</p>
+<p>Lavender is a fragrant flowering plant known for its soothing aroma and wide use in aromatherapy, cosmetics, and herbal medicine.</p>
 
 <h2>🌿 Medicinal Uses</h2>
-<p>Write here...</p>
+<p>😌 <b>Stress Relief:</b> Helps reduce anxiety and promotes relaxation.</p>
+<p>😴 <b>Sleep Aid:</b> Improves sleep quality and helps with insomnia.</p>
+<p>🦠 <b>Antimicrobial:</b> Protects against bacteria and infections.</p>
+<p>🔥 <b>Anti-inflammatory:</b> Reduces pain and inflammation.</p>
+<p>💆 <b>Skin Care:</b> Used for acne, burns, and wound healing.</p>
 
 <h2>🌍 Habitat</h2>
-<p>Write here...</p>
+<p>Lavender is native to the Mediterranean region and thrives in warm, sunny climates with dry conditions. It is widely cultivated around the world in gardens and farms.</p>
 
 <h2>🌾 Cultivation</h2>
-<p>Write here...</p>
+<p><b>Sunlight:</b> Requires full sunlight</p>
+<p><b>Soil:</b> Well-drained, sandy or slightly alkaline soil</p>
+<p><b>Watering:</b> Low to moderate (avoid waterlogging)</p>
+<p><b>Propagation:</b> Grown from seeds or stem cuttings</p>
+<p>Lavender is drought-tolerant and easy to maintain once established.</p>
 
 <h2>⚠️ Precautions</h2>
-<p>Write here...</p>
+<p>Generally safe for most people when used in moderate amounts.</p>
+<p>Excessive use may cause skin irritation or allergic reactions.</p>
+<p>Essential oil should be diluted before direct skin application.</p>
+<p>Consult a healthcare professional during pregnancy or medical conditions.</p>
 
 </div>
 
@@ -157,19 +169,17 @@ let model;
 
 const loader = new THREE.GLTFLoader();
 loader.load(
-    './Lavender.glb', // 🔥 CHANGE THIS FILE NAME
+    './Lavender.glb',
     function (gltf) {
 
         model = gltf.scene;
 
-        // ✅ CENTER MODEL
         const box = new THREE.Box3().setFromObject(model);
         const size = box.getSize(new THREE.Vector3());
         const center = box.getCenter(new THREE.Vector3());
 
         model.position.sub(center);
 
-        // ✅ AUTO CAMERA FIT
         const maxDim = Math.max(size.x, size.y, size.z);
         const fov = camera.fov * (Math.PI / 180);
         let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
@@ -177,10 +187,6 @@ loader.load(
         camera.position.z = cameraZ * 1.5;
 
         scene.add(model);
-    },
-    undefined,
-    function (error) {
-        console.error("Error loading model:", error);
     }
 );
 
