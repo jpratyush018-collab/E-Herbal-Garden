@@ -47,10 +47,10 @@ p {
     line-height: 1.6;
 }
 
-/* MODEL SECTION */
+/* 🔥 MODEL SECTION */
 .model-section {
     margin: 40px auto;
-    max-width: 500px;
+    max-width: 900px;
     background: white;
     border-radius: 15px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -93,10 +93,9 @@ footer {
 <a href="#">Contact</a>
 </nav>
 
-<!-- MAIN SECTION -->
 <div class="content" style="display:flex; flex-wrap:wrap; gap:30px; align-items:flex-start;">
 
-  <!-- LEFT TEXT -->
+  <!-- LEFT: TEXT -->
   <div style="flex:1; min-width:300px;">
     
 <h2>🌱 Basic Information</h2>
@@ -129,8 +128,8 @@ footer {
 
   </div>
 
-  <!-- RIGHT MODEL -->
-  <div class="model-section" style="flex:1; min-width:300px;">
+  <!-- RIGHT: MODEL -->
+  <div class="model-section" style="flex:1; min-width:300px; max-width:500px;">
     <h2 style="text-align:center;">🌐 3D Dandelion Model</h2>
     <div class="model-container" id="model" style="height:500px;"></div>
   </div>
@@ -151,10 +150,10 @@ const scene = new THREE.Scene();
 const container = document.getElementById("model");
 
 const camera = new THREE.PerspectiveCamera(
-    75,
-    container.clientWidth / container.clientHeight,
-    0.1,
-    1000
+75,
+container.clientWidth / container.clientHeight,
+0.1,
+1000
 );
 
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -162,9 +161,11 @@ renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
+// Light
 const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
 scene.add(light);
 
+// Controls
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
 controls.enableZoom = true;
 controls.enablePan = false;
@@ -203,6 +204,7 @@ window.addEventListener('resize', () => {
     camera.updateProjectionMatrix();
 });
 
+// Animation
 function animate() {
     requestAnimationFrame(animate);
 
