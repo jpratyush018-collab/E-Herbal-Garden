@@ -3,85 +3,130 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fennel - E-Herbal Garden</title>
+<title>Fennel Plant</title>
+
+<!-- 3D MODEL VIEWER -->
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
 <style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #eaf5ea;
+body{
+margin:0;
+font-family:'Segoe UI', sans-serif;
+background:#cfd8cf;
 }
 
-header {
-    background: linear-gradient(to right, #1b5e20, #2e7d32);
-    color: white;
-    padding: 20px;
-    text-align: center;
+/* HEADER */
+.header{
+background:linear-gradient(45deg,#2e7d32,#1b5e20);
+color:white;
+text-align:center;
+padding:25px;
+}
+.header h1{ margin:0; }
+.header p{ margin:5px 0 0; font-size:14px; }
+
+/* NAV */
+nav{
+background:#1b5e20;
+text-align:center;
+padding:10px;
+}
+nav a{
+color:white;
+margin:0 15px;
+text-decoration:none;
+font-weight:bold;
 }
 
-nav {
-    background: #145a1f;
-    padding: 10px;
-    text-align: center;
+/* MAIN */
+.container{
+display:flex;
+justify-content:center;
+gap:60px;
+padding:40px;
 }
 
-nav a {
-    color: white;
-    margin: 0 15px;
-    text-decoration: none;
-    font-weight: bold;
+/* LEFT CONTENT */
+.content{
+width:500px;
 }
 
-.main {
-    padding: 30px;
+.content h2{
+color:#2e7d32;
+margin-top:20px;
 }
 
-h2 {
-    color: #2e7d32;
+.content ul{
+padding-left:20px;
 }
 
-p {
-    line-height: 1.6;
+/* RIGHT MODEL CARD */
+.model{
+width:320px;
+height:400px;
+background:#e0e0e0;
+padding:20px;
+border-radius:15px;
+box-shadow:0 4px 10px rgba(0,0,0,0.15);
+text-align:center;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
 }
 
-/* 🔥 Bottom Model Container */
-.model-section {
-    margin: 30px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    padding: 10px;
+.model h3{
+color:#2e7d32;
+margin-bottom:10px;
 }
 
-.model-container {
-    width: 100%;
-    height: 300px;
+model-viewer{
+width:100%;
+height:300px;
 }
 
-footer {
-    background: #145a1f;
-    color: white;
-    text-align: center;
-    padding: 15px;
-    margin-top: 20px;
+/* FOOTER */
+footer{
+background:#1b5e20;
+color:white;
+text-align:center;
+padding:15px;
+margin-top:20px;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+.container{
+flex-direction:column;
+align-items:center;
+}
+
+.content, .model{
+width:90%;
+height:auto;
+}
 }
 </style>
 </head>
 
 <body>
 
-<header>
-<h1>🌿 Fennel</h1>
-<p>The Digestive Herb</p>
-</header>
+<div class="header">
+<h1>🌿 Fennel (Saunf)</h1>
+<p>The Digestive Herbal Powerhouse</p>
+</div>
 
 <nav>
 <a href="index.html">Home</a>
-<a href="hellochalja.html">Plants</a>
+<a href="plant.html">Plants</a>
 <a href="about.html">About</a>
+<a href="contact.html">Contact</a>
 </nav>
 
-<div class="main">
+<div class="container">
+
+<!-- LEFT CONTENT -->
+<div class="content">
 
 <h2>🌱 Basic Information</h2>
 <p><b>Common Name:</b> Fennel (Saunf)</p>
@@ -89,125 +134,107 @@ footer {
 <p><b>Family:</b> Apiaceae</p>
 <p><b>Origin:</b> Mediterranean Region</p>
 
+<h2>🧬 Overview</h2>
+<p>Fennel (Foeniculum vulgare) is a medicinal herb known for its digestive, antioxidant, and anti-inflammatory properties.</p>
+
 <h2>🌿 Medicinal Uses</h2>
-<p>Fennel is widely used to improve digestion and reduce bloating.</p>
-<p>It helps relieve gas, acidity, and stomach cramps.</p>
-<p>Fennel seeds are also known to freshen breath and support hormonal balance.</p>
-<p>It has antioxidant, antimicrobial, and anti-inflammatory properties.</p>
+<p>Helps relieve bloating, gas, acidity, and supports digestion.</p>
 
 <h2>🌍 Habitat</h2>
-<p>Fennel grows best in sunny environments with well-drained soil.</p>
-<p>It is commonly found in temperate and tropical regions.</p>
+<p>Grows in temperate and tropical regions with sunny conditions.</p>
 
 <h2>🌾 Cultivation</h2>
-<p>Fennel is grown from seeds and requires full sunlight.</p>
-<p>It needs moderate watering and grows well in loose, fertile soil.</p>
-<p>The plant typically matures in 90–120 days.</p>
+<p>Grown from seeds and needs moderate watering.</p>
 
 <h2>⚠️ Precautions</h2>
-<p>Excess consumption may cause allergic reactions in some individuals.</p>
-<p>Pregnant women should consult a doctor before consuming large amounts.</p>
+<p>Excess intake may cause sensitivity.</p>
 
 <h2>🧪 Chemical Compounds</h2>
-<p>
-<b>Anethole:</b> Digestive aid<br>
-<b>Fenchone:</b> Antimicrobial<br>
-<b>Estragole:</b> Aromatic compound
-</p>
+<p>Anethole, Fenchone, Estragole</p>
+
+<h2>🌱 Botanical & General Information</h2>
+<p><b>Plant Type:</b> Perennial herb</p>
+<p><b>Habitat:</b> Mediterranean and temperate climates</p>
+<p><b>Parts Used:</b> Seeds, leaves, bulbs</p>
+
+<h2>🌿 Propagation & Cultivation</h2>
+<p><b>Seeds:</b> Primary method</p>
+
+<h3>🌞 Growth Requirements</h3>
+<ul>
+<li>Well-drained soil</li>
+<li>Full sunlight</li>
+<li>Moderate climate</li>
+<li>Regular watering</li>
+</ul>
+
+<h2>🧪 Key Bioactive Compounds</h2>
+<ul>
+<li>Anethole</li>
+<li>Fenchone</li>
+<li>Estragole</li>
+<li>Flavonoids</li>
+<li>Essential oils</li>
+<li>Polyphenols</li>
+</ul>
+
+<h2>💊 Pharmacological Properties</h2>
+<ul>
+<li>Digestive support</li>
+<li>Antimicrobial</li>
+<li>Antioxidant</li>
+<li>Anti-inflammatory</li>
+<li>Hormonal balance support</li>
+</ul>
+
+<h2>🩺 Therapeutic Applications</h2>
+<ul>
+<li>Digestive health</li>
+<li>Infection control</li>
+<li>Immunity support</li>
+<li>General wellness</li>
+<li>Respiratory support</li>
+</ul>
+
+<h2>🦠 Public Health Importance</h2>
+<p>Widely studied for digestive and antimicrobial benefits.</p>
+
+<h2>⚙️ Mechanism of Action</h2>
+<ul>
+<li>Relaxes digestive muscles</li>
+<li>Reduces oxidative stress</li>
+<li>Inhibits microbes</li>
+<li>Supports metabolism</li>
+</ul>
+
+<h2>⚠️ Safety</h2>
+<p>Safe in normal amounts; excess may cause sensitivity.</p>
+
+<h2>🌍 Modern Relevance</h2>
+<p>Recognized by NCBI, WHO, and Ministry of AYUSH.</p>
+
+<h2>📚 Sources</h2>
+<p>NCBI, WHO, Ministry of AYUSH</p>
 
 </div>
 
-<!-- 🔥 MOVED MODEL TO BOTTOM -->
-<div class="model-section">
-<h2 style="text-align:center;">🌐 3D Fennel Model</h2>
-<div class="model-container" id="model"></div>
+<!-- RIGHT SIDE MODEL -->
+<div class="model">
+<h3>🌐 3D Fennel Model</h3>
+
+<model-viewer 
+src="fennel.glb"
+auto-rotate
+camera-controls
+shadow-intensity="1"
+exposure="1">
+</model-viewer>
+
 </div>
 
-<footer>
-© 2026 E-Herbal Garden | Designed with 🌱
-</footer>
+</div>
 
-<!-- Three.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
-
-<script>
-const scene = new THREE.Scene();
-const container = document.getElementById("model");
-
-// Camera
-const camera = new THREE.PerspectiveCamera(
-    60,
-    container.clientWidth / container.clientHeight,
-    0.1,
-    1000
-);
-
-// Renderer
-const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-renderer.setSize(container.clientWidth, container.clientHeight);
-renderer.setPixelRatio(window.devicePixelRatio);
-container.appendChild(renderer.domElement);
-
-// Lighting
-const light1 = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
-scene.add(light1);
-
-const light2 = new THREE.DirectionalLight(0xffffff, 2);
-light2.position.set(5,5,5);
-scene.add(light2);
-
-// Controls
-const controls = new THREE.OrbitControls(camera, renderer.domElement);
-controls.enableDamping = true;
-
-// Model
-let model;
-const loader = new THREE.GLTFLoader();
-
-loader.load('./Fennel.glb', function (gltf) {
-
-    model = gltf.scene;
-
-    // 🔥 SAME PERFECT RESIZE LOGIC (like Sage/Giloy)
-    const box = new THREE.Box3().setFromObject(model);
-    const size = box.getSize(new THREE.Vector3()).length();
-    const center = box.getCenter(new THREE.Vector3());
-
-    model.position.sub(center);
-    model.position.y -= 0.4;
-
-    const scaleFactor = 3.5 / size;
-    model.scale.setScalar(scaleFactor);
-
-    scene.add(model);
-
-    camera.position.set(0, size / 3, size * 1.2);
-    controls.target.set(0, -0.3, 0);
-    controls.update();
-
-});
-
-// Resize
-window.addEventListener('resize', () => {
-    camera.aspect = container.clientWidth / container.clientHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(container.clientWidth, container.clientHeight);
-});
-
-// Animation
-function animate() {
-    requestAnimationFrame(animate);
-
-    if (model) model.rotation.y += 0.005;
-
-    controls.update();
-    renderer.render(scene, camera);
-}
-
-animate();
-</script>
+<footer>© 2026 E-Herbal Garden 🌿</footer>
 
 </body>
 </html>
