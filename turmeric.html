@@ -61,24 +61,17 @@ p {
     line-height: 1.6;
 }
 
+.model-container {
+    width: 100%;
+    height: 500px;
+}
+
 footer {
     background: #145a1f;
     color: white;
     text-align: center;
     padding: 15px;
     margin-top: 20px;
-}
-
-/* ✅ ONLY ADDED FOR BOTTOM 3D */
-.bottom-3d {
-    width: 100%;
-    padding: 30px;
-    box-sizing: border-box;
-}
-
-.model-container {
-    width: 100%;
-    height: 70vh;
 }
 </style>
 </head>
@@ -101,32 +94,91 @@ footer {
 
 <div class="left">
 
+
 <h2>🌱 Basic Information</h2>
-<p><b>Common Name:</b> </p>
-<p><b>Botanical Name:</b> </p>
+<p><b>Common Name:</b> Turmeric</p>
+<p><b>Botanical Name:</b> Curcuma longa</p>
 
 <h2>🌿 Medicinal Uses</h2>
-<p>Write here...</p>
+<p>Turmeric is widely used for its anti-inflammatory, antioxidant, and immune-boosting properties. It supports digestion, healing, and overall health.</p>
 
 <h2>🌍 Habitat</h2>
-<p>Write here...</p>
+<p>Grows in tropical and subtropical regions with warm and humid climates.</p>
 
 <h2>🌾 Cultivation</h2>
-<p>Write here...</p>
+<p>Primarily grown through rhizome propagation in fertile, well-drained soil.</p>
 
 <h2>⚠️ Precautions</h2>
-<p>Write here...</p>
+<p>Excess intake may cause digestive discomfort. Use in moderation.</p>
+
+<!-- NEW CONTENT -->
+
+<h2>🧬 Overview</h2>
+<p>Turmeric (Curcuma longa) is a widely used medicinal plant known for its strong anti-inflammatory, antioxidant, and therapeutic properties. It supports immunity and overall health.</p>
+<p>The rhizome is the primary part used, rich in bioactive compounds.</p>
+
+<h2>🌱 Botanical & General Information</h2>
+<p><b>Family:</b> Zingiberaceae</p>
+<p><b>Plant Type:</b> Perennial herb</p>
+<p><b>Habitat:</b> Tropical and subtropical regions</p>
+<p><b>Parts Used:</b> Rhizome</p>
+
+<h2>🌿 Propagation & Cultivation</h2>
+<p><b>Rhizome Division:</b> Pieces with buds are planted to grow new plants.</p>
+<p><b>Seeds:</b> Rarely used.</p>
+
+<h3>🌞 Growth Requirements</h3>
+<p>Warm, humid climate</p>
+<p>Well-drained fertile soil</p>
+<p>Partial sunlight</p>
+<p>Regular watering</p>
+
+<h2>🧪 Key Bioactive Compounds</h2>
+<p>Curcumin, Demethoxycurcumin, Bisdemethoxycurcumin, Essential oils, Turmerone</p>
+
+<h2>💊 Pharmacological Properties</h2>
+<p>Anti-inflammatory</p>
+<p>Antioxidant</p>
+<p>Antimicrobial</p>
+<p>Immunomodulatory</p>
+<p>Metabolic Support</p>
+
+<h2>🩺 Therapeutic Applications</h2>
+<p>Inflammation & Pain</p>
+<p>Immune Support</p>
+<p>Digestive Health</p>
+<p>Wound Healing</p>
+<p>General Wellness</p>
+
+<h2>🦠 Public Health Importance</h2>
+<p>Widely researched for inflammation control, chronic disease prevention, and therapeutic applications.</p>
+
+<h2>⚙️ Mechanism of Action</h2>
+<p>Reduces inflammation</p>
+<p>Acts as antioxidant</p>
+<p>Supports immune response</p>
+<p>Regulates cellular processes</p>
+
+<h2>⚠️ Safety</h2>
+<p>Safe in moderate amounts</p>
+<p>High doses may cause discomfort</p>
+
+<h2>🌍 Modern Relevance</h2>
+<p>Recognized by NCBI, WHO, and Ministry of AYUSH for medicinal and healthcare benefits.</p>
+
+<h2>📚 Sources</h2>
+<p>NCBI</p>
+<p>WHO</p>
+<p>Ministry of AYUSH</p>
+
 
 </div>
 
+<div class="right">
+<h2 style="text-align:center;">🌐 3D Model</h2>
+<div class="model-container" id="model"></div>
 </div>
 
-<!-- ✅ MOVED 3D MODEL TO BOTTOM (NO DATA REMOVED) -->
-<div class="bottom-3d">
-    <div class="right">
-        <h2 style="text-align:center;">🌐 3D Model</h2>
-        <div class="model-container" id="model"></div>
-    </div>
 </div>
 
 <footer>
@@ -167,19 +219,19 @@ let model;
 
 const loader = new THREE.GLTFLoader();
 loader.load(
-    './Turmeric.glb',
+    './Turmeric.glb', // 🔥 CHANGE THIS FILE NAME
     function (gltf) {
 
         model = gltf.scene;
 
-        // center model
+        // ✅ CENTER MODEL
         const box = new THREE.Box3().setFromObject(model);
         const size = box.getSize(new THREE.Vector3());
         const center = box.getCenter(new THREE.Vector3());
 
         model.position.sub(center);
 
-        // auto camera fit
+        // ✅ AUTO CAMERA FIT
         const maxDim = Math.max(size.x, size.y, size.z);
         const fov = camera.fov * (Math.PI / 180);
         let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
@@ -187,10 +239,14 @@ loader.load(
         camera.position.z = cameraZ * 1.5;
 
         scene.add(model);
+    },
+    undefined,
+    function (error) {
+        console.error("Error loading model:", error);
     }
 );
 
-// resize fix
+// Resize fix
 window.addEventListener('resize', () => {
     const width = container.clientWidth;
     const height = container.clientHeight;
@@ -200,7 +256,7 @@ window.addEventListener('resize', () => {
     camera.updateProjectionMatrix();
 });
 
-// animation
+// Animation
 function animate() {
     requestAnimationFrame(animate);
 
