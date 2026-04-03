@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Parsley - E-Herbal Garden</title>
+<title>Aloe Vera - E-Herbal Garden</title>
 
 <style>
 body {
@@ -34,38 +34,43 @@ nav a {
     font-weight: bold;
 }
 
-/* CONTENT */
-.content {
+/* FLEX LAYOUT */
+.main {
+    display: flex;
+    gap: 20px;
     padding: 30px;
-    max-width: 1000px;
-    margin: auto;
+    flex-wrap: wrap;
+}
+
+.left {
+    flex: 1;
+    min-width: 300px;
+}
+
+.right {
+    flex: 1;
+    min-width: 300px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding-bottom: 20px;
 }
 
 h2 {
     color: #2e7d32;
+    margin-top: 25px;
 }
 
-p {
+p, li {
     line-height: 1.6;
 }
 
-/* MODEL SECTION */
-.model-section {
-    margin: 40px auto;
-    max-width: 900px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    padding: 20px;
-    text-align: center;
-}
-
+/* 3D MODEL */
 .model-container {
     width: 100%;
-    height: 350px;
+    height: 500px;
 }
 
-/* FOOTER */
 footer {
     background: #145a1f;
     color: white;
@@ -79,8 +84,8 @@ footer {
 <body>
 
 <header>
-<h1>🌿 Parsley (Petroselinum crispum)</h1>
-<p>The Fresh Herb for Flavor & Health</p>
+<h1>🌿 Aloe Vera (Aloe barbadensis)</h1>
+<p>A natural plant known for its healing and health benefits</p>
 </header>
 
 <nav>
@@ -89,31 +94,96 @@ footer {
 <a href="about.html">About</a>
 </nav>
 
-<div class="content">
+<div class="main">
+
+<!-- LEFT CONTENT -->
+<div class="left">
+
+<h2>🧬 Overview</h2>
+<p>Aloe Vera (Aloe barbadensis Miller) is a medicinal plant known for its soothing, healing, and therapeutic properties.</p>
+<p>The gel from its leaves is widely used for skin care and health benefits.</p>
 
 <h2>🌱 Basic Information</h2>
-<p><b>Common Name:</b> Parsley</p>
-<p><b>Botanical Name:</b> Petroselinum crispum</p>
-<p><b>Family:</b> Apiaceae</p>
+<p><b>Common Name:</b> Aloe Vera</p>
+<p><b>Botanical Name:</b> Aloe barbadensis Miller</p>
+<p><b>Family:</b> Asphodelaceae</p>
 
 <h2>🌿 Medicinal Uses</h2>
-<p>Rich in vitamins A, C, K. Supports digestion, immunity, and kidney health.</p>
+<p>Used for skin healing, digestion, immunity, and anti-inflammatory benefits.</p>
 
 <h2>🌍 Habitat</h2>
-<p>Grows in temperate climates with well-drained soil.</p>
+<p>Grows in arid and semi-arid regions.</p>
 
 <h2>🌾 Cultivation</h2>
-<p>Needs sunlight, regular watering, and fertile soil.</p>
+<p>Grown through offsets (pups) and requires minimal watering.</p>
 
 <h2>⚠️ Precautions</h2>
-<p>Consume in moderation. Avoid excess during pregnancy.</p>
+<p>Safe externally, internal use should be controlled.</p>
+
+<h2>🌱 Botanical & General Information</h2>
+<p><b>Plant Type:</b> Succulent perennial</p>
+<p><b>Parts Used:</b> Leaf gel, latex</p>
+
+<h2>🌿 Propagation & Cultivation</h2>
+<p><b>Offsets (Pups):</b> Primary method</p>
+<p><b>Seeds:</b> Less common</p>
+
+<h3>🌞 Growth Requirements</h3>
+<ul>
+<li>Well-drained sandy soil</li>
+<li>Full sunlight</li>
+<li>Minimal watering</li>
+<li>Warm climate</li>
+</ul>
+
+<h2>🧪 Key Bioactive Compounds</h2>
+<ul>
+<li>Aloin</li>
+<li>Acemannan</li>
+<li>Anthraquinones</li>
+<li>Vitamins A, C, E</li>
+<li>Enzymes and polysaccharides</li>
+</ul>
+
+<h2>💊 Pharmacological Properties</h2>
+<ul>
+<li>Wound healing</li>
+<li>Antioxidant</li>
+<li>Anti-inflammatory</li>
+<li>Antimicrobial</li>
+<li>Digestive support</li>
+</ul>
+
+<h2>🩺 Therapeutic Applications</h2>
+<ul>
+<li>Skin care</li>
+<li>Wound healing</li>
+<li>Digestive health</li>
+<li>General wellness</li>
+</ul>
+
+<h2>⚙️ Mechanism of Action</h2>
+<ul>
+<li>Promotes cell regeneration</li>
+<li>Reduces inflammation</li>
+<li>Provides antioxidant protection</li>
+<li>Fights microbes</li>
+</ul>
+
+<h2>🌍 Modern Relevance</h2>
+<p>Recognized by NCBI, WHO, and Ministry of AYUSH for therapeutic benefits.</p>
+
+<h2>📚 Sources</h2>
+<p>NCBI, WHO, Ministry of AYUSH</p>
 
 </div>
 
-<!-- 🔥 MODEL AT BOTTOM -->
-<div class="model-section">
-<h2>🌐 3D Parsley Model</h2>
+<!-- RIGHT 3D MODEL -->
+<div class="right">
+<h2 style="text-align:center;">🌐 3D Aloe Vera Model</h2>
 <div class="model-container" id="model"></div>
+</div>
+
 </div>
 
 <footer>
@@ -130,10 +200,10 @@ const scene = new THREE.Scene();
 const container = document.getElementById("model");
 
 const camera = new THREE.PerspectiveCamera(
-    75,
-    container.clientWidth / container.clientHeight,
-    0.1,
-    1000
+75,
+container.clientWidth / container.clientHeight,
+0.1,
+1000
 );
 
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -142,8 +212,7 @@ renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
 // LIGHT
-const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
-scene.add(light);
+scene.add(new THREE.HemisphereLight(0xffffff, 0x444444, 1.5));
 
 // CONTROLS
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
@@ -154,7 +223,7 @@ let model;
 
 const loader = new THREE.GLTFLoader();
 loader.load(
-    './Parsley.glb',
+    './AloeVera.glb',
     function (gltf) {
         model = gltf.scene;
 
