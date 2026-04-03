@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Plant - E-Herbal Garden</title>
+<title>Peppermint - E-Herbal Garden</title>
 
 <style>
 body {
@@ -32,11 +33,14 @@ nav a {
     font-weight: bold;
 }
 
-.main {
-    display: flex;
-    gap: 20px;
+.content {
     padding: 30px;
+    max-width: 1100px;
+    margin: auto;
+    display: flex;
     flex-wrap: wrap;
+    gap: 30px;
+    align-items: flex-start;
 }
 
 .left {
@@ -51,19 +55,27 @@ nav a {
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     overflow: hidden;
+    padding: 20px;
 }
 
 h2 {
     color: #2e7d32;
+    margin-top: 25px;
 }
 
-p {
+p, li {
     line-height: 1.6;
 }
 
 .model-container {
     width: 100%;
-    height: 500px;
+    height: 400px;
+}
+
+@media (max-width:768px){
+    .model-container{
+        height: 300px;
+    }
 }
 
 footer {
@@ -79,8 +91,8 @@ footer {
 <body>
 
 <header>
-<h1> Peppermint </h1>
-<p>Tagline of the Plant</p>
+<h1>🌿 Peppermint (Mentha × piperita)</h1>
+<p>The Cooling and Aromatic Herb</p>
 </header>
 
 <nav>
@@ -90,37 +102,96 @@ footer {
 <a href="#">Contact</a>
 </nav>
 
-<div class="main">
+<div class="content">
 
+<!-- LEFT CONTENT -->
 <div class="left">
 
-<h2>🌱 Basic Information</h2>
-<p><b>Common Name:</b> </p>
-<p><b>Botanical Name:</b> </p>
+<h2>🧬 Overview</h2>
+<p>Peppermint (Mentha × piperita) is a hybrid mint plant known for its refreshing aroma, cooling sensation, and therapeutic properties. Widely used in herbal medicine, culinary applications, and essential oil production, it is celebrated for digestive support, pain relief, and antimicrobial effects.</p>
 
-<h2>🌿 Medicinal Uses</h2>
-<p>Write here...</p>
+<h2>🌱 Botanical & General Information</h2>
+<p><b>Family:</b> Lamiaceae</p>
+<p><b>Common Name:</b> Peppermint</p>
+<p><b>Plant Type:</b> Perennial herb</p>
+<p><b>Habitat:</b> Temperate regions, moist soils</p>
+<p><b>Parts Used:</b> Leaves, stems, essential oils</p>
 
-<h2>🌍 Habitat</h2>
-<p>Write here...</p>
+<h2>🌿 Propagation & Cultivation</h2>
+<p><b>Vegetative Propagation:</b> Most common method using stem cuttings for consistency.</p>
+<p><b>Seeds:</b> Possible but less common due to low viability.</p>
 
-<h2>🌾 Cultivation</h2>
-<p>Write here...</p>
+<h3>🌞 Growth Requirements</h3>
+<ul>
+<li>Moist, well-drained soil</li>
+<li>Partial to full sunlight</li>
+<li>Cool, temperate climate</li>
+<li>Regular watering</li>
+</ul>
 
-<h2>⚠️ Precautions</h2>
-<p>Write here...</p>
+<h2>🧪 Key Bioactive Compounds</h2>
+<ul>
+<li>Menthol – cooling and analgesic effect</li>
+<li>Menthone – aromatic and antimicrobial</li>
+<li>Flavonoids – antioxidant properties</li>
+<li>Tannins – antimicrobial effect</li>
+<li>Essential oils – digestive and therapeutic benefits</li>
+</ul>
+
+<h2>💊 Pharmacological & Medicinal Properties</h2>
+<ul>
+<li>Digestive aid: Relieves indigestion, bloating, and gas</li>
+<li>Analgesic: Eases headaches and minor pains</li>
+<li>Antimicrobial: Fights bacteria and fungi</li>
+<li>Anti-inflammatory: Reduces inflammation</li>
+<li>Respiratory support: Relieves mild congestion</li>
+</ul>
+
+<h2>🩺 Therapeutic Applications</h2>
+<ul>
+<li>Herbal teas for digestive comfort</li>
+<li>Aromatherapy for relaxation</li>
+<li>Topical oils for muscle pain</li>
+<li>Natural flavoring in food and beverages</li>
+</ul>
+
+<h2>⚙️ Mechanism of Action</h2>
+<ul>
+<li>Menthol activates cooling receptors → analgesic effect</li>
+<li>Essential oils inhibit microbial growth → antimicrobial effect</li>
+<li>Flavonoids scavenge free radicals → antioxidant protection</li>
+<li>Reduces gastrointestinal spasms → digestive support</li>
+</ul>
+
+<h2>⚠️ Safety & Precautions</h2>
+<ul>
+<li>Generally safe in moderate amounts</li>
+<li>Essential oils may cause irritation if applied undiluted</li>
+<li>Consult healthcare providers for serious digestive or respiratory conditions</li>
+</ul>
+
+<h2>🌍 Modern Relevance & Research</h2>
+<p>Peppermint is extensively studied for its gastrointestinal, antimicrobial, and analgesic effects. Recognized by NCBI, WHO, and Ministry of AYUSH for both medicinal and culinary applications.</p>
+
+<h2>📚 Sources</h2>
+<ul>
+<li>NCBI</li>
+<li>WHO</li>
+<li>Ministry of AYUSH</li>
+</ul>
 
 </div>
 
+<!-- RIGHT 3D MODEL -->
 <div class="right">
-<h2 style="text-align:center;">🌐 3D Model</h2>
+<h2 style="text-align:center;">🌐 3D Peppermint Model</h2>
 <div class="model-container" id="model"></div>
 </div>
 
 </div>
 
 <footer>
-© 2026 E-Herbal Garden
+© 2026 E-Herbal Garden | Designed with 🌱
 </footer>
 
 <!-- Three.js -->
@@ -129,54 +200,50 @@ footer {
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
 
 <script>
+// Scene setup
 const scene = new THREE.Scene();
 const container = document.getElementById("model");
 
-const camera = new THREE.PerspectiveCamera(
-    75,
-    container.clientWidth / container.clientHeight,
-    0.1,
-    1000
-);
+// Camera
+const camera = new THREE.PerspectiveCamera(60, container.clientWidth / container.clientHeight, 0.1, 1000);
 
+// Renderer
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
-// Lighting
+// Light
 const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
 scene.add(light);
 
 // Controls
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
-controls.enableZoom = true;
-controls.enablePan = false;
+controls.enableDamping = true;
+controls.minDistance = 1;
+controls.maxDistance = 10;
 
-let model;
-
+// Load GLB Model
+let peppermintModel;
 const loader = new THREE.GLTFLoader();
 loader.load(
-    './Peppermint.glb', // 🔥 CHANGE THIS FILE NAME
+    './Peppermint.glb', // Path to your 3D model
     function (gltf) {
+        peppermintModel = gltf.scene;
 
-        model = gltf.scene;
-
-        // ✅ CENTER MODEL
-        const box = new THREE.Box3().setFromObject(model);
+        // Center model
+        const box = new THREE.Box3().setFromObject(peppermintModel);
         const size = box.getSize(new THREE.Vector3());
         const center = box.getCenter(new THREE.Vector3());
+        peppermintModel.position.sub(center);
 
-        model.position.sub(center);
-
-        // ✅ AUTO CAMERA FIT
+        // Scale to fit camera
         const maxDim = Math.max(size.x, size.y, size.z);
         const fov = camera.fov * (Math.PI / 180);
         let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
-
         camera.position.z = cameraZ * 1.5;
 
-        scene.add(model);
+        scene.add(peppermintModel);
     },
     undefined,
     function (error) {
@@ -184,27 +251,22 @@ loader.load(
     }
 );
 
-// Resize fix
+// Resize
 window.addEventListener('resize', () => {
     const width = container.clientWidth;
     const height = container.clientHeight;
-
     renderer.setSize(width, height);
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
 });
 
-// Animation
+// Animate
 function animate() {
     requestAnimationFrame(animate);
-
-    if (model) {
-        model.rotation.y += 0.005;
-    }
-
+    if (peppermintModel) peppermintModel.rotation.y += 0.005;
+    controls.update();
     renderer.render(scene, camera);
 }
-
 animate();
 </script>
 
