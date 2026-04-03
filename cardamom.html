@@ -2,79 +2,86 @@
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Cardamom - E-Herbal Garden</title>
 
 <style>
-body{
-    margin:0;
-    font-family:Arial, sans-serif;
-    background:#eaf5ea;
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #eaf5ea;
 }
 
-header{
-    background:linear-gradient(to right,#1b5e20,#2e7d32);
-    color:white;
-    padding:20px;
-    text-align:center;
+header {
+    background: linear-gradient(to right, #1b5e20, #2e7d32);
+    color: white;
+    padding: 20px;
+    text-align: center;
 }
 
-nav{
-    background:#145a1f;
-    padding:10px;
-    text-align:center;
+nav {
+    background: #145a1f;
+    padding: 10px;
+    text-align: center;
 }
 
-nav a{
-    color:white;
-    margin:0 15px;
-    text-decoration:none;
-    font-weight:bold;
+nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
 }
 
-.content{
-    padding:30px;
-    max-width:1000px;
-    margin:auto;
+.content {
+    padding: 30px;
+    max-width: 1000px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    align-items: flex-start;
 }
 
-h2{
-    color:#2e7d32;
-    margin-top:25px;
+h2 {
+    color: #2e7d32;
+    margin-top: 25px;
 }
 
-p{
-    line-height:1.6;
+p {
+    line-height: 1.6;
 }
 
 /* MODEL SECTION */
-.model-section{
-    margin:40px auto;
-    max-width:900px;
-    background:white;
-    border-radius:15px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.1);
-    padding:20px;
+.model-section {
+    margin: 40px auto;
+    max-width: 900px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px;
 }
 
-.model-container{
-    width:100%;
-    height:400px;
+.model-container {
+    width: 100%;
+    height: 400px;
 }
 
-@media (max-width:768px){
-    .model-container{
-        height:280px;
+@media (max-width: 768px) {
+    .model-container {
+        height: 280px;
     }
 }
 
-footer{
-    background:#145a1f;
-    color:white;
-    text-align:center;
-    padding:15px;
-    margin-top:20px;
+footer {
+    background: #145a1f;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 20px;
 }
 </style>
 </head>
@@ -82,147 +89,157 @@ footer{
 <body>
 
 <header>
-<h1>🌿 Cardamom</h1>
-<p>Tagline of the Plant</p>
+    <h1>🌿 Cardamom</h1>
+    <p>Tagline of the Plant</p>
 </header>
 
 <nav>
-<a href="index.html">Home</a>
-<a href="hellochalja.html">Plants</a>
-<a href="about.html">About</a>
-<a href="#">Contact</a>
+    <a href="index.html">Home</a>
+    <a href="hellochalja.html">Plants</a>
+    <a href="about.html">About</a>
+    <a href="#">Contact</a>
 </nav>
 
-<div class="content" style="display:flex; flex-wrap:wrap; gap:30px; align-items:flex-start;">
+<div class="content">
 
-<!-- LEFT CONTENT -->
-<div style="flex:1; min-width:300px;">
+    <!-- LEFT CONTENT -->
+    <div style="flex:1; min-width:300px;">
 
-<h2>🧬 Overview</h2>
-<p>
-Cardamom (Elettaria cardamomum) is a highly valued medicinal and aromatic plant known for its digestive, antimicrobial, and therapeutic properties. It is widely used in traditional remedies, culinary applications, and modern healthcare for its ability to support digestion, improve respiratory health, and promote overall wellness.
-</p>
-<p>
-The seeds enclosed in pods are the primary part used, containing essential oils and bioactive compounds that contribute to its medicinal effects.
-</p>
+        <h2>🧬 Overview</h2>
+        <p>
+            Cardamom (Elettaria cardamomum) is a highly valued medicinal and aromatic plant known for its digestive,
+            antimicrobial, and therapeutic properties. It is widely used in traditional remedies, culinary applications,
+            and modern healthcare for its ability to support digestion, improve respiratory health, and promote overall
+            wellness.
+        </p>
+        <p>
+            The seeds enclosed in pods are the primary part used, containing essential oils and bioactive compounds that
+            contribute to its medicinal effects.
+        </p>
 
-<h2>🌱 Botanical & General Information</h2>
-<p><b>Common Name:</b> Cardamom</p>
-<p><b>Botanical Name:</b> Elettaria cardamomum</p>
-<p><b>Family:</b> Zingiberaceae</p>
-<p><b>Plant Type:</b> Perennial herb</p>
-<p><b>Habitat:</b> Tropical regions</p>
-<p><b>Parts Used:</b> Seeds (main), pods</p>
+        <h2>🌱 Botanical & General Information</h2>
+        <p><b>Common Name:</b> Cardamom</p>
+        <p><b>Botanical Name:</b> Elettaria cardamomum</p>
+        <p><b>Family:</b> Zingiberaceae</p>
+        <p><b>Plant Type:</b> Perennial herb</p>
+        <p><b>Habitat:</b> Tropical regions</p>
+        <p><b>Parts Used:</b> Seeds (main), pods</p>
 
-<p>
-Cardamom is a flowering plant that produces small green pods containing aromatic seeds used as a spice and medicinal ingredient.
-</p>
+        <p>
+            Cardamom is a flowering plant that produces small green pods containing aromatic seeds used as a spice and
+            medicinal ingredient.
+        </p>
 
-<h2>🌿 Propagation & Cultivation</h2>
+        <h2>🌿 Propagation & Cultivation</h2>
 
-<p><b>Propagation Methods:</b></p>
+        <p><b>Propagation Methods:</b></p>
 
-<ul>
-<li><b>Rhizome Division (Primary Method):</b> Underground rhizomes are divided and replanted, each forming a new plant.</li>
-<li><b>Seeds:</b> Can be used but may result in variable plant quality.</li>
-</ul>
+        <ul>
+            <li><b>Rhizome Division (Primary Method):</b> Underground rhizomes are divided and replanted, each forming a new
+                plant.</li>
+            <li><b>Seeds:</b> Can be used but may result in variable plant quality.</li>
+        </ul>
 
-<p><b>Growth Requirements:</b></p>
+        <p><b>Growth Requirements:</b></p>
 
-<ul>
-<li>Prefers warm, humid climates</li>
-<li>Requires rich, well-drained soil</li>
-<li>Grows best in partial shade</li>
-<li>Needs regular watering</li>
-</ul>
+        <ul>
+            <li>Prefers warm, humid climates</li>
+            <li>Requires rich, well-drained soil</li>
+            <li>Grows best in partial shade</li>
+            <li>Needs regular watering</li>
+        </ul>
 
-<p><b>Conclusion:</b> Rhizome division is the most effective and widely used cultivation method.</p>
+        <p><b>Conclusion:</b> Rhizome division is the most effective and widely used cultivation method.</p>
 
-<h2>🧪 Key Bioactive Compounds</h2>
+        <h2>🧪 Key Bioactive Compounds</h2>
 
-<ul>
-<li>Cineole</li>
-<li>Terpinyl acetate</li>
-<li>Limonene</li>
-<li>Flavonoids</li>
-<li>Essential oils</li>
-</ul>
+        <ul>
+            <li>Cineole</li>
+            <li>Terpinyl acetate</li>
+            <li>Limonene</li>
+            <li>Flavonoids</li>
+            <li>Essential oils</li>
+        </ul>
 
-<h2>💊 Pharmacological & Medicinal Properties</h2>
+        <h2>💊 Pharmacological & Medicinal Properties</h2>
 
-<ul>
-<li><b>Digestive Support:</b> Relieves indigestion, bloating, and gas</li>
-<li><b>Antimicrobial:</b> Effective against bacteria and pathogens</li>
-<li><b>Respiratory Support:</b> Helps with breathing and throat comfort</li>
-<li><b>Antioxidant:</b> Protects cells from oxidative stress</li>
-<li><b>Anti-inflammatory:</b> Reduces inflammation</li>
-</ul>
+        <ul>
+            <li><b>Digestive Support:</b> Relieves indigestion, bloating, and gas</li>
+            <li><b>Antimicrobial:</b> Effective against bacteria and pathogens</li>
+            <li><b>Respiratory Support:</b> Helps with breathing and throat comfort</li>
+            <li><b>Antioxidant:</b> Protects cells from oxidative stress</li>
+            <li><b>Anti-inflammatory:</b> Reduces inflammation</li>
+        </ul>
 
-<h2>🩺 Therapeutic Applications</h2>
+        <h2>🩺 Therapeutic Applications</h2>
 
-<ul>
-<li>Digestive health improvement</li>
-<li>Respiratory relief (cough, throat irritation)</li>
-<li>Oral health (natural mouth freshener, reduces bad breath)</li>
-<li>General wellness support</li>
-</ul>
+        <ul>
+            <li>Digestive health improvement</li>
+            <li>Respiratory relief (cough, throat irritation)</li>
+            <li>Oral health (natural mouth freshener, reduces bad breath)</li>
+            <li>General wellness support</li>
+        </ul>
 
-<h2>🌍 Habitat</h2>
+        <h2>🌍 Habitat</h2>
 
-<p>
-Cardamom grows in tropical regions and thrives in warm, humid environments with fertile and well-drained soil, typically under partial shade.
-</p>
+        <p>
+            Cardamom grows in tropical regions and thrives in warm, humid environments with fertile and well-drained soil,
+            typically under partial shade.
+        </p>
 
-<h2>🦠 Public Health & Research Importance</h2>
+        <h2>🦠 Public Health & Research Importance</h2>
 
-<p>
-Cardamom is widely researched for its digestive, antimicrobial, and respiratory benefits. It is used in food, pharmaceutical, and cosmetic industries and plays an important role in preventive healthcare systems.
-</p>
+        <p>
+            Cardamom is widely researched for its digestive, antimicrobial, and respiratory benefits. It is used in food,
+            pharmaceutical, and cosmetic industries and plays an important role in preventive healthcare systems.
+        </p>
 
-<h2>⚙️ Mechanism of Action</h2>
+        <h2>⚙️ Mechanism of Action</h2>
 
-<ul>
-<li>Stimulates digestion → improves gut function</li>
-<li>Inhibits microbial growth → prevents infections</li>
-<li>Provides antioxidant protection → safeguards cells</li>
-<li>Relieves respiratory discomfort → supports breathing</li>
-</ul>
+        <ul>
+            <li>Stimulates digestion → improves gut function</li>
+            <li>Inhibits microbial growth → prevents infections</li>
+            <li>Provides antioxidant protection → safeguards cells</li>
+            <li>Relieves respiratory discomfort → supports breathing</li>
+        </ul>
 
-<h2>⚠️ Precautions</h2>
+        <h2>⚠️ Precautions</h2>
 
-<ul>
-<li>Safe in moderate amounts</li>
-<li>Excess consumption may cause mild side effects</li>
-<li>Use cautiously in concentrated forms</li>
-<li>Not a substitute for medical treatment</li>
-</ul>
+        <ul>
+            <li>Safe in moderate amounts</li>
+            <li>Excess consumption may cause mild side effects</li>
+            <li>Use cautiously in concentrated forms</li>
+            <li>Not a substitute for medical treatment</li>
+        </ul>
 
-<h2>🌍 Relevance in Modern Healthcare</h2>
+        <h2>🌍 Relevance in Modern Healthcare</h2>
 
-<p>
-Cardamom is recognized by NCBI, WHO, and the Ministry of AYUSH for its digestive and respiratory benefits. It is widely used in food, pharmaceutical, and herbal industries and contributes to natural healthcare systems.
-</p>
+        <p>
+            Cardamom is recognized by NCBI, WHO, and the Ministry of AYUSH for its digestive and respiratory benefits. It is
+            widely used in food, pharmaceutical, and herbal industries and contributes to natural healthcare systems.
+        </p>
 
-<h2>📚 Sources & Credibility</h2>
+        <h2>📚 Sources & Credibility</h2>
 
-<ul>
-<li>National Center for Biotechnology Information (NCBI)</li>
-<li>World Health Organization (WHO)</li>
-<li>Ministry of AYUSH (Government of India)</li>
-</ul>
+        <ul>
+            <li>National Center for Biotechnology Information (NCBI)</li>
+            <li>World Health Organization (WHO)</li>
+            <li>Ministry of AYUSH (Government of India)</li>
+        </ul>
 
-</div>
+    </div>
 
-<!-- RIGHT MODEL -->
-<div class="model-section" style="flex:1; min-width:300px; max-width:500px;">
-<h2 style="text-align:center;">🌐 3D Cardamom Model</h2>
-<div class="model-container" id="model" style="height:500px;"></div>
-</div>
+    <!-- RIGHT MODEL -->
+    <div class="model-section">
+        <h2 style="text-align:center;">🌐 3D Cardamom Model</h2>
+        <p id="loading" style="text-align:center;">Loading model...</p>
+        <div class="model-container" id="model"></div>
+    </div>
 
 </div>
 
 <footer>
-© 2026 E-Herbal Garden | Designed with 🌱
+    © 2026 E-Herbal Garden | Designed with 🌱
 </footer>
 
 <!-- Three.js -->
@@ -231,26 +248,25 @@ Cardamom is recognized by NCBI, WHO, and the Ministry of AYUSH for its digestive
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
 
 <script>
-
 const scene = new THREE.Scene();
 const container = document.getElementById("model");
 
 const camera = new THREE.PerspectiveCamera(
-75,
-container.clientWidth / container.clientHeight,
-0.1,
-1000
+    75,
+    container.clientWidth / container.clientHeight,
+    0.1,
+    1000
 );
 
-const renderer = new THREE.WebGLRenderer({antialias:true, alpha:true});
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
-const light = new THREE.HemisphereLight(0xffffff,0x444444,1.5);
+const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
 scene.add(light);
 
-const controls = new THREE.OrbitControls(camera,renderer.domElement);
+const controls = new THREE.OrbitControls(camera, renderer.domElement);
 controls.enableZoom = true;
 controls.enablePan = false;
 
@@ -259,58 +275,57 @@ let model;
 const loader = new THREE.GLTFLoader();
 
 loader.load(
-'./Cardamom.glb',
-function(gltf){
+    './Cardamom.glb',
+    function (gltf) {
+        document.getElementById("loading").style.display = "none";
 
-model = gltf.scene;
+        model = gltf.scene;
 
-const box = new THREE.Box3().setFromObject(model);
-const size = box.getSize(new THREE.Vector3());
-const center = box.getCenter(new THREE.Vector3());
+        const box = new THREE.Box3().setFromObject(model);
+        const size = box.getSize(new THREE.Vector3());
+        const center = box.getCenter(new THREE.Vector3());
 
-model.position.sub(center);
+        model.position.sub(center);
 
-const maxDim = Math.max(size.x,size.y,size.z);
-const fov = camera.fov*(Math.PI/180);
-let cameraZ = Math.abs(maxDim/2/Math.tan(fov/2));
+        const maxDim = Math.max(size.x, size.y, size.z);
+        const fov = camera.fov * (Math.PI / 180);
+        let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
 
-camera.position.z = cameraZ*1.8;
+        camera.position.set(0, maxDim * 0.5, cameraZ * 1.8);
+        controls.target.set(0, 0, 0);
+        controls.update();
 
-scene.add(model);
-
-},
-undefined,
-function(error){
-console.error("Error loading model:",error);
-}
+        scene.add(model);
+    },
+    undefined,
+    function (error) {
+        console.error("Error loading model:", error);
+        document.getElementById("loading").textContent = "Failed to load model.";
+    }
 );
 
-window.addEventListener('resize',()=>{
+window.addEventListener('resize', () => {
+    const width = container.clientWidth;
+    const height = container.clientHeight;
 
-const width = container.clientWidth;
-const height = container.clientHeight;
-
-renderer.setSize(width,height);
-camera.aspect = width/height;
-camera.updateProjectionMatrix();
-
+    renderer.setSize(width, height);
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
 });
 
-function animate(){
+function animate() {
+    requestAnimationFrame(animate);
 
-requestAnimationFrame(animate);
+    if (model) {
+        model.rotation.y += 0.005;
+    }
 
-if(model){
-model.rotation.y += 0.005;
-}
-
-renderer.render(scene,camera);
-
+    renderer.render(scene, camera);
 }
 
 animate();
-
 </script>
 
 </body>
+
 </html>
