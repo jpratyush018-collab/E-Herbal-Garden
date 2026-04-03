@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>🌿 Smart Ayurveda Quiz</title>
+
+<style>
+  body {
+    font-family: Arial;
+    background: linear-gradient(to right, #d4fc79, #96e6a1);
+    text-align: center;
+    padding: 20px;
+  }
+
+  .container {
+    background: white;
+    padding: 25px;
+    border-radius: 20px;
+    max-width: 500px;
+    margin: auto;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  }
+
+  h2 {
+    margin-bottom: 20px;
+  }
+
+  #question {
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  /* Floating options */
+  .option {
+    display: block;
+    background: #f9f9f9;
+    margin: 12px 0;
+    padding: 14px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  /* Hover effect */
+  .option:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+    background: #e8f5e9;
+  }
+
+  /* Selected option */
+  .option.selected {
+    background: #c8f7c5;
+    border: 2px solid #4CAF50;
+  }
+
+  /* Tick mark */
+  .option.selected::after {
+    content: "✔";
+    position: absolute;
+    right: 15px;
+    top: 12px;
+    color: green;
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  button {
+    margin-top: 20px;
+    padding: 12px 25px;
+    border: none;
+    background: #4CAF50;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+  }
+
+  button:hover {
+    background: #2e7d32;
+    transform: scale(1.05);
+  }
+
+  .hidden {
+    display: none;
+  }
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h2>🌿 Ayurveda Smart Quiz</h2>
+
+  <div id="quiz-box">
+    <p id="question"></p>
+    <div id="options"></div>
+    <button onclick="nextQuestion()">Next</button>
+  </div>
+
+  <div id="result-box" class="hidden"></div>
+</div>
+
+<script>
+
+const quizData = [
+  { question: "Which herb helps reduce stress and anxiety?", options: ["Ashwagandha","Neem","Tulsi","Amla"], answer: "Ashwagandha" },
+  { question: "Which plant is best for skin problems?", options: ["Neem","Basil","Mint","Clove"], answer: "Neem" },
+  { question: "Which herb improves immunity?", options: ["Tulsi","Garlic","Onion","Pepper"], answer: "Tulsi" },
+  { question: "Which plant is used for digestion?", options: ["Mint","Neem","Aloe Vera","Rose"], answer: "Mint" },
+  { question: "Which herb is good for hair growth?", options: ["Amla","Tulsi","Coriander","Spinach"], answer: "Amla" },
+  { question: "Which plant helps in healing burns?", options: ["Aloe Vera","Neem","Tulsi","Mint"], answer: "Aloe Vera" },
+  { question: "Which herb improves memory and brain function?", options: ["Brahmi","Neem","Tulsi","Amla"], answer: "Brahmi" },
+  { question: "Which herb is known for boosting immunity and fighting fever?", options: ["Giloy","Mint","Clove","Rose"], answer: "Giloy" },
+  { question: "Which herb has strong anti-inflammatory properties?", options: ["Turmeric","Tulsi","Neem","Amla"], answer: "Turmeric" },
+  { question: "Which herb helps control blood sugar levels?", options: ["Fenugreek","Mint","Basil","Rose"], answer: "Fenugreek" }
+];
+
+let currentQuestion = 0;
+let selectedAnswer = "";
+let score = 0;
+let tokens = 0;
+
+function loadQuestion() {
+  let q = quizData[currentQuestion];
+  document.getElementById("question").innerText = (currentQuestion + 1) + ". " + q.question;
+
+  let optionsHTML = "";
+  q.options.forEach(opt => {
+    optionsHTML += `<div class="option" onclick="selectOption('${opt}', this)">${opt}</div>`;
+  });
+
+  document.getElementById("options").innerHTML = optionsHTML;
+}
+
+function selectOption(answer, element) {
+  selectedAnswer = answer;
+
+  let options = document.querySelectorAll(".option");
+  options.forEach(opt => opt.classList.remove("selected"));
+
+  element.classList.add("selected");
+}
+
+function nextQuestion() {
+  if (!selectedAnswer) {
+    alert("Please select an option!");
+    return;
+  }
+
+  if (selectedAnswer === quizData[currentQuestion].answer) {
+    score++;
+    tokens += 10;
+  }
+
+  selectedAnswer = "";
+  currentQuestion++;
+
+  if (currentQuestion < quizData.length) {
+    loadQuestion();
+  } else {
+    showResult();
+  }
+}
+
+function showResult() {
+  document.getElementById("quiz-box").classList.add("hidden");
+
+  let rank = "";
+  
+  if (score <= 3) rank = "🌱 Beginner";
+  else if (score <= 6) rank = "🔥 Pro";
+  else if (score <= 8) rank = "💎 Diamond";
+
+  else rank = "👑 Titan";
+
+  document.getElementById("result-box").classList.remove("hidden");
+  document.getElementById("result-box").innerHTML = `
+    <h2>🎉 Quiz Completed!</h2>
+    <p>Score: ${score} / ${quizData.length}</p>
+    <p>🏆 Rank: ${rank}</p>
+    <p>🪙 Tokens Earned: ${tokens}</p>
+    <button onclick="location.reload()">Play Again</button>
+  `;
+}
+
+loadQuestion();
+
+</script>
+
+</body>
+</html>
