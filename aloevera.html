@@ -222,9 +222,10 @@ let model;
 
 const loader = new THREE.GLTFLoader();
 loader.load(
-    './AloeVera.glb',
+    './Aloe Vera.glb',
     function (gltf) {
         model = gltf.scene;
+        model.scale.set(2, 2, 2);  // optional scaling
 
         const box = new THREE.Box3().setFromObject(model);
         const size = box.getSize(new THREE.Vector3());
@@ -239,6 +240,10 @@ loader.load(
         camera.position.z = cameraZ * 1.5;
 
         scene.add(model);
+    },
+    undefined,
+    function (error) {
+        console.error('An error happened while loading the model:', error);
     }
 );
 
