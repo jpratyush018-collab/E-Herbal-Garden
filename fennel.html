@@ -5,9 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fennel Plant</title>
 
-<!-- 3D MODEL VIEWER -->
-<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-
 <style>
 body{
 margin:0;
@@ -44,6 +41,7 @@ display:flex;
 justify-content:center;
 gap:60px;
 padding:40px;
+align-items:flex-start; /* ensures model stays top-aligned */
 }
 
 /* LEFT CONTENT */
@@ -63,7 +61,7 @@ padding-left:20px;
 /* RIGHT MODEL CARD */
 .model{
 width:320px;
-height:400px;
+height:500px; /* adjust height for Three.js canvas */
 background:#e0e0e0;
 padding:20px;
 border-radius:15px;
@@ -72,7 +70,7 @@ text-align:center;
 display:flex;
 flex-direction:column;
 align-items:center;
-justify-content:center;
+justify-content:flex-start;
 }
 
 .model h3{
@@ -80,9 +78,9 @@ color:#2e7d32;
 margin-bottom:10px;
 }
 
-model-viewer{
+.model-canvas{
 width:100%;
-height:300px;
+height:400px;
 }
 
 /* FOOTER */
@@ -127,7 +125,7 @@ height:auto;
 
 <!-- LEFT CONTENT -->
 <div class="content">
-
+<!-- All your content stays exactly the same -->
 <h2>🌱 Basic Information</h2>
 <p><b>Common Name:</b> Fennel (Saunf)</p>
 <p><b>Botanical Name:</b> Foeniculum vulgare</p>
@@ -221,29 +219,22 @@ height:auto;
 <!-- RIGHT SIDE MODEL -->
 <div class="model">
 <h3>🌐 3D Fennel Model</h3>
-
-<model-viewer 
-src="fennel.glb"
-auto-rotate
-camera-controls
-shadow-intensity="1"
-exposure="1">
-</model-viewer>
-
+<div id="model-canvas" class="model-canvas"></div>
 </div>
 
 </div>
 
 <footer>© 2026 E-Herbal Garden 🌿</footer>
 
-  <!-- Three.js -->
+<!-- Three.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
 
 <script>
+// Three.js setup
 const scene = new THREE.Scene();
-const container = document.getElementById("model");
+const container = document.getElementById("model-canvas");
 
 const camera = new THREE.PerspectiveCamera(
     75,
@@ -266,31 +257,30 @@ const controls = new THREE.OrbitControls(camera, renderer.domElement);
 controls.enableZoom = true;
 controls.enablePan = false;
 
+// Load Fennel model
 let model;
-
 const loader = new THREE.GLTFLoader();
 loader.load(
-    './Spinach.glb',
-    function (gltf) {
-
+    './fennel.glb', // make sure the correct model path is used
+    function(gltf) {
         model = gltf.scene;
 
+        // Center model
         const box = new THREE.Box3().setFromObject(model);
         const size = box.getSize(new THREE.Vector3());
         const center = box.getCenter(new THREE.Vector3());
-
         model.position.sub(center);
 
+        // Fit camera
         const maxDim = Math.max(size.x, size.y, size.z);
         const fov = camera.fov * (Math.PI / 180);
         let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
-
         camera.position.z = cameraZ * 1.8;
 
         scene.add(model);
     },
     undefined,
-    function (error) {
+    function(error) {
         console.error("Error loading model:", error);
     }
 );
@@ -299,23 +289,17 @@ loader.load(
 window.addEventListener('resize', () => {
     const width = container.clientWidth;
     const height = container.clientHeight;
-
     renderer.setSize(width, height);
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
 });
 
-// Animation
+// Animate
 function animate() {
     requestAnimationFrame(animate);
-
-    if (model) {
-        model.rotation.y += 0.005;
-    }
-
+    if(model) model.rotation.y += 0.005;
     renderer.render(scene, camera);
 }
-
 animate();
 </script>
 
