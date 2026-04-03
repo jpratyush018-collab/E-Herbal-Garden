@@ -1,72 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Amla - E-Herbal Garden</title>
 
 <style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #eaf5ea;
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#eaf5ea;
 }
 
-header {
-    background: linear-gradient(to right, #1b5e20, #2e7d32);
-    color: white;
-    padding: 20px;
-    text-align: center;
+header{
+    background:linear-gradient(to right,#1b5e20,#2e7d32);
+    color:white;
+    padding:20px;
+    text-align:center;
 }
 
-nav {
-    background: #145a1f;
-    padding: 10px;
-    text-align: center;
+nav{
+    background:#145a1f;
+    padding:10px;
+    text-align:center;
 }
 
-nav a {
-    color: white;
-    margin: 0 15px;
-    text-decoration: none;
-    font-weight: bold;
+nav a{
+    color:white;
+    margin:0 15px;
+    text-decoration:none;
+    font-weight:bold;
 }
 
-.main {
-    padding: 30px;
-    max-width: 900px;
-    margin: auto;
+/* 🔥 SPINACH STYLE FLEX LAYOUT */
+.content{
+    padding:30px;
+    max-width:1000px;
+    margin:auto;
+    display:flex;
+    flex-wrap:wrap;
+    gap:30px;
+    align-items:flex-start;
 }
 
-h2 {
-    color: #2e7d32;
+.left{
+    flex:1;
+    min-width:300px;
 }
 
-p {
-    line-height: 1.6;
+h2{
+    color:#2e7d32;
+    margin-top:25px;
 }
 
-/* MODEL SECTION */
+p{
+    line-height:1.6;
+}
+
+/* MODEL SECTION RIGHT SIDE */
 .model-section{
-    margin:40px auto;
-    max-width:900px;
+    flex:1;
+    min-width:300px;
+    max-width:500px;
     background:white;
-    border-radius:12px;
-    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
     padding:20px;
 }
 
-.model-container {
-    width: 100%;
-    height: 350px;
+.model-container{
+    width:100%;
+    height:450px;
 }
 
-footer {
-    background: #145a1f;
-    color: white;
-    text-align: center;
-    padding: 15px;
-    margin-top: 20px;
+@media (max-width:768px){
+    .model-container{
+        height:280px;
+    }
+}
+
+footer{
+    background:#145a1f;
+    color:white;
+    text-align:center;
+    padding:15px;
+    margin-top:20px;
 }
 </style>
 </head>
@@ -85,7 +104,11 @@ footer {
 <a href="#">Contact</a>
 </nav>
 
-<div class="main">
+<!-- 🔥 FLEX CONTENT -->
+<div class="content">
+
+<!-- LEFT SIDE CONTENT (UNCHANGED) -->
+<div class="left">
 
 <h2>🌱 Basic Information</h2>
 <p><b>Common Name:</b> Amla / Indian Gooseberry</p>
@@ -174,10 +197,12 @@ footer {
 
 </div>
 
-<!-- MODEL -->
+<!-- RIGHT MODEL -->
 <div class="model-section">
 <h2 style="text-align:center;">🌐 3D Amla Model</h2>
 <div class="model-container" id="model"></div>
+</div>
+
 </div>
 
 <footer>
@@ -192,8 +217,9 @@ footer {
 const scene = new THREE.Scene();
 const container = document.getElementById("model");
 
+/* 🔥 CAMERA LIKE SPINACH */
 const camera = new THREE.PerspectiveCamera(
-60,
+75,
 container.clientWidth / container.clientHeight,
 0.1,
 1000
@@ -204,59 +230,59 @@ renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
-// Lighting
+/* LIGHT */
 const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
 scene.add(light);
 
-// Controls
+/* CONTROLS */
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
-controls.enableDamping = true;
+controls.enableZoom = true;
+controls.enablePan = false;
 
 let amlaModel;
 const loader = new THREE.GLTFLoader();
 
-loader.load('./Amla.glb', function(gltf) {
+loader.load('./Amla.glb', function(gltf){
 
-    amlaModel = gltf.scene;
+amlaModel = gltf.scene;
 
-    // 🔥 AUTO CENTER + RESIZE
-    const box = new THREE.Box3().setFromObject(amlaModel);
-    const size = box.getSize(new THREE.Vector3()).length();
-    const center = box.getCenter(new THREE.Vector3());
+/* 🔥 AUTO FIT LIKE SPINACH */
+const box = new THREE.Box3().setFromObject(amlaModel);
+const size = box.getSize(new THREE.Vector3());
+const center = box.getCenter(new THREE.Vector3());
 
-    amlaModel.position.sub(center);
+amlaModel.position.sub(center);
 
-    // 🔥 SCALE FIX (IMPORTANT)
-    const scale = 3 / size;
-    amlaModel.scale.setScalar(scale);
+const maxDim = Math.max(size.x,size.y,size.z);
+const fov = camera.fov*(Math.PI/180);
+let cameraZ = Math.abs(maxDim/2/Math.tan(fov/2));
 
-    scene.add(amlaModel);
+camera.position.z = cameraZ*1.8;
 
-    // 🔥 PERFECT CAMERA VIEW
-    camera.position.set(0, size/2, size * 1.5);
-    controls.target.set(0,0,0);
-    controls.update();
+scene.add(amlaModel);
 
-}, undefined, function(error) {
-    console.error(error);
+}, undefined, function(error){
+console.error(error);
 });
 
-// Resize fix
+/* RESPONSIVE */
 window.addEventListener('resize', () => {
-    camera.aspect = container.clientWidth / container.clientHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(container.clientWidth, container.clientHeight);
+const width = container.clientWidth;
+const height = container.clientHeight;
+
+renderer.setSize(width,height);
+camera.aspect = width/height;
+camera.updateProjectionMatrix();
 });
 
-// Animation
-function animate() {
+/* ANIMATION */
+function animate(){
 requestAnimationFrame(animate);
 
 if (amlaModel) {
     amlaModel.rotation.y += 0.004;
 }
 
-controls.update();
 renderer.render(scene, camera);
 }
 animate();
