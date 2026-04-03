@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>E-Herbal Garden</title>
-
 <style>
-html { scroll-behavior: smooth; }
-
+    html {
+  scroll-behavior: smooth;
+}
 /* FADE-UP BANNER WITH MARQUEE */
 .announcement {
   width: 100%;
@@ -31,8 +31,9 @@ html { scroll-behavior: smooth; }
   font-size: 13px;
   font-weight: 500;
 }
-.announcement:hover p { animation-play-state: paused; }
-
+.announcement:hover p {
+  animation-play-state: paused;
+}
 @keyframes fadeUpBanner {
   0% { opacity:0; transform:translateY(30px);}
   100% {opacity:1; transform:translateY(0);}
@@ -167,6 +168,7 @@ nav a:hover {
   background:#4caf50;
   border-radius:50%;
   box-shadow:0 0 10px rgba(76,175,80,0.6);
+  transition:0.3s;
 }
 .timeline-item h3{ margin:0 0 10px; color:#1b5e20; }
 .timeline-item p{ margin:0; line-height:1.6; color:#444; }
@@ -183,21 +185,41 @@ nav a:hover {
   padding:30px;
   border-radius:25px;
   text-align:center;
+  box-shadow:0 12px 35px rgba(0,0,0,0.15);
+  transition:all 0.5s ease;
   cursor:pointer;
+  position:relative;
+  overflow:hidden;
   opacity:0;
   transform:translateY(30px);
 }
-.details{ display:none; }
+.card:hover{
+  transform:scale(1.05);
+  box-shadow:0 20px 40px rgba(0,0,0,0.25);
+}
+.card img{
+  width:90px;
+  height:90px;
+  margin-bottom:15px;
+  transition:0.4s;
+}
+.card:hover img{ transform:rotate(360deg) scale(1.15);}
+.card h3{ margin:15px 0 10px; font-size:20px; color:#1b5e20; }
+.card:hover h3{ color:#4caf50; }
 
-/* CONTACT */
-#contact{
-  background: linear-gradient(135deg,#1b5e20,#2e7d32);
+/* DETAILS */
+.details{ display:none; margin-top:15px; font-size:14.5px; color:#555; line-height:1.6;}
+
+/* FOOTER */
+footer{
+  background:linear-gradient(135deg,#1b5e20,#2e7d32);
   color:white;
-  padding:50px;
   text-align:center;
+  padding:25px;
+  font-size:14px;
 }
 
-/* CHAT BUTTON */
+/* CHATBOT */
 #chat-toggle{
   position:fixed;
   bottom:20px;
@@ -215,32 +237,23 @@ nav a:hover {
   z-index:99999;
 }
 
-/* CHATBOX */
-#chatbot-box{
-  position:fixed;
-  bottom:100px;
-  right:20px;
-  width:320px;
-  max-height:420px;
-  background:white;
-  border-radius:15px;
-  display:none;
-  flex-direction:column;
-  box-shadow:0 10px 30px rgba(0,0,0,0.3);
-  z-index:99999;
+@media (max-width:768px){
+  .history-timeline{padding-left:20px;}
+  .history-section{padding:40px 20px;}
+  .card-container{padding:20px;}
 }
 </style>
-
 <script>
 function toggleDetails(card){
   const detail = card.querySelector('.details');
   const isVisible = detail.style.display === 'block';
   document.querySelectorAll('.details').forEach(d=>d.style.display='none');
   detail.style.display = isVisible?'none':'block';
+  card.classList.toggle('active',!isVisible);
 }
 
 document.addEventListener('DOMContentLoaded',()=>{
-
+  // Timeline & card animations
   const observer = new IntersectionObserver(entries=>{
     entries.forEach(entry=>{
       if(entry.isIntersecting){
@@ -249,18 +262,13 @@ document.addEventListener('DOMContentLoaded',()=>{
       }
     });
   });
-
   document.querySelectorAll('.card, .timeline-item').forEach(el=>{
     observer.observe(el);
   });
-
 });
 </script>
 </head>
-
 <body>
-
-<!-- (ALL YOUR ORIGINAL CONTENT REMAINS EXACTLY SAME BELOW) -->
 
 <!-- Announcement Marquee -->
 <div class="announcement">
@@ -287,79 +295,123 @@ document.addEventListener('DOMContentLoaded',()=>{
   <h1>🌿 Welcome to the Digital Herbal Garden 🌿</h1>
 </div>
 
-<!-- (REST OF YOUR CONTENT UNCHANGED) -->
-
-<!-- CHAT BUTTON -->
-<div id="chat-toggle">💬</div>
-
-<!-- CHATBOX -->
-<div id="chatbot-box">
-  <div style="background:#2e7d32;color:white;padding:10px;text-align:center;">
-    🌿 Herbal Assistant
+<!-- Timeline Section -->
+<section class="history-section">
+<h2>📜 History of Ayurveda</h2>
+<div class="history-timeline">
+  <div class="timeline-item">
+    <h3>🌌 Vedic Period (5000+ years ago)</h3>
+    <p>Ayurveda originated in the Atharva Veda. Ancient sages observed nature and documented healing herbs, diseases, and spiritual therapies.</p>
   </div>
-
-  <div id="chat-messages" style="padding:10px;height:250px;overflow-y:auto;"></div>
-
-  <div style="display:flex;border-top:1px solid #ccc;">
-    <input id="chat-input" type="text" placeholder="Ask about herbs..." style="flex:1;padding:10px;border:none;">
-    <button onclick="sendMessage()" style="background:#4caf50;color:white;border:none;padding:10px;">Send</button>
+  <div class="timeline-item">
+    <h3>📚 Samhita Era (1000 BCE)</h3>
+    <p>Knowledge compiled in great texts: <strong>Charaka Samhita</strong>, <strong>Sushruta Samhita</strong>, <strong>Ashtanga Hridaya</strong>.</p>
+  </div>
+  <div class="timeline-item">
+    <h3>🏥 Golden Age (600 BCE - 200 CE)</h3>
+    <p>Sushruta performed world's first plastic surgery. Over 300 procedures and 120 instruments developed.</p>
+  </div>
+  <div class="timeline-item">
+    <h3>🌍 Global Spread (200 BCE onwards)</h3>
+    <p>Traveled via Silk Road to China, Tibet, Greece. Influenced Unani, TCM. Arab scholars translated texts.</p>
+  </div>
+  <div class="timeline-item">
+    <h3>✨ Modern Revival (20th Century)</h3>
+    <p>India's Ministry of AYUSH promotes globally. Now practiced in 100+ countries as complementary medicine.</p>
   </div>
 </div>
+</section>
 
-<script>
-// FIXED TOGGLE (100% working)
-window.addEventListener("load", function(){
+<!-- Cards -->
+<div class="card-container">
+<div class="card" onclick="toggleDetails(this)">
+<img src="origin.png"><h3>Vedic Origin</h3>
+<div class="details">
+Ayurveda is believed to have originated during the Atharva Veda. Healing herbs 🌱, diseases 🦠, spiritual therapies 🧘.
+</div>
+</div>
 
-  const chatToggle = document.getElementById('chat-toggle');
-  const chatBox = document.getElementById('chatbot-box');
+<div class="card" onclick="toggleDetails(this)">
+<img src="vedic.png"><h3>Ancient Texts</h3>
+<div class="details">
+Knowledge of Ayurveda was systematically written in Samhitas: <strong>Charaka Samhita</strong>, <strong>Sushruta Samhita</strong>, <strong>Ashtanga Hridaya</strong>.
+</div>
+</div>
 
-  chatToggle.addEventListener("click", function () {
-    chatBox.style.display = chatBox.style.display === "block" ? "none" : "block";
-  });
+<div class="card" onclick="toggleDetails(this)">
+<img src="doctor.png"><h3>Sushruta</h3>
+<div class="details">
+Pioneer of surgery. 300+ surgical procedures, 120 instruments, early plastic surgery, author of Sushruta Samhita.
+</div>
+</div>
 
-});
+<div class="card" onclick="toggleDetails(this)">
+<img src="plant.png"><h3>Branches</h3>
+<div class="details">
+8 branches (Ashtanga Ayurveda): Kayachikitsa, Shalya Tantra, Shalakya Tantra, Kaumarbhritya, Agada Tantra, Bhuta Vidya, Rasayana, Vajikarana.
+</div>
+</div>
 
-// CHAT LOGIC
-function sendMessage(){
-  const input = document.getElementById('chat-input');
-  const msg = input.value.trim();
-  if(!msg) return;
+<div class="card" onclick="toggleDetails(this)">
+<img src="spread.png"><h3>Global Spread</h3>
+<div class="details">
+Influenced China, Tibet, Middle East. Translated by Arab scholars. Practiced in 100+ countries.
+</div>
+</div>
 
-  addMsg("You", msg);
-  input.value = "";
+<div class="card" onclick="toggleDetails(this)">
+<img src="book.png"><h3>Modern Use</h3>
+<div class="details">
+Promoted by Ministry of AYUSH. Immunity boost, Yoga & meditation, Panchakarma detox, Herbal medicines.
+</div>
+</div>
+</div>
 
-  setTimeout(()=>{
-    addMsg("Bot", getReply(msg.toLowerCase()));
-  },500);
-}
+<!-- CONTACT SECTION -->
+<section id="contact" style="
+  background: linear-gradient(135deg,#1b5e20,#2e7d32);
+  color: white;
+  padding: 50px 20px;
+  text-align: center;
+">
 
-function addMsg(sender,text){
-  const div = document.createElement('div');
-  div.style.marginBottom="10px";
-  div.innerHTML = `<strong>${sender}:</strong> ${text}`;
-  document.getElementById('chat-messages').appendChild(div);
-}
+  <h2 style="font-size:32px; margin-bottom:20px;">📞 Contact Us</h2>
 
-function getReply(msg){
-  if(msg.includes("hi") || msg.includes("hello"))
-    return "Hello 🌿! Welcome to E-Herbal Garden.";
+  <p style="font-size:16px; margin-bottom:10px;">
+    🌿 We'd love to hear from you!
+  </p>
 
-  if(msg.includes("ayurveda"))
-    return "Ayurveda is a 5000-year-old natural healing system 🌱.";
+  <p style="font-size:15px; margin-bottom:20px;">
+    📧 Email: <a href="mailto:eherbalgarden@gmail.com" style="color:white; text-decoration:underline;">eherbalgarden@gmail.com</a> <br>
+    📞 Phone: <a href="tel:+919808406920 +91 8192816334" style="color:white; text-decoration:underline;">9808406920</a> <br>
+    📍 Location: India
+  </p>
 
-  if(msg.includes("tulsi"))
-    return "Tulsi boosts immunity 🌿.";
+  <a href="https://www.instagram.com/e_herbal_garden?igsh=M2Y3YTNha2VwcGhk" 
+     target="_blank"
+     style="
+       display:inline-block;
+       padding:12px 25px;
+       background:#4caf50;
+       color:white;
+       border-radius:25px;
+       text-decoration:none;
+       font-weight:bold;
+       transition:0.3s;
+       margin-top:10px;
+     "
+     onmouseover="this.style.background='#66bb6a';"
+     onmouseout="this.style.background='#4caf50';">
+     📸 Visit our Instagram
+  </a>
 
-  if(msg.includes("aloe"))
-    return "Aloe Vera is great for skin 🌱.";
+</section>
 
-  return "Ask me about herbal plants 🌿.";
-}
+  <p style="margin-top:30px; font-size:14px;">
+ © 2026 E-Herbal Garden | Designed with 🌱 | Team Beginners
+  </p>
 
-document.addEventListener("keypress",function(e){
-  if(e.key==="Enter") sendMessage();
-});
-</script>
-
+</section>
+<div id="chat-toggle">💬</div>
 </body>
 </html>
