@@ -1,69 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Arjuna - E-Herbal Garden</title>
 
 <style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #eaf5ea;
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#eaf5ea;
 }
 
-header {
-    background: linear-gradient(to right, #1b5e20, #2e7d32);
-    color: white;
-    padding: 20px;
-    text-align: center;
+header{
+    background:linear-gradient(to right,#1b5e20,#2e7d32);
+    color:white;
+    padding:20px;
+    text-align:center;
 }
 
-nav {
-    background: #145a1f;
-    padding: 10px;
-    text-align: center;
+nav{
+    background:#145a1f;
+    padding:10px;
+    text-align:center;
 }
 
-nav a {
-    color: white;
-    margin: 0 15px;
-    text-decoration: none;
-    font-weight: bold;
+nav a{
+    color:white;
+    margin:0 15px;
+    text-decoration:none;
+    font-weight:bold;
 }
 
-.main {
-    padding: 30px;
+/* 🔥 SPINACH STYLE FLEX */
+.content{
+    padding:30px;
+    max-width:1000px;
+    margin:auto;
+    display:flex;
+    flex-wrap:wrap;
+    gap:30px;
+    align-items:flex-start;
 }
 
-.left { 
-    max-width: 900px;
-    margin: auto;
+.left{
+    flex:1;
+    min-width:300px;
 }
 
-h2 { color: #2e7d32; }
-p { line-height: 1.6; }
-
-/* ✅ MODEL AT BOTTOM */
-.model-section {
-    margin: 40px 20px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    padding: 10px;
+h2{
+    color:#2e7d32;
+    margin-top:25px;
 }
 
-.model-container {
-    width: 100%;
-    height: 320px;
+p{
+    line-height:1.6;
 }
 
-footer {
-    background: #145a1f;
-    color: white;
-    text-align: center;
-    padding: 15px;
-    margin-top: 20px;
+/* 🔥 MODEL CARD RIGHT SIDE */
+.model-section{
+    flex:1;
+    min-width:300px;
+    max-width:500px;
+    background:white;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    padding:20px;
+}
+
+.model-container{
+    width:100%;
+    height:420px;
+}
+
+@media (max-width:768px){
+    .model-container{
+        height:280px;
+    }
+}
+
+footer{
+    background:#145a1f;
+    color:white;
+    text-align:center;
+    padding:15px;
+    margin-top:20px;
 }
 </style>
 </head>
@@ -82,8 +104,10 @@ footer {
 <a href="#">Contact</a>
 </nav>
 
-<div class="main">
+<!-- 🔥 FLEX CONTENT -->
+<div class="content">
 
+<!-- LEFT CONTENT (UNCHANGED) -->
 <div class="left">
 
 <h2>🌱 Basic Information</h2>
@@ -170,12 +194,13 @@ footer {
 <p>Ministry of AYUSH</p>
 
 </div>
-</div>
 
-<!-- ✅ MODEL MOVED TO BOTTOM -->
+<!-- RIGHT MODEL -->
 <div class="model-section">
 <h2 style="text-align:center;">🌐 3D Arjuna Model</h2>
 <div class="model-container" id="model"></div>
+</div>
+
 </div>
 
 <footer>
@@ -191,76 +216,71 @@ footer {
 const scene = new THREE.Scene();
 const container = document.getElementById("model");
 
+/* 🔥 CAMERA (UNIFIED SYSTEM) */
 const camera = new THREE.PerspectiveCamera(
-    60,
-    container.clientWidth / container.clientHeight,
-    0.1,
-    1000
+75,
+container.clientWidth / container.clientHeight,
+0.1,
+1000
 );
 
-const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+const renderer = new THREE.WebGLRenderer({ antialias:true, alpha:true });
 renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
-// Light
+/* LIGHT */
 const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
 scene.add(light);
 
-// Controls
+/* CONTROLS */
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
-controls.enableDamping = true;
-controls.minDistance = 1;
-controls.maxDistance = 10;
+controls.enableZoom = true;
+controls.enablePan = false;
 
 let arjunaModel;
 
 const loader = new THREE.GLTFLoader();
-loader.load('./Arjuna.glb', function (gltf) {
+loader.load('./Arjuna.glb', function (gltf){
 
-    arjunaModel = gltf.scene;
+arjunaModel = gltf.scene;
 
-    // ✅ PERFECT CENTER + SCALE
-    const box = new THREE.Box3().setFromObject(arjunaModel);
-    const size = box.getSize(new THREE.Vector3()).length();
-    const center = box.getCenter(new THREE.Vector3());
+/* 🔥 AUTO FIT LIKE ALL PAGES */
+const box = new THREE.Box3().setFromObject(arjunaModel);
+const size = box.getSize(new THREE.Vector3());
+const center = box.getCenter(new THREE.Vector3());
 
-    arjunaModel.position.sub(center);
+arjunaModel.position.sub(center);
 
-    // remove bottom gap
-    arjunaModel.position.y -= 0.4;
+const maxDim = Math.max(size.x,size.y,size.z);
+const fov = camera.fov*(Math.PI/180);
+let cameraZ = Math.abs(maxDim/2/Math.tan(fov/2));
 
-    // scale properly
-    const scaleFactor = 3.5 / size;
-    arjunaModel.scale.setScalar(scaleFactor);
+camera.position.z = cameraZ*1.8;
 
-    scene.add(arjunaModel);
-
-    // camera adjust
-    camera.position.set(0, size / 3, size * 1.2);
-
-    controls.target.set(0, -0.3, 0);
-    controls.update();
+scene.add(arjunaModel);
 
 });
 
-// Resize
+/* RESPONSIVE */
 window.addEventListener('resize', () => {
-    camera.aspect = container.clientWidth / container.clientHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(container.clientWidth, container.clientHeight);
+const width = container.clientWidth;
+const height = container.clientHeight;
+
+renderer.setSize(width,height);
+camera.aspect = width/height;
+camera.updateProjectionMatrix();
 });
 
-// Animation
-function animate() {
-    requestAnimationFrame(animate);
+/* ANIMATION */
+function animate(){
+requestAnimationFrame(animate);
 
-    if (arjunaModel) {
-        arjunaModel.rotation.y += 0.005;
-    }
+if (arjunaModel) {
+    arjunaModel.rotation.y += 0.005;
+}
 
-    controls.update();
-    renderer.render(scene, camera);
+renderer.render(scene, camera);
 }
 
 animate();
