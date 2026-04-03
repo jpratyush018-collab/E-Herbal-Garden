@@ -47,10 +47,10 @@ p {
     line-height: 1.6;
 }
 
-/* MODEL SECTION (RIGHT SIDE BOX STYLE) */
+/* MODEL SECTION */
 .model-section {
     margin: 40px auto;
-    max-width: 500px;
+    max-width: 900px;
     background: white;
     border-radius: 15px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -93,12 +93,12 @@ footer {
 <a href="#">Contact</a>
 </nav>
 
-<!-- FLEX LAYOUT -->
+<!-- FIRST SECTION -->
 <div class="content" style="display:flex; flex-wrap:wrap; gap:30px; align-items:flex-start;">
 
-  <!-- LEFT: TEXT -->
+  <!-- LEFT TEXT -->
   <div style="flex:1; min-width:300px;">
-
+    
 <h2>🌱 Basic Information</h2>
 <p><b>Common Name:</b> Dandelion</p>
 <p><b>Botanical Name:</b> Taraxacum officinale</p>
@@ -129,16 +129,30 @@ footer {
 
   </div>
 
-  <!-- RIGHT: MODEL -->
-  <div class="model-section" style="flex:1; min-width:300px;">
-    <h2 style="text-align:center;">🌐 3D Model</h2>
-    <div class="model-container" id="model"></div>
+  <!-- RIGHT MODEL -->
+  <div class="model-section" style="flex:1; min-width:300px; max-width:500px;">
+    <h2 style="text-align:center;">🌐 3D Dandelion Model</h2>
+    <div class="model-container" id="model" style="height:500px;"></div>
+  </div>
+
+</div>
+
+<!-- SECOND EMPTY SECTION (MUST KEEP SAME STRUCTURE) -->
+<div class="content" style="display:flex; flex-wrap:wrap; gap:30px; align-items:flex-start;">
+
+  <div style="flex:1; min-width:300px; order:1;">
+    <!-- All text content remains unchanged -->
+  </div>
+
+  <div class="model-section" style="flex:1; min-width:300px; max-width:500px; order:0; align-self:flex-start;">
+    <h2 style="text-align:center;">🌐 3D Dandelion Model</h2>
+    <div class="model-container" id="model" style="height:500px;"></div>
   </div>
 
 </div>
 
 <footer>
-© 2026 E-Herbal Garden
+© 2026 E-Herbal Garden | Designed with 🌱
 </footer>
 
 <!-- Three.js -->
@@ -162,11 +176,9 @@ renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
-// Light
 const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
 scene.add(light);
 
-// Controls
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
 controls.enableZoom = true;
 controls.enablePan = false;
@@ -190,17 +202,12 @@ loader.load(
         const fov = camera.fov * (Math.PI / 180);
         let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
 
-        camera.position.z = cameraZ * 1.5;
+        camera.position.z = cameraZ * 1.8;
 
         scene.add(model);
-    },
-    undefined,
-    function (error) {
-        console.error("Error loading model:", error);
     }
 );
 
-// Responsive
 window.addEventListener('resize', () => {
     const width = container.clientWidth;
     const height = container.clientHeight;
@@ -210,7 +217,6 @@ window.addEventListener('resize', () => {
     camera.updateProjectionMatrix();
 });
 
-// Animation
 function animate() {
     requestAnimationFrame(animate);
 
