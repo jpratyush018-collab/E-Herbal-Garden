@@ -1,74 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Oregano - E-Herbal Garden</title>
 
 <style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #eaf5ea;
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#eaf5ea;
 }
 
-header {
-    background: linear-gradient(to right, #1b5e20, #2e7d32);
-    color: white;
-    padding: 20px;
-    text-align: center;
+header{
+    background:linear-gradient(to right,#1b5e20,#2e7d32);
+    color:white;
+    padding:20px;
+    text-align:center;
 }
 
-nav {
-    background: #145a1f;
-    padding: 10px;
-    text-align: center;
+nav{
+    background:#145a1f;
+    padding:10px;
+    text-align:center;
 }
 
-nav a {
-    color: white;
-    margin: 0 15px;
-    text-decoration: none;
-    font-weight: bold;
+nav a{
+    color:white;
+    margin:0 15px;
+    text-decoration:none;
+    font-weight:bold;
 }
 
-.main {
-    display: flex;
-    gap: 20px;
-    padding: 30px;
-    flex-wrap: wrap;
+.content{
+    padding:30px;
+    max-width:1100px;
+    margin:auto;
 }
 
-.left {
-    flex: 1;
-    min-width: 300px;
+h2{
+    color:#2e7d32;
+    margin-top:25px;
 }
 
-.right {
-    flex: 1;
-    min-width: 300px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    overflow: hidden;
-    padding: 10px;
+p{
+    line-height:1.6;
 }
 
-h2 { color: #2e7d32; }
-
-p { line-height: 1.6; }
-
-.model-container {
-    width: 100%;
-    height: 300px;
+/* MODEL SECTION */
+.model-section{
+    background:white;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    padding:20px;
 }
 
-footer {
-    background: #145a1f;
-    color: white;
-    text-align: center;
-    padding: 15px;
-    margin-top: 20px;
+.model-container{
+    width:100%;
+    height:450px;
+}
+
+@media (max-width:768px){
+    .model-container{
+        height:300px;
+    }
+}
+
+footer{
+    background:#145a1f;
+    color:white;
+    text-align:center;
+    padding:15px;
+    margin-top:20px;
 }
 </style>
 </head>
@@ -87,9 +91,10 @@ footer {
 <a href="#">Contact</a>
 </nav>
 
-<div class="main">
+<div class="content" style="display:flex; flex-wrap:wrap; gap:30px; align-items:flex-start;">
 
-<div class="left">
+<!-- LEFT CONTENT -->
+<div style="flex:1; min-width:300px;">
 
 <h2>🌱 Basic Information</h2>
 <p><b>Common Name:</b> Oregano</p>
@@ -100,42 +105,52 @@ footer {
 <p><b>Parts Used:</b> Leaves and flowering tops</p>
 
 <h2>🌿 Medicinal Uses</h2>
-<p>✅ Natural antimicrobial and antiviral properties</p>
-<p>✅ Relieves cough, cold, and respiratory infections</p>
-<p>✅ Supports digestive health and reduces bloating</p>
-<p>✅ Anti-inflammatory and antioxidant effects</p>
-<p>✅ May help in managing minor infections and immunity support</p>
+<p>Natural antimicrobial and antiviral properties</p>
+<p>Relieves cough, cold, and respiratory infections</p>
+<p>Supports digestive health and reduces bloating</p>
+<p>Anti-inflammatory and antioxidant effects</p>
+<p>Helps in immunity support</p>
 
 <h2>🌍 Habitat</h2>
-<p>Oregano grows in sunny, well-drained soils. It is commonly found in Mediterranean gardens and can thrive in temperate climates worldwide.</p>
+<p>Oregano grows in sunny, well-drained soils. It thrives in Mediterranean climates but can adapt to temperate regions worldwide.</p>
 
 <h2>🌾 Cultivation</h2>
 <p><b>Propagation:</b> Seeds, cuttings, or division</p>
 <p><b>Soil:</b> Well-drained, sandy or loamy soil</p>
 <p><b>Sunlight:</b> Full sun</p>
-<p><b>Watering:</b> Moderate; do not overwater</p>
-<p><b>Harvest:</b> Leaves harvested before flowering; flowering tops during bloom</p>
+<p><b>Watering:</b> Moderate; avoid overwatering</p>
+<p><b>Harvest:</b> Leaves before flowering; flowering tops during bloom</p>
 
 <h2>⚠️ Precautions</h2>
-<p>Excess use of oregano oil can cause stomach irritation. Avoid high doses during pregnancy. Use culinary or medicinal forms moderately.</p>
+<p>Excess use of oregano oil may cause stomach irritation. Avoid high doses during pregnancy. Use moderately.</p>
 
 <h2>🧪 Chemical Compounds</h2>
 <p><b>Carvacrol:</b> Antimicrobial, antibacterial</p>
-<p><b>Thymol:</b> Antiseptic and antifungal</p>
-<p><b>Flavonoids:</b> Antioxidant, immune support</p>
-<p><b>Essential oils:</b> Support respiratory and digestive health</p>
+<p><b>Thymol:</b> Antiseptic, antifungal</p>
+<p><b>Flavonoids:</b> Antioxidant support</p>
+<p><b>Essential Oils:</b> Respiratory and digestive support</p>
 
 <h2>💊 Pharmacological Properties</h2>
 <p>Antimicrobial, antifungal, antioxidant, anti-inflammatory, digestive aid, respiratory support</p>
 
 <h2>🩺 Therapeutic Applications</h2>
-<p>Helps treat cough, bronchitis, cold, digestive upset, and minor infections. Promotes immunity and respiratory health.</p>
+<p>Used for cough, bronchitis, cold, digestive issues, and minor infections. Supports immunity and lung health.</p>
 
 <h2>⚙️ Mechanism of Action</h2>
-<p>Carvacrol and thymol disrupt bacterial and fungal cell membranes, reducing infection risk. Flavonoids neutralize free radicals and reduce inflammation.</p>
+<p>Carvacrol and thymol disrupt microbial membranes, reducing infection. Antioxidants neutralize free radicals and reduce inflammation.</p>
+
+<!-- 🔥 NEW CONTENT ADDED -->
+<h2>🧬 Nutritional Value</h2>
+<p>Oregano is rich in vitamins A, C, E, and K. It also contains iron, calcium, and fiber which support overall health.</p>
+
+<h2>🍽️ Culinary Uses</h2>
+<p>Widely used in pizzas, pasta, soups, and sauces. It enhances flavor while also providing health benefits.</p>
+
+<h2>🌱 Propagation Tips</h2>
+<p>Best grown from cuttings for faster growth. Regular trimming promotes bushier plants and better yield.</p>
 
 <h2>🌍 Modern Relevance</h2>
-<p>Oregano is widely used in herbal medicine, essential oils, natural preservatives, and culinary practices for flavor and medicinal benefits.</p>
+<p>Oregano is widely used in herbal medicine, essential oils, natural preservatives, and modern cooking for its flavor and medicinal value.</p>
 
 <h2>📚 Sources</h2>
 <p>WHO</p>
@@ -144,7 +159,8 @@ footer {
 
 </div>
 
-<div class="right">
+<!-- RIGHT MODEL -->
+<div class="model-section" style="flex:1; min-width:300px; max-width:500px;">
 <h2 style="text-align:center;">🌐 3D Oregano Model</h2>
 <div class="model-container" id="model"></div>
 </div>
@@ -161,85 +177,80 @@ footer {
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
 
 <script>
-// Scene
 const scene = new THREE.Scene();
 const container = document.getElementById("model");
 
-// Camera
 const camera = new THREE.PerspectiveCamera(
-    60,
-    container.clientWidth / container.clientHeight,
-    0.1,
-    1000
+75,
+container.clientWidth / container.clientHeight,
+0.1,
+1000
 );
 
-// Renderer
-const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+const renderer = new THREE.WebGLRenderer({antialias:true, alpha:true});
 renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
-// Lighting (same as Basil)
-const light1 = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
-scene.add(light1);
+const light = new THREE.HemisphereLight(0xffffff,0x444444,1.5);
+scene.add(light);
 
-const light2 = new THREE.DirectionalLight(0xffffff, 2);
-light2.position.set(5,5,5);
-scene.add(light2);
+const controls = new THREE.OrbitControls(camera,renderer.domElement);
+controls.enableZoom = true;
+controls.enablePan = false;
 
-// Controls
-const controls = new THREE.OrbitControls(camera, renderer.domElement);
-controls.enableDamping = true;
-controls.minDistance = 1;
-controls.maxDistance = 10;
-
-// Model
 let model;
+
 const loader = new THREE.GLTFLoader();
 
 loader.load(
-    './Oregano.glb',
-    function (gltf) {
+'./Oregano.glb',
+function(gltf){
 
-        model = gltf.scene;
+model = gltf.scene;
 
-        const box = new THREE.Box3().setFromObject(model);
-        const size = box.getSize(new THREE.Vector3()).length();
-        const center = box.getCenter(new THREE.Vector3());
+const box = new THREE.Box3().setFromObject(model);
+const size = box.getSize(new THREE.Vector3());
+const center = box.getCenter(new THREE.Vector3());
 
-        model.position.sub(center);
-        model.position.y -= 0.4;
+model.position.sub(center);
 
-        const scaleFactor = 3.5 / size;
-        model.scale.setScalar(scaleFactor);
+const maxDim = Math.max(size.x,size.y,size.z);
+const fov = camera.fov*(Math.PI/180);
+let cameraZ = Math.abs(maxDim/2/Math.tan(fov/2));
 
-        scene.add(model);
+camera.position.z = cameraZ*1.8;
 
-        camera.position.set(0, size / 3, size * 1.2);
-        controls.target.set(0, -0.3, 0);
-        controls.update();
-    },
-    undefined,
-    function(error) {
-        console.error("Error loading model:", error);
-    }
+scene.add(model);
+
+},
+undefined,
+function(error){
+console.error("Error loading model:",error);
+}
 );
 
-// Resize
-window.addEventListener('resize', () => {
-    camera.aspect = container.clientWidth / container.clientHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(container.clientWidth, container.clientHeight);
+window.addEventListener('resize',()=>{
+
+const width = container.clientWidth;
+const height = container.clientHeight;
+
+renderer.setSize(width,height);
+camera.aspect = width/height;
+camera.updateProjectionMatrix();
+
 });
 
-// Animation
-function animate() {
-    requestAnimationFrame(animate);
+function animate(){
 
-    if (model) model.rotation.y += 0.005;
+requestAnimationFrame(animate);
 
-    controls.update();
-    renderer.render(scene, camera);
+if(model){
+model.rotation.y += 0.005;
+}
+
+renderer.render(scene,camera);
+
 }
 
 animate();
