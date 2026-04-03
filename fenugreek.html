@@ -1,84 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Plant - E-Herbal Garden</title>
+<title>Fenugreek - E-Herbal Garden</title>
 
 <style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #eaf5ea;
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#eaf5ea;
 }
 
-header {
-    background: linear-gradient(to right, #1b5e20, #2e7d32);
-    color: white;
-    padding: 20px;
-    text-align: center;
+header{
+    background:linear-gradient(to right,#1b5e20,#2e7d32);
+    color:white;
+    padding:20px;
+    text-align:center;
 }
 
-nav {
-    background: #145a1f;
-    padding: 10px;
-    text-align: center;
+nav{
+    background:#145a1f;
+    padding:10px;
+    text-align:center;
 }
 
-nav a {
-    color: white;
-    margin: 0 15px;
-    text-decoration: none;
-    font-weight: bold;
+nav a{
+    color:white;
+    margin:0 15px;
+    text-decoration:none;
+    font-weight:bold;
 }
 
-.main {
-    display: flex;
-    gap: 20px;
-    padding: 30px;
-    flex-wrap: wrap;
+.content{
+    padding:30px;
+    max-width:1100px;
+    margin:auto;
 }
 
-.left {
-    flex: 1;
-    min-width: 300px;
+h2{
+    color:#2e7d32;
+    margin-top:25px;
 }
 
-.right {
-    flex: 1;
-    min-width: 300px;
+p, li{
+    line-height:1.6;
 }
 
-h2 {
-    color: #2e7d32;
+/* MODEL SECTION */
+.model-section{
+    background:white;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    padding:20px;
 }
 
-p {
-    line-height: 1.6;
+.model-container{
+    width:100%;
+    height:450px;
 }
 
-/* ✅ 3D MODEL MOVED TO BOTTOM */
-.model-section {
-    width: 100%;
-    padding: 20px;
-    box-sizing: border-box;
+@media (max-width:768px){
+    .model-container{
+        height:300px;
+    }
 }
 
-.model-container {
-    width: 100%;
-    height: 450px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    overflow: hidden;
-}
-
-footer {
-    background: #145a1f;
-    color: white;
-    text-align: center;
-    padding: 15px;
-    margin-top: 20px;
+footer{
+    background:#145a1f;
+    color:white;
+    text-align:center;
+    padding:15px;
+    margin-top:20px;
 }
 </style>
 </head>
@@ -86,8 +80,8 @@ footer {
 <body>
 
 <header>
-<h1> Fenugreek </h1>
-<p>Tagline of the Plant</p>
+<h1>🌿 Fenugreek (Methi)</h1>
+<p>The Metabolic and Healing Herb</p>
 </header>
 
 <nav>
@@ -97,16 +91,14 @@ footer {
 <a href="#">Contact</a>
 </nav>
 
-<div class="main">
+<div class="content" style="display:flex; flex-wrap:wrap; gap:30px; align-items:flex-start;">
 
-<div class="left">
+<!-- LEFT CONTENT -->
+<div style="flex:1; min-width:300px;">
 
 <h2>🧬 Overview</h2>
 <p>
-Fenugreek (Trigonella foenum-graecum) is a widely used medicinal and culinary plant known for its metabolic, digestive, and therapeutic properties. It has been extensively studied for its role in blood sugar regulation, digestion, and overall health support.
-</p>
-<p>
-The seeds are the primary part used, although leaves are also consumed for their nutritional and medicinal value. Fenugreek is commonly used in traditional remedies as well as modern healthcare research.
+Fenugreek (Trigonella foenum-graecum) is a widely used medicinal and culinary plant known for its metabolic, digestive, and therapeutic properties.
 </p>
 
 <h2>🌱 Basic Information</h2>
@@ -115,37 +107,33 @@ The seeds are the primary part used, although leaves are also consumed for their
 <p><b>Family:</b> Fabaceae</p>
 <p><b>Plant Type:</b> Annual herb</p>
 <p><b>Habitat:</b> Tropical and subtropical regions</p>
-<p><b>Parts Used:</b> Seeds (main), leaves</p>
+<p><b>Parts Used:</b> Seeds, leaves</p>
 
 <h2>🌿 Medicinal Uses</h2>
 <ul>
 <li>Helps regulate blood sugar levels</li>
-<li>Improves digestion and relieves constipation</li>
+<li>Improves digestion</li>
 <li>Supports cholesterol management</li>
 <li>Provides antioxidant protection</li>
 <li>Reduces inflammation</li>
 </ul>
 
 <h2>🌍 Habitat</h2>
-<p>
-Fenugreek grows in tropical and subtropical regions and thrives in warm climates with well-drained, fertile soil and full sunlight.
-</p>
+<p>Thrives in warm climates with well-drained fertile soil and full sunlight.</p>
 
 <h2>🌾 Cultivation</h2>
 <ul>
-<li><b>Propagation:</b> Directly through seeds</li>
-<li>Seeds are sown into soil and germinate quickly</li>
-<li>Requires well-drained loamy soil</li>
-<li>Needs moderate watering</li>
-<li>Prefers full sunlight</li>
+<li>Propagation through seeds</li>
+<li>Well-drained loamy soil</li>
+<li>Moderate watering</li>
+<li>Full sunlight</li>
 </ul>
 
 <h2>⚠️ Precautions</h2>
 <ul>
 <li>Safe in moderate amounts</li>
-<li>Excess intake may cause digestive discomfort</li>
+<li>Excess may cause discomfort</li>
 <li>Use cautiously in high doses</li>
-<li>Not a substitute for medical treatment</li>
 </ul>
 
 <h2>🧪 Key Bioactive Compounds</h2>
@@ -159,48 +147,48 @@ Fenugreek grows in tropical and subtropical regions and thrives in warm climates
 
 <h2>💊 Therapeutic Applications</h2>
 <ul>
-<li>Blood sugar and cholesterol management</li>
-<li>Digestive health improvement</li>
-<li>General wellness support</li>
-<li>Nutritional and dietary support</li>
+<li>Blood sugar management</li>
+<li>Digestive health</li>
+<li>Cholesterol control</li>
+<li>General wellness</li>
 </ul>
 
 <h2>⚙️ Mechanism of Action</h2>
 <ul>
-<li>Slows carbohydrate absorption → regulates blood sugar</li>
-<li>Improves insulin sensitivity → supports metabolism</li>
-<li>Provides antioxidant protection → protects cells</li>
-<li>Enhances digestion → improves gut health</li>
+<li>Regulates glucose absorption</li>
+<li>Improves insulin sensitivity</li>
+<li>Provides antioxidant effects</li>
+<li>Enhances digestion</li>
 </ul>
 
-<h2>🌍 Public Health & Research Importance</h2>
-<p>
-Fenugreek is widely researched for its metabolic, digestive, and antioxidant benefits. It is used in food, pharmaceutical, and nutraceutical industries and plays an important role in preventive healthcare.
-</p>
+<!-- 🔥 NEW CONTENT -->
+<h2>🧬 Nutritional Value</h2>
+<p>Rich in protein, fiber, iron, magnesium, and vitamins. Supports metabolism and energy levels.</p>
 
-<h2>🌍 Relevance in Modern Healthcare</h2>
-<p>
-Fenugreek is recognized by NCBI, WHO, and the Ministry of AYUSH for its metabolic and digestive benefits. It is widely used in herbal formulations and studied for blood sugar and cholesterol management.
-</p>
+<h2>🍽️ Culinary Uses</h2>
+<p>Widely used in Indian cuisine (methi leaves, seeds in curries, spices, and pickles).</p>
+
+<h2>🌱 Propagation Tips</h2>
+<p>Fast-growing plant. Soak seeds before sowing for better germination.</p>
+
+<h2>🌍 Modern Relevance</h2>
+<p>Used in nutraceuticals, herbal medicine, and dietary supplements for metabolic health.</p>
 
 <h2>📚 Sources</h2>
-<ul>
-<li>National Center for Biotechnology Information (NCBI)</li>
-<li>World Health Organization (WHO)</li>
-<li>Ministry of AYUSH (Government of India)</li>
-</ul>
+<p>NCBI, WHO, Ministry of AYUSH</p>
 
 </div>
-</div>
 
-<!-- ✅ 3D MODEL MOVED TO BOTTOM -->
-<div class="model-section">
-<h2 style="text-align:center;">🌐 3D Model</h2>
+<!-- RIGHT MODEL -->
+<div class="model-section" style="flex:1; min-width:300px; max-width:500px;">
+<h2 style="text-align:center;">🌐 3D Fenugreek Model</h2>
 <div class="model-container" id="model"></div>
 </div>
 
+</div>
+
 <footer>
-© 2026 E-Herbal Garden
+© 2026 E-Herbal Garden | Designed with 🌱 | Created by Team Beginners
 </footer>
 
 <!-- Three.js -->
@@ -213,70 +201,76 @@ const scene = new THREE.Scene();
 const container = document.getElementById("model");
 
 const camera = new THREE.PerspectiveCamera(
-    75,
-    container.clientWidth / container.clientHeight,
-    0.1,
-    1000
+75,
+container.clientWidth / container.clientHeight,
+0.1,
+1000
 );
 
-const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+const renderer = new THREE.WebGLRenderer({antialias:true, alpha:true});
 renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
-// Lighting
-const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
+const light = new THREE.HemisphereLight(0xffffff,0x444444,1.5);
 scene.add(light);
 
-// Controls
-const controls = new THREE.OrbitControls(camera, renderer.domElement);
+const controls = new THREE.OrbitControls(camera,renderer.domElement);
 controls.enableZoom = true;
 controls.enablePan = false;
 
 let model;
 
 const loader = new THREE.GLTFLoader();
+
 loader.load(
-    './Fenugreek.glb',
-    function (gltf) {
+'./Fenugreek.glb',
+function(gltf){
 
-        model = gltf.scene;
+model = gltf.scene;
 
-        const box = new THREE.Box3().setFromObject(model);
-        const size = box.getSize(new THREE.Vector3());
-        const center = box.getCenter(new THREE.Vector3());
+const box = new THREE.Box3().setFromObject(model);
+const size = box.getSize(new THREE.Vector3());
+const center = box.getCenter(new THREE.Vector3());
 
-        model.position.sub(center);
+model.position.sub(center);
 
-        const maxDim = Math.max(size.x, size.y, size.z);
-        const fov = camera.fov * (Math.PI / 180);
-        let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
+const maxDim = Math.max(size.x,size.y,size.z);
+const fov = camera.fov*(Math.PI/180);
+let cameraZ = Math.abs(maxDim/2/Math.tan(fov/2));
 
-        camera.position.z = cameraZ * 1.5;
+camera.position.z = cameraZ*1.8;
 
-        scene.add(model);
-    }
+scene.add(model);
+
+},
+undefined,
+function(error){
+console.error("Error loading model:",error);
+}
 );
 
-// Resize fix
-window.addEventListener('resize', () => {
-    const width = container.clientWidth;
-    const height = container.clientHeight;
+window.addEventListener('resize',()=>{
 
-    renderer.setSize(width, height);
-    camera.aspect = width / height;
-    camera.updateProjectionMatrix();
+const width = container.clientWidth;
+const height = container.clientHeight;
+
+renderer.setSize(width,height);
+camera.aspect = width/height;
+camera.updateProjectionMatrix();
+
 });
 
-// Animation
-function animate() {
-    requestAnimationFrame(animate);
+function animate(){
 
-    if (model) {
-        model.rotation.y += 0.005;
-    }
+requestAnimationFrame(animate);
 
-    renderer.render(scene, camera);
+if(model){
+model.rotation.y += 0.005;
+}
+
+renderer.render(scene,camera);
+
 }
 
 animate();
