@@ -164,12 +164,9 @@ padding:20px;
 
 <div class="card-container">
 
-<!-- 🌿 40 PRODUCTS -->
-
-<!-- HEALTH -->
 <script>
 const products = [
-["Ashwagandha","health","1.jpg"],["Giloy","health","2.png"],["Tulsi","health","3.png"],["Triphala","health","4.png"],
+["Ashwagandha","health","1.png"],["Giloy","health","2.png"],["Tulsi","health","3.png"],["Triphala","health","4.png"],
 ["Chyawanprash","health","5.png"],["Turmeric","health","6.png"],["Neem","health","7.png"],["Aloe Juice","health","8.png"],
 ["Brahmi","health","9.png"],["Shatavari","health","10.png"],["Herbal Tea","health","11.png"],["Green Tea Tulsi","health","12.png"],
 ["Digestive Syrup","health","13.png"],["Immunity Booster","health","14.png"],["Detox Juice","health","15.png"],
@@ -192,7 +189,7 @@ card.className="card";
 card.setAttribute("data-category",p[1]);
 
 card.innerHTML = `
-<img src="product.png">
+<img src="${p[2]}" alt="${p[0]}">
 <h3>${p[0]}</h3>
 <p>Natural Ayurvedic Product</p>
 <div class="price">₹${Math.floor(Math.random()*200+100)}</div>
