@@ -62,16 +62,10 @@ p {
     line-height: 1.6;
 }
 
-/* 🔥 Bottom 3D model section */
-.bottom-model {
-    margin: 40px auto;
-    width: 90%;
-    max-width: 900px;
-    height: 450px;
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    padding: 15px;
+/* ✅ Reduced height */
+.model-container {
+    width: 100%;
+    height: 300px;
 }
 
 footer {
@@ -127,19 +121,97 @@ footer {
 <b>Flavonoids:</b> Antioxidant<br>
 <b>Tannins:</b> Antimicrobial</p>
 
+<!-- ✅ ADDED CONTENT STARTS HERE -->
+
+<h2>🧬 Overview</h2>
+<p>Clove (Syzygium aromaticum) is a highly valued medicinal and aromatic plant known for its strong antimicrobial, analgesic, and therapeutic properties. It is widely used in traditional remedies, dentistry, and modern healthcare for its ability to relieve pain, fight infections, and support overall health.</p>
+
+<p>The dried flower buds are the primary part used, containing potent bioactive compounds that contribute to its medicinal effectiveness.</p>
+
+<h2>🌱 Botanical & General Information</h2>
+<p><b>Family:</b> Myrtaceae</p>
+<p><b>Common Name:</b> Clove</p>
+<p><b>Plant Type:</b> Evergreen tree</p>
+<p><b>Habitat:</b> Tropical regions</p>
+<p><b>Parts Used:</b> Dried flower buds (main), leaves, oil</p>
+
+<p>Clove trees produce unopened flower buds that are harvested and dried to be used as a spice and medicinal ingredient.</p>
+
+<h2>🌿 Propagation & Cultivation</h2>
+<p><b>Seeds (Primary Method):</b></p>
+<p>Fresh seeds are sown directly in soil. Seeds must be planted soon after harvesting as viability decreases quickly.</p>
+
+<p><b>Vegetative Methods (Less Common):</b></p>
+<p>Techniques like cuttings may be used but are less practical.</p>
+
+<h3>🌞 Growth Requirements</h3>
+<p>Prefers warm, humid climates</p>
+<p>Requires well-drained, fertile soil</p>
+<p>Grows best in partial shade to full sunlight</p>
+<p>Needs regular watering</p>
+
+<p><b>👉 Conclusion:</b> Seed propagation is the most practical and widely used method for growing clove.</p>
+
+<h2>🧪 Key Bioactive Compounds</h2>
+<p>Eugenol (major active compound)</p>
+<p>Caryophyllene</p>
+<p>Tannins</p>
+<p>Flavonoids</p>
+<p>Essential oils</p>
+
+<p>Eugenol is primarily responsible for clove’s strong antimicrobial and pain-relieving effects.</p>
+
+<h2>💊 Pharmacological & Medicinal Properties</h2>
+<p><b>🦠 Antimicrobial:</b> Effective against bacteria, fungi, and some pathogens. Helps in preventing infections.</p>
+
+<p><b>🦷 Analgesic (Pain Relief):</b> Provides relief from toothache and minor pain. Commonly used in dental care.</p>
+
+<p><b>🔥 Anti-inflammatory:</b> Reduces inflammation and swelling.</p>
+
+<p><b>🛡️ Antioxidant:</b> Protects cells from oxidative stress.</p>
+
+<p><b>🍽️ Digestive Support:</b> Helps relieve indigestion and gas.</p>
+
+<h2>🩺 Therapeutic Applications</h2>
+<p><b>🦷 Dental Care:</b> Used for toothache relief and oral hygiene.</p>
+<p><b>🍽️ Digestive Health:</b> Supports digestion and reduces discomfort.</p>
+<p><b>🦠 Infection Control:</b> Used for its antimicrobial properties.</p>
+<p><b>🌿 General Wellness:</b> Acts as a natural health-supporting spice and remedy.</p>
+
+<h2>🦠 Public Health & Research Importance</h2>
+<p>Clove is widely studied for its antimicrobial and analgesic properties, its role in dental and oral healthcare, and applications in food, pharmaceutical, and cosmetic industries.</p>
+
+<p>It is considered a valuable plant in both therapeutic and preventive healthcare.</p>
+
+<h2>⚙️ Mechanism of Action</h2>
+<p>Disrupts microbial cell function → inhibits growth</p>
+<p>Blocks pain signals → provides analgesic effect</p>
+<p>Reduces inflammation → alleviates discomfort</p>
+<p>Provides antioxidant protection → supports cellular health</p>
+
+<h2>⚠️ Safety & Precautions</h2>
+<p>Generally safe in moderate amounts.</p>
+<p>Excessive use (especially clove oil) may cause irritation.</p>
+<p>Should be used carefully in concentrated form.</p>
+<p>Not a substitute for medical treatment in serious conditions.</p>
+
+<h2>🌍 Relevance in Modern Research & Healthcare</h2>
+<p>Clove is recognized for its antimicrobial and analgesic properties and is widely used in dental care, pharmaceuticals, and food industries.</p>
+
+<p>It is studied for its therapeutic and protective effects and plays a role in natural and plant-based healthcare systems.</p>
+
+<h2>📚 Sources & Credibility</h2>
+<p>National Center for Biotechnology Information (NCBI)</p>
+<p>World Health Organization (WHO)</p>
+<p>Ministry of AYUSH (Government of India)</p>
+
 </div>
 
 <div class="right">
 <h2 style="text-align:center;">🌐 3D Clove Model</h2>
-<p style="text-align:center;">Scroll down to view the interactive 3D model</p>
+<div class="model-container" id="model"></div>
 </div>
 
-</div>
-
-<!-- 🔥 MOVED MODEL TO BOTTOM -->
-<div class="bottom-model">
-<h2 style="text-align:center;">🌐 3D Clove Model</h2>
-<div id="model" style="width:100%; height:100%;"></div>
 </div>
 
 <footer>
@@ -152,9 +224,11 @@ footer {
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
 
 <script>
+// Scene
 const scene = new THREE.Scene();
 const container = document.getElementById("model");
 
+// Camera
 const camera = new THREE.PerspectiveCamera(
     60,
     container.clientWidth / container.clientHeight,
@@ -162,56 +236,75 @@ const camera = new THREE.PerspectiveCamera(
     1000
 );
 
+// Renderer
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
+// Light
 const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
 scene.add(light);
 
+// Controls
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
+controls.minDistance = 1;
+controls.maxDistance = 10;
 
+// Model
 let cloveModel;
 const loader = new THREE.GLTFLoader();
 
-loader.load('./Clove.glb', function (gltf) {
+loader.load(
+    './Clove.glb', // ✅ SAME NAME
+    function (gltf) {
 
-    cloveModel = gltf.scene;
+        cloveModel = gltf.scene;
 
-    const box = new THREE.Box3().setFromObject(cloveModel);
-    const size = box.getSize(new THREE.Vector3()).length();
-    const center = box.getCenter(new THREE.Vector3());
+        // 🔥 Center + scale
+        const box = new THREE.Box3().setFromObject(cloveModel);
+        const size = box.getSize(new THREE.Vector3()).length();
+        const center = box.getCenter(new THREE.Vector3());
 
-    cloveModel.position.sub(center);
-    cloveModel.position.y -= 0.3;
+        cloveModel.position.sub(center);
 
-    // 🔥 BETTER RESIZE
-    const scaleFactor = 4.5 / size;
-    cloveModel.scale.setScalar(scaleFactor);
+        // 🔥 remove bottom gap
+        cloveModel.position.y -= 0.4;
 
-    scene.add(cloveModel);
+        // 🔥 auto scale
+        const scaleFactor = 3.5 / size;
+        cloveModel.scale.setScalar(scaleFactor);
 
-    camera.position.set(0, size / 2, size * 1.5);
-    controls.target.set(0, 0, 0);
-    controls.update();
+        scene.add(cloveModel);
 
-}, undefined, function(error) {
-    console.error("Error loading model:", error);
-});
+        // 🔥 camera adjust
+        camera.position.set(0, size / 3, size * 1.2);
 
+        // 🔥 focus center
+        controls.target.set(0, -0.3, 0);
+        controls.update();
+
+    },
+    undefined,
+    function(error) {
+        console.error("Error loading model:", error);
+    }
+);
+
+// Resize fix
 window.addEventListener('resize', () => {
     camera.aspect = container.clientWidth / container.clientHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(container.clientWidth, container.clientHeight);
 });
 
+// Animation
 function animate() {
     requestAnimationFrame(animate);
 
     if (cloveModel) {
-        cloveModel.rotation.y += 0.004;
+        cloveModel.rotation.y += 0.005;
     }
 
     controls.update();
