@@ -33,7 +33,7 @@ nav a{
     font-weight:bold;
 }
 
-/* 🔥 FINAL FLEX SYSTEM */
+/* FLEX SYSTEM */
 .content{
     padding:30px;
     max-width:1000px;
@@ -58,7 +58,7 @@ p, li{
     line-height:1.6;
 }
 
-/* 🔥 MODEL CARD */
+/* MODEL CARD */
 .model-section{
     flex:1;
     min-width:300px;
@@ -104,7 +104,6 @@ footer{
 <a href="#">Contact</a>
 </nav>
 
-<!-- 🔥 FLEX CONTENT -->
 <div class="content">
 
 <!-- LEFT CONTENT -->
@@ -216,7 +215,7 @@ footer{
 © 2026 E-Herbal Garden | Designed with 🌱 | Created by Team Beginners
 </footer>
 
-<!-- Three.js -->
+<!-- THREE JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
@@ -225,13 +224,14 @@ footer{
 const scene = new THREE.Scene();
 const container = document.getElementById("model");
 
-/* 🔥 UNIFIED CAMERA */
+/* CAMERA */
 const camera = new THREE.PerspectiveCamera(
 75,
 container.clientWidth / container.clientHeight,
 0.1,
 1000
 );
+camera.position.set(0, 0, 5);
 
 /* RENDERER */
 const renderer = new THREE.WebGLRenderer({ antialias:true, alpha:true });
@@ -240,7 +240,10 @@ renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
 /* LIGHT */
-scene.add(new THREE.HemisphereLight(0xffffff,0x444444,1.5));
+scene.add(new THREE.HemisphereLight(0xffffff,0x444444,2));
+const dirLight = new THREE.DirectionalLight(0xffffff,1);
+dirLight.position.set(5,10,7);
+scene.add(dirLight);
 
 /* CONTROLS */
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
@@ -251,28 +254,32 @@ let curryModel;
 
 const loader = new THREE.GLTFLoader();
 
-loader.load('models/curry.glb', function(gltf){
+/* 🔥 LOAD MODEL */
+loader.load(
+    'models/curry.glb', // 👉 CHANGE if needed
 
-curryModel = gltf.scene;
+    function(gltf){
 
-/* 🔥 AUTO FIT SYSTEM */
-const box = new THREE.Box3().setFromObject(curryModel);
-const size = box.getSize(new THREE.Vector3());
-const center = box.getCenter(new THREE.Vector3());
+        curryModel = gltf.scene;
 
-curryModel.position.sub(center);
+        const box = new THREE.Box3().setFromObject(curryModel);
+        const size = box.getSize(new THREE.Vector3());
+        const center = box.getCenter(new THREE.Vector3());
 
-const maxDim = Math.max(size.x,size.y,size.z);
-const fov = camera.fov*(Math.PI/180);
-let cameraZ = Math.abs(maxDim/2/Math.tan(fov/2));
+        curryModel.position.sub(center);
 
-camera.position.z = cameraZ*1.8;
+        const maxDim = Math.max(size.x,size.y,size.z);
+        curryModel.scale.setScalar(2 / maxDim);
 
-scene.add(curryModel);
+        scene.add(curryModel);
+    },
 
-}, undefined, function(error){
-console.error("Error loading model:", error);
-});
+    undefined,
+
+    function(error){
+        console.error("Error loading model:", error);
+    }
+);
 
 /* RESPONSIVE */
 window.addEventListener('resize', () => {
