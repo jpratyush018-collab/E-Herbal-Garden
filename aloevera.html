@@ -34,12 +34,13 @@ nav a {
     font-weight: bold;
 }
 
-/* FLEX LAYOUT */
-.main {
-    display: flex;
-    gap: 20px;
+/* FLEX LAYOUT (SPINACH STYLE) */
+.content {
     padding: 30px;
+    display: flex;
     flex-wrap: wrap;
+    gap: 30px;
+    align-items: flex-start;
 }
 
 .left {
@@ -50,10 +51,10 @@ nav a {
 .right {
     flex: 1;
     min-width: 300px;
+    max-width: 500px;
     background: white;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    padding-bottom: 20px;
 }
 
 h2 {
@@ -65,7 +66,7 @@ p, li {
     line-height: 1.6;
 }
 
-/* 3D MODEL */
+/* MODEL */
 .model-container {
     width: 100%;
     height: 500px;
@@ -94,7 +95,7 @@ footer {
 <a href="about.html">About</a>
 </nav>
 
-<div class="main">
+<div class="content">
 
 <!-- LEFT CONTENT -->
 <div class="left">
@@ -178,7 +179,7 @@ footer {
 
 </div>
 
-<!-- RIGHT 3D MODEL -->
+<!-- RIGHT MODEL -->
 <div class="right">
 <h2 style="text-align:center;">🌐 3D Aloe Vera Model</h2>
 <div class="model-container" id="model"></div>
@@ -190,7 +191,7 @@ footer {
 © 2026 E-Herbal Garden | Designed with 🌱
 </footer>
 
-<!-- Three.js -->
+<!-- THREE JS (UNCHANGED) -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
@@ -211,10 +212,8 @@ renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
-// LIGHT
 scene.add(new THREE.HemisphereLight(0xffffff, 0x444444, 1.5));
 
-// CONTROLS
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
 controls.enableZoom = true;
 controls.enablePan = false;
@@ -240,14 +239,9 @@ loader.load(
         camera.position.z = cameraZ * 1.5;
 
         scene.add(model);
-    },
-    undefined,
-    function(error) {
-        console.error("Error loading model:", error);
     }
 );
 
-// RESPONSIVE
 window.addEventListener('resize', () => {
     const width = container.clientWidth;
     const height = container.clientHeight;
@@ -257,17 +251,11 @@ window.addEventListener('resize', () => {
     camera.updateProjectionMatrix();
 });
 
-// ANIMATION
 function animate() {
     requestAnimationFrame(animate);
-
-    if (model) {
-        model.rotation.y += 0.005;
-    }
-
+    if (model) model.rotation.y += 0.005;
     renderer.render(scene, camera);
 }
-
 animate();
 </script>
 
