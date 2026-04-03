@@ -44,18 +44,19 @@ nav a {
     min-width: 300px;
 }
 
-/* 🔥 Bottom model section */
-.model-section {
-    margin: 20px;
+.right {
+    flex: 1;
+    min-width: 300px;
     background: white;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    padding: 15px;
+    overflow: hidden;
 }
 
+/* 🔥 Tight container */
 .model-container {
     width: 100%;
-    height: 350px;
+    height: 260px;
 }
 
 h2 {
@@ -119,14 +120,74 @@ footer {
 <b>Alkaloids:</b> Anti-inflammatory<br>
 <b>Glycosides:</b> Health support</p>
 
-</div>
+<!-- NEW CONTENT -->
+
+<h2>🧬 Overview</h2>
+<p>Giloy (Tinospora cordifolia) is a medicinal plant known for its immune-boosting and therapeutic properties. It supports infection control and overall health.</p>
+<p>The stem is the most commonly used part due to its rich bioactive compounds.</p>
+
+<h2>🌱 Botanical & General Information</h2>
+<p><b>Family:</b> Menispermaceae</p>
+<p><b>Plant Type:</b> Climbing shrub (vine)</p>
+<p><b>Habitat:</b> Tropical and subtropical regions</p>
+<p><b>Parts Used:</b> Stem, leaves, roots</p>
+
+<h2>🌿 Propagation & Cultivation</h2>
+<p><b>Stem Cuttings:</b> Most effective and widely used method</p>
+<p><b>Seeds:</b> Less common</p>
+
+<h3>🌞 Growth Requirements</h3>
+<p>Warm climate</p>
+<p>Well-drained soil</p>
+<p>Partial to full sunlight</p>
+<p>Moderate watering</p>
+
+<h2>🧪 Key Bioactive Compounds</h2>
+<p>Alkaloids, Glycosides, Diterpenoid lactones, Steroids, Polysaccharides</p>
+
+<h2>💊 Pharmacological Properties</h2>
+<p>Immunomodulatory</p>
+<p>Anti-inflammatory</p>
+<p>Antimicrobial</p>
+<p>Antioxidant</p>
+<p>Antipyretic (fever reducing)</p>
+<p>Metabolic support</p>
+
+<h2>🩺 Therapeutic Applications</h2>
+<p>Immunity boost</p>
+<p>Fever management</p>
+<p>Digestive health</p>
+<p>Metabolic health</p>
+<p>General wellness</p>
+
+<h2>🦠 Public Health Importance</h2>
+<p>Widely studied for immune support, infection management, and chronic disease benefits.</p>
+
+<h2>⚙️ Mechanism of Action</h2>
+<p>Enhances immune response</p>
+<p>Reduces inflammation</p>
+<p>Provides antioxidant protection</p>
+<p>Supports metabolic balance</p>
+
+<h2>⚠️ Safety</h2>
+<p>Safe in moderate amounts</p>
+<p>Excess may cause adverse effects</p>
+
+<h2>🌍 Modern Relevance</h2>
+<p>Recognized by NCBI, WHO, and Ministry of AYUSH for immune and therapeutic benefits.</p>
+
+<h2>📚 Sources</h2>
+<p>NCBI</p>
+<p>WHO</p>
+<p>Ministry of AYUSH</p>
 
 </div>
 
-<!-- 🔥 MOVED MODEL TO BOTTOM -->
-<div class="model-section">
+<div class="right">
 <h2 style="text-align:center;">🌐 3D Giloy Model</h2>
 <div class="model-container" id="model"></div>
+</div>
+
 </div>
 
 <footer>
@@ -163,9 +224,8 @@ scene.add(light);
 // Controls
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
-controls.enableZoom = false;
+controls.enableZoom = false; // 🔥 cleaner look
 
-// Model
 let giloyModel;
 const loader = new THREE.GLTFLoader();
 
@@ -173,24 +233,24 @@ loader.load('./Giloy.glb', function (gltf) {
 
     giloyModel = gltf.scene;
 
+    // 🔥 Auto center + perfect ground alignment
     const box = new THREE.Box3().setFromObject(giloyModel);
     const size = box.getSize(new THREE.Vector3()).length();
     const center = box.getCenter(new THREE.Vector3());
 
-    // Center model
     giloyModel.position.sub(center);
 
-    // Perfect ground alignment
+    // ✅ remove bottom gap perfectly
     giloyModel.position.y -= box.min.y;
 
-    // Better scaling (balanced)
-    const scaleFactor = 2.5 / size;
+    // 🔥 Auto scale
+    const scaleFactor = 3.5 / size;
     giloyModel.scale.setScalar(scaleFactor);
 
     scene.add(giloyModel);
 
-    // Camera
-    camera.position.set(0, size / 2, size * 1.5);
+    // 🔥 Perfect camera
+    camera.position.set(0, size / 3, size * 1.2);
 
     controls.target.set(0, 0, 0);
     controls.update();
@@ -201,12 +261,9 @@ loader.load('./Giloy.glb', function (gltf) {
 
 // Resize fix
 window.addEventListener('resize', () => {
-    const width = container.clientWidth;
-    const height = container.clientHeight;
-
-    renderer.setSize(width, height);
-    camera.aspect = width / height;
+    camera.aspect = container.clientWidth / container.clientHeight;
     camera.updateProjectionMatrix();
+    renderer.setSize(container.clientWidth, container.clientHeight);
 });
 
 // Animation
