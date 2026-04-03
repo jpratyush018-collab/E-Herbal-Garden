@@ -5,9 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>E-Herbal Garden</title>
 <style>
-    html {
+ html {
   scroll-behavior: smooth;
 }
+
 /* FADE-UP BANNER WITH MARQUEE */
 .announcement {
   width: 100%;
@@ -219,7 +220,42 @@ footer{
   font-size:14px;
 }
 
-/* PLANT SEARCH BUTTON - FIXED */
+body{margin:0;font-family:sans-serif;}
+
+/* CHATBOT */
+#chat-toggle{
+  position:fixed;
+  bottom:90px; /* ✅ FIXED (above camera button) */
+  right:20px;
+  background:#2e7d32;
+  color:white;
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:28px;
+  cursor:pointer;
+  box-shadow:0 4px 12px rgba(0,0,0,0.3);
+  z-index:9999;
+}
+
+#chatbox{
+  position:fixed;
+  bottom:160px;
+  right:20px;
+  width:320px;
+  height:420px;
+  background:white;
+  border-radius:15px;
+  box-shadow:0 5px 20px rgba(0,0,0,0.3);
+  display:none;
+  flex-direction:column;
+  overflow:hidden;
+}
+
+/* PLANT SEARCH BUTTON */
 #plantSearchBtn {
   position: fixed !important;
   bottom: 20px !important;
@@ -237,153 +273,9 @@ footer{
   font-size: 28px !important;
   cursor: pointer !important;
   box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4) !important;
-  transition: all 0.3s ease !important;
 }
 
-#plantSearchBtn:hover {
-  transform: scale(1.1) !important;
-  box-shadow: 0 12px 35px rgba(76, 175, 80, 0.6) !important;
-}
-
-/* SEARCH MODEL MODAL - FIXED */
-#searchModal {
-  display: none;
-  position: fixed;
-  z-index: 100000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.9);
-  backdrop-filter: blur(10px);
-}
-
-#searchModalContent {
-  background: linear-gradient(135deg, #2e7d32, #1b5e20);
-  margin: 5% auto;
-  padding: 30px;
-  border-radius: 25px;
-  width: 90%;
-  max-width: 500px;
-  color: white;
-  position: relative;
-  animation: modalSlideIn 0.3s ease;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-}
-
-@keyframes modalSlideIn {
-  from { transform: translateY(-50px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-#closeModal {
-  position: absolute;
-  right: 20px;
-  top: 15px;
-  font-size: 30px;
-  cursor: pointer;
-  color: white;
-  background: rgba(255,255,255,0.2);
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: 0.3s;
-}
-
-#closeModal:hover {
-  background: rgba(255,255,255,0.4);
-  transform: rotate(90deg);
-}
-
-#searchModelTitle {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 24px;
-}
-
-#searchControls {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
-}
-
-.btn-search {
-  background: linear-gradient(135deg, #4caf50, #66bb6a) !important;
-  color: white !important;
-  border: none !important;
-  padding: 12px 20px !important;
-  border-radius: 25px !important;
-  cursor: pointer !important;
-  font-weight: bold !important;
-  transition: all 0.3s !important;
-  font-size: 14px !important;
-  box-shadow: 0 4px 15px rgba(76,175,80,0.3) !important;
-}
-
-.btn-search:hover:not(:disabled) {
-  transform: translateY(-2px) !important;
-  box-shadow: 0 10px 20px rgba(76,175,80,0.4) !important;
-}
-
-.btn-search:disabled {
-  background: #666 !important;
-  cursor: not-allowed !important;
-  transform: none !important;
-  box-shadow: none !important;
-}
-
-#webcam-container {
-  text-align: center;
-  margin: 20px 0;
-}
-
-#webcam-container canvas {
-  border-radius: 15px !important;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important;
-  max-width: 100% !important;
-  height: auto !important;
-}
-
-#label-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-top: 20px;
-}
-
-#label-container div {
-  background: rgba(255,255,255,0.1);
-  padding: 10px;
-  border-radius: 10px;
-  backdrop-filter: blur(10px);
-  text-align: center;
-  font-weight: 500;
-  border: 1px solid rgba(255,255,255,0.2);
-}
-
-#statusMessage {
-  text-align: center;
-  padding: 15px;
-  background: rgba(255,255,255,0.1);
-  border-radius: 10px;
-  margin: 10px 0;
-  font-weight: 500;
-}
-
-@media (max-width:768px){
-  .history-timeline{padding-left:20px;}
-  .history-section{padding:40px 20px;}
-  .card-container{padding:20px;}
-  #searchModalContent { margin: 10% auto; width: 95%; padding: 20px; }
-  #searchControls { flex-direction: column; align-items: center; }
-}
 </style>
-
 <!-- Load TensorFlow and Teachable Machine FIRST -->
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
@@ -535,6 +427,156 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.target.id === 'searchModal') closePlantSearch();
   };
 });
+
+// DOM elements
+const toggle = document.getElementById("chat-toggle");
+const box = document.getElementById("chatbox");
+const chat = document.getElementById("chat-body");
+const closeBtn = document.getElementById("close-btn");
+const inputBox = document.getElementById("userInput");
+
+// Sample plant data
+const plants = [
+  {commonName:"Tulsi", uses:"Boosts immunity"},
+  {commonName:"Neem", uses:"Skin treatment"},
+  {commonName:"Aloe Vera", uses:"Skin care"},
+  {commonName:"Ashwagandha", uses:"Reduces stress"},
+  {commonName:"Mint", uses:"Digestion"},
+  {commonName:"Amla", uses:"Boosts immunity"},
+  {commonName:"Giloy", uses:"Boosts immunity"}
+];
+
+// Toggle chatbox
+toggle.onclick = () => {
+  if(box.style.display === "flex"){
+    box.style.display = "none";
+  } else {
+    box.style.display = "flex";
+    if(chat.innerHTML === "") startChat();
+  }
+};
+
+closeBtn.onclick = () => box.style.display = "none";
+
+// Start chat
+function startChat(){
+  botMessage("Hi 👋 I am your Herbal Assistant.<br>I can suggest plants based on your needs.");
+  showOptions(["Immunity","Skin","Digestion","Stress"]);
+}
+
+// Bot message
+function botMessage(text){
+  chat.innerHTML += `<div class="bot">${text}</div>`;
+  chat.scrollTop = chat.scrollHeight;
+}
+
+// User message
+function userMessage(text){
+  chat.innerHTML += `<div class="user">${text}</div>`;
+  chat.scrollTop = chat.scrollHeight;
+}
+
+// Show options
+function showOptions(options){
+  let html = "";
+  options.forEach(opt => {
+    html += `<span class="option" onclick="selectOption('${opt}')">${opt}</span>`;
+  });
+  chat.innerHTML += `<div class="bot">${html}</div>`;
+  chat.scrollTop = chat.scrollHeight;
+}
+
+// Handle option click
+async function selectOption(choice){
+  userMessage(choice);
+
+  let result = plants.filter(p =>
+    p.uses.toLowerCase().includes(choice.toLowerCase())
+  );
+
+  if(result.length > 0){
+    botMessage("🌿 These plants can help:");
+    result.forEach(p=>{
+      botMessage(`👉 <b>${p.commonName}</b><br>${p.uses}`);
+    });
+  } else {
+    const loadingId = showLoading();
+    const reply = await getAIResponse(choice);
+    removeLoading(loadingId);
+    botMessage(reply);
+  }
+
+  setTimeout(()=>{
+    botMessage("Try another category:");
+    showOptions(["Immunity","Skin","Digestion","Stress"]);
+  },1000);
+}
+
+// Loading animation
+function showLoading(){
+  const id = "loading-" + Date.now();
+  chat.innerHTML += `<div class="bot" id="${id}">Thinking<span class="dots"></span></div>`;
+  chat.scrollTop = chat.scrollHeight;
+  return id;
+}
+function removeLoading(id){
+  const el = document.getElementById(id);
+  if(el) el.remove();
+}
+
+// Handle text input
+inputBox.addEventListener("keypress", async function(e){
+  if(e.key === "Enter"){
+    const input = this.value.trim();
+    if(input === "") return;
+
+    userMessage(input);
+    this.value = "";
+
+    const found = plants.find(p =>
+      p.commonName.toLowerCase().includes(input.toLowerCase())
+    );
+
+    if(found){
+      botMessage(`🌿 <b>${found.commonName}</b><br>${found.uses}`);
+    } else {
+      const loadingId = showLoading();
+      const reply = await getAIResponse(input);
+      removeLoading(loadingId);
+      botMessage(reply);
+    }
+  }
+});
+
+// AI response using OpenAI (replace with your own API key)
+async function getAIResponse(message){
+  try{
+    const res = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type":"application/json",
+        "Authorization":"Bearer YOUR_OPENAI_API_KEY_HERE"
+      },
+      body: JSON.stringify({
+        model:"gpt-3.5-turbo",
+        messages:[
+          {role:"system", content:"You are a helpful herbal assistant. Only give information about Ayurveda and medicinal plants."},
+          {role:"user", content:message}
+        ]
+      })
+    });
+
+    const data = await res.json();
+    if(data.choices && data.choices.length > 0){
+      return data.choices[0].message.content;
+    } else {
+      return "⚠️ AI not responding. Try again.";
+    }
+  } catch(err){
+    console.error(err);
+    return "❌ Error connecting to AI.";
+  }
+}
 </script>
 </head>
 <body>
@@ -701,6 +743,19 @@ Promoted by Ministry of AYUSH. Immunity boost, Yoga & meditation, Panchakarma de
     <div id="webcam-container"></div>
     <div id="label-container"></div>
   </div>
+
+<div id="chat-toggle">💬</div>
+
+<div id="chatbox">
+  <div id="chat-header">
+    🌿 Herbal Bot (Online)
+    <span id="close-btn">✖</span>
+  </div>
+  <div id="chat-body"></div>
+  <input type="text" id="userInput" placeholder="Ask anything..." />
+</div>
+
+
 </div>
 
 </body>
