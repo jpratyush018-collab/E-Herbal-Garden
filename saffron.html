@@ -32,10 +32,25 @@ nav a {
     font-weight: bold;
 }
 
-.content {
+.main {
+    display: flex;
+    gap: 20px;
     padding: 30px;
-    max-width: 1000px;
-    margin: auto;
+    flex-wrap: wrap;
+}
+
+.left {
+    flex: 1;
+    min-width: 300px;
+}
+
+.right {
+    flex: 1;
+    min-width: 300px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    padding-bottom: 20px;
 }
 
 h2 {
@@ -47,26 +62,9 @@ p, li {
     line-height: 1.6;
 }
 
-/* 🔥 MODEL AT BOTTOM */
-.model-section {
-    margin: 40px auto;
-    max-width: 900px;
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    padding: 20px;
-}
-
 .model-container {
     width: 100%;
-    height: 400px;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .model-container {
-        height: 300px;
-    }
+    height: 500px;
 }
 
 footer {
@@ -82,7 +80,7 @@ footer {
 <body>
 
 <header>
-<h1>🌿 Saffron</h1>
+<h1>🌿 Saffron (Crocus sativus)</h1>
 <p>The Golden Medicinal Spice</p>
 </header>
 
@@ -93,66 +91,90 @@ footer {
 <a href="#">Contact</a>
 </nav>
 
-<div class="content">
+<div class="main">
+
+<!-- LEFT CONTENT -->
+<div class="left">
 
 <h2>🧬 Overview</h2>
 <p>
-Saffron (Crocus sativus) is one of the most valuable medicinal and aromatic plants known for its antioxidant, mood-enhancing, and therapeutic properties.
-</p>
-<p>
-The dried stigmas (threads) of the flower are the primary part used and contain powerful bioactive compounds.
+Saffron (Crocus sativus) is one of the most valuable and rare medicinal plants in the world. 
+It is widely known for its powerful antioxidant, mood-enhancing, and healing properties. 
+The spice is derived from the delicate red stigmas of the saffron flower, making it extremely labor-intensive and expensive.
 </p>
 
-<h2>🌱 Basic Information</h2>
-<p><b>Common Name:</b> Saffron</p>
-<p><b>Botanical Name:</b> Crocus sativus</p>
+<h2>🌱 Botanical Information</h2>
 <p><b>Family:</b> Iridaceae</p>
+<p><b>Common Name:</b> Saffron</p>
+<p><b>Plant Type:</b> Perennial flowering plant</p>
+<p><b>Parts Used:</b> Stigmas (threads)</p>
+<p><b>Habitat:</b> Temperate climates (e.g., Kashmir, Iran, Mediterranean regions)</p>
 
-<h2>🌿 Medicinal Uses</h2>
+<h2>🌿 Cultivation</h2>
 <ul>
-<li>Antioxidant protection</li>
-<li>Improves mood and reduces stress</li>
-<li>Supports heart health</li>
-<li>Reduces inflammation</li>
-<li>Supports brain function</li>
+<li>Requires well-drained sandy or loamy soil</li>
+<li>Grows best in cool winters and dry summers</li>
+<li>Needs full sunlight exposure</li>
+<li>Propagation is done through corms (bulb-like structures)</li>
 </ul>
 
-<h2>🌍 Habitat</h2>
-<p>Grows in temperate regions with well-drained soil and sunny conditions.</p>
-
-<h2>🌾 Cultivation</h2>
+<h2>🧪 Key Bioactive Compounds</h2>
 <ul>
-<li>Propagation through corms</li>
-<li>Requires moderate watering</li>
-<li>Needs sunny, dry conditions</li>
+<li><b>Crocin:</b> Responsible for color and antioxidant activity</li>
+<li><b>Safranal:</b> Provides aroma and mood benefits</li>
+<li><b>Picrocrocin:</b> Gives saffron its bitter taste</li>
+<li>Flavonoids and carotenoids</li>
 </ul>
 
-<h2>⚠️ Precautions</h2>
+<h2>💊 Medicinal Benefits</h2>
 <ul>
-<li>Safe in moderate amounts</li>
-<li>Excess may cause side effects</li>
+<li>Improves mood and helps reduce anxiety & depression</li>
+<li>Supports heart health and circulation</li>
+<li>Powerful antioxidant and anti-inflammatory effects</li>
+<li>Enhances memory and cognitive function</li>
+<li>Boosts immunity and overall wellness</li>
 </ul>
 
-<h2>🧪 Key Compounds</h2>
+<h2>🩺 Therapeutic Uses</h2>
 <ul>
-<li>Crocin</li>
-<li>Safranal</li>
-<li>Picrocrocin</li>
+<li>Mental wellness and stress relief</li>
+<li>Cardiovascular support</li>
+<li>Digestive health improvement</li>
+<li>Used in herbal teas and traditional medicine</li>
 </ul>
 
-<h2>💊 Applications</h2>
+<h2>⚙️ Mechanism of Action</h2>
 <ul>
-<li>Mental wellness</li>
-<li>Heart support</li>
-<li>Cognitive health</li>
+<li>Enhances serotonin levels → improves mood</li>
+<li>Neutralizes free radicals → antioxidant effect</li>
+<li>Reduces inflammation in tissues</li>
+<li>Supports blood circulation</li>
 </ul>
+
+<h2>🌍 Modern Importance</h2>
+<p>
+Saffron is widely researched by global health organizations such as WHO and NCBI. 
+It is used in pharmaceuticals, cosmetics, and nutraceutical products due to its high medicinal value.
+</p>
+
+<h2>⚠️ Safety & Precautions</h2>
+<ul>
+<li>Safe in small to moderate quantities</li>
+<li>High doses may cause dizziness or nausea</li>
+<li>Pregnant women should consult a doctor</li>
+</ul>
+
+<h2>📚 Sources</h2>
+<p>NCBI | WHO | Ministry of AYUSH</p>
 
 </div>
 
-<!-- 🔥 MODEL SECTION -->
-<div class="model-section">
+<!-- RIGHT 3D MODEL -->
+<div class="right">
 <h2 style="text-align:center;">🌐 3D Saffron Model</h2>
 <div class="model-container" id="model"></div>
+</div>
+
 </div>
 
 <footer>
@@ -169,10 +191,10 @@ const scene = new THREE.Scene();
 const container = document.getElementById("model");
 
 const camera = new THREE.PerspectiveCamera(
-    75,
-    container.clientWidth / container.clientHeight,
-    0.1,
-    1000
+75,
+container.clientWidth / container.clientHeight,
+0.1,
+1000
 );
 
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -180,11 +202,10 @@ renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
-// Lighting
-const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
-scene.add(light);
+// light
+scene.add(new THREE.HemisphereLight(0xffffff, 0x444444, 1.5));
 
-// Controls
+// controls
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
 controls.enableZoom = true;
 controls.enablePan = false;
@@ -192,53 +213,47 @@ controls.enablePan = false;
 let model;
 
 const loader = new THREE.GLTFLoader();
-loader.load(
-    './Saffron.glb',
-    function (gltf) {
+loader.load('./Saffron.glb', function (gltf) {
 
-        model = gltf.scene;
+model = gltf.scene;
 
-        const box = new THREE.Box3().setFromObject(model);
-        const size = box.getSize(new THREE.Vector3());
-        const center = box.getCenter(new THREE.Vector3());
+const box = new THREE.Box3().setFromObject(model);
+const size = box.getSize(new THREE.Vector3());
+const center = box.getCenter(new THREE.Vector3());
 
-        model.position.sub(center);
+model.position.sub(center);
 
-        const maxDim = Math.max(size.x, size.y, size.z);
-        const fov = camera.fov * (Math.PI / 180);
-        let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
+const maxDim = Math.max(size.x, size.y, size.z);
+const fov = camera.fov * Math.PI / 180;
+let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
 
-        camera.position.z = cameraZ * 1.8; // better fit
+camera.position.z = cameraZ * 1.5;
 
-        scene.add(model);
-    },
-    undefined,
-    function (error) {
-        console.error("Error loading model:", error);
-    }
-);
+scene.add(model);
 
-// Responsive
-window.addEventListener('resize', () => {
-    const width = container.clientWidth;
-    const height = container.clientHeight;
-
-    renderer.setSize(width, height);
-    camera.aspect = width / height;
-    camera.updateProjectionMatrix();
+resizeModel();
 });
 
-// Animation
-function animate() {
-    requestAnimationFrame(animate);
+// resize
+function resizeModel() {
+const w = container.clientWidth;
+const h = container.clientHeight;
 
-    if (model) {
-        model.rotation.y += 0.005;
-    }
-
-    renderer.render(scene, camera);
+renderer.setSize(w, h);
+camera.aspect = w / h;
+camera.updateProjectionMatrix();
 }
 
+window.addEventListener("resize", resizeModel);
+
+// animation
+function animate() {
+requestAnimationFrame(animate);
+
+if (model) model.rotation.y += 0.005;
+
+renderer.render(scene, camera);
+}
 animate();
 </script>
 
