@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Plant - E-Herbal Garden</title>
+<title>Lemongrass - E-Herbal Garden</title>
 
 <style>
 body {
@@ -32,38 +32,42 @@ nav a {
     font-weight: bold;
 }
 
-.main {
-    display: flex;
-    gap: 20px;
+.content {
     padding: 30px;
-    flex-wrap: wrap;
-}
-
-.left {
-    flex: 1;
-    min-width: 300px;
-}
-
-.right {
-    flex: 1;
-    min-width: 300px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    overflow: hidden;
+    max-width: 1100px;
+    margin: auto;
 }
 
 h2 {
     color: #2e7d32;
+    margin-top: 25px;
 }
 
 p {
     line-height: 1.6;
 }
 
+/* MODEL CARD */
+.model-section {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    padding: 20px;
+}
+
 .model-container {
     width: 100%;
-    height: 500px;
+    height: 450px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .content {
+        flex-direction: column;
+    }
+    .model-container {
+        height: 300px;
+    }
 }
 
 footer {
@@ -79,7 +83,7 @@ footer {
 <body>
 
 <header>
-<h1> Lemongrass </h1>
+<h1>🌿 Lemongrass</h1>
 <p>Tagline of the Plant</p>
 </header>
 
@@ -90,93 +94,95 @@ footer {
 <a href="#">Contact</a>
 </nav>
 
-<div class="main">
+<!-- MAIN FLEX -->
+<div class="content" style="display:flex; flex-wrap:wrap; gap:30px; align-items:flex-start;">
 
-<div class="left">
+  <!-- LEFT TEXT -->
+  <div style="flex:1; min-width:300px;">
 
-<h2>🌱 Basic Information</h2>
-<p><b>Common Name:</b> Lemongrass</p>
-<p><b>Botanical Name:</b> Cymbopogon citratus</p>
+    <h2>🌱 Basic Information</h2>
+    <p><b>Common Name:</b> Lemongrass</p>
+    <p><b>Botanical Name:</b> Cymbopogon citratus</p>
 
-<h2>🌿 Medicinal Uses</h2>
-<p>Lemongrass is widely used for digestion, stress relief, and antimicrobial benefits. It is commonly used in herbal teas and aromatherapy.</p>
+    <h2>🌿 Medicinal Uses</h2>
+    <p>Lemongrass is widely used for digestion, stress relief, and antimicrobial benefits. It is commonly used in herbal teas and aromatherapy.</p>
 
-<h2>🌍 Habitat</h2>
-<p>Grows in tropical and subtropical regions with warm climates.</p>
+    <h2>🌍 Habitat</h2>
+    <p>Grows in tropical and subtropical regions with warm climates.</p>
 
-<h2>🌾 Cultivation</h2>
-<p>Primarily grown through division of clumps and requires well-drained soil and sunlight.</p>
+    <h2>🌾 Cultivation</h2>
+    <p>Primarily grown through division of clumps and requires well-drained soil and sunlight.</p>
 
-<h2>⚠️ Precautions</h2>
-<p>Excess use may cause irritation; essential oils should be used carefully.</p>
+    <h2>⚠️ Precautions</h2>
+    <p>Excess use may cause irritation; essential oils should be used carefully.</p>
 
-<!-- NEW CONTENT -->
+    <!-- NEW CONTENT -->
 
-<h2>🧬 Overview</h2>
-<p>Lemongrass (Cymbopogon citratus) is a medicinal and aromatic plant known for its citrus fragrance and therapeutic benefits.</p>
-<p>Leaves and essential oil are the primary parts used.</p>
+    <h2>🧬 Overview</h2>
+    <p>Lemongrass (Cymbopogon citratus) is a medicinal and aromatic plant known for its citrus fragrance and therapeutic benefits.</p>
+    <p>Leaves and essential oil are the primary parts used.</p>
 
-<h2>🌱 Botanical & General Information</h2>
-<p><b>Family:</b> Poaceae</p>
-<p><b>Plant Type:</b> Perennial grass</p>
-<p><b>Habitat:</b> Tropical and subtropical regions</p>
-<p><b>Parts Used:</b> Leaves, stems, essential oil</p>
+    <h2>🌱 Botanical & General Information</h2>
+    <p><b>Family:</b> Poaceae</p>
+    <p><b>Plant Type:</b> Perennial grass</p>
+    <p><b>Habitat:</b> Tropical and subtropical regions</p>
+    <p><b>Parts Used:</b> Leaves, stems, essential oil</p>
 
-<h2>🌿 Propagation & Cultivation</h2>
-<p><b>Division:</b> Most effective method using clumps</p>
-<p><b>Stem Rooting:</b> Can grow roots in water</p>
-<p><b>Seeds:</b> Less common</p>
+    <h2>🌿 Propagation & Cultivation</h2>
+    <p><b>Division:</b> Most effective method using clumps</p>
+    <p><b>Stem Rooting:</b> Can grow roots in water</p>
+    <p><b>Seeds:</b> Less common</p>
 
-<h3>🌞 Growth Requirements</h3>
-<p>Warm, humid climate</p>
-<p>Well-drained fertile soil</p>
-<p>Full sunlight</p>
-<p>Regular watering</p>
+    <h3>🌞 Growth Requirements</h3>
+    <p>Warm, humid climate</p>
+    <p>Well-drained fertile soil</p>
+    <p>Full sunlight</p>
+    <p>Regular watering</p>
 
-<h2>🧪 Key Bioactive Compounds</h2>
-<p>Citral, Geraniol, Limonene, Flavonoids, Essential oils</p>
+    <h2>🧪 Key Bioactive Compounds</h2>
+    <p>Citral, Geraniol, Limonene, Flavonoids, Essential oils</p>
 
-<h2>💊 Pharmacological Properties</h2>
-<p>Antimicrobial</p>
-<p>Anti-inflammatory</p>
-<p>Antioxidant</p>
-<p>Digestive support</p>
-<p>Stress relief</p>
+    <h2>💊 Pharmacological Properties</h2>
+    <p>Antimicrobial</p>
+    <p>Anti-inflammatory</p>
+    <p>Antioxidant</p>
+    <p>Digestive support</p>
+    <p>Stress relief</p>
 
-<h2>🩺 Therapeutic Applications</h2>
-<p>Digestive health</p>
-<p>Relaxation</p>
-<p>Infection control</p>
-<p>General wellness</p>
+    <h2>🩺 Therapeutic Applications</h2>
+    <p>Digestive health</p>
+    <p>Relaxation</p>
+    <p>Infection control</p>
+    <p>General wellness</p>
 
-<h2>🦠 Public Health Importance</h2>
-<p>Widely studied for antimicrobial and antioxidant properties.</p>
+    <h2>🦠 Public Health Importance</h2>
+    <p>Widely studied for antimicrobial and antioxidant properties.</p>
 
-<h2>⚙️ Mechanism of Action</h2>
-<p>Inhibits microbial growth</p>
-<p>Reduces inflammation</p>
-<p>Protects cells</p>
-<p>Promotes relaxation</p>
+    <h2>⚙️ Mechanism of Action</h2>
+    <p>Inhibits microbial growth</p>
+    <p>Reduces inflammation</p>
+    <p>Protects cells</p>
+    <p>Promotes relaxation</p>
 
-<h2>⚠️ Safety</h2>
-<p>Safe in moderate amounts</p>
-<p>Excess may cause irritation</p>
+    <h2>⚠️ Safety</h2>
+    <p>Safe in moderate amounts</p>
+    <p>Excess may cause irritation</p>
 
-<h2>🌍 Modern Relevance</h2>
-<p>Recognized by NCBI, WHO, and Ministry of AYUSH for medicinal and aromatic benefits.</p>
+    <h2>🌍 Modern Relevance</h2>
+    <p>Recognized by NCBI, WHO, and Ministry of AYUSH for medicinal and aromatic benefits.</p>
 
-<h2>📚 Sources</h2>
-<p>NCBI</p>
-<p>WHO</p>
-<p>Ministry of AYUSH</p>
+    <h2>📚 Sources</h2>
+    <p>NCBI</p>
+    <p>WHO</p>
+    <p>Ministry of AYUSH</p>
 
+  </div>
 
-</div>
-
-<div class="right">
-<h2 style="text-align:center;">🌐 3D Model</h2>
-<div class="model-container" id="model"></div>
-</div>
+  <!-- RIGHT MODEL -->
+  <div class="model-section" style="flex:1; min-width:300px; max-width:500px;">
+    <h2 style="text-align:center;">🌐 3D Lemongrass Model</h2>
+    <div class="model-container" id="model"></div>
+  </div>
 
 </div>
 
@@ -201,15 +207,11 @@ const camera = new THREE.PerspectiveCamera(
 );
 
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
-// Lighting
-const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
-scene.add(light);
+scene.add(new THREE.HemisphereLight(0xffffff, 0x444444, 1.5));
 
-// Controls
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
 controls.enableZoom = true;
 controls.enablePan = false;
@@ -217,55 +219,46 @@ controls.enablePan = false;
 let model;
 
 const loader = new THREE.GLTFLoader();
-loader.load(
-    './Lemon grass.glb', // 🔥 CHANGE THIS FILE NAME
-    function (gltf) {
+loader.load('./Lemon grass.glb', function (gltf) {
 
-        model = gltf.scene;
+    model = gltf.scene;
 
-        // ✅ CENTER MODEL
-        const box = new THREE.Box3().setFromObject(model);
-        const size = box.getSize(new THREE.Vector3());
-        const center = box.getCenter(new THREE.Vector3());
+    const box = new THREE.Box3().setFromObject(model);
+    const size = box.getSize(new THREE.Vector3());
+    const center = box.getCenter(new THREE.Vector3());
 
-        model.position.sub(center);
+    model.position.sub(center);
 
-        // ✅ AUTO CAMERA FIT
-        const maxDim = Math.max(size.x, size.y, size.z);
-        const fov = camera.fov * (Math.PI / 180);
-        let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
+    const maxDim = Math.max(size.x, size.y, size.z);
+    const fov = camera.fov * (Math.PI / 180);
+    let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
 
-        camera.position.z = cameraZ * 1.5;
+    camera.position.z = cameraZ * 1.5;
 
-        scene.add(model);
-    },
-    undefined,
-    function (error) {
-        console.error("Error loading model:", error);
-    }
-);
-
-// Resize fix
-window.addEventListener('resize', () => {
-    const width = container.clientWidth;
-    const height = container.clientHeight;
-
-    renderer.setSize(width, height);
-    camera.aspect = width / height;
-    camera.updateProjectionMatrix();
+    scene.add(model);
 });
 
-// Animation
-function animate() {
-    requestAnimationFrame(animate);
+// resize
+function resize(){
+const w=container.clientWidth;
+const h=container.clientHeight;
 
-    if (model) {
-        model.rotation.y += 0.005;
-    }
-
-    renderer.render(scene, camera);
+renderer.setSize(w,h);
+camera.aspect=w/h;
+camera.updateProjectionMatrix();
 }
 
+window.addEventListener('resize',resize);
+new ResizeObserver(resize).observe(container);
+
+// animation
+function animate(){
+requestAnimationFrame(animate);
+
+if(model) model.rotation.y+=0.005;
+
+renderer.render(scene,camera);
+}
 animate();
 </script>
 
