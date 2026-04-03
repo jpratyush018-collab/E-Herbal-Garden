@@ -32,38 +32,41 @@ nav a {
     font-weight: bold;
 }
 
-.main {
-    display: flex;
-    gap: 20px;
+.content {
     padding: 30px;
-    flex-wrap: wrap;
-}
-
-.left {
-    flex: 1;
-    min-width: 300px;
-}
-
-.right {
-    flex: 1;
-    min-width: 300px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    overflow: hidden;
+    max-width: 1000px;
+    margin: auto;
 }
 
 h2 {
     color: #2e7d32;
+    margin-top: 25px;
 }
 
 p {
     line-height: 1.6;
 }
 
+/* MODEL SECTION */
+.model-section {
+    margin: 40px auto;
+    max-width: 500px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    padding: 20px;
+}
+
 .model-container {
     width: 100%;
     height: 500px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .model-container {
+        height: 300px;
+    }
 }
 
 footer {
@@ -90,9 +93,10 @@ footer {
 <a href="#">Contact</a>
 </nav>
 
-<div class="main">
+<div class="content" style="display:flex; flex-wrap:wrap; gap:30px; align-items:flex-start;">
 
-<div class="left">
+<!-- LEFT CONTENT -->
+<div style="flex:1; min-width:300px;">
 
 <h2>🧬 Overview</h2>
 <p>
@@ -150,16 +154,16 @@ Lavender (Lavandula angustifolia) is a highly valued medicinal and aromatic herb
 
 </div>
 
-<!-- ✅ RIGHT SIDE 3D MODEL -->
-<div class="right">
-<h2 style="text-align:center;">🌐 3D Model</h2>
+<!-- RIGHT MODEL -->
+<div class="model-section" style="flex:1; min-width:300px;">
+<h2 style="text-align:center;">🌐 3D Lavender Model</h2>
 <div class="model-container" id="model"></div>
 </div>
 
 </div>
 
 <footer>
-© 2026 E-Herbal Garden
+© 2026 E-Herbal Garden | Designed with 🌱
 </footer>
 
 <!-- Three.js -->
@@ -172,13 +176,14 @@ const scene = new THREE.Scene();
 const container = document.getElementById("model");
 
 const camera = new THREE.PerspectiveCamera(
-    75,
-    container.clientWidth / container.clientHeight,
-    0.1,
-    1000
+75,
+container.clientWidth / container.clientHeight,
+0.1,
+1000
 );
 
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
@@ -195,47 +200,44 @@ let model;
 const loader = new THREE.GLTFLoader();
 loader.load('./Lavender.glb', function (gltf) {
 
-    model = gltf.scene;
+model = gltf.scene;
 
-    const box = new THREE.Box3().setFromObject(model);
-    const size = box.getSize(new THREE.Vector3());
-    const center = box.getCenter(new THREE.Vector3());
+const box = new THREE.Box3().setFromObject(model);
+const size = box.getSize(new THREE.Vector3());
+const center = box.getCenter(new THREE.Vector3());
 
-    model.position.sub(center);
+model.position.sub(center);
 
-    const maxDim = Math.max(size.x, size.y, size.z);
-    const fov = camera.fov * Math.PI / 180;
-    let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
+const maxDim = Math.max(size.x, size.y, size.z);
+const fov = camera.fov * Math.PI / 180;
+let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
 
-    camera.position.z = cameraZ * 1.5;
+camera.position.z = cameraZ * 1.8;
 
-    scene.add(model);
+scene.add(model);
 
-    resizeModel();
+}, undefined, function(error){
+console.error("Error loading model:", error);
 });
 
 // resize
-function resizeModel() {
-    const w = container.clientWidth;
-    const h = container.clientHeight;
+window.addEventListener('resize', () => {
+const width = container.clientWidth;
+const height = container.clientHeight;
 
-    renderer.setSize(w, h);
-    camera.aspect = w / h;
-    camera.updateProjectionMatrix();
-}
-
-window.addEventListener("resize", resizeModel);
-new ResizeObserver(resizeModel).observe(container);
+renderer.setSize(width, height);
+camera.aspect = width / height;
+camera.updateProjectionMatrix();
+});
 
 // animation
-function animate() {
-    requestAnimationFrame(animate);
+function animate(){
+requestAnimationFrame(animate);
 
-    if (model) model.rotation.y += 0.005;
+if(model) model.rotation.y += 0.005;
 
-    renderer.render(scene, camera);
+renderer.render(scene,camera);
 }
-
 animate();
 </script>
 
