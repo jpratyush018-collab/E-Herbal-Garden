@@ -7,101 +7,83 @@
 <title>Sage - E-Herbal Garden</title>
 
 <style>
-body{
-    margin:0;
-    font-family:Arial, sans-serif;
-    background:#eaf5ea;
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #eaf5ea;
 }
 
-header{
-    background:linear-gradient(to right,#1b5e20,#2e7d32);
-    color:white;
-    padding:20px;
-    text-align:center;
+header {
+    background: linear-gradient(to right, #1b5e20, #2e7d32);
+    color: white;
+    padding: 20px;
+    text-align: center;
 }
 
-nav{
-    background:#145a1f;
-    padding:10px;
-    text-align:center;
+nav {
+    background: #145a1f;
+    padding: 10px;
+    text-align: center;
 }
 
-nav a{
-    color:white;
-    margin:0 15px;
-    text-decoration:none;
-    font-weight:bold;
+nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
 }
 
-.content{
-    padding:30px;
-    max-width:1000px;
-    margin:auto;
+.content {
+    padding: 30px;
+    max-width: 1100px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    align-items: flex-start;
 }
 
-h2{
-    color:#2e7d32;
-    margin-top:25px;
+.left {
+    flex: 1;
+    min-width: 300px;
 }
 
-p{
-    line-height:1.6;
+.right {
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    padding: 20px;
 }
 
-/* MODEL SECTION */
-.model-section{
-    margin:40px auto;
-    max-width:900px;
-    background:white;
-    border-radius:15px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.1);
-    padding:20px;
+h2 {
+    color: #2e7d32;
+    margin-top: 25px;
 }
 
-.model-container{
-    width:100%;
-    height:400px;
+p, li {
+    line-height: 1.6;
 }
 
-@media (max-width:768px){
-    .model-container{
-        height:280px;
+.model-container {
+    width: 100%;
+    height: 400px;
+}
+
+@media (max-width: 768px) {
+    .model-container {
+        height: 300px;
     }
 }
 
-/* CONTACT SECTION */
-.contact{
-    background:#ffffff;
-    margin:20px;
-    padding:20px;
-    border-radius:12px;
-    box-shadow:0 4px 10px rgba(0,0,0,0.1);
-}
-
-.contact input,
-.contact textarea{
-    width:100%;
-    padding:10px;
-    margin:8px 0;
-    border-radius:6px;
-    border:1px solid #ccc;
-}
-
-.contact button{
-    background:#2e7d32;
-    color:white;
-    padding:10px 20px;
-    border:none;
-    border-radius:6px;
-    cursor:pointer;
-}
-
-footer{
-    background:#145a1f;
-    color:white;
-    text-align:center;
-    padding:15px;
-    margin-top:20px;
+footer {
+    background: #145a1f;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 20px;
 }
 </style>
 </head>
@@ -109,7 +91,7 @@ footer{
 <body>
 
 <header>
-<h1>🌿 Sage</h1>
+<h1>🌿 Sage (Salvia officinalis)</h1>
 <p>The Wisdom Herb</p>
 </header>
 
@@ -117,155 +99,174 @@ footer{
 <a href="index.html">Home</a>
 <a href="hellochalja.html">Plants</a>
 <a href="about.html">About</a>
-<a href="#contact">Contact</a>
+<a href="#">Contact</a>
 </nav>
 
-<div class="content" style="display:flex; flex-wrap:wrap; gap:30px; align-items:flex-start;">
+<div class="content">
 
-<!-- LEFT CONTENT -->
-<div style="flex:1; min-width:300px;">
+<!-- LEFT TEXT -->
+<div class="left">
 
-<h2>🌱 Basic Information</h2>
+<h2>🧬 Overview</h2>
+<p>Sage (Salvia officinalis) is a perennial herb valued for its medicinal and culinary uses. Known as "The Wisdom Herb," sage has been used traditionally for memory enhancement, digestive support, and antimicrobial purposes.</p>
+
+<h2>🌱 Botanical & General Information</h2>
+<p><b>Family:</b> Lamiaceae</p>
 <p><b>Common Name:</b> Sage</p>
 <p><b>Botanical Name:</b> Salvia officinalis</p>
-<p><b>Family:</b> Lamiaceae</p>
-<p><b>Origin:</b> Mediterranean Region</p>
+<p><b>Plant Type:</b> Perennial herb / Shrub</p>
+<p><b>Habitat:</b> Mediterranean region, dry sunny climates</p>
+<p><b>Parts Used:</b> Leaves, stems, flowers</p>
 
-<h2>🌿 Medicinal Uses</h2>
-<p>Sage is known for improving memory and brain function.</p>
-<p>It helps in relieving sore throat and digestive problems.</p>
-<p>It also has strong antibacterial and anti-inflammatory properties.</p>
+<h2>🌿 Propagation & Cultivation</h2>
+<p><b>Seeds:</b> Most common; sow in well-drained soil and provide sunlight.</p>
+<p><b>Cuttings:</b> Stem cuttings propagate faster and preserve plant traits.</p>
 
-<h2>🌍 Habitat</h2>
-<p>Sage grows in dry, sunny climates with well-drained soil.</p>
+<h3>🌞 Growth Requirements</h3>
+<ul>
+<li>Well-drained, sandy-loam soil</li>
+<li>Full sunlight (6–8 hours daily)</li>
+<li>Moderate watering; drought-tolerant once established</li>
+<li>Temperature: 15–30°C preferred</li>
+</ul>
 
-<h2>🌾 Cultivation</h2>
-<p>It is grown from seeds or cuttings and requires moderate watering.</p>
+<h2>🧪 Key Bioactive Compounds</h2>
+<ul>
+<li>Thujone – antimicrobial, CNS stimulant</li>
+<li>Cineole – respiratory support, anti-inflammatory</li>
+<li>Rosmarinic Acid – antioxidant, anti-inflammatory</li>
+<li>Flavonoids – antimicrobial and antioxidant properties</li>
+<li>Essential oils – aromatic, therapeutic applications</li>
+</ul>
 
-<h2>⚠️ Precautions</h2>
-<p>Excess consumption may cause dizziness; avoid overuse.</p>
+<h2>💊 Pharmacological & Medicinal Properties</h2>
+<ul>
+<li>Memory and cognitive enhancement</li>
+<li>Anti-inflammatory and antimicrobial</li>
+<li>Antioxidant support</li>
+<li>Digestive aid</li>
+<li>Respiratory support</li>
+</ul>
 
-<h2>🧪 Chemical Compounds</h2>
-<p>
-<b>Thujone:</b> Antimicrobial<br>
-<b>Cineole:</b> Respiratory support<br>
-<b>Rosmarinic Acid:</b> Anti-inflammatory
-</p>
+<h2>🩺 Therapeutic Applications</h2>
+<ul>
+<li>Leaf infusions for sore throat and cough</li>
+<li>Extracts for digestive discomfort</li>
+<li>Topical use for skin inflammation</li>
+<li>Aromatherapy for mental clarity and focus</li>
+</ul>
+
+<h2>⚙️ Mechanism of Action</h2>
+<ul>
+<li>Thujone and cineole inhibit microbial growth → antimicrobial</li>
+<li>Rosmarinic acid reduces oxidative stress → antioxidant</li>
+<li>Compounds stimulate neural pathways → memory enhancement</li>
+<li>Essential oils relax smooth muscles → digestive and respiratory aid</li>
+</ul>
+
+<h2>⚠️ Safety & Precautions</h2>
+<ul>
+<li>Safe in moderate amounts</li>
+<li>Excess may cause dizziness or nausea</li>
+<li>Avoid during pregnancy or if sensitive to thujone</li>
+</ul>
+
+<h2>🌍 Modern Relevance & Research</h2>
+<p>Sage is recognized by NCBI, WHO, and Ministry of AYUSH for cognitive, anti-inflammatory, and antimicrobial benefits. Modern studies support its traditional use for memory improvement and digestive health.</p>
+
+<h2>📚 Sources</h2>
+<ul>
+<li>NCBI</li>
+<li>WHO</li>
+<li>Ministry of AYUSH</li>
+</ul>
 
 </div>
 
-<!-- RIGHT MODEL -->
-<div class="model-section" style="flex:1; min-width:300px; max-width:500px;">
+<!-- RIGHT 3D MODEL -->
+<div class="right">
 <h2 style="text-align:center;">🌐 3D Sage Model</h2>
-<div class="model-container" id="model" style="height:500px;"></div>
+<div class="model-container" id="model"></div>
 </div>
-
-</div>
-
-<!-- CONTACT SECTION -->
-<div class="contact" id="contact">
-
-<h2>📞 Contact Us</h2>
-<p>If you have any questions about herbs or this project, feel free to reach out!</p>
-
-<form>
-<input type="text" placeholder="Your Name" required>
-<input type="email" placeholder="Your Email" required>
-<textarea rows="4" placeholder="Your Message"></textarea>
-<button type="submit">Send Message</button>
-</form>
-
-<p><b>Email:</b> support@eherbalgarden.com</p>
-<p><b>Phone:</b> +91 9876543210</p>
 
 </div>
 
 <footer>
-© 2026 E-Herbal Garden | Designed with 🌱 | Created by Team Beginners
+© 2026 E-Herbal Garden | Designed with 🌱
 </footer>
 
-<!-- Three.js -->
+<!-- THREE JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
 
 <script>
-const scene = new THREE.Scene();
+// Scene setup
 const container = document.getElementById("model");
+const scene = new THREE.Scene();
 
-const camera = new THREE.PerspectiveCamera(
-75,
-container.clientWidth / container.clientHeight,
-0.1,
-1000
-);
+// Camera
+const camera = new THREE.PerspectiveCamera(60, container.clientWidth / container.clientHeight, 0.1, 1000);
 
-const renderer = new THREE.WebGLRenderer({antialias:true, alpha:true});
+// Renderer
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
-const light = new THREE.HemisphereLight(0xffffff,0x444444,1.5);
+// Light
+const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
 scene.add(light);
 
-const controls = new THREE.OrbitControls(camera,renderer.domElement);
-controls.enableZoom = true;
-controls.enablePan = false;
+// Controls
+const controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.minDistance = 1;
+controls.maxDistance = 10;
 
-let model;
-
+// Load Model
+let sageModel;
 const loader = new THREE.GLTFLoader();
+loader.load('./Sage.glb',
+    function (gltf) {
+        sageModel = gltf.scene;
 
-loader.load(
-'./Sage.glb',
-function(gltf){
+        // Center model
+        const box = new THREE.Box3().setFromObject(sageModel);
+        const size = box.getSize(new THREE.Vector3());
+        const center = box.getCenter(new THREE.Vector3());
+        sageModel.position.sub(center);
 
-model = gltf.scene;
+        // Fit camera
+        const maxDim = Math.max(size.x, size.y, size.z);
+        const fov = camera.fov * (Math.PI / 180);
+        let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
+        camera.position.z = cameraZ * 1.8;
 
-const box = new THREE.Box3().setFromObject(model);
-const size = box.getSize(new THREE.Vector3());
-const center = box.getCenter(new THREE.Vector3());
-
-model.position.sub(center);
-
-const maxDim = Math.max(size.x,size.y,size.z);
-const fov = camera.fov*(Math.PI/180);
-let cameraZ = Math.abs(maxDim/2/Math.tan(fov/2));
-
-camera.position.z = cameraZ*1.8;
-
-scene.add(model);
-
-},
-undefined,
-function(error){
-console.error("Error loading model:",error);
-}
+        scene.add(sageModel);
+    },
+    undefined,
+    function (error) {
+        console.error("Error loading model:", error);
+    }
 );
 
-window.addEventListener('resize',()=>{
-
-const width = container.clientWidth;
-const height = container.clientHeight;
-
-renderer.setSize(width,height);
-camera.aspect = width/height;
-camera.updateProjectionMatrix();
-
+// Resize
+window.addEventListener('resize', () => {
+    const width = container.clientWidth;
+    const height = container.clientHeight;
+    renderer.setSize(width, height);
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
 });
 
-function animate(){
-
-requestAnimationFrame(animate);
-
-if(model){
-model.rotation.y += 0.005;
+// Animate
+function animate() {
+    requestAnimationFrame(animate);
+    if (sageModel) sageModel.rotation.y += 0.005;
+    controls.update();
+    renderer.render(scene, camera);
 }
-
-renderer.render(scene,camera);
-
-}
-
 animate();
 </script>
 
