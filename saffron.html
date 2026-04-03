@@ -1,78 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Saffron - E-Herbal Garden</title>
 
 <style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #eaf5ea;
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#eaf5ea;
 }
 
-header {
-    background: linear-gradient(to right, #1b5e20, #2e7d32);
-    color: white;
-    padding: 20px;
-    text-align: center;
+header{
+    background:linear-gradient(to right,#1b5e20,#2e7d32);
+    color:white;
+    padding:20px;
+    text-align:center;
 }
 
-nav {
-    background: #145a1f;
-    padding: 10px;
-    text-align: center;
+nav{
+    background:#145a1f;
+    padding:10px;
+    text-align:center;
 }
 
-nav a {
-    color: white;
-    margin: 0 15px;
-    text-decoration: none;
-    font-weight: bold;
+nav a{
+    color:white;
+    margin:0 15px;
+    text-decoration:none;
+    font-weight:bold;
 }
 
-.main {
-    display: flex;
-    gap: 20px;
-    padding: 30px;
-    flex-wrap: wrap;
+.content{
+    padding:30px;
+    max-width:1100px;
+    margin:auto;
 }
 
-.left {
-    flex: 1;
-    min-width: 300px;
+h2{
+    color:#2e7d32;
+    margin-top:25px;
 }
 
-.right {
-    flex: 1;
-    min-width: 300px;
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    padding-bottom: 20px;
+p, li{
+    line-height:1.6;
 }
 
-h2 {
-    color: #2e7d32;
-    margin-top: 25px;
+/* MODEL SECTION */
+.model-section{
+    background:white;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    padding:20px;
 }
 
-p, li {
-    line-height: 1.6;
+.model-container{
+    width:100%;
+    height:450px;
 }
 
-.model-container {
-    width: 100%;
-    height: 500px;
+@media (max-width:768px){
+    .model-container{
+        height:300px;
+    }
 }
 
-footer {
-    background: #145a1f;
-    color: white;
-    text-align: center;
-    padding: 15px;
-    margin-top: 20px;
+footer{
+    background:#145a1f;
+    color:white;
+    text-align:center;
+    padding:15px;
+    margin-top:20px;
 }
 </style>
 </head>
@@ -91,16 +91,14 @@ footer {
 <a href="#">Contact</a>
 </nav>
 
-<div class="main">
+<div class="content" style="display:flex; flex-wrap:wrap; gap:30px; align-items:flex-start;">
 
 <!-- LEFT CONTENT -->
-<div class="left">
+<div style="flex:1; min-width:300px;">
 
 <h2>🧬 Overview</h2>
 <p>
-Saffron (Crocus sativus) is one of the most valuable and rare medicinal plants in the world. 
-It is widely known for its powerful antioxidant, mood-enhancing, and healing properties. 
-The spice is derived from the delicate red stigmas of the saffron flower, making it extremely labor-intensive and expensive.
+Saffron (Crocus sativus) is one of the most valuable and rare medicinal plants in the world. It is known for antioxidant, mood-enhancing, and healing properties.
 </p>
 
 <h2>🌱 Botanical Information</h2>
@@ -108,69 +106,76 @@ The spice is derived from the delicate red stigmas of the saffron flower, making
 <p><b>Common Name:</b> Saffron</p>
 <p><b>Plant Type:</b> Perennial flowering plant</p>
 <p><b>Parts Used:</b> Stigmas (threads)</p>
-<p><b>Habitat:</b> Temperate climates (e.g., Kashmir, Iran, Mediterranean regions)</p>
+<p><b>Habitat:</b> Temperate regions</p>
 
 <h2>🌿 Cultivation</h2>
 <ul>
-<li>Requires well-drained sandy or loamy soil</li>
-<li>Grows best in cool winters and dry summers</li>
-<li>Needs full sunlight exposure</li>
-<li>Propagation is done through corms (bulb-like structures)</li>
+<li>Well-drained sandy or loamy soil</li>
+<li>Cool winters and dry summers</li>
+<li>Full sunlight exposure</li>
+<li>Propagation through corms</li>
 </ul>
 
 <h2>🧪 Key Bioactive Compounds</h2>
 <ul>
-<li><b>Crocin:</b> Responsible for color and antioxidant activity</li>
-<li><b>Safranal:</b> Provides aroma and mood benefits</li>
-<li><b>Picrocrocin:</b> Gives saffron its bitter taste</li>
+<li><b>Crocin:</b> Antioxidant</li>
+<li><b>Safranal:</b> Aroma and mood enhancer</li>
+<li><b>Picrocrocin:</b> Bitter taste compound</li>
 <li>Flavonoids and carotenoids</li>
 </ul>
 
 <h2>💊 Medicinal Benefits</h2>
 <ul>
-<li>Improves mood and helps reduce anxiety & depression</li>
-<li>Supports heart health and circulation</li>
-<li>Powerful antioxidant and anti-inflammatory effects</li>
-<li>Enhances memory and cognitive function</li>
-<li>Boosts immunity and overall wellness</li>
+<li>Improves mood and reduces anxiety</li>
+<li>Supports heart health</li>
+<li>Anti-inflammatory and antioxidant</li>
+<li>Enhances memory</li>
+<li>Boosts immunity</li>
 </ul>
 
 <h2>🩺 Therapeutic Uses</h2>
 <ul>
-<li>Mental wellness and stress relief</li>
+<li>Mental wellness</li>
 <li>Cardiovascular support</li>
-<li>Digestive health improvement</li>
-<li>Used in herbal teas and traditional medicine</li>
+<li>Digestive health</li>
+<li>Herbal teas and remedies</li>
 </ul>
 
 <h2>⚙️ Mechanism of Action</h2>
 <ul>
-<li>Enhances serotonin levels → improves mood</li>
-<li>Neutralizes free radicals → antioxidant effect</li>
-<li>Reduces inflammation in tissues</li>
-<li>Supports blood circulation</li>
+<li>Boosts serotonin levels</li>
+<li>Neutralizes free radicals</li>
+<li>Reduces inflammation</li>
+<li>Improves circulation</li>
 </ul>
-
-<h2>🌍 Modern Importance</h2>
-<p>
-Saffron is widely researched by global health organizations such as WHO and NCBI. 
-It is used in pharmaceuticals, cosmetics, and nutraceutical products due to its high medicinal value.
-</p>
 
 <h2>⚠️ Safety & Precautions</h2>
 <ul>
-<li>Safe in small to moderate quantities</li>
-<li>High doses may cause dizziness or nausea</li>
-<li>Pregnant women should consult a doctor</li>
+<li>Safe in small quantities</li>
+<li>High doses may cause side effects</li>
+<li>Consult doctor during pregnancy</li>
 </ul>
+
+<!-- 🔥 NEW CONTENT -->
+<h2>🧬 Nutritional Value</h2>
+<p>Contains vitamins A, C, manganese, and powerful antioxidants supporting immunity and brain health.</p>
+
+<h2>🍽️ Culinary Uses</h2>
+<p>Used in biryani, desserts, milk, and beverages for flavor, aroma, and color.</p>
+
+<h2>🌱 Propagation Tips</h2>
+<p>Corms should be planted in well-drained soil during autumn for best flowering.</p>
+
+<h2>🌍 Modern Importance</h2>
+<p>Used in pharmaceuticals, cosmetics, and nutraceuticals due to its high medicinal value.</p>
 
 <h2>📚 Sources</h2>
 <p>NCBI | WHO | Ministry of AYUSH</p>
 
 </div>
 
-<!-- RIGHT 3D MODEL -->
-<div class="right">
+<!-- RIGHT MODEL -->
+<div class="model-section" style="flex:1; min-width:300px; max-width:500px;">
 <h2 style="text-align:center;">🌐 3D Saffron Model</h2>
 <div class="model-container" id="model"></div>
 </div>
@@ -178,7 +183,7 @@ It is used in pharmaceuticals, cosmetics, and nutraceutical products due to its 
 </div>
 
 <footer>
-© 2026 E-Herbal Garden
+© 2026 E-Herbal Garden | Designed with 🌱 | Created by Team Beginners
 </footer>
 
 <!-- Three.js -->
@@ -197,23 +202,25 @@ container.clientWidth / container.clientHeight,
 1000
 );
 
-const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+const renderer = new THREE.WebGLRenderer({antialias:true, alpha:true});
 renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
-// light
-scene.add(new THREE.HemisphereLight(0xffffff, 0x444444, 1.5));
+const light = new THREE.HemisphereLight(0xffffff,0x444444,1.5);
+scene.add(light);
 
-// controls
-const controls = new THREE.OrbitControls(camera, renderer.domElement);
+const controls = new THREE.OrbitControls(camera,renderer.domElement);
 controls.enableZoom = true;
 controls.enablePan = false;
 
 let model;
 
 const loader = new THREE.GLTFLoader();
-loader.load('./Saffron.glb', function (gltf) {
+
+loader.load(
+'./Saffron.glb',
+function(gltf){
 
 model = gltf.scene;
 
@@ -223,37 +230,44 @@ const center = box.getCenter(new THREE.Vector3());
 
 model.position.sub(center);
 
-const maxDim = Math.max(size.x, size.y, size.z);
-const fov = camera.fov * Math.PI / 180;
-let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
+const maxDim = Math.max(size.x,size.y,size.z);
+const fov = camera.fov*(Math.PI/180);
+let cameraZ = Math.abs(maxDim/2/Math.tan(fov/2));
 
-camera.position.z = cameraZ * 1.5;
+camera.position.z = cameraZ*1.8;
 
 scene.add(model);
 
-resizeModel();
+},
+undefined,
+function(error){
+console.error("Error loading model:",error);
+}
+);
+
+window.addEventListener('resize',()=>{
+
+const width = container.clientWidth;
+const height = container.clientHeight;
+
+renderer.setSize(width,height);
+camera.aspect = width/height;
+camera.updateProjectionMatrix();
+
 });
 
-// resize
-function resizeModel() {
-const w = container.clientWidth;
-const h = container.clientHeight;
+function animate(){
 
-renderer.setSize(w, h);
-camera.aspect = w / h;
-camera.updateProjectionMatrix();
-}
-
-window.addEventListener("resize", resizeModel);
-
-// animation
-function animate() {
 requestAnimationFrame(animate);
 
-if (model) model.rotation.y += 0.005;
-
-renderer.render(scene, camera);
+if(model){
+model.rotation.y += 0.005;
 }
+
+renderer.render(scene,camera);
+
+}
+
 animate();
 </script>
 
