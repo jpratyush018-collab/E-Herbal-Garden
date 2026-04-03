@@ -1,109 +1,81 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rosemary - E-Herbal Garden</title>
 
 <style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #eaf5ea;
-    animation: fadeIn 1s ease-in;
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#eaf5ea;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+header{
+    background:linear-gradient(to right,#1b5e20,#2e7d32);
+    color:white;
+    padding:20px;
+    text-align:center;
 }
 
-/* HEADER */
-header {
-    background: linear-gradient(to right, #1b5e20, #2e7d32);
-    color: white;
-    padding: 20px;
-    text-align: center;
+nav{
+    background:#145a1f;
+    padding:10px;
+    text-align:center;
 }
 
-/* NAV */
-nav {
-    background: #145a1f;
-    padding: 10px;
-    text-align: center;
+nav a{
+    color:white;
+    margin:0 15px;
+    text-decoration:none;
+    font-weight:bold;
 }
 
-nav a {
-    color: white;
-    margin: 0 15px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: 0.3s;
+.content{
+    padding:30px;
+    max-width:1000px;
+    margin:auto;
 }
 
-nav a:hover {
-    background: rgba(255, 255, 255, 0.15);
-    padding: 6px 12px;
-    border-radius: 20px;
-    backdrop-filter: blur(6px);
+h2{
+    color:#2e7d32;
+    margin-top:25px;
 }
 
-/* MAIN */
-.main {
-    display: flex;
-    gap: 20px;
-    padding: 30px;
-    flex-wrap: wrap;
+p{
+    line-height:1.6;
 }
 
-.left {
-    flex: 1;
-    min-width: 300px;
+/* MODEL SECTION */
+.model-section{
+    margin:40px auto;
+    max-width:900px;
+    background:white;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    padding:20px;
 }
 
-.right {
-    flex: 1;
-    min-width: 300px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    overflow: hidden;
-    position: relative;
+.model-container{
+    width:100%;
+    height:400px;
 }
 
-h2 {
-    color: #2e7d32;
+@media (max-width:768px){
+    .model-container{
+        height:280px;
+    }
 }
 
-p {
-    line-height: 1.6;
-}
-
-.model-container {
-    width: 100%;
-    height: 500px;
-}
-
-/* LOADER */
-#loader {
-    position: absolute;
-    width: 100%;
-    height: 500px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(255,255,255,0.7);
-    font-weight: bold;
-    color: #1b5e20;
-    z-index: 10;
-}
-
-footer {
-    background: #145a1f;
-    color: white;
-    text-align: center;
-    padding: 15px;
-    margin-top: 20px;
+footer{
+    background:#145a1f;
+    color:white;
+    text-align:center;
+    padding:15px;
+    margin-top:20px;
 }
 </style>
 </head>
@@ -112,7 +84,7 @@ footer {
 
 <header>
 <h1>🌿 Rosemary (Rosmarinus officinalis)</h1>
-<p>“Rosemary – The Herb of Memory and Vitality”</p>
+<p>Rosemary – The Herb of Memory and Vitality</p>
 </header>
 
 <nav>
@@ -122,9 +94,10 @@ footer {
 <a href="#">Contact</a>
 </nav>
 
-<div class="main">
+<div class="content" style="display:flex; flex-wrap:wrap; gap:30px; align-items:flex-start;">
 
-<div class="left">
+<!-- LEFT CONTENT -->
+<div style="flex:1; min-width:300px;">
 
 <h2>🌱 Basic Information</h2>
 <p><b>Common Name:</b> Rosemary</p>
@@ -180,17 +153,16 @@ footer {
 
 </div>
 
-<div class="right">
-<h2 style="text-align:center;">🌐 3D Model</h2>
-
-<div id="loader">Loading 3D Model...</div>
-<div class="model-container" id="model"></div>
+<!-- RIGHT MODEL -->
+<div class="model-section" style="flex:1; min-width:300px; max-width:500px;">
+<h2 style="text-align:center;">🌐 3D Rosemary Model</h2>
+<div class="model-container" id="model" style="height:500px;"></div>
 </div>
 
 </div>
 
 <footer>
-© 2026 E-Herbal Garden
+© 2026 E-Herbal Garden | Designed with 🌱
 </footer>
 
 <!-- Three.js -->
@@ -203,69 +175,76 @@ const scene = new THREE.Scene();
 const container = document.getElementById("model");
 
 const camera = new THREE.PerspectiveCamera(
-    75,
-    container.clientWidth / container.clientHeight,
-    0.1,
-    1000
+75,
+container.clientWidth / container.clientHeight,
+0.1,
+1000
 );
 
-const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+const renderer = new THREE.WebGLRenderer({antialias:true, alpha:true});
 renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
-// LIGHT
-scene.add(new THREE.HemisphereLight(0xffffff, 0x444444, 1.5));
+const light = new THREE.HemisphereLight(0xffffff,0x444444,1.5);
+scene.add(light);
 
-// CONTROLS
-const controls = new THREE.OrbitControls(camera, renderer.domElement);
+const controls = new THREE.OrbitControls(camera,renderer.domElement);
 controls.enableZoom = true;
 controls.enablePan = false;
-controls.enableDamping = true;
-controls.dampingFactor = 0.05;
 
 let model;
 
 const loader = new THREE.GLTFLoader();
-loader.load('./Rosemary.glb', function (gltf) {
 
-    model = gltf.scene;
+loader.load(
+'./Rosemary.glb',
+function(gltf){
 
-    const box = new THREE.Box3().setFromObject(model);
-    const size = box.getSize(new THREE.Vector3());
-    const center = box.getCenter(new THREE.Vector3());
+model = gltf.scene;
 
-    model.position.sub(center);
+const box = new THREE.Box3().setFromObject(model);
+const size = box.getSize(new THREE.Vector3());
+const center = box.getCenter(new THREE.Vector3());
 
-    const maxDim = Math.max(size.x, size.y, size.z);
-    const fov = camera.fov * Math.PI / 180;
-    let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
+model.position.sub(center);
 
-    camera.position.z = cameraZ * 1.5;
+const maxDim = Math.max(size.x,size.y,size.z);
+const fov = camera.fov*(Math.PI/180);
+let cameraZ = Math.abs(maxDim/2/Math.tan(fov/2));
 
-    scene.add(model);
+camera.position.z = cameraZ*1.8;
 
-    document.getElementById("loader").style.display = "none";
+scene.add(model);
+
+},
+undefined,
+function(error){
+console.error("Error loading model:",error);
+}
+);
+
+window.addEventListener('resize',()=>{
+
+const width = container.clientWidth;
+const height = container.clientHeight;
+
+renderer.setSize(width,height);
+camera.aspect = width/height;
+camera.updateProjectionMatrix();
+
 });
 
-// RESIZE
-window.addEventListener('resize', () => {
-    const width = container.clientWidth;
-    const height = container.clientHeight;
+function animate(){
 
-    renderer.setSize(width, height);
-    camera.aspect = width / height;
-    camera.updateProjectionMatrix();
-});
+requestAnimationFrame(animate);
 
-// ANIMATION
-function animate() {
-    requestAnimationFrame(animate);
+if(model){
+model.rotation.y += 0.005;
+}
 
-    if (model) model.rotation.y += 0.005;
+renderer.render(scene,camera);
 
-    controls.update();
-    renderer.render(scene, camera);
 }
 
 animate();
@@ -273,3 +252,4 @@ animate();
 
 </body>
 </html>
+```
