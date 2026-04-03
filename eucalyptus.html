@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Eucalyptus - E-Herbal Garden</title>
+<title>Spinach - E-Herbal Garden</title>
 
 <style>
 body {
@@ -32,40 +32,42 @@ nav a {
     font-weight: bold;
 }
 
-.main {
-    display: flex;
-    gap: 20px;
+.content {
     padding: 30px;
-    flex-wrap: wrap;
-}
-
-.left {
-    flex: 1;
-    min-width: 300px;
+    max-width: 1100px;
+    margin: auto;
 }
 
 h2 {
     color: #2e7d32;
+    margin-top: 25px;
 }
 
 p {
     line-height: 1.6;
 }
 
-/* MOVED MODEL TO BOTTOM + RESIZED */
-.bottom-model {
-    margin: 20px auto 40px auto;
-    width: 90%;
-    max-width: 1000px;
+/* MODEL CARD */
+.model-section {
     background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    padding: 20px;
 }
 
 .model-container {
     width: 100%;
-    height: 320px; /* resized */
+    height: 450px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .content {
+        flex-direction: column;
+    }
+    .model-container {
+        height: 300px;
+    }
 }
 
 footer {
@@ -81,8 +83,8 @@ footer {
 <body>
 
 <header>
-<h1>🌿 Eucalyptus (Eucalyptus globulus)</h1>
-<p>“Eucalyptus – The Fragrant Healer of Lungs and Body”</p>
+<h1>🌿 Spinach (Palak)</h1>
+<p>The Leafy Nutrient Powerhouse</p>
 </header>
 
 <nav>
@@ -92,49 +94,106 @@ footer {
 <a href="#">Contact</a>
 </nav>
 
-<div class="main">
+<!-- MAIN FLEX -->
+<div class="content" style="display:flex; flex-wrap:wrap; gap:30px; align-items:flex-start;">
 
-<div class="left">
+  <!-- LEFT TEXT -->
+  <div style="flex:1; min-width:300px;">
 
-<h2>🌱 Basic Information</h2>
-<p><b>Common Name:</b> Eucalyptus</p>
-<p><b>Botanical Name:</b> Eucalyptus globulus</p>
-<p>Eucalyptus is a fast-growing evergreen tree known for its aromatic leaves and medicinal properties, especially in respiratory health.</p>
+    <h2>🧬 Overview</h2>
+    <p>Spinach (Spinacia oleracea) is a highly nutritious leafy vegetable rich in vitamins, minerals, and antioxidants.</p>
+    <p>It plays an important role in supporting immunity, energy, and overall health.</p>
 
-<h2>🌿 Medicinal Uses</h2>
-<p>🫁 <b>Respiratory Relief:</b> Eucalyptus oil is used for colds, coughs, and asthma.</p>
-<p>🦠 <b>Antimicrobial:</b> Contains compounds that help fight bacteria and viruses.</p>
-<p>💆 <b>Pain Relief:</b> Used in ointments for muscle and joint pain.</p>
-<p>🌿 <b>Aromatherapy:</b> Eucalyptus scent helps reduce stress and mental fatigue.</p>
-<p>🩹 <b>Wound Healing:</b> Leaf extracts have anti-inflammatory and antiseptic properties.</p>
+    <h2>🌱 Basic Information</h2>
+    <p><b>Common Name:</b> Spinach / Palak</p>
+    <p><b>Botanical Name:</b> Spinacia oleracea</p>
+    <p><b>Family:</b> Amaranthaceae</p>
+    <p><b>Origin:</b> Central Asia</p>
 
-<h2>🌍 Habitat</h2>
-<p>Native to Australia, eucalyptus trees grow in temperate and tropical climates. They thrive in well-drained soils and are often found in plantations and natural forests worldwide.</p>
+    <h2>🌿 Medicinal Uses</h2>
+    <p>Rich in iron and vitamins, supports heart health, boosts immunity, and improves digestion.</p>
 
-<h2>🌾 Cultivation</h2>
-<p><b>Sunlight:</b> Full sun</p>
-<p><b>Soil:</b> Well-drained sandy or loamy soil</p>
-<p><b>Watering:</b> Moderate; drought-tolerant once established</p>
-<p><b>Propagation:</b> From seeds or cuttings</p>
-<p>Fast-growing tree that can reach large sizes; commonly used for timber, oil, and landscaping.</p>
+    <h2>🌍 Habitat</h2>
+    <p>Thrives in cool climates with fertile, well-drained soil.</p>
 
-<h2>⚠️ Precautions</h2>
-<p>Eucalyptus oil should never be ingested in large quantities; may cause nausea, vomiting, or seizures.</p>
-<p>Avoid applying undiluted oil directly to skin; may cause irritation.</p>
-<p>Keep away from children and pets. Consult a doctor if pregnant or on medication.</p>
+    <h2>🌾 Cultivation</h2>
+    <p>Grown from seeds with moderate watering and sunlight.</p>
 
-</div>
+    <h2>⚠️ Precautions</h2>
+    <p>Excess intake may cause kidney stone issues due to oxalates.</p>
 
-</div>
+    <h2>🧪 Key Bioactive Compounds</h2>
+    <ul>
+      <li>Iron</li>
+      <li>Calcium</li>
+      <li>Magnesium</li>
+      <li>Vitamin A, C, K</li>
+      <li>Folate</li>
+      <li>Lutein & Zeaxanthin</li>
+      <li>Fiber</li>
+    </ul>
 
-<!-- ✅ 3D MODEL MOVED TO BOTTOM -->
-<div class="bottom-model">
-    <h2 style="text-align:center;">🌐 3D Model</h2>
+    <h2>💊 Pharmacological Properties</h2>
+    <ul>
+      <li>Blood health support</li>
+      <li>Antioxidant</li>
+      <li>Cardiovascular support</li>
+      <li>Eye health support</li>
+      <li>Digestive support</li>
+    </ul>
+
+    <h2>🩺 Therapeutic Applications</h2>
+    <ul>
+      <li>Blood health (prevents anemia)</li>
+      <li>Heart health</li>
+      <li>Vision support</li>
+      <li>Digestive health</li>
+      <li>General wellness</li>
+    </ul>
+
+    <h2>🌿 Propagation & Cultivation</h2>
+    <p><b>Seeds:</b> Primary method</p>
+
+    <h3>🌞 Growth Requirements</h3>
+    <ul>
+      <li>Well-drained soil</li>
+      <li>Cool climate</li>
+      <li>Partial to full sunlight</li>
+      <li>Regular watering</li>
+    </ul>
+
+    <h2>🦠 Public Health Importance</h2>
+    <p>Widely studied for nutritional benefits and disease prevention.</p>
+
+    <h2>⚙️ Mechanism of Action</h2>
+    <ul>
+      <li>Provides essential nutrients</li>
+      <li>Reduces oxidative stress</li>
+      <li>Supports blood formation</li>
+      <li>Improves digestion</li>
+    </ul>
+
+    <h2>⚠️ Safety</h2>
+    <p>Safe in normal diet, excess may affect kidney health.</p>
+
+    <h2>🌍 Modern Relevance</h2>
+    <p>Recognized by NCBI, WHO, and Ministry of AYUSH for health benefits.</p>
+
+    <h2>📚 Sources</h2>
+    <p>NCBI, WHO, Ministry of AYUSH</p>
+
+  </div>
+
+  <!-- RIGHT MODEL -->
+  <div class="model-section" style="flex:1; min-width:300px; max-width:500px;">
+    <h2 style="text-align:center;">🌐 3D Spinach Model</h2>
     <div class="model-container" id="model"></div>
+  </div>
+
 </div>
 
 <footer>
-© 2026 E-Herbal Garden
+© 2026 E-Herbal Garden | Designed with 🌱
 </footer>
 
 <!-- Three.js -->
@@ -154,13 +213,11 @@ const camera = new THREE.PerspectiveCamera(
 );
 
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
-// Lighting
-const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
-scene.add(light);
+// Light
+scene.add(new THREE.HemisphereLight(0xffffff, 0x444444, 1.5));
 
 // Controls
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
@@ -170,48 +227,46 @@ controls.enablePan = false;
 let model;
 
 const loader = new THREE.GLTFLoader();
-loader.load(
-    './Eucalyptus.glb',
-    function (gltf) {
-        model = gltf.scene;
+loader.load('./Spinach.glb', function (gltf) {
 
-        const box = new THREE.Box3().setFromObject(model);
-        const size = box.getSize(new THREE.Vector3());
-        const center = box.getCenter(new THREE.Vector3());
+    model = gltf.scene;
 
-        model.position.sub(center);
+    const box = new THREE.Box3().setFromObject(model);
+    const size = box.getSize(new THREE.Vector3());
+    const center = box.getCenter(new THREE.Vector3());
 
-        const maxDim = Math.max(size.x, size.y, size.z);
-        const fov = camera.fov * (Math.PI / 180);
-        let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
+    model.position.sub(center);
 
-        camera.position.z = cameraZ * 1.5;
+    const maxDim = Math.max(size.x, size.y, size.z);
+    const fov = camera.fov * (Math.PI / 180);
+    let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
 
-        scene.add(model);
-    }
-);
+    camera.position.z = cameraZ * 1.8;
 
-// Resize fix
-window.addEventListener('resize', () => {
-    const width = container.clientWidth;
-    const height = container.clientHeight;
-
-    renderer.setSize(width, height);
-    camera.aspect = width / height;
-    camera.updateProjectionMatrix();
+    scene.add(model);
 });
+
+// Resize
+function resize() {
+    const w = container.clientWidth;
+    const h = container.clientHeight;
+
+    renderer.setSize(w, h);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+}
+
+window.addEventListener('resize', resize);
+new ResizeObserver(resize).observe(container);
 
 // Animation
 function animate() {
     requestAnimationFrame(animate);
 
-    if (model) {
-        model.rotation.y += 0.005;
-    }
+    if (model) model.rotation.y += 0.005;
 
     renderer.render(scene, camera);
 }
-
 animate();
 </script>
 
