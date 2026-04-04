@@ -47,7 +47,7 @@
   {
     "commonName": "Ginger",
     "botanicalName": "Zingiber officinale",
-    "image": "ginger.png",
+    "image": "Ginger.png",
     "model3d": "",
     "uses": "Relieves nausea and cold",
     "habitat": "Warm climates",
@@ -65,7 +65,7 @@
   {
     "commonName": "Brahmi",
     "botanicalName": "Bacopa monnieri",
-    "image": "brahi.png",
+    "image": "Brahmi.png",
     "model3d": "",
     "uses": "Improves memory",
     "habitat": "Wetlands",
@@ -83,7 +83,7 @@
   {
     "commonName": "Giloy",
     "botanicalName": "Tinospora cordifolia",
-    "image": "gioli.png",
+    "image": "Giloy.png",
     "model3d": "",
     "uses": "Boosts immunity",
     "habitat": "Tropical forests",
@@ -93,7 +93,7 @@
   {
     "commonName": "Lemongrass",
     "botanicalName": "Cymbopogon",
-    "image": "lemongrass.png",
+    "image": "Lemongrass.png",
     "model3d": "",
     "uses": "Relieves anxiety",
     "habitat": "Warm climates",
@@ -102,7 +102,7 @@
   {
     "commonName": "Shatavari",
     "botanicalName": "Asparagus racemosus",
-    "image": "satvari.png",
+    "image": "Shatavari.png",
     "model3d": "",
     "uses": "Women's health",
     "habitat": "Tropical regions",
@@ -111,7 +111,7 @@
   {
     "commonName": "Arjuna",
     "botanicalName": "Terminalia arjuna",
-    "image": "arjuna.png",
+    "image": "Arjuna.png",
     "model3d": "",
     "uses": "Heart health",
     "habitat": "Riverbanks",
@@ -120,7 +120,7 @@
   {
     "commonName": "Bael",
     "botanicalName": "Aegle marmelos",
-    "image": "bael.png",
+    "image": "Bael.png",
     "model3d": "",
     "uses": "Digestive aid",
     "habitat": "Dry forests",
@@ -229,7 +229,7 @@
   {
     "commonName": "Chamomile",
     "botanicalName": "Matricaria chamomilla",
-    "image": "Chamomilee.png",
+    "image": "Chamomile.png",
     "model3d": "",
     "uses": "Improves sleep",
     "habitat": "Temperate regions",
@@ -247,7 +247,7 @@
   {
     "commonName": "Eucalyptus",
     "botanicalName": "Eucalyptus globulus",
-    "image": "Euca.png",
+    "image": "Eucalyptus.png",
     "model3d": "",
     "uses": "Relieves cold",
     "habitat": "Warm climates",
@@ -265,7 +265,7 @@
   {
     "commonName": "Onion",
     "botanicalName": "Allium cepa",
-    "image": "Onionnn.png",
+    "image": "Onion.png",
     "model3d": "",
     "uses": "Heart health",
     "habitat": "Temperate climates",
