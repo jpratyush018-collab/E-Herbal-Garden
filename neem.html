@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,7 @@ body {
     background: #eaf5ea;
 }
 
+/* HEADER */
 header {
     background: linear-gradient(to right, #1b5e20, #2e7d32);
     color: white;
@@ -19,6 +21,18 @@ header {
     text-align: center;
 }
 
+header h1 {
+    margin: 0;
+    font-size: 28px;
+}
+
+header p {
+    margin-top: 5px;
+    font-size: 16px;
+    opacity: 0.9;
+}
+
+/* NAVBAR */
 nav {
     background: #145a1f;
     padding: 10px;
@@ -32,49 +46,92 @@ nav a {
     font-weight: bold;
 }
 
+/* MAIN LAYOUT */
 .content {
-    padding: 30px;
-    max-width: 1000px;
+    padding: 40px 20px;
+    max-width: 1200px;
     margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    align-items: flex-start;
 }
 
+.left {
+    flex: 1.2;
+    min-width: 300px;
+}
+
+.right {
+    flex: 1;
+    min-width: 320px;
+    max-width: 480px;
+    background: #f5f5f5;
+    border-radius: 18px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.right h2 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* TEXT */
 h2 {
     color: #2e7d32;
+    margin-top: 25px;
 }
 
-p {
-    line-height: 1.6;
+p, li {
+    line-height: 1.7;
 }
 
-/* MODEL SECTION (RIGHT SIDE) */
-.model-section {
-    margin: 40px auto;
-    max-width: 500px;
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-    padding: 20px;
-    text-align: center;
-}
-
+/* MODEL */
 .model-container {
     width: 100%;
-    height: 420px;
+    height: 350px;
+    background: #eaeaea;
+    border-radius: 12px;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .model-container {
-        height: 280px;
-    }
+/* BUTTON */
+.research-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 14px;
+    margin-top: 20px;
+    background: #2e7d32;
+    color: white;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
 }
 
+.research-btn:hover {
+    background: #43a047;
+    transform: scale(1.03);
+}
+
+/* FOOTER */
 footer {
     background: #145a1f;
     color: white;
     text-align: center;
     padding: 15px;
     margin-top: 20px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .model-container {
+        height: 280px;
+    }
 }
 </style>
 </head>
@@ -93,14 +150,13 @@ footer {
 <a href="#">Contact</a>
 </nav>
 
-<div class="content" style="display:flex; flex-wrap:wrap; gap:30px; align-items:flex-start;">
+<div class="content">
 
-<!-- LEFT CONTENT -->
-<div style="flex:1; min-width:300px;">
+<!-- LEFT SIDE -->
+<div class="left">
 
 <h2>🧬 Overview</h2>
-<p>Neem (Azadirachta indica) is a medicinal plant extensively studied for its therapeutic potential and widely used in traditional healthcare systems. It is recognized for its broad spectrum of biological activities, supported by scientific research and traditional knowledge systems.</p>
-<p>Different parts of the neem plant — including leaves, bark, seeds, flowers, and oil — are utilized due to their diverse pharmacological properties. Its relevance continues to grow in modern research for applications in healthcare, pharmaceuticals, and natural therapeutics.</p>
+<p>Neem is a highly valued medicinal tree known for its wide range of therapeutic properties. It has been used in traditional medicine for centuries and is now widely researched for modern healthcare applications.</p>
 
 <h2>🌱 Botanical & General Information</h2>
 <p><b>Family:</b> Meliaceae</p>
@@ -108,86 +164,103 @@ footer {
 <p><b>Plant Type:</b> Evergreen tree</p>
 <p><b>Habitat:</b> Tropical and semi-tropical regions</p>
 <p><b>Parts Used:</b> Leaves, bark, seeds, oil, flowers, roots</p>
-<p>Neem is well-adapted to harsh environmental conditions and is known for its resilience and long lifespan.</p>
 
 <h2>🌿 Propagation & Cultivation</h2>
-<p><b>Seeds (Primary Method):</b> Fresh neem seeds are most commonly used and should be sown soon after collection as viability decreases quickly. Germination usually occurs within 1–3 weeks.</p>
-<p><b>Vegetative Propagation:</b> Methods such as stem cuttings or tissue culture can be used but are less common.</p>
-<p><b>Growth Requirements:</b> Prefers warm climates, full sunlight, and well-drained soil. Requires minimal maintenance once established.</p>
+<p><b>Seeds:</b> Fresh seeds are best; germinate within 1–3 weeks</p>
+<p><b>Vegetative Methods:</b> Stem cuttings or tissue culture</p>
+
+<h3>🌞 Growth Requirements</h3>
+<ul>
+<li>Warm climate</li>
+<li>Full sunlight</li>
+<li>Well-drained soil</li>
+<li>Low maintenance after establishment</li>
+</ul>
 
 <h2>🧪 Key Bioactive Compounds</h2>
-<p>Azadirachtin, Nimbin, Nimbidin, Nimbolide, Gedunin, Quercetin, Salannin</p>
+<ul>
+<li>Azadirachtin</li>
+<li>Nimbin</li>
+<li>Nimbidin</li>
+<li>Nimbolide</li>
+<li>Gedunin</li>
+<li>Quercetin</li>
+<li>Salannin</li>
+</ul>
 
 <h2>💊 Pharmacological & Medicinal Properties</h2>
-<p><b>Antimicrobial:</b> Effective against bacteria, fungi, and viruses.</p>
-<p><b>Anti-inflammatory:</b> Reduces inflammation and swelling.</p>
-<p><b>Antioxidant:</b> Protects cells from oxidative stress.</p>
-<p><b>Antidiabetic:</b> Supports blood glucose regulation.</p>
-<p><b>Immunomodulatory:</b> Enhances immune response.</p>
-<p><b>Anticancer Potential:</b> Studied for tumor inhibition.</p>
+<ul>
+<li>Antimicrobial</li>
+<li>Anti-inflammatory</li>
+<li>Antioxidant</li>
+<li>Antidiabetic</li>
+<li>Immunomodulatory</li>
+<li>Anticancer potential</li>
+</ul>
 
 <h2>🩺 Therapeutic Applications</h2>
-<p>Used in skin care, oral health, infections, digestive health, and metabolic disorders.</p>
+<ul>
+<li>Skin care treatments</li>
+<li>Oral hygiene products</li>
+<li>Infection control</li>
+<li>Digestive support</li>
+<li>Metabolic health</li>
+</ul>
 
 <h2>⚙️ Mechanism of Action</h2>
-<p>Free radical scavenging, antimicrobial inhibition, inflammation regulation, and immune modulation.</p>
+<ul>
+<li>Free radical scavenging</li>
+<li>Microbial inhibition</li>
+<li>Inflammation control</li>
+<li>Immune modulation</li>
+</ul>
 
 <h2>⚠️ Safety & Precautions</h2>
-<p>Excessive use may cause toxicity. Should be used with proper guidance and is not a substitute for medical treatment.</p>
+<ul>
+<li>Use in moderation</li>
+<li>Avoid excessive consumption</li>
+<li>Consult professionals for medicinal use</li>
+</ul>
 
 <h2>🌍 Modern Relevance</h2>
-<p>Recognized by NCBI, WHO, and Ministry of AYUSH as a multi-functional medicinal plant used in integrative medicine and research.</p>
+<p>Neem is recognized globally for its role in herbal medicine, agriculture, and pharmaceuticals.</p>
 
 <h2>📚 Sources</h2>
-<p>NCBI, WHO, Ministry of AYUSH (Government of India)</p>
+<ul>
+<li>NCBI</li>
+<li>WHO</li>
+<li>Ministry of AYUSH</li>
+</ul>
 
 </div>
 
-<!-- RIGHT MODEL -->
-<div class="model-section" style="flex:1; min-width:300px;">
+<!-- RIGHT SIDE -->
+<div class="right">
 <h2>🌐 3D Neem Model</h2>
+
 <div class="model-container" id="model"></div>
-</div>
-<a href="" target="_blank" class="research-btn">
-  📄 View Research
+
+<a href="https://pubmed.ncbi.nlm.nih.gov/?term=neem+medicinal+properties" target="_blank" class="research-btn">
+📄 View Research
 </a>
+</div>
 
-<style>
-.research-btn {
-  display: inline-block;
-  padding: 10px 18px;
-  background: #2e7d32;
-  color: white;
-  border-radius: 25px;
-  text-decoration: none;
-  transition: 0.3s;
-}
-
-.research-btn:hover {
-  background: #66bb6a;
-  transform: scale(1.05);
-}
-</style>
 </div>
 
 <footer>
-© 2026 E-Herbal Garden | Designed with 🌱 | Created by Team Beginners
+© 2026 E-Herbal Garden | Designed with 🌱
 </footer>
 
+<!-- THREE JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
 
 <script>
 const container = document.getElementById("model");
 const scene = new THREE.Scene();
 
-const camera = new THREE.PerspectiveCamera(
-60,
-container.clientWidth / container.clientHeight,
-0.1,
-1000
-);
+const camera = new THREE.PerspectiveCamera(60, container.clientWidth / container.clientHeight, 0.1, 1000);
 
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize(container.clientWidth, container.clientHeight);
@@ -200,49 +273,43 @@ scene.add(light);
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 
-let model;
+let neemModel;
 const loader = new THREE.GLTFLoader();
 
-loader.load('./neem.glb', function (gltf) {
+loader.load('./neem.glb',
+function (gltf) {
+    neemModel = gltf.scene;
 
-model = gltf.scene;
+    const box = new THREE.Box3().setFromObject(neemModel);
+    const size = box.getSize(new THREE.Vector3());
+    const center = box.getCenter(new THREE.Vector3());
+    neemModel.position.sub(center);
 
-const box = new THREE.Box3().setFromObject(model);
-const size = box.getSize(new THREE.Vector3()).length();
-const center = box.getCenter(new THREE.Vector3());
+    const maxDim = Math.max(size.x, size.y, size.z);
+    const fov = camera.fov * (Math.PI / 180);
+    let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
+    camera.position.z = cameraZ * 1.5;
 
-model.position.sub(center);
-
-const scaleFactor = 2.5 / size;
-model.scale.setScalar(scaleFactor);
-
-scene.add(model);
-
-camera.position.set(0, 1, 3);
-controls.target.set(0, 0, 0);
-controls.update();
-
-}, undefined, function (error) {
-console.error("MODEL NOT LOADED:", error);
-alert("Model not loading! Check file name or GitHub upload.");
+    scene.add(neemModel);
+},
+undefined,
+function (error) {
+    console.error("Error loading model:", error);
 });
 
 window.addEventListener('resize', () => {
-const width = container.clientWidth;
-const height = container.clientHeight;
-
-renderer.setSize(width, height);
-camera.aspect = width / height;
-camera.updateProjectionMatrix();
+    const width = container.clientWidth;
+    const height = container.clientHeight;
+    renderer.setSize(width, height);
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
 });
 
-function animate(){
-requestAnimationFrame(animate);
-
-if (model) model.rotation.y += 0.005;
-
-controls.update();
-renderer.render(scene, camera);
+function animate() {
+    requestAnimationFrame(animate);
+    if (neemModel) neemModel.rotation.y += 0.005;
+    controls.update();
+    renderer.render(scene, camera);
 }
 animate();
 </script>
