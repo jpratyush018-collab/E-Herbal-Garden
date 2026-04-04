@@ -7,130 +7,103 @@
 <title>Arjuna - E-Herbal Garden</title>
 
 <style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #eaf5ea;
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#eaf5ea;
 }
 
-/* HEADER */
-header {
-    background: linear-gradient(to right, #1b5e20, #2e7d32);
-    color: white;
-    padding: 20px;
-    text-align: center;
+header{
+    background:linear-gradient(to right,#1b5e20,#2e7d32);
+    color:white;
+    padding:20px;
+    text-align:center;
 }
 
-header h1 {
-    margin: 0;
-    font-size: 28px;
+nav{
+    background:#145a1f;
+    padding:10px;
+    text-align:center;
 }
 
-header p {
-    margin-top: 5px;
-    opacity: 0.9;
+nav a{
+    color:white;
+    margin:0 15px;
+    text-decoration:none;
+    font-weight:bold;
 }
 
-/* NAVBAR */
-nav {
-    background: #145a1f;
-    padding: 10px;
-    text-align: center;
+/* 🔥 FINAL FLEX LAYOUT */
+.content{
+    padding:30px;
+    max-width:1100px;
+    margin:auto;
+    display:flex;
+    flex-wrap:wrap;
+    gap:30px;
+    align-items:flex-start;
 }
 
-nav a {
-    color: white;
-    margin: 0 15px;
-    text-decoration: none;
-    font-weight: bold;
+.left{
+    flex:1;
+    min-width:300px;
 }
 
-/* MAIN LAYOUT */
-.content {
-    padding: 40px 20px;
-    max-width: 1200px;
-    margin: auto;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 40px;
+h2{
+    color:#2e7d32;
+    margin-top:25px;
 }
 
-/* LEFT */
-.left {
-    flex: 1.2;
-    min-width: 300px;
+p{
+    line-height:1.6;
 }
 
-/* RIGHT CARD */
-.right {
-    flex: 1;
-    min-width: 320px;
-    max-width: 480px;
-    background: #f5f5f5;
-    border-radius: 18px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+/* 🔥 MODEL CARD RIGHT SIDE */
+.model-section{
+    flex:1;
+    min-width:300px;
+    max-width:500px;
+    background:white;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    padding:20px;
 }
 
-.right h2 {
-    text-align: center;
+.model-container{
+    width:100%;
+    height:420px;
 }
 
-/* TEXT */
-h2 {
-    color: #2e7d32;
-    margin-top: 25px;
+@media (max-width:768px){
+    .model-container{
+        height:280px;
+    }
 }
 
-p, li {
-    line-height: 1.7;
+footer{
+    background:#145a1f;
+    color:white;
+    text-align:center;
+    padding:15px;
+    margin-top:20px;
 }
 
-/* MODEL */
-.model-container {
-    width: 100%;
-    height: 350px;
-    background: #eaeaea;
-    border-radius: 12px;
-}
-
-/* BUTTON */
+/* 🔥 BUTTON FIXED */
 .research-btn {
-    display: block;
-    width: 100%;
-    text-align: center;
-    padding: 14px;
-    margin-top: 20px;
-    background: #2e7d32;
-    color: white;
-    border-radius: 30px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: 0.3s;
+  display: block;
+  text-align: center;
+  margin-top: 15px;
+  padding: 10px 18px;
+  background: #2e7d32;
+  color: white;
+  border-radius: 25px;
+  text-decoration: none;
+  transition: 0.3s;
 }
 
 .research-btn:hover {
-    background: #43a047;
-    transform: scale(1.03);
-}
-
-/* FOOTER */
-footer {
-    background: #145a1f;
-    color: white;
-    text-align: center;
-    padding: 15px;
-    margin-top: 20px;
-}
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-    .model-container {
-        height: 280px;
-    }
+  background: #66bb6a;
+  transform: scale(1.05);
 }
 </style>
 </head>
@@ -138,7 +111,7 @@ footer {
 <body>
 
 <header>
-<h1>🌿 Arjuna (Terminalia arjuna)</h1>
+<h1>🌿 Arjuna</h1>
 <p>The Heart Protector Tree</p>
 </header>
 
@@ -149,115 +122,131 @@ footer {
 <a href="#">Contact</a>
 </nav>
 
+<!-- 🔥 FLEX CONTENT -->
 <div class="content">
 
-<!-- LEFT CONTENT -->
+<!-- LEFT CONTENT (UNCHANGED) -->
 <div class="left">
 
+<h2>🌱 Basic Information</h2>
+<p><b>Common Name:</b> Arjuna</p>
+<p><b>Botanical Name:</b> Terminalia arjuna</p>
+<p><b>Family:</b> Combretaceae</p>
+<p><b>Origin:</b> India</p>
+
+<h2>🌿 Medicinal Uses</h2>
+<p>Improves heart health and blood circulation.</p>
+<p>Helps control blood pressure and cholesterol.</p>
+
+<h2>🌍 Habitat</h2>
+<p>Grows near riverbanks in tropical climates.</p>
+
+<h2>🌾 Cultivation</h2>
+<p>Requires sunlight and well-drained soil.</p>
+
+<h2>⚠️ Precautions</h2>
+<p>Use under medical supervision.</p>
+
+<h2>🧪 Chemical Compounds</h2>
+<p>
+<b>Tannins:</b> Heart protection<br>
+<b>Flavonoids:</b> Antioxidant<br>
+<b>Arjunolic Acid:</b> Cardio-protective
+</p>
+
 <h2>🧬 Overview</h2>
-<p>Arjuna is a well-known medicinal tree valued for its powerful cardiovascular benefits. It is widely used in traditional medicine for improving heart function and circulation.</p>
+<p>Arjuna (Terminalia arjuna) is a medicinal tree widely known for its cardiovascular and therapeutic benefits, especially in supporting heart health.</p>
+<p>The bark is the primary medicinal part.</p>
 
 <h2>🌱 Botanical & General Information</h2>
 <p><b>Family:</b> Combretaceae</p>
-<p><b>Common Name:</b> Arjuna</p>
-<p><b>Botanical Name:</b> Terminalia arjuna</p>
 <p><b>Plant Type:</b> Large deciduous tree</p>
-<p><b>Habitat:</b> Tropical regions, especially near rivers</p>
+<p><b>Habitat:</b> Tropical regions near water bodies</p>
 <p><b>Parts Used:</b> Bark, leaves, fruits</p>
 
 <h2>🌿 Propagation & Cultivation</h2>
-<p><b>Seeds:</b> Primary propagation method</p>
-<p><b>Vegetative Methods:</b> Less common</p>
+<p><b>Seeds:</b> Primary method for cultivation</p>
+<p><b>Vegetative:</b> Less commonly used</p>
 
 <h3>🌞 Growth Requirements</h3>
-<ul>
-<li>Moist, well-drained soil</li>
-<li>Warm climate</li>
-<li>Full sunlight</li>
-<li>Thrives near water bodies</li>
-</ul>
+<p>Moist, well-drained soil</p>
+<p>Warm climate</p>
+<p>Adequate sunlight</p>
+<p>Often grows near rivers</p>
 
 <h2>🧪 Key Bioactive Compounds</h2>
-<ul>
-<li>Triterpenoids</li>
-<li>Flavonoids</li>
-<li>Tannins</li>
-<li>Glycosides</li>
-<li>Saponins</li>
-</ul>
+<p>Triterpenoids, Flavonoids, Tannins, Glycosides, Saponins</p>
 
 <h2>💊 Pharmacological Properties</h2>
-<ul>
-<li>Cardioprotective</li>
-<li>Antihypertensive</li>
-<li>Antioxidant</li>
-<li>Anti-inflammatory</li>
-<li>Antimicrobial</li>
-</ul>
+<p>Cardioprotective</p>
+<p>Antihypertensive</p>
+<p>Antioxidant</p>
+<p>Anti-inflammatory</p>
+<p>Antimicrobial</p>
 
 <h2>🩺 Therapeutic Applications</h2>
-<ul>
-<li>Heart health support</li>
-<li>Blood pressure regulation</li>
-<li>Improved circulation</li>
-<li>General vitality</li>
-</ul>
+<p>Heart health</p>
+<p>Blood pressure management</p>
+<p>Strength and vitality</p>
+<p>Infection control</p>
+
+<h2>🦠 Public Health Importance</h2>
+<p>Widely researched for cardiovascular health and circulation support.</p>
 
 <h2>⚙️ Mechanism of Action</h2>
-<ul>
-<li>Strengthens heart muscles</li>
-<li>Reduces oxidative stress</li>
-<li>Improves blood flow</li>
-<li>Reduces inflammation</li>
-</ul>
+<p>Strengthens heart muscles</p>
+<p>Reduces oxidative stress</p>
+<p>Improves blood flow</p>
+<p>Reduces inflammation</p>
 
-<h2>⚠️ Safety & Precautions</h2>
-<ul>
-<li>Use in proper dosage</li>
-<li>Consult doctor for heart-related conditions</li>
-</ul>
+<h2>⚠️ Safety</h2>
+<p>Use in proper dosage</p>
+<p>Consult doctor for heart conditions</p>
 
 <h2>🌍 Modern Relevance</h2>
-<p>Arjuna is widely recognized for its cardiovascular benefits and is actively researched in modern medicine.</p>
+<p>Recognized by NCBI, WHO, and Ministry of AYUSH for heart health benefits.</p>
 
 <h2>📚 Sources</h2>
-<ul>
-<li>NCBI</li>
-<li>WHO</li>
-<li>Ministry of AYUSH</li>
-</ul>
+<p>NCBI</p>
+<p>WHO</p>
+<p>Ministry of AYUSH</p>
 
 </div>
 
-<!-- RIGHT SIDE -->
-<div class="right">
-<h2>🌐 3D Arjuna Model</h2>
-
+<!-- RIGHT MODEL -->
+<div class="model-section">
+<h2 style="text-align:center;">🌐 3D Arjuna Model</h2>
 <div class="model-container" id="model"></div>
 
 <a href="https://pubmed.ncbi.nlm.nih.gov/?term=arjuna+medicinal+properties" target="_blank" class="research-btn">
-📄 View Research
+  📄 View Research
 </a>
+
 </div>
 
 </div>
 
 <footer>
-© 2026 E-Herbal Garden | Designed with 🌱
+© 2026 E-Herbal Garden
 </footer>
 
-<!-- THREE JS -->
+<!-- Three.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
 
 <script>
-const container = document.getElementById("model");
 const scene = new THREE.Scene();
+const container = document.getElementById("model");
 
-const camera = new THREE.PerspectiveCamera(60, container.clientWidth / container.clientHeight, 0.1, 1000);
+const camera = new THREE.PerspectiveCamera(
+75,
+container.clientWidth / container.clientHeight,
+0.1,
+1000
+);
 
-const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+const renderer = new THREE.WebGLRenderer({ antialias:true, alpha:true });
 renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
@@ -266,46 +255,51 @@ const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
 scene.add(light);
 
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
-controls.enableDamping = true;
+controls.enableZoom = true;
+controls.enablePan = false;
 
 let arjunaModel;
+
 const loader = new THREE.GLTFLoader();
+loader.load('./Arjuna.glb', function (gltf){
 
-loader.load('./Arjuna.glb',
-function (gltf) {
-    arjunaModel = gltf.scene;
+arjunaModel = gltf.scene;
 
-    const box = new THREE.Box3().setFromObject(arjunaModel);
-    const size = box.getSize(new THREE.Vector3());
-    const center = box.getCenter(new THREE.Vector3());
-    arjunaModel.position.sub(center);
+const box = new THREE.Box3().setFromObject(arjunaModel);
+const size = box.getSize(new THREE.Vector3());
+const center = box.getCenter(new THREE.Vector3());
 
-    const maxDim = Math.max(size.x, size.y, size.z);
-    const fov = camera.fov * (Math.PI / 180);
-    let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
-    camera.position.z = cameraZ * 1.5;
+arjunaModel.position.sub(center);
 
-    scene.add(arjunaModel);
-},
-undefined,
-function (error) {
-    console.error("Error loading model:", error);
+const maxDim = Math.max(size.x,size.y,size.z);
+const fov = camera.fov*(Math.PI/180);
+let cameraZ = Math.abs(maxDim/2/Math.tan(fov/2));
+
+camera.position.z = cameraZ*1.8;
+
+scene.add(arjunaModel);
+
 });
 
 window.addEventListener('resize', () => {
-    const width = container.clientWidth;
-    const height = container.clientHeight;
-    renderer.setSize(width, height);
-    camera.aspect = width / height;
-    camera.updateProjectionMatrix();
+const width = container.clientWidth;
+const height = container.clientHeight;
+
+renderer.setSize(width,height);
+camera.aspect = width/height;
+camera.updateProjectionMatrix();
 });
 
-function animate() {
-    requestAnimationFrame(animate);
-    if (arjunaModel) arjunaModel.rotation.y += 0.005;
-    controls.update();
-    renderer.render(scene, camera);
+function animate(){
+requestAnimationFrame(animate);
+
+if (arjunaModel) {
+    arjunaModel.rotation.y += 0.005;
 }
+
+renderer.render(scene, camera);
+}
+
 animate();
 </script>
 
