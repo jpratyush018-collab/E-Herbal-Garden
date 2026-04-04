@@ -13,6 +13,7 @@ body {
     background: #eaf5ea;
 }
 
+/* HEADER */
 header {
     background: linear-gradient(to right, #1b5e20, #2e7d32);
     color: white;
@@ -20,6 +21,18 @@ header {
     text-align: center;
 }
 
+header h1 {
+    margin: 0;
+    font-size: 28px;
+}
+
+header p {
+    margin-top: 5px;
+    font-size: 16px;
+    opacity: 0.9;
+}
+
+/* NAVBAR */
 nav {
     background: #145a1f;
     padding: 10px;
@@ -33,47 +46,79 @@ nav a {
     font-weight: bold;
 }
 
+/* MAIN LAYOUT */
 .content {
-    padding: 30px;
-    max-width: 1100px;
+    padding: 40px 20px;
+    max-width: 1200px;
     margin: auto;
     display: flex;
     flex-wrap: wrap;
-    gap: 30px;
+    gap: 40px;
     align-items: flex-start;
 }
 
+.left {
+    flex: 1.2;
+    min-width: 300px;
+}
+
+.right {
+    flex: 1;
+    min-width: 320px;
+    max-width: 480px;
+    background: #f5f5f5;
+    border-radius: 18px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.right h2 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* TEXT */
 h2 {
     color: #2e7d32;
     margin-top: 25px;
 }
 
 p, li {
-    line-height: 1.6;
+    line-height: 1.7;
 }
 
-/* 3D MODEL SECTION */
-.model-section {
-    flex: 1;
-    min-width: 300px;
-    max-width: 500px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    padding: 20px;
-}
-
+/* MODEL */
 .model-container {
     width: 100%;
-    height: 400px;
+    height: 350px;
+    background: #eaeaea;
+    border-radius: 12px;
 }
 
-@media (max-width:768px){
-    .model-container{
-        height: 300px;
-    }
+/* BUTTON */
+.research-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 14px;
+    margin-top: 20px;
+    background: #2e7d32;
+    color: white;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
 }
 
+.research-btn:hover {
+    background: #43a047;
+    transform: scale(1.03);
+}
+
+/* FOOTER */
 footer {
     background: #145a1f;
     color: white;
@@ -81,13 +126,20 @@ footer {
     padding: 15px;
     margin-top: 20px;
 }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .model-container {
+        height: 280px;
+    }
+}
 </style>
 </head>
 
 <body>
 
 <header>
-<h1>🌿 Bael (Aegle marmelos / Bilva)</h1>
+<h1>🌿 Bael (Aegle marmelos)</h1>
 <p>The Sacred Healing Fruit Tree</p>
 </header>
 
@@ -100,22 +152,22 @@ footer {
 
 <div class="content">
 
-<!-- LEFT CONTENT -->
-<div style="flex:1; min-width:300px;">
+<!-- LEFT SIDE -->
+<div class="left">
 
 <h2>🧬 Overview</h2>
-<p>Bael (Aegle marmelos) is a medicinal plant celebrated for its digestive, antimicrobial, and anti-inflammatory properties. The fruit is most commonly used for gastrointestinal health, while leaves, bark, and roots are also valuable in traditional medicine.</p>
+<p>Bael (Aegle marmelos) is a medicinal plant celebrated for its digestive, antimicrobial, and anti-inflammatory properties. The fruit is most commonly used for gastrointestinal health, while leaves, bark, and roots are also valuable.</p>
 
 <h2>🌱 Botanical & General Information</h2>
 <p><b>Family:</b> Rutaceae</p>
-<p><b>Common Name:</b> Bael / Bilva / Wood Apple</p>
+<p><b>Common Name:</b> Bael / Bilva</p>
 <p><b>Plant Type:</b> Medium-sized deciduous tree</p>
 <p><b>Habitat:</b> Tropical and subtropical regions</p>
 <p><b>Parts Used:</b> Fruit, leaves, bark, roots</p>
 
 <h2>🌿 Propagation & Cultivation</h2>
-<p><b>Seeds:</b> Commonly used method</p>
-<p><b>Grafting:</b> Preferred for better yield and consistency</p>
+<p><b>Seeds:</b> Common method</p>
+<p><b>Grafting:</b> Preferred for better yield</p>
 
 <h3>🌞 Growth Requirements</h3>
 <ul>
@@ -147,82 +199,55 @@ footer {
 <ul>
 <li>Gastrointestinal health</li>
 <li>Infection control</li>
-<li>Metabolic health</li>
 <li>General wellness</li>
-</ul>
-
-<h2>⚙️ Mechanism of Action</h2>
-<ul>
-<li>Improves digestion</li>
-<li>Inhibits microbial growth</li>
-<li>Reduces inflammation</li>
-<li>Provides antioxidant protection</li>
 </ul>
 
 <h2>⚠️ Safety & Precautions</h2>
 <ul>
 <li>Safe in moderate amounts</li>
-<li>Excessive intake may cause digestive imbalance</li>
-<li>Not a substitute for medical treatment for serious conditions</li>
+<li>Avoid excessive intake</li>
+<li>Not a substitute for medical treatment</li>
 </ul>
 
-<h2>🌍 Modern Relevance & Research</h2>
-<p>Recognized by NCBI, WHO, and Ministry of AYUSH for digestive and health benefits. Extensively studied for antimicrobial, anti-inflammatory, and metabolic properties.</p>
-
-<h2>📚 Sources</h2>
-<ul>
-<li>NCBI</li>
-<li>WHO</li>
-<li>Ministry of AYUSH</li>
-</ul>
+<h2>🌍 Modern Relevance</h2>
+<p>Recognized by NCBI, WHO, and Ministry of AYUSH for digestive and health benefits.</p>
 
 </div>
 
-<!-- RIGHT 3D MODEL -->
-<div class="model-section">
-<h2 style="text-align:center;">🌐 3D Bael Model</h2>
+<!-- RIGHT SIDE -->
+<div class="right">
+
+<h2>🌐 3D Bael Model</h2>
+
 <div class="model-container" id="model"></div>
-</div>
-<a href="https://pubmed.ncbi.nlm.nih.gov/?term=bael+medicinal+properties">
-  📄 View Research
+
+<a href="https://pubmed.ncbi.nlm.nih.gov/?term=bael+medicinal+properties" target="_blank" class="research-btn">
+📄 View Research
 </a>
 
-<style>
-.research-btn {
-  display: inline-block;
-  padding: 10px 18px;
-  background: #2e7d32;
-  color: white;
-  border-radius: 25px;
-  text-decoration: none;
-  transition: 0.3s;
-}
+</div>
 
-.research-btn:hover {
-  background: #66bb6a;
-  transform: scale(1.05);
-}
-</style>
 </div>
 
 <footer>
 © 2026 E-Herbal Garden | Designed with 🌱
 </footer>
 
+<!-- THREE JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
 
 <script>
 // Scene
-const scene = new THREE.Scene();
 const container = document.getElementById("model");
+const scene = new THREE.Scene();
 
 // Camera
 const camera = new THREE.PerspectiveCamera(60, container.clientWidth / container.clientHeight, 0.1, 1000);
 
 // Renderer
-const renderer = new THREE.WebGLRenderer({antialias:true, alpha:true});
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
@@ -234,49 +259,48 @@ scene.add(light);
 // Controls
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
-controls.minDistance = 1;
-controls.maxDistance = 10;
 
-// Load GLB Model
+// Load Model
 let baelModel;
 const loader = new THREE.GLTFLoader();
-loader.load(
-    './Bael.glb',
-    function(gltf){
-        baelModel = gltf.scene;
 
-        const box = new THREE.Box3().setFromObject(baelModel);
-        const size = box.getSize(new THREE.Vector3()).length();
-        const center = box.getCenter(new THREE.Vector3());
+loader.load('./Bael.glb',
+function (gltf) {
 
-        baelModel.position.sub(center);
+    baelModel = gltf.scene;
 
-        const scaleFactor = 3 / size;
-        baelModel.scale.setScalar(scaleFactor);
+    const box = new THREE.Box3().setFromObject(baelModel);
+    const size = box.getSize(new THREE.Vector3());
+    const center = box.getCenter(new THREE.Vector3());
 
-        scene.add(baelModel);
+    baelModel.position.sub(center);
 
-        camera.position.set(0, size/2, size * 1.5);
-        controls.target.set(0,0,0);
-        controls.update();
-    },
-    undefined,
-    function(error){
-        console.error("Error loading model:", error);
-    }
-);
+    const maxDim = Math.max(size.x, size.y, size.z);
+    const fov = camera.fov * (Math.PI / 180);
+    let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
 
-// Resize handling
-window.addEventListener('resize', ()=>{
-    camera.aspect = container.clientWidth / container.clientHeight;
+    camera.position.z = cameraZ * 1.5;
+
+    scene.add(baelModel);
+},
+undefined,
+function (error) {
+    console.error("Error loading model:", error);
+});
+
+// Resize
+window.addEventListener('resize', () => {
+    const width = container.clientWidth;
+    const height = container.clientHeight;
+    renderer.setSize(width, height);
+    camera.aspect = width / height;
     camera.updateProjectionMatrix();
-    renderer.setSize(container.clientWidth, container.clientHeight);
 });
 
 // Animate
-function animate(){
+function animate() {
     requestAnimationFrame(animate);
-    if(baelModel) baelModel.rotation.y += 0.004;
+    if (baelModel) baelModel.rotation.y += 0.004;
     controls.update();
     renderer.render(scene, camera);
 }
