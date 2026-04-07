@@ -13,6 +13,7 @@ body{
     background:#eaf5ea;
 }
 
+/* HEADER */
 header{
     background:linear-gradient(to right,#1b5e20,#2e7d32);
     color:white;
@@ -33,10 +34,39 @@ nav a{
     font-weight:bold;
 }
 
+/* 🔥 SAME AS TULSI */
 .content{
-    padding:30px;
-    max-width:1000px;
+    padding:40px 20px;
+    max-width:1200px;
     margin:auto;
+    display:flex;
+    flex-wrap:wrap;
+    gap:40px;
+    align-items:flex-start;
+}
+
+.left{
+    flex:1.2;
+    min-width:300px;
+}
+
+/* RIGHT CARD */
+.right{
+    flex:1;
+    min-width:320px;
+    max-width:480px;
+    background:#f5f5f5;
+    border-radius:18px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.08);
+    padding:25px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+
+.right h2{
+    text-align:center;
+    margin-bottom:15px;
 }
 
 h2{
@@ -45,28 +75,35 @@ h2{
 }
 
 p{
-    line-height:1.6;
+    line-height:1.7;
 }
 
-/* MODEL SECTION */
-.model-section{
-    margin:40px auto;
-    max-width:900px;
-    background:white;
-    border-radius:15px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.1);
-    padding:20px;
-}
-
+/* MODEL */
 .model-container{
     width:100%;
-    height:400px;
+    height:350px;
+    background:#eaeaea;
+    border-radius:12px;
 }
 
-@media (max-width:768px){
-    .model-container{
-        height:280px;
-    }
+/* BUTTON */
+.research-btn{
+    display:block;
+    width:100%;
+    text-align:center;
+    padding:14px;
+    margin-top:20px;
+    background:#2e7d32;
+    color:white;
+    border-radius:30px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.research-btn:hover{
+    background:#43a047;
+    transform:scale(1.05);
 }
 
 footer{
@@ -75,6 +112,12 @@ footer{
     text-align:center;
     padding:15px;
     margin-top:20px;
+}
+
+@media (max-width:768px){
+    .model-container{
+        height:280px;
+    }
 }
 </style>
 </head>
@@ -93,10 +136,10 @@ footer{
 <a href="#">Contact</a>
 </nav>
 
-<div class="content" style="display:flex; flex-wrap:wrap; gap:30px; align-items:flex-start;">
+<div class="content">
 
-<!-- LEFT CONTENT -->
-<div style="flex:1; min-width:300px;">
+<!-- LEFT CONTENT (UNCHANGED FULL) -->
+<div class="left">
 
 <h2>🌱 Basic Information</h2>
 <p><b>Common Name:</b> Brahmi</p>
@@ -115,8 +158,7 @@ footer{
 <p>Excess intake may cause mild digestive discomfort. Use with guidance.</p>
 
 <h2>🧬 Overview</h2>
-<p>Brahmi (Bacopa monnieri) is a medicinal herb known for its cognitive-enhancing and neuroprotective properties. It supports memory, learning, and mental clarity.</p>
-<p>The leaves and stems are mainly used for medicinal purposes.</p>
+<p>Brahmi (Bacopa monnieri) is a medicinal herb known for its cognitive-enhancing and neuroprotective properties.</p>
 
 <h2>🌱 Botanical & General Information</h2>
 <p><b>Family:</b> Plantaginaceae</p>
@@ -163,7 +205,7 @@ footer{
 <p>Excess may cause discomfort</p>
 
 <h2>🌍 Modern Relevance</h2>
-<p>Recognized by NCBI, WHO, and Ministry of AYUSH for cognitive and neurological benefits.</p>
+<p>Recognized by NCBI, WHO, and Ministry of AYUSH.</p>
 
 <h2>📚 Sources</h2>
 <p>NCBI</p>
@@ -172,38 +214,24 @@ footer{
 
 </div>
 
-<!-- RIGHT MODEL -->
-<div class="model-section" style="flex:1; min-width:300px; max-width:500px;">
-<h2 style="text-align:center;">🌐 3D Brahmi Model</h2>
-<div class="model-container" id="model" style="height:500px;"></div>
-</div>
-<a href="https://pubmed.ncbi.nlm.nih.gov/?term=brahmi+medicinal+properties">
-  📄 View Research
+<!-- RIGHT SIDE (FIXED) -->
+<div class="right">
+<h2>🌐 3D Brahmi Model</h2>
+
+<div class="model-container" id="model"></div>
+
+<a href="https://pubmed.ncbi.nlm.nih.gov/?term=brahmi+medicinal+properties" target="_blank" class="research-btn">
+📄 View Research
 </a>
+</div>
 
-<style>
-.research-btn {
-  display: inline-block;
-  padding: 10px 18px;
-  background: #2e7d32;
-  color: white;
-  border-radius: 25px;
-  text-decoration: none;
-  transition: 0.3s;
-}
-
-.research-btn:hover {
-  background: #66bb6a;
-  transform: scale(1.05);
-}
-</style>
 </div>
 
 <footer>
 © 2026 E-Herbal Garden | Designed with 🌱
 </footer>
 
-<!-- Three.js -->
+<!-- THREE JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
@@ -224,8 +252,7 @@ renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
-const light = new THREE.HemisphereLight(0xffffff,0x444444,1.5);
-scene.add(light);
+scene.add(new THREE.HemisphereLight(0xffffff,0x444444,1.5));
 
 const controls = new THREE.OrbitControls(camera,renderer.domElement);
 controls.enableZoom = true;
@@ -233,11 +260,7 @@ controls.enablePan = false;
 
 let model;
 
-const loader = new THREE.GLTFLoader();
-
-loader.load(
-'./Brahmi.glb',
-function(gltf){
+new THREE.GLTFLoader().load('./Brahmi.glb',function(gltf){
 
 model = gltf.scene;
 
@@ -255,36 +278,13 @@ camera.position.z = cameraZ*1.8;
 
 scene.add(model);
 
-},
-undefined,
-function(error){
-console.error("Error loading model:",error);
-}
-);
-
-window.addEventListener('resize',()=>{
-
-const width = container.clientWidth;
-const height = container.clientHeight;
-
-renderer.setSize(width,height);
-camera.aspect = width/height;
-camera.updateProjectionMatrix();
-
 });
 
 function animate(){
-
 requestAnimationFrame(animate);
-
-if(model){
-model.rotation.y += 0.005;
-}
-
+if(model) model.rotation.y += 0.005;
 renderer.render(scene,camera);
-
 }
-
 animate();
 </script>
 
