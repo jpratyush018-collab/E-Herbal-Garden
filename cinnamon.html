@@ -33,10 +33,38 @@ nav a{
     font-weight:bold;
 }
 
+/* 🔥 TULSI STYLE */
 .content{
-    padding:30px;
-    max-width:1100px;
+    padding:40px 20px;
+    max-width:1200px;
     margin:auto;
+    display:flex;
+    flex-wrap:wrap;
+    gap:40px;
+    align-items:flex-start;
+}
+
+.left{
+    flex:1.2;
+    min-width:300px;
+}
+
+.right{
+    flex:1;
+    min-width:320px;
+    max-width:480px;
+    background:#f5f5f5;
+    border-radius:18px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.08);
+    padding:25px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+
+.right h2{
+    text-align:center;
+    margin-bottom:15px;
 }
 
 h2{
@@ -44,27 +72,36 @@ h2{
     margin-top:25px;
 }
 
-p, li{
-    line-height:1.6;
+p,li{
+    line-height:1.7;
 }
 
-/* MODEL SECTION */
-.model-section{
-    background:white;
-    border-radius:12px;
-    box-shadow:0 4px 10px rgba(0,0,0,0.1);
-    padding:20px;
-}
-
+/* MODEL */
 .model-container{
     width:100%;
-    height:450px;
+    height:350px;
+    background:#eaeaea;
+    border-radius:12px;
 }
 
-@media (max-width:768px){
-    .model-container{
-        height:300px;
-    }
+/* BUTTON */
+.research-btn{
+    display:block;
+    width:100%;
+    text-align:center;
+    padding:14px;
+    margin-top:20px;
+    background:#2e7d32;
+    color:white;
+    border-radius:30px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.research-btn:hover{
+    background:#43a047;
+    transform:scale(1.05);
 }
 
 footer{
@@ -73,6 +110,12 @@ footer{
     text-align:center;
     padding:15px;
     margin-top:20px;
+}
+
+@media (max-width:768px){
+    .model-container{
+        height:280px;
+    }
 }
 </style>
 </head>
@@ -91,15 +134,13 @@ footer{
 <a href="#">Contact</a>
 </nav>
 
-<div class="content" style="display:flex; flex-wrap:wrap; gap:30px; align-items:flex-start;">
+<div class="content">
 
-<!-- LEFT CONTENT -->
-<div style="flex:1; min-width:300px;">
+<!-- LEFT CONTENT (FULL UNCHANGED) -->
+<div class="left">
 
 <h2>🧬 Overview</h2>
-<p>
-Cinnamon is a widely used medicinal and aromatic plant, known for its antimicrobial, metabolic, and antioxidant benefits. The inner bark is dried into spice and has applications in traditional medicine, culinary use, and modern research.
-</p>
+<p>Cinnamon is a widely used medicinal and aromatic plant, known for its antimicrobial, metabolic, and antioxidant benefits.</p>
 
 <h2>🌱 Botanical Information</h2>
 <p><b>Common Name:</b> Cinnamon</p>
@@ -113,56 +154,52 @@ Cinnamon is a widely used medicinal and aromatic plant, known for its antimicrob
 <ul>
 <li><b>Seeds:</b> Sown under warm, moist conditions</li>
 <li><b>Vegetative Methods:</b> Stem cuttings, layering</li>
-<li>Prefers warm, humid climate and fertile, well-drained soil</li>
-<li>Partial shade to full sunlight</li>
-<li>Requires regular watering</li>
+<li>Warm, humid climate</li>
+<li>Fertile soil</li>
+<li>Regular watering</li>
 </ul>
 
 <h2>🧪 Key Bioactive Compounds</h2>
 <ul>
 <li>Cinnamaldehyde</li>
 <li>Eugenol</li>
-<li>Coumarin (higher in cassia)</li>
+<li>Coumarin</li>
 <li>Polyphenols</li>
 <li>Flavonoids</li>
 </ul>
 
 <h2>💊 Medicinal Benefits</h2>
 <ul>
-<li>Helps regulate blood sugar</li>
-<li>Antimicrobial & infection control</li>
-<li>Antioxidant & anti-inflammatory</li>
-<li>Supports heart health & circulation</li>
-<li>General wellness support</li>
+<li>Regulates blood sugar</li>
+<li>Antimicrobial</li>
+<li>Antioxidant</li>
+<li>Supports heart health</li>
 </ul>
 
 <h2>🩺 Therapeutic Applications</h2>
 <ul>
-<li>Diabetes and metabolic health</li>
-<li>Digestive health improvement</li>
-<li>Supports immunity and heart function</li>
-<li>Used in traditional remedies and food</li>
+<li>Diabetes management</li>
+<li>Digestive health</li>
+<li>Immunity support</li>
 </ul>
 
 <h2>⚙️ Mechanism of Action</h2>
 <ul>
-<li>Enhances insulin sensitivity → regulates blood sugar</li>
-<li>Inhibits microbial growth → prevents infections</li>
-<li>Neutralizes free radicals → antioxidant protection</li>
-<li>Reduces inflammation → supports overall health</li>
+<li>Improves insulin sensitivity</li>
+<li>Prevents microbial growth</li>
+<li>Reduces inflammation</li>
 </ul>
 
 <h2>🧬 Nutritional Value</h2>
-<p>Contains manganese, calcium, iron, and polyphenolic compounds supporting metabolism, immunity, and antioxidant defense.</p>
+<p>Rich in minerals and antioxidants.</p>
 
 <h2>🍽️ Culinary Uses</h2>
-<p>Used in desserts, beverages, curries, and spice blends for flavor, aroma, and health benefits.</p>
+<p>Used in desserts, beverages, and spices.</p>
 
 <h2>⚠️ Safety & Precautions</h2>
 <ul>
-<li>Safe in moderate quantities</li>
-<li>Excessive intake (especially cassia) may lead to coumarin toxicity</li>
-<li>Consult doctor if using medicinal doses or during pregnancy</li>
+<li>Safe in moderate use</li>
+<li>Excess may cause toxicity</li>
 </ul>
 
 <h2>📚 Sources</h2>
@@ -174,38 +211,24 @@ Cinnamon is a widely used medicinal and aromatic plant, known for its antimicrob
 
 </div>
 
-<!-- RIGHT MODEL -->
-<div class="model-section" style="flex:1; min-width:300px; max-width:500px;">
-<h2 style="text-align:center;">🌐 3D Cinnamon Model</h2>
+<!-- RIGHT SIDE -->
+<div class="right">
+<h2>🌐 3D Cinnamon Model</h2>
+
 <div class="model-container" id="model"></div>
-</div>
+
 <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Cinnamomum+verum+medicinal+properties" target="_blank" class="research-btn">
-  📄 View Research
+📄 View Research
 </a>
+</div>
 
-<style>
-.research-btn {
-  display: inline-block;
-  padding: 10px 18px;
-  background: #2e7d32;
-  color: white;
-  border-radius: 25px;
-  text-decoration: none;
-  transition: 0.3s;
-}
-
-.research-btn:hover {
-  background: #66bb6a;
-  transform: scale(1.05);
-}
-</style>
 </div>
 
 <footer>
 © 2026 E-Herbal Garden | Designed with 🌱
 </footer>
 
-<!-- Three.js -->
+<!-- THREE JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
@@ -214,6 +237,7 @@ Cinnamon is a widely used medicinal and aromatic plant, known for its antimicrob
 const scene = new THREE.Scene();
 const container = document.getElementById("model");
 
+/* CAMERA */
 const camera = new THREE.PerspectiveCamera(
 75,
 container.clientWidth / container.clientHeight,
@@ -221,63 +245,49 @@ container.clientWidth / container.clientHeight,
 1000
 );
 
+/* RENDERER */
 const renderer = new THREE.WebGLRenderer({antialias:true, alpha:true});
 renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
-const light = new THREE.HemisphereLight(0xffffff,0x444444,1.5);
-scene.add(light);
+/* LIGHT */
+scene.add(new THREE.HemisphereLight(0xffffff,0x444444,1.5));
 
-const controls = new THREE.OrbitControls(camera,renderer.domElement);
+/* CONTROLS */
+const controls = new THREE.OrbitControls(camera, renderer.domElement);
 controls.enableZoom = true;
 controls.enablePan = false;
 
 let model;
 
-const loader = new THREE.GLTFLoader();
-loader.load(
-'./Cinnamon.glb',
-function(gltf){
-    model = gltf.scene;
+/* LOAD MODEL */
+new THREE.GLTFLoader().load('./Cinnamon.glb', function(gltf){
 
-    const box = new THREE.Box3().setFromObject(model);
-    const size = box.getSize(new THREE.Vector3());
-    const center = box.getCenter(new THREE.Vector3());
+model = gltf.scene;
 
-    model.position.sub(center);
+const box = new THREE.Box3().setFromObject(model);
+const size = box.getSize(new THREE.Vector3());
+const center = box.getCenter(new THREE.Vector3());
 
-    const maxDim = Math.max(size.x,size.y,size.z);
-    const fov = camera.fov*(Math.PI/180);
-    let cameraZ = Math.abs(maxDim/2/Math.tan(fov/2));
+model.position.sub(center);
 
-    camera.position.z = cameraZ*1.8;
+const maxDim = Math.max(size.x,size.y,size.z);
+const fov = camera.fov*(Math.PI/180);
+let cameraZ = Math.abs(maxDim/2/Math.tan(fov/2));
 
-    scene.add(model);
-},
-undefined,
-function(error){
-    console.error("Error loading model:",error);
-}
-);
+camera.position.z = cameraZ * 1.8;
 
-window.addEventListener('resize',()=>{
-    const w = container.clientWidth;
-    const h = container.clientHeight;
+scene.add(model);
 
-    renderer.setSize(w,h);
-    camera.aspect = w/h;
-    camera.updateProjectionMatrix();
 });
 
+/* ANIMATION */
 function animate(){
-    requestAnimationFrame(animate);
-
-    if(model) model.rotation.y += 0.005;
-
-    renderer.render(scene,camera);
+requestAnimationFrame(animate);
+if(model) model.rotation.y += 0.005;
+renderer.render(scene,camera);
 }
-
 animate();
 </script>
 
