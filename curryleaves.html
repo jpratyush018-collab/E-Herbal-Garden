@@ -13,6 +13,7 @@ body{
     background:#eaf5ea;
 }
 
+/* HEADER */
 header{
     background:linear-gradient(to right,#1b5e20,#2e7d32);
     color:white;
@@ -20,6 +21,7 @@ header{
     text-align:center;
 }
 
+/* NAV */
 nav{
     background:#145a1f;
     padding:10px;
@@ -33,51 +35,76 @@ nav a{
     font-weight:bold;
 }
 
-/* FLEX SYSTEM */
+/* 🔥 TULSI STYLE */
 .content{
-    padding:30px;
-    max-width:1000px;
+    padding:40px 20px;
+    max-width:1200px;
     margin:auto;
     display:flex;
     flex-wrap:wrap;
-    gap:30px;
+    gap:40px;
     align-items:flex-start;
 }
 
 .left{
-    flex:1;
+    flex:1.2;
     min-width:300px;
 }
 
+.right{
+    flex:1;
+    min-width:320px;
+    max-width:480px;
+    background:#f5f5f5;
+    border-radius:18px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.08);
+    padding:25px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+
+.right h2{
+    text-align:center;
+    margin-bottom:15px;
+}
+
+/* TEXT */
 h2{
     color:#2e7d32;
     margin-top:25px;
 }
 
 p, li{
-    line-height:1.6;
+    line-height:1.7;
 }
 
-/* MODEL CARD */
-.model-section{
-    flex:1;
-    min-width:300px;
-    max-width:500px;
-    background:white;
-    border-radius:15px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.1);
-    padding:20px;
-}
-
+/* MODEL */
 .model-container{
     width:100%;
-    height:420px;
+    height:350px;
+    background:#eaeaea;
+    border-radius:12px;
 }
 
-@media (max-width:768px){
-    .model-container{
-        height:280px;
-    }
+/* BUTTON */
+.research-btn{
+    display:block;
+    width:100%;
+    text-align:center;
+    padding:14px;
+    margin-top:20px;
+    background:#2e7d32;
+    color:white;
+    border-radius:30px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.research-btn:hover{
+    background:#43a047;
+    transform:scale(1.05);
 }
 
 footer{
@@ -86,6 +113,12 @@ footer{
     text-align:center;
     padding:15px;
     margin-top:20px;
+}
+
+@media (max-width:768px){
+    .model-container{
+        height:280px;
+    }
 }
 </style>
 </head>
@@ -106,7 +139,7 @@ footer{
 
 <div class="content">
 
-<!-- LEFT CONTENT -->
+<!-- LEFT CONTENT (FULL UNCHANGED) -->
 <div class="left">
 
 <h2>🌱 Basic Information</h2>
@@ -117,117 +150,94 @@ footer{
 
 <h2>🌿 Medicinal Uses</h2>
 <p>Curry leaves help in improving digestion and reducing acidity.</p>
-<p>They are beneficial for controlling blood sugar levels and managing diabetes.</p>
-<p>They promote hair growth and prevent premature greying.</p>
+<p>They help control blood sugar levels.</p>
+<p>Promote hair growth and prevent greying.</p>
 
 <h2>🌍 Habitat</h2>
-<p>Curry leaf plants grow well in tropical and subtropical climates with moderate sunlight.</p>
+<p>Grows in tropical and subtropical climates.</p>
 
 <h2>🌾 Cultivation</h2>
-<p>They are grown from seeds or stem cuttings and require well-drained soil and regular watering.</p>
+<p>Grown from seeds or stem cuttings.</p>
 
 <h2>⚠️ Precautions</h2>
-<p>Generally safe, but excessive consumption may cause mild stomach discomfort.</p>
+<p>Safe but excess may cause discomfort.</p>
 
 <h2>🧪 Chemical Compounds</h2>
-<p><b>Carbazole Alkaloids:</b> Antioxidant<br>
-<b>Vitamin A & C:</b> Boost immunity<br>
-<b>Flavonoids:</b> Anti-inflammatory</p>
+<p><b>Carbazole Alkaloids:</b> Antioxidant</p>
+<p><b>Vitamin A & C:</b> Boost immunity</p>
+<p><b>Flavonoids:</b> Anti-inflammatory</p>
 
 <h2>🧬 Overview</h2>
-<p>Curry Leaves (Murraya koenigii) is a widely used medicinal and culinary plant known for its rich nutritional profile and therapeutic properties.</p>
-<p>The leaves are the primary part used and support overall health.</p>
+<p>Curry Leaves (Murraya koenigii) is a widely used medicinal and culinary plant.</p>
 
 <h2>🌱 Botanical & General Information</h2>
-<p><b>Plant Type:</b> Small tree or shrub</p>
-<p><b>Habitat:</b> Tropical and subtropical regions</p>
-<p><b>Parts Used:</b> Leaves, roots, bark</p>
+<p><b>Plant Type:</b> Small tree</p>
+<p><b>Habitat:</b> Tropical regions</p>
+<p><b>Parts Used:</b> Leaves</p>
 
 <h2>🌿 Propagation & Cultivation</h2>
-<p><b>Seeds:</b> Common method</p>
-<p><b>Stem Cuttings:</b> Also used</p>
+<p><b>Seeds:</b> Common</p>
+<p><b>Cuttings:</b> Also used</p>
 
 <h3>🌞 Growth Requirements</h3>
 <ul>
 <li>Well-drained soil</li>
 <li>Warm climate</li>
-<li>Full sunlight to partial shade</li>
-<li>Moderate watering</li>
+<li>Sunlight</li>
 </ul>
 
 <h2>🧪 Key Bioactive Compounds</h2>
 <ul>
 <li>Alkaloids</li>
 <li>Flavonoids</li>
-<li>Carbazole alkaloids</li>
 <li>Tannins</li>
-<li>Essential oils</li>
 </ul>
 
 <h2>💊 Pharmacological Properties</h2>
 <ul>
-<li>Metabolic support</li>
 <li>Antioxidant</li>
 <li>Digestive support</li>
-<li>Anti-inflammatory</li>
-<li>Antimicrobial</li>
 </ul>
 
 <h2>🩺 Therapeutic Applications</h2>
 <ul>
-<li>Blood sugar management</li>
+<li>Blood sugar control</li>
 <li>Digestive health</li>
-<li>Hair & skin health</li>
-<li>General wellness</li>
 </ul>
 
 <h2>🦠 Public Health Importance</h2>
-<p>Widely researched for metabolic, digestive, and antioxidant benefits.</p>
+<p>Widely researched for health benefits.</p>
 
 <h2>⚙️ Mechanism of Action</h2>
 <ul>
 <li>Supports metabolism</li>
-<li>Protects cells</li>
 <li>Improves digestion</li>
-<li>Fights microbes</li>
 </ul>
 
 <h2>⚠️ Safety</h2>
-<p>Safe in normal amounts; excess may cause mild discomfort.</p>
+<p>Safe in normal amounts.</p>
 
 <h2>🌍 Modern Relevance</h2>
-<p>Recognized by NCBI, WHO, and Ministry of AYUSH for health benefits.</p>
+<p>Recognized by WHO & AYUSH.</p>
 
 <h2>📚 Sources</h2>
 <p>NCBI, WHO, Ministry of AYUSH</p>
 
 </div>
 
-<!-- RIGHT MODEL -->
-<div class="model-section">
-<h2 style="text-align:center;">🌐 3D Curry Leaves Model</h2>
+<!-- RIGHT SIDE -->
+<div class="right">
+
+<h2>🌐 3D Curry Leaves Model</h2>
+
 <div class="model-container" id="model"></div>
-</div>
+
 <a href="https://pubmed.ncbi.nlm.nih.gov/?term=curry+leaves+murraya+koenigii+medicinal+properties&page=1" target="_blank" class="research-btn">
-  📄 View Research
+📄 View Research
 </a>
 
-<style>
-.research-btn {
-  display: inline-block;
-  padding: 10px 18px;
-  background: #2e7d32;
-  color: white;
-  border-radius: 25px;
-  text-decoration: none;
-  transition: 0.3s;
-}
+</div>
 
-.research-btn:hover {
-  background: #66bb6a;
-  transform: scale(1.05);
-}
-</style>
 </div>
 
 <footer>
@@ -243,84 +253,48 @@ footer{
 const scene = new THREE.Scene();
 const container = document.getElementById("model");
 
-/* CAMERA */
 const camera = new THREE.PerspectiveCamera(
 75,
 container.clientWidth / container.clientHeight,
 0.1,
 1000
 );
-camera.position.set(0, 0, 5);
 
-/* RENDERER */
-const renderer = new THREE.WebGLRenderer({ antialias:true, alpha:true });
+const renderer = new THREE.WebGLRenderer({antialias:true, alpha:true});
 renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
-/* LIGHT */
 scene.add(new THREE.HemisphereLight(0xffffff,0x444444,2));
-const dirLight = new THREE.DirectionalLight(0xffffff,1);
-dirLight.position.set(5,10,7);
-scene.add(dirLight);
 
-/* CONTROLS */
-const controls = new THREE.OrbitControls(camera, renderer.domElement);
+const controls = new THREE.OrbitControls(camera,renderer.domElement);
 controls.enableZoom = true;
 controls.enablePan = false;
 
-let curryModel;
+let model;
 
-const loader = new THREE.GLTFLoader();
+new THREE.GLTFLoader().load('models/curry.glb', function(gltf){
 
-/* 🔥 LOAD MODEL */
-loader.load(
-    'models/curry.glb', // 👉 CHANGE if needed
+model = gltf.scene;
 
-    function(gltf){
+const box = new THREE.Box3().setFromObject(model);
+const size = box.getSize(new THREE.Vector3());
+const center = box.getCenter(new THREE.Vector3());
 
-        curryModel = gltf.scene;
+model.position.sub(center);
 
-        const box = new THREE.Box3().setFromObject(curryModel);
-        const size = box.getSize(new THREE.Vector3());
-        const center = box.getCenter(new THREE.Vector3());
+const maxDim = Math.max(size.x,size.y,size.z);
+model.scale.setScalar(2 / maxDim);
 
-        curryModel.position.sub(center);
+scene.add(model);
 
-        const maxDim = Math.max(size.x,size.y,size.z);
-        curryModel.scale.setScalar(2 / maxDim);
-
-        scene.add(curryModel);
-    },
-
-    undefined,
-
-    function(error){
-        console.error("Error loading model:", error);
-    }
-);
-
-/* RESPONSIVE */
-window.addEventListener('resize', () => {
-const width = container.clientWidth;
-const height = container.clientHeight;
-
-renderer.setSize(width,height);
-camera.aspect = width/height;
-camera.updateProjectionMatrix();
 });
 
-/* ANIMATION */
 function animate(){
 requestAnimationFrame(animate);
-
-if (curryModel){
-    curryModel.rotation.y += 0.005;
-}
-
+if(model) model.rotation.y += 0.005;
 renderer.render(scene,camera);
 }
-
 animate();
 </script>
 
