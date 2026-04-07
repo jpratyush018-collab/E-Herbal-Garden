@@ -4,105 +4,114 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bael - E-Herbal Garden</title>
+<title>Arjuna - E-Herbal Garden</title>
 
 <style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #eaf5ea;
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#eaf5ea;
 }
 
-header {
-    background: linear-gradient(to right, #1b5e20, #2e7d32);
-    color: white;
-    padding: 20px;
-    text-align: center;
+/* HEADER */
+header{
+    background:linear-gradient(to right,#1b5e20,#2e7d32);
+    color:white;
+    padding:20px;
+    text-align:center;
 }
 
-nav {
-    background: #145a1f;
-    padding: 10px;
-    text-align: center;
+/* NAV */
+nav{
+    background:#145a1f;
+    padding:10px;
+    text-align:center;
 }
 
-nav a {
-    color: white;
-    margin: 0 15px;
-    text-decoration: none;
-    font-weight: bold;
+nav a{
+    color:white;
+    margin:0 15px;
+    text-decoration:none;
+    font-weight:bold;
 }
 
-.content {
-    padding: 30px;
-    max-width: 1100px;
-    margin: auto;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    align-items: flex-start;
+/* 🔥 TULSI STYLE */
+.content{
+    padding:40px 20px;
+    max-width:1200px;
+    margin:auto;
+    display:flex;
+    flex-wrap:wrap;
+    gap:40px;
+    align-items:flex-start;
 }
 
-.left {
-    flex: 1;
-    min-width: 300px;
+.left{
+    flex:1.2;
+    min-width:300px;
 }
 
-h2 {
-    color: #2e7d32;
-    margin-top: 25px;
+.right{
+    flex:1;
+    min-width:320px;
+    max-width:480px;
+    background:#f5f5f5;
+    border-radius:18px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.08);
+    padding:25px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
 }
 
-p, li {
-    line-height: 1.6;
+.right h2{
+    text-align:center;
+    margin-bottom:15px;
 }
 
-/* 3D MODEL SECTION */
-.model-section {
-    flex: 1;
-    min-width: 300px;
-    max-width: 500px;
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    padding: 20px;
+h2{
+    color:#2e7d32;
+    margin-top:25px;
 }
 
-.model-container {
-    width: 100%;
-    height: 420px;
+p{
+    line-height:1.6;
 }
 
-@media (max-width:768px){
-    .model-container{
-        height: 280px;
-    }
+/* MODEL */
+.model-container{
+    width:100%;
+    height:350px;
+    background:#eaeaea;
+    border-radius:12px;
 }
 
-/* RESEARCH BUTTON */
-.research-btn {
-  display: block;
-  text-align: center;
-  margin-top: 15px;
-  padding: 10px 18px;
-  background: #2e7d32;
-  color: white;
-  border-radius: 25px;
-  text-decoration: none;
-  transition: 0.3s;
+/* BUTTON */
+.research-btn{
+    display:block;
+    width:100%;
+    text-align:center;
+    padding:14px;
+    margin-top:20px;
+    background:#2e7d32;
+    color:white;
+    border-radius:30px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:0.3s;
 }
 
-.research-btn:hover {
-  background: #66bb6a;
-  transform: scale(1.05);
+.research-btn:hover{
+    background:#43a047;
+    transform:scale(1.05);
 }
 
-footer {
-    background: #145a1f;
-    color: white;
-    text-align: center;
-    padding: 15px;
-    margin-top: 20px;
+footer{
+    background:#145a1f;
+    color:white;
+    text-align:center;
+    padding:15px;
+    margin-top:20px;
 }
 </style>
 </head>
@@ -110,8 +119,8 @@ footer {
 <body>
 
 <header>
-<h1>🌿 Bael (Aegle marmelos / Bilva)</h1>
-<p>The Sacred Healing Fruit Tree</p>
+<h1>🌿 Arjuna</h1>
+<p>The Heart Protector Tree</p>
 </header>
 
 <nav>
@@ -126,97 +135,66 @@ footer {
 <!-- LEFT CONTENT -->
 <div class="left">
 
+<h2>🌱 Basic Information</h2>
+<p><b>Common Name:</b> Arjuna</p>
+<p><b>Botanical Name:</b> Terminalia arjuna</p>
+<p><b>Family:</b> Combretaceae</p>
+<p><b>Origin:</b> India</p>
+
+<h2>🌿 Medicinal Uses</h2>
+<p>Improves heart health and blood circulation.</p>
+<p>Helps control blood pressure and cholesterol.</p>
+
+<h2>🌍 Habitat</h2>
+<p>Grows near riverbanks in tropical climates.</p>
+
+<h2>🌾 Cultivation</h2>
+<p>Requires sunlight and well-drained soil.</p>
+
+<h2>⚠️ Precautions</h2>
+<p>Use under medical supervision.</p>
+
+<h2>🧪 Chemical Compounds</h2>
+<p>
+<b>Tannins:</b> Heart protection<br>
+<b>Flavonoids:</b> Antioxidant<br>
+<b>Arjunolic Acid:</b> Cardio-protective
+</p>
+
 <h2>🧬 Overview</h2>
-<p>Bael (Aegle marmelos) is a medicinal plant celebrated for its digestive, antimicrobial, and anti-inflammatory properties. The fruit is most commonly used for gastrointestinal health, while leaves, bark, and roots are also valuable in traditional medicine.</p>
+<p>Arjuna is widely known for cardiovascular benefits.</p>
 
-<h2>🌱 Botanical & General Information</h2>
-<p><b>Family:</b> Rutaceae</p>
-<p><b>Common Name:</b> Bael / Bilva / Wood Apple</p>
-<p><b>Plant Type:</b> Medium-sized deciduous tree</p>
-<p><b>Habitat:</b> Tropical and subtropical regions</p>
-<p><b>Parts Used:</b> Fruit, leaves, bark, roots</p>
+<h2>🌱 Botanical Info</h2>
+<p><b>Plant Type:</b> Tree</p>
 
-<h2>🌿 Propagation & Cultivation</h2>
-<p><b>Seeds:</b> Commonly used method</p>
-<p><b>Grafting:</b> Preferred for better yield and consistency</p>
+<h2>💊 Properties</h2>
+<p>Cardioprotective, antioxidant</p>
 
-<h3>🌞 Growth Requirements</h3>
-<ul>
-<li>Well-drained soil</li>
-<li>Warm climate</li>
-<li>Full sunlight</li>
-<li>Drought tolerant</li>
-</ul>
-
-<h2>🧪 Key Bioactive Compounds</h2>
-<ul>
-<li>Marmelosin</li>
-<li>Tannins</li>
-<li>Alkaloids</li>
-<li>Flavonoids</li>
-<li>Coumarins</li>
-</ul>
-
-<h2>💊 Pharmacological Properties</h2>
-<ul>
-<li>Digestive support</li>
-<li>Antimicrobial</li>
-<li>Anti-inflammatory</li>
-<li>Antioxidant</li>
-<li>Metabolic support</li>
-</ul>
-
-<h2>🩺 Therapeutic Applications</h2>
-<ul>
-<li>Gastrointestinal health</li>
-<li>Infection control</li>
-<li>Metabolic health</li>
-<li>General wellness</li>
-</ul>
-
-<h2>⚙️ Mechanism of Action</h2>
-<ul>
-<li>Improves digestion</li>
-<li>Inhibits microbial growth</li>
-<li>Reduces inflammation</li>
-<li>Provides antioxidant protection</li>
-</ul>
-
-<h2>⚠️ Safety & Precautions</h2>
-<ul>
-<li>Safe in moderate amounts</li>
-<li>Excessive intake may cause digestive imbalance</li>
-<li>Not a substitute for medical treatment for serious conditions</li>
-</ul>
-
-<h2>🌍 Modern Relevance & Research</h2>
-<p>Recognized by NCBI, WHO, and Ministry of AYUSH for digestive and health benefits. Extensively studied for antimicrobial, anti-inflammatory, and metabolic properties.</p>
-
-<h2>📚 Sources</h2>
-<ul>
-<li>NCBI</li>
-<li>WHO</li>
-<li>Ministry of AYUSH</li>
-</ul>
+<h2>🌍 Modern Relevance</h2>
+<p>Recognized by WHO & AYUSH</p>
 
 </div>
 
-<!-- RIGHT 3D MODEL -->
-<div class="model-section">
-<h2 style="text-align:center;">🌐 3D Bael Model</h2>
+<!-- RIGHT CARD -->
+<div class="right">
+
+<h2>🌐 3D Arjuna Model</h2>
+
 <div class="model-container" id="model"></div>
 
-<a href="https://pubmed.ncbi.nlm.nih.gov/?term=bael+medicinal+properties" target="_blank" class="research-btn">
-  📄 View Research
+<a href="https://pubmed.ncbi.nlm.nih.gov/?term=arjuna+medicinal+properties" target="_blank" class="research-btn">
+📄 View Research
 </a>
+
 </div>
 
 </div>
 
 <footer>
-© 2026 E-Herbal Garden | Designed with 🌱
+© 2026 E-Herbal Garden
 </footer>
 
+<!-- THREE JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
@@ -225,54 +203,48 @@ footer {
 const scene = new THREE.Scene();
 const container = document.getElementById("model");
 
-const camera = new THREE.PerspectiveCamera(60, container.clientWidth / container.clientHeight, 0.1, 1000);
-const renderer = new THREE.WebGLRenderer({antialias:true, alpha:true});
-renderer.setSize(container.clientWidth, container.clientHeight);
+const camera = new THREE.PerspectiveCamera(
+75,
+container.clientWidth/container.clientHeight,
+0.1,
+1000
+);
+
+const renderer = new THREE.WebGLRenderer({antialias:true,alpha:true});
+renderer.setSize(container.clientWidth,container.clientHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
-const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
-scene.add(light);
+scene.add(new THREE.HemisphereLight(0xffffff,0x444444,1.5));
 
-const controls = new THREE.OrbitControls(camera, renderer.domElement);
-controls.enableDamping = true;
-controls.minDistance = 1;
-controls.maxDistance = 10;
+const controls = new THREE.OrbitControls(camera,renderer.domElement);
 
-let baelModel;
-const loader = new THREE.GLTFLoader();
-loader.load(
-    './Bael.glb',
-    function(gltf){
-        baelModel = gltf.scene;
-        const box = new THREE.Box3().setFromObject(baelModel);
-        const size = box.getSize(new THREE.Vector3()).length();
-        const center = box.getCenter(new THREE.Vector3());
+let model;
 
-        baelModel.position.sub(center);
-        const scaleFactor = 3 / size;
-        baelModel.scale.setScalar(scaleFactor);
+new THREE.GLTFLoader().load('./Arjuna.glb', function(gltf){
 
-        scene.add(baelModel);
-        camera.position.set(0, size/2, size * 1.5);
-        controls.target.set(0,0,0);
-        controls.update();
-    },
-    undefined,
-    function(error){ console.error("Error loading model:", error); }
-);
+model = gltf.scene;
 
-window.addEventListener('resize', ()=>{
-    camera.aspect = container.clientWidth / container.clientHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(container.clientWidth, container.clientHeight);
+const box = new THREE.Box3().setFromObject(model);
+const size = box.getSize(new THREE.Vector3());
+const center = box.getCenter(new THREE.Vector3());
+
+model.position.sub(center);
+
+const maxDim = Math.max(size.x,size.y,size.z);
+const fov = camera.fov*(Math.PI/180);
+let cameraZ = Math.abs(maxDim/2/Math.tan(fov/2));
+
+camera.position.z = cameraZ * 1.8;
+
+scene.add(model);
+
 });
 
 function animate(){
-    requestAnimationFrame(animate);
-    if(baelModel) baelModel.rotation.y += 0.004;
-    controls.update();
-    renderer.render(scene, camera);
+requestAnimationFrame(animate);
+if(model) model.rotation.y += 0.005;
+renderer.render(scene,camera);
 }
 animate();
 </script>
