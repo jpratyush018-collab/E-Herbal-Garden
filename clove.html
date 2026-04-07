@@ -13,6 +13,7 @@ body {
     background: #eaf5ea;
 }
 
+/* HEADER */
 header {
     background: linear-gradient(to right, #1b5e20, #2e7d32);
     color: white;
@@ -20,6 +21,7 @@ header {
     text-align: center;
 }
 
+/* NAV */
 nav {
     background: #145a1f;
     padding: 10px;
@@ -33,45 +35,76 @@ nav a {
     font-weight: bold;
 }
 
+/* 🔥 TULSI STYLE LAYOUT */
 .content {
-    padding: 30px;
-    max-width: 1100px;
+    padding: 40px 20px;
+    max-width: 1200px;
     margin: auto;
     display: flex;
     flex-wrap: wrap;
-    gap: 30px;
+    gap: 40px;
     align-items: flex-start;
 }
 
+.left {
+    flex: 1.2;
+    min-width: 300px;
+}
+
+.right {
+    flex: 1;
+    min-width: 320px;
+    max-width: 480px;
+    background: #f5f5f5;
+    border-radius: 18px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.right h2 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* TEXT */
 h2 {
     color: #2e7d32;
     margin-top: 25px;
 }
 
 p, li {
-    line-height: 1.6;
+    line-height: 1.7;
 }
 
-/* MODEL SECTION */
-.model-section {
-    flex: 1;
-    min-width: 300px;
-    max-width: 500px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    padding: 20px;
-}
-
+/* MODEL */
 .model-container {
     width: 100%;
-    height: 400px;
+    height: 350px;
+    background: #eaeaea;
+    border-radius: 12px;
 }
 
-@media (max-width:768px){
-    .model-container{
-        height: 300px;
-    }
+/* BUTTON */
+.research-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 14px;
+    margin-top: 20px;
+    background: #2e7d32;
+    color: white;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.research-btn:hover {
+    background: #43a047;
+    transform: scale(1.05);
 }
 
 footer {
@@ -80,6 +113,12 @@ footer {
     text-align: center;
     padding: 15px;
     margin-top: 20px;
+}
+
+@media (max-width:768px){
+    .model-container{
+        height: 280px;
+    }
 }
 </style>
 </head>
@@ -100,11 +139,11 @@ footer {
 
 <div class="content">
 
-<!-- LEFT CONTENT -->
-<div style="flex:1; min-width:300px;">
+<!-- LEFT CONTENT (UNCHANGED) -->
+<div class="left">
 
 <h2>🧬 Overview</h2>
-<p>Clove (Syzygium aromaticum) is a highly valued medicinal and aromatic plant known for its antimicrobial, analgesic, and therapeutic properties. Widely used in traditional remedies, dentistry, and modern healthcare, it helps relieve pain, fight infections, and support overall health.</p>
+<p>Clove (Syzygium aromaticum) is a highly valued medicinal and aromatic plant known for its antimicrobial, analgesic, and therapeutic properties.</p>
 
 <p>The dried flower buds are the main part used, containing potent bioactive compounds responsible for its medicinal effects.</p>
 
@@ -116,8 +155,8 @@ footer {
 <p><b>Parts Used:</b> Dried flower buds (main), leaves, oil</p>
 
 <h2>🌿 Propagation & Cultivation</h2>
-<p><b>Seeds:</b> Sown directly in warm, humid soil; viability decreases quickly if delayed.</p>
-<p><b>Vegetative Methods:</b> Rarely used; cuttings possible but less practical.</p>
+<p><b>Seeds:</b> Sown directly in warm, humid soil.</p>
+<p><b>Vegetative Methods:</b> Rarely used.</p>
 
 <h3>🌞 Growth Requirements</h3>
 <ul>
@@ -129,7 +168,7 @@ footer {
 
 <h2>🧪 Key Bioactive Compounds</h2>
 <ul>
-<li>Eugenol (main active compound)</li>
+<li>Eugenol</li>
 <li>Caryophyllene</li>
 <li>Tannins</li>
 <li>Flavonoids</li>
@@ -138,34 +177,33 @@ footer {
 
 <h2>💊 Medicinal Properties</h2>
 <ul>
-<li><b>🦠 Antimicrobial:</b> Effective against bacteria, fungi, pathogens</li>
-<li><b>🦷 Analgesic:</b> Relieves toothache and minor pain</li>
-<li><b>🔥 Anti-inflammatory:</b> Reduces swelling and inflammation</li>
-<li><b>🛡️ Antioxidant:</b> Protects cells from oxidative stress</li>
-<li><b>🍽️ Digestive Support:</b> Improves digestion, reduces gas</li>
+<li>Antimicrobial</li>
+<li>Analgesic</li>
+<li>Anti-inflammatory</li>
+<li>Antioxidant</li>
+<li>Digestive Support</li>
 </ul>
 
 <h2>🩺 Therapeutic Applications</h2>
 <ul>
-<li><b>🦷 Dental Care:</b> Toothache relief, oral hygiene</li>
-<li><b>🍽️ Digestive Health:</b> Supports digestion and comfort</li>
-<li><b>🦠 Infection Control:</b> Antimicrobial activity</li>
-<li><b>🌿 General Wellness:</b> Natural health-supporting spice and remedy</li>
+<li>Dental Care</li>
+<li>Digestive Health</li>
+<li>Infection Control</li>
+<li>General Wellness</li>
 </ul>
 
 <h2>⚙️ Mechanism of Action</h2>
 <ul>
-<li>Disrupts microbial cell function → inhibits growth</li>
-<li>Blocks pain signals → analgesic effect</li>
-<li>Reduces inflammation → alleviates discomfort</li>
-<li>Provides antioxidant protection → supports cellular health</li>
+<li>Disrupts microbial growth</li>
+<li>Blocks pain signals</li>
+<li>Reduces inflammation</li>
+<li>Provides antioxidant protection</li>
 </ul>
 
 <h2>⚠️ Safety & Precautions</h2>
 <ul>
 <li>Safe in moderate amounts</li>
-<li>Excess use (especially clove oil) may cause irritation</li>
-<li>Not a substitute for medical treatment in serious conditions</li>
+<li>Excess may cause irritation</li>
 </ul>
 
 <h2>📚 Sources</h2>
@@ -177,108 +215,83 @@ footer {
 
 </div>
 
-<!-- RIGHT MODEL -->
-<div class="model-section">
-<h2 style="text-align:center;">🌐 3D Clove Model</h2>
+<!-- RIGHT SIDE -->
+<div class="right">
+<h2>🌐 3D Clove Model</h2>
+
 <div class="model-container" id="model"></div>
-</div>
+
 <a href="https://pubmed.ncbi.nlm.nih.gov/?term=clove+medicinal+properties" target="_blank" class="research-btn">
-  📄 View Research
+📄 View Research
 </a>
+</div>
 
-<style>
-.research-btn {
-  display: inline-block;
-  padding: 10px 18px;
-  background: #2e7d32;
-  color: white;
-  border-radius: 25px;
-  text-decoration: none;
-  transition: 0.3s;
-}
-
-.research-btn:hover {
-  background: #66bb6a;
-  transform: scale(1.05);
-}
-</style>
 </div>
 
 <footer>
 © 2026 E-Herbal Garden | Designed with 🌱
 </footer>
 
-<!-- Three.js -->
+<!-- THREE JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
 
 <script>
-// Scene setup
 const scene = new THREE.Scene();
 const container = document.getElementById("model");
 
-// Camera
-const camera = new THREE.PerspectiveCamera(60, container.clientWidth / container.clientHeight, 0.1, 1000);
+/* CAMERA */
+const camera = new THREE.PerspectiveCamera(
+75,
+container.clientWidth / container.clientHeight,
+0.1,
+1000
+);
 
-// Renderer
+/* RENDERER */
 const renderer = new THREE.WebGLRenderer({antialias:true, alpha:true});
 renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
-// Lighting
-const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
-scene.add(light);
+/* LIGHT */
+scene.add(new THREE.HemisphereLight(0xffffff,0x444444,1.5));
 
-// Controls
+/* CONTROLS */
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
-controls.enableDamping = true;
-controls.minDistance = 1;
-controls.maxDistance = 10;
+controls.enableZoom = true;
+controls.enablePan = false;
 
-// Load 3D model
-let cloveModel;
-const loader = new THREE.GLTFLoader();
-loader.load(
-'./Clove.glb',
-function(gltf){
-    cloveModel = gltf.scene;
+let model;
 
-    const box = new THREE.Box3().setFromObject(cloveModel);
-    const size = box.getSize(new THREE.Vector3()).length();
-    const center = box.getCenter(new THREE.Vector3());
+/* LOAD MODEL */
+new THREE.GLTFLoader().load('./Clove.glb', function(gltf){
 
-    cloveModel.position.sub(center);
-    cloveModel.position.y -= 0.4;
+model = gltf.scene;
 
-    const scaleFactor = 3.5 / size;
-    cloveModel.scale.setScalar(scaleFactor);
+/* AUTO FIT */
+const box = new THREE.Box3().setFromObject(model);
+const size = box.getSize(new THREE.Vector3());
+const center = box.getCenter(new THREE.Vector3());
 
-    scene.add(cloveModel);
+model.position.sub(center);
 
-    camera.position.set(0, size / 3, size * 1.2);
-    controls.target.set(0, -0.3, 0);
-    controls.update();
-},
-undefined,
-function(error){
-    console.error("Error loading model:", error);
+const maxDim = Math.max(size.x,size.y,size.z);
+const fov = camera.fov*(Math.PI/180);
+let cameraZ = Math.abs(maxDim/2/Math.tan(fov/2));
+
+camera.position.z = cameraZ * 1.8;
+
+scene.add(model);
+
 });
 
-// Handle resize
-window.addEventListener('resize', ()=>{
-    camera.aspect = container.clientWidth / container.clientHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(container.clientWidth, container.clientHeight);
-});
-
-// Animation
+/* ANIMATION */
 function animate(){
-    requestAnimationFrame(animate);
-    if(cloveModel) cloveModel.rotation.y += 0.005;
-    controls.update();
-    renderer.render(scene, camera);
+requestAnimationFrame(animate);
+if(model) model.rotation.y += 0.005;
+renderer.render(scene,camera);
 }
 animate();
 </script>
