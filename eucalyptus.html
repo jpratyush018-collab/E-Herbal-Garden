@@ -1,81 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Eucalyptus - E-Herbal Garden</title>
 
 <style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #eaf5ea;
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#eaf5ea;
 }
 
-header {
-    background: linear-gradient(to right, #1b5e20, #2e7d32);
-    color: white;
-    padding: 20px;
-    text-align: center;
+/* HEADER */
+header{
+    background:linear-gradient(to right,#1b5e20,#2e7d32);
+    color:white;
+    padding:20px;
+    text-align:center;
 }
 
-nav {
-    background: #145a1f;
-    padding: 10px;
-    text-align: center;
+/* NAV */
+nav{
+    background:#145a1f;
+    padding:10px;
+    text-align:center;
 }
 
-nav a {
-    color: white;
-    margin: 0 15px;
-    text-decoration: none;
-    font-weight: bold;
+nav a{
+    color:white;
+    margin:0 15px;
+    text-decoration:none;
+    font-weight:bold;
 }
 
-.content {
-    padding: 30px;
-    max-width: 1100px;
-    margin: auto;
+/* 🔥 TULSI STYLE */
+.content{
+    padding:40px 20px;
+    max-width:1200px;
+    margin:auto;
+    display:flex;
+    flex-wrap:wrap;
+    gap:40px;
+    align-items:flex-start;
 }
 
-h2 {
-    color: #2e7d32;
-    margin-top: 25px;
+.left{
+    flex:1.2;
+    min-width:300px;
 }
 
-p {
-    line-height: 1.6;
+.right{
+    flex:1;
+    min-width:320px;
+    max-width:480px;
+    background:#f5f5f5;
+    border-radius:18px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.08);
+    padding:25px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
 }
 
-/* MODEL CARD */
-.model-section {
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    padding: 20px;
+.right h2{
+    text-align:center;
+    margin-bottom:15px;
 }
 
-.model-container {
-    width: 100%;
-    height: 450px;
+h2{
+    color:#2e7d32;
+    margin-top:25px;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .content {
-        flex-direction: column;
+p, li{
+    line-height:1.6;
+}
+
+/* MODEL */
+.model-container{
+    width:100%;
+    height:350px;
+    background:#eaeaea;
+    border-radius:12px;
+}
+
+/* BUTTON */
+.research-btn{
+    display:block;
+    width:100%;
+    text-align:center;
+    padding:14px;
+    margin-top:20px;
+    background:#2e7d32;
+    color:white;
+    border-radius:30px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.research-btn:hover{
+    background:#43a047;
+    transform:scale(1.05);
+}
+
+footer{
+    background:#145a1f;
+    color:white;
+    text-align:center;
+    padding:15px;
+    margin-top:20px;
+}
+
+@media (max-width:768px){
+    .model-container{
+        height:280px;
     }
-    .model-container {
-        height: 300px;
-    }
-}
-
-footer {
-    background: #145a1f;
-    color: white;
-    text-align: center;
-    padding: 15px;
-    margin-top: 20px;
 }
 </style>
 </head>
@@ -94,125 +136,113 @@ footer {
 <a href="#">Contact</a>
 </nav>
 
-<div class="content" style="display:flex; flex-wrap:wrap; gap:30px; align-items:flex-start;">
+<div class="content">
 
-  <!-- LEFT TEXT -->
-  <div style="flex:1; min-width:300px;">
+<!-- LEFT CONTENT (FULL UNCHANGED) -->
+<div class="left">
 
-    <h2>🧬 Overview</h2>
-    <p>Eucalyptus is a medicinal plant known for its strong aroma and powerful healing properties. It is widely used in respiratory treatments, essential oils, and traditional medicine.</p>
-    <p>It plays a major role in relieving cold, cough, and improving breathing health.</p>
+<h2>🧬 Overview</h2>
+<p>Eucalyptus is a medicinal plant known for its strong aroma and healing properties.</p>
+<p>It helps relieve cold, cough, and improves breathing.</p>
 
-    <h2>🌱 Basic Information</h2>
-    <p><b>Common Name:</b> Eucalyptus</p>
-    <p><b>Botanical Name:</b> Eucalyptus globulus</p>
-    <p><b>Family:</b> Myrtaceae</p>
-    <p><b>Origin:</b> Australia</p>
+<h2>🌱 Basic Information</h2>
+<p><b>Common Name:</b> Eucalyptus</p>
+<p><b>Botanical Name:</b> Eucalyptus globulus</p>
+<p><b>Family:</b> Myrtaceae</p>
+<p><b>Origin:</b> Australia</p>
 
-    <h2>🌿 Medicinal Uses</h2>
-    <p>Used for respiratory relief, cold, cough, antiseptic applications, and muscle pain relief.</p>
+<h2>🌿 Medicinal Uses</h2>
+<p>Used for respiratory relief, antiseptic uses, and muscle pain relief.</p>
 
-    <h2>🌍 Habitat</h2>
-    <p>Thrives in warm climates with well-drained soil and plenty of sunlight.</p>
+<h2>🌍 Habitat</h2>
+<p>Thrives in warm climates with sunlight.</p>
 
-    <h2>🌾 Cultivation</h2>
-    <p>Grown from seeds and requires minimal maintenance once established.</p>
+<h2>🌾 Cultivation</h2>
+<p>Grown from seeds and needs minimal care.</p>
 
-    <h2>⚠️ Precautions</h2>
-    <p>Excess use of eucalyptus oil can be harmful. Always use in diluted form.</p>
+<h2>⚠️ Precautions</h2>
+<p>Excess oil use can be harmful.</p>
 
-    <h2>🧪 Key Bioactive Compounds</h2>
-    <ul>
-      <li>Eucalyptol (1,8-cineole)</li>
-      <li>Flavonoids</li>
-      <li>Tannins</li>
-      <li>Essential oils</li>
-      <li>Terpenoids</li>
-    </ul>
+<h2>🧪 Key Bioactive Compounds</h2>
+<ul>
+<li>Eucalyptol</li>
+<li>Flavonoids</li>
+<li>Tannins</li>
+<li>Essential oils</li>
+<li>Terpenoids</li>
+</ul>
 
-    <h2>💊 Pharmacological Properties</h2>
-    <ul>
-      <li>Antimicrobial</li>
-      <li>Anti-inflammatory</li>
-      <li>Antioxidant</li>
-      <li>Decongestant</li>
-      <li>Pain relief</li>
-    </ul>
+<h2>💊 Pharmacological Properties</h2>
+<ul>
+<li>Antimicrobial</li>
+<li>Anti-inflammatory</li>
+<li>Antioxidant</li>
+<li>Decongestant</li>
+<li>Pain relief</li>
+</ul>
 
-    <h2>🩺 Therapeutic Applications</h2>
-    <ul>
-      <li>Cold and cough relief</li>
-      <li>Respiratory health</li>
-      <li>Muscle pain relief</li>
-      <li>Skin care</li>
-      <li>Immunity support</li>
-    </ul>
+<h2>🩺 Therapeutic Applications</h2>
+<ul>
+<li>Cold and cough relief</li>
+<li>Respiratory health</li>
+<li>Muscle pain relief</li>
+<li>Skin care</li>
+<li>Immunity support</li>
+</ul>
 
-    <h2>🌿 Propagation & Cultivation</h2>
-    <p><b>Seeds:</b> Primary method</p>
+<h2>🌿 Propagation & Cultivation</h2>
+<p><b>Seeds:</b> Primary method</p>
 
-    <h3>🌞 Growth Requirements</h3>
-    <ul>
-      <li>Well-drained soil</li>
-      <li>Warm climate</li>
-      <li>Full sunlight</li>
-      <li>Low to moderate watering</li>
-    </ul>
+<h3>🌞 Growth Requirements</h3>
+<ul>
+<li>Well-drained soil</li>
+<li>Warm climate</li>
+<li>Full sunlight</li>
+<li>Low watering</li>
+</ul>
 
-    <h2>🦠 Public Health Importance</h2>
-    <p>Widely used in modern medicine and aromatherapy for respiratory and antimicrobial benefits.</p>
+<h2>🦠 Public Health Importance</h2>
+<p>Used in medicine and aromatherapy.</p>
 
-    <h2>⚙️ Mechanism of Action</h2>
-    <ul>
-      <li>Clears respiratory pathways</li>
-      <li>Reduces inflammation</li>
-      <li>Kills microbes</li>
-      <li>Relieves pain</li>
-    </ul>
+<h2>⚙️ Mechanism of Action</h2>
+<ul>
+<li>Clears respiratory pathways</li>
+<li>Reduces inflammation</li>
+<li>Kills microbes</li>
+<li>Relieves pain</li>
+</ul>
 
-    <h2>⚠️ Safety</h2>
-    <p>Safe when used properly; avoid ingestion of concentrated oil.</p>
+<h2>⚠️ Safety</h2>
+<p>Safe when used properly.</p>
 
-    <h2>🌍 Modern Relevance</h2>
-    <p>Recognized by NCBI, WHO, and Ministry of AYUSH for medicinal and therapeutic uses.</p>
+<h2>🌍 Modern Relevance</h2>
+<p>Recognized by WHO & AYUSH.</p>
 
-    <h2>📚 Sources</h2>
-    <p>NCBI, WHO, Ministry of AYUSH</p>
+<h2>📚 Sources</h2>
+<p>NCBI, WHO, Ministry of AYUSH</p>
 
-  </div>
+</div>
 
-  <!-- RIGHT MODEL -->
-  <div class="model-section" style="flex:1; min-width:300px; max-width:500px;">
-    <h2 style="text-align:center;">🌐 3D Eucalyptus Model</h2>
-    <div class="model-container" id="model"></div>
-  </div>
+<!-- RIGHT SIDE -->
+<div class="right">
+
+<h2>🌐 3D Eucalyptus Model</h2>
+
+<div class="model-container" id="model"></div>
+
 <a href="https://pubmed.ncbi.nlm.nih.gov/?term=+Eucalyptus+Eucalyptus+globulus+medicinal+properties" target="_blank" class="research-btn">
-  📄 View Research
+📄 View Research
 </a>
 
-<style>
-.research-btn {
-  display: inline-block;
-  padding: 10px 18px;
-  background: #2e7d32;
-  color: white;
-  border-radius: 25px;
-  text-decoration: none;
-  transition: 0.3s;
-}
+</div>
 
-.research-btn:hover {
-  background: #66bb6a;
-  transform: scale(1.05);
-}
-</style>
 </div>
 
 <footer>
 © 2026 E-Herbal Garden | Designed with 🌱
 </footer>
 
-<!-- Three.js -->
+<!-- THREE JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
@@ -222,63 +252,61 @@ const scene = new THREE.Scene();
 const container = document.getElementById("model");
 
 const camera = new THREE.PerspectiveCamera(
-    75,
-    container.clientWidth / container.clientHeight,
-    0.1,
-    1000
+75,
+container.clientWidth / container.clientHeight,
+0.1,
+1000
 );
 
-const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+const renderer = new THREE.WebGLRenderer({ antialias:true, alpha:true });
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
-scene.add(new THREE.HemisphereLight(0xffffff, 0x444444, 1.5));
+scene.add(new THREE.HemisphereLight(0xffffff,0x444444,1.5));
 
-const controls = new THREE.OrbitControls(camera, renderer.domElement);
+const controls = new THREE.OrbitControls(camera,renderer.domElement);
 controls.enableZoom = true;
 controls.enablePan = false;
 
 let model;
 
-const loader = new THREE.GLTFLoader();
-loader.load('./Eucalyptus.glb', function (gltf) {
+new THREE.GLTFLoader().load('./Eucalyptus.glb', function(gltf){
 
-    model = gltf.scene;
+model = gltf.scene;
 
-    const box = new THREE.Box3().setFromObject(model);
-    const size = box.getSize(new THREE.Vector3());
-    const center = box.getCenter(new THREE.Vector3());
+const box = new THREE.Box3().setFromObject(model);
+const size = box.getSize(new THREE.Vector3());
+const center = box.getCenter(new THREE.Vector3());
 
-    model.position.sub(center);
+model.position.sub(center);
 
-    const maxDim = Math.max(size.x, size.y, size.z);
-    const fov = camera.fov * (Math.PI / 180);
-    let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
+const maxDim = Math.max(size.x,size.y,size.z);
+const fov = camera.fov*(Math.PI/180);
+let cameraZ = Math.abs(maxDim/2/Math.tan(fov/2));
 
-    camera.position.z = cameraZ * 1.8;
+camera.position.z = cameraZ * 1.8;
 
-    scene.add(model);
+scene.add(model);
+
 });
 
-// resize
+/* RESPONSIVE */
 function resize(){
-const w=container.clientWidth;
-const h=container.clientHeight;
+const w = container.clientWidth;
+const h = container.clientHeight;
 
 renderer.setSize(w,h);
-camera.aspect=w/h;
+camera.aspect = w/h;
 camera.updateProjectionMatrix();
 }
 
-window.addEventListener('resize',resize);
+window.addEventListener('resize', resize);
 new ResizeObserver(resize).observe(container);
 
-// animation
+/* ANIMATION */
 function animate(){
 requestAnimationFrame(animate);
-
-if(model) model.rotation.y+=0.005;
-
+if(model) model.rotation.y += 0.005;
 renderer.render(scene,camera);
 }
 animate();
