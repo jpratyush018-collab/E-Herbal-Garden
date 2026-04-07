@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,7 @@ body {
     background: #eaf5ea;
 }
 
+/* HEADER */
 header {
     background: linear-gradient(to right, #1b5e20, #2e7d32);
     color: white;
@@ -19,6 +21,7 @@ header {
     text-align: center;
 }
 
+/* NAV */
 nav {
     background: #145a1f;
     padding: 10px;
@@ -32,12 +35,41 @@ nav a {
     font-weight: bold;
 }
 
+/* 🔥 TULSI STYLE */
 .content {
-    padding: 30px;
-    max-width: 1000px;
+    padding: 40px 20px;
+    max-width: 1200px;
     margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    align-items: flex-start;
 }
 
+.left {
+    flex: 1.2;
+    min-width: 300px;
+}
+
+.right {
+    flex: 1;
+    min-width: 320px;
+    max-width: 480px;
+    background: #f5f5f5;
+    border-radius: 18px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.right h2 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* TEXT */
 h2 {
     color: #2e7d32;
     margin-top: 25px;
@@ -47,26 +79,32 @@ p {
     line-height: 1.6;
 }
 
-/* 🔥 MODEL SECTION */
-.model-section {
-    margin: 40px auto;
-    max-width: 900px;
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    padding: 20px;
-}
-
+/* MODEL */
 .model-container {
     width: 100%;
-    height: 400px;
+    height: 350px;
+    background: #eaeaea;
+    border-radius: 12px;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .model-container {
-        height: 280px;
-    }
+/* BUTTON */
+.research-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 14px;
+    margin-top: 20px;
+    background: #2e7d32;
+    color: white;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.research-btn:hover {
+    background: #43a047;
+    transform: scale(1.05);
 }
 
 footer {
@@ -75,6 +113,12 @@ footer {
     text-align: center;
     padding: 15px;
     margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .model-container {
+        height: 280px;
+    }
 }
 </style>
 </head>
@@ -93,73 +137,59 @@ footer {
 <a href="#">Contact</a>
 </nav>
 
-<div class="content" style="display:flex; flex-wrap:wrap; gap:30px; align-items:flex-start;">
+<div class="content">
 
-  <!-- LEFT: TEXT -->
-  <div style="flex:1; min-width:300px;">
-    
+<!-- LEFT CONTENT (FULL UNCHANGED) -->
+<div class="left">
+
 <h2>🌱 Basic Information</h2>
 <p><b>Common Name:</b> Dandelion</p>
 <p><b>Botanical Name:</b> Taraxacum officinale</p>
-<p>Dandelion is a common flowering plant often considered a weed, but it is highly valued in herbal medicine for its nutritional and healing properties.</p>
+<p>Dandelion is a common flowering plant often considered a weed, but it is highly valued in herbal medicine.</p>
 
 <h2>🌿 Medicinal Uses</h2>
-<p>🩺 <b>Liver Health:</b> Supports liver detoxification and function.</p>
-<p>🍵 <b>Digestive Aid:</b> Helps improve digestion and appetite.</p>
-<p>💧 <b>Diuretic:</b> Promotes urine production and reduces water retention.</p>
-<p>🛡️ <b>Antioxidant:</b> Protects the body from oxidative stress.</p>
-<p>🩸 <b>Blood Purifier:</b> Traditionally used to cleanse the blood.</p>
+<p>🩺 Liver Health</p>
+<p>🍵 Digestive Aid</p>
+<p>💧 Diuretic</p>
+<p>🛡️ Antioxidant</p>
+<p>🩸 Blood Purifier</p>
 
 <h2>🌍 Habitat</h2>
-<p>Dandelion grows worldwide in temperate regions. It thrives in grasslands, gardens, roadsides, and disturbed soils, making it a very adaptable plant.</p>
+<p>Grows worldwide in temperate regions.</p>
 
 <h2>🌾 Cultivation</h2>
-<p><b>Sunlight:</b> Full sun to partial shade</p>
-<p><b>Soil:</b> Well-drained, fertile soil</p>
-<p><b>Watering:</b> Moderate watering</p>
-<p><b>Propagation:</b> Easily grown from seeds</p>
-<p>Dandelion is hardy and grows easily with minimal care.</p>
+<p><b>Sunlight:</b> Full sun</p>
+<p><b>Soil:</b> Fertile soil</p>
+<p><b>Watering:</b> Moderate</p>
+<p><b>Propagation:</b> Seeds</p>
 
 <h2>⚠️ Precautions</h2>
-<p>Generally safe when consumed in moderate amounts.</p>
-<p>May cause allergic reactions in some individuals.</p>
-<p>Excessive use may lead to stomach discomfort.</p>
-<p>Consult a healthcare professional if pregnant or on medication.</p>
+<p>Safe in moderate amounts.</p>
+<p>May cause allergies in some people.</p>
+<p>Excess may cause discomfort.</p>
 
-  </div>
+</div>
 
-  <!-- RIGHT: MODEL -->
-  <div class="model-section" style="flex:1; min-width:300px; max-width:500px;">
-    <h2 style="text-align:center;">🌐 3D Dandelion Model</h2>
-    <div class="model-container" id="model" style="height:500px;"></div>
-  </div>
+<!-- RIGHT SIDE -->
+<div class="right">
+
+<h2>🌐 3D Dandelion Model</h2>
+
+<div class="model-container" id="model"></div>
+
 <a href="https://pubmed.ncbi.nlm.nih.gov/?term=+Dandelion+Taraxacum+officinale+medicinal+properties" target="_blank" class="research-btn">
-  📄 View Research
+📄 View Research
 </a>
 
-<style>
-.research-btn {
-  display: inline-block;
-  padding: 10px 18px;
-  background: #2e7d32;
-  color: white;
-  border-radius: 25px;
-  text-decoration: none;
-  transition: 0.3s;
-}
+</div>
 
-.research-btn:hover {
-  background: #66bb6a;
-  transform: scale(1.05);
-}
-</style>
 </div>
 
 <footer>
 © 2026 E-Herbal Garden | Designed with 🌱
 </footer>
 
-<!-- Three.js -->
+<!-- THREE JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
@@ -175,65 +205,44 @@ container.clientWidth / container.clientHeight,
 1000
 );
 
-const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+const renderer = new THREE.WebGLRenderer({ antialias:true, alpha:true });
 renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
-// Light
-const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
-scene.add(light);
+scene.add(new THREE.HemisphereLight(0xffffff,0x444444,1.5));
 
-// Controls
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
 controls.enableZoom = true;
 controls.enablePan = false;
 
 let model;
 
-const loader = new THREE.GLTFLoader();
-loader.load(
-    './Dandeion.glb',
-    function (gltf) {
+new THREE.GLTFLoader().load('./Dandeion.glb', function (gltf) {
 
-        model = gltf.scene;
+model = gltf.scene;
 
-        const box = new THREE.Box3().setFromObject(model);
-        const size = box.getSize(new THREE.Vector3());
-        const center = box.getCenter(new THREE.Vector3());
+const box = new THREE.Box3().setFromObject(model);
+const size = box.getSize(new THREE.Vector3());
+const center = box.getCenter(new THREE.Vector3());
 
-        model.position.sub(center);
+model.position.sub(center);
 
-        const maxDim = Math.max(size.x, size.y, size.z);
-        const fov = camera.fov * (Math.PI / 180);
-        let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
+const maxDim = Math.max(size.x,size.y,size.z);
+const fov = camera.fov*(Math.PI/180);
+let cameraZ = Math.abs(maxDim/2/Math.tan(fov/2));
 
-        camera.position.z = cameraZ * 1.8;
+camera.position.z = cameraZ * 1.8;
 
-        scene.add(model);
-    }
-);
+scene.add(model);
 
-window.addEventListener('resize', () => {
-    const width = container.clientWidth;
-    const height = container.clientHeight;
-
-    renderer.setSize(width, height);
-    camera.aspect = width / height;
-    camera.updateProjectionMatrix();
 });
 
-// Animation
-function animate() {
-    requestAnimationFrame(animate);
-
-    if (model) {
-        model.rotation.y += 0.005;
-    }
-
-    renderer.render(scene, camera);
+function animate(){
+requestAnimationFrame(animate);
+if(model) model.rotation.y += 0.005;
+renderer.render(scene,camera);
 }
-
 animate();
 </script>
 
