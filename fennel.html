@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fennel Plant</title>
+<title>Fennel - E-Herbal Garden</title>
 
 <style>
 body{
@@ -19,15 +20,13 @@ color:white;
 text-align:center;
 padding:25px;
 }
-.header h1{ margin:0; }
-.header p{ margin:5px 0 0; font-size:14px; }
 
-/* NAV */
 nav{
 background:#1b5e20;
 text-align:center;
 padding:10px;
 }
+
 nav a{
 color:white;
 margin:0 15px;
@@ -35,55 +34,68 @@ text-decoration:none;
 font-weight:bold;
 }
 
-/* MAIN */
+/* 🔥 TULSI STYLE */
 .container{
 display:flex;
-justify-content:center;
-gap:60px;
+flex-wrap:wrap;
+gap:40px;
+max-width:1200px;
+margin:auto;
 padding:40px;
-align-items:flex-start; /* ensures model stays top-aligned */
+align-items:flex-start;
 }
 
-/* LEFT CONTENT */
 .content{
-width:500px;
+flex:1.2;
+min-width:300px;
 }
 
-.content h2{
-color:#2e7d32;
-margin-top:20px;
-}
-
-.content ul{
-padding-left:20px;
-}
-
-/* RIGHT MODEL CARD */
 .model{
-width:320px;
-height:500px; /* adjust height for Three.js canvas */
-background:#e0e0e0;
-padding:20px;
-border-radius:15px;
-box-shadow:0 4px 10px rgba(0,0,0,0.15);
-text-align:center;
+flex:1;
+min-width:320px;
+max-width:480px;
+background:#f5f5f5;
+border-radius:18px;
+box-shadow:0 8px 20px rgba(0,0,0,0.08);
+padding:25px;
 display:flex;
 flex-direction:column;
-align-items:center;
-justify-content:flex-start;
+justify-content:space-between;
 }
 
 .model h3{
+text-align:center;
+margin-bottom:15px;
 color:#2e7d32;
-margin-bottom:10px;
 }
 
 .model-canvas{
 width:100%;
-height:400px;
+height:350px;
+background:#eaeaea;
+border-radius:12px;
 }
 
-/* FOOTER */
+/* BUTTON */
+.research-btn{
+display:block;
+width:100%;
+text-align:center;
+padding:14px;
+margin-top:20px;
+background:#2e7d32;
+color:white;
+border-radius:30px;
+text-decoration:none;
+font-weight:bold;
+transition:0.3s;
+}
+
+.research-btn:hover{
+background:#43a047;
+transform:scale(1.05);
+}
+
 footer{
 background:#1b5e20;
 color:white;
@@ -97,11 +109,6 @@ margin-top:20px;
 .container{
 flex-direction:column;
 align-items:center;
-}
-
-.content, .model{
-width:90%;
-height:auto;
 }
 }
 </style>
@@ -123,9 +130,9 @@ height:auto;
 
 <div class="container">
 
-<!-- LEFT CONTENT -->
+<!-- LEFT CONTENT (UNCHANGED FULL DATA) -->
 <div class="content">
-<!-- All your content stays exactly the same -->
+
 <h2>🌱 Basic Information</h2>
 <p><b>Common Name:</b> Fennel (Saunf)</p>
 <p><b>Botanical Name:</b> Foeniculum vulgare</p>
@@ -216,108 +223,76 @@ height:auto;
 
 </div>
 
-<!-- RIGHT SIDE MODEL -->
+<!-- RIGHT CARD -->
 <div class="model">
+
 <h3>🌐 3D Fennel Model</h3>
+
 <div id="model-canvas" class="model-canvas"></div>
-</div>
+
 <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Fennel+Foeniculum+vulgare+medicinal+properties" target="_blank" class="research-btn">
-  📄 View Research
+📄 View Research
 </a>
 
-<style>
-.research-btn {
-  display: inline-block;
-  padding: 10px 18px;
-  background: #2e7d32;
-  color: white;
-  border-radius: 25px;
-  text-decoration: none;
-  transition: 0.3s;
-}
+</div>
 
-.research-btn:hover {
-  background: #66bb6a;
-  transform: scale(1.05);
-}
-</style>
 </div>
 
 <footer>© 2026 E-Herbal Garden 🌿</footer>
 
-<!-- Three.js -->
+<!-- THREE JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
 
 <script>
-// Three.js setup
 const scene = new THREE.Scene();
 const container = document.getElementById("model-canvas");
 
 const camera = new THREE.PerspectiveCamera(
-    75,
-    container.clientWidth / container.clientHeight,
-    0.1,
-    1000
+75,
+container.clientWidth/container.clientHeight,
+0.1,
+1000
 );
 
-const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-renderer.setSize(container.clientWidth, container.clientHeight);
+const renderer = new THREE.WebGLRenderer({antialias:true,alpha:true});
+renderer.setSize(container.clientWidth,container.clientHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
-// Light
-const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
-scene.add(light);
+scene.add(new THREE.HemisphereLight(0xffffff,0x444444,1.5));
 
-// Controls
-const controls = new THREE.OrbitControls(camera, renderer.domElement);
-controls.enableZoom = true;
-controls.enablePan = false;
+const controls=new THREE.OrbitControls(camera,renderer.domElement);
+controls.enableZoom=true;
+controls.enablePan=false;
 
-// Load Fennel model
 let model;
-const loader = new THREE.GLTFLoader();
-loader.load(
-    './Fennel.glb', // make sure the correct model path is used
-    function(gltf) {
-        model = gltf.scene;
 
-        // Center model
-        const box = new THREE.Box3().setFromObject(model);
-        const size = box.getSize(new THREE.Vector3());
-        const center = box.getCenter(new THREE.Vector3());
-        model.position.sub(center);
+new THREE.GLTFLoader().load('./Fennel.glb',function(gltf){
 
-        // Fit camera
-        const maxDim = Math.max(size.x, size.y, size.z);
-        const fov = camera.fov * (Math.PI / 180);
-        let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
-        camera.position.z = cameraZ * 1.8;
+model=gltf.scene;
 
-        scene.add(model);
-    },
-    undefined,
-    function(error) {
-        console.error("Error loading model:", error);
-    }
-);
+const box=new THREE.Box3().setFromObject(model);
+const size=box.getSize(new THREE.Vector3());
+const center=box.getCenter(new THREE.Vector3());
 
-// Responsive
-window.addEventListener('resize', () => {
-    const width = container.clientWidth;
-    const height = container.clientHeight;
-    renderer.setSize(width, height);
-    camera.aspect = width / height;
-    camera.updateProjectionMatrix();
+model.position.sub(center);
+
+const maxDim=Math.max(size.x,size.y,size.z);
+const fov=camera.fov*Math.PI/180;
+let cameraZ=Math.abs(maxDim/2/Math.tan(fov/2));
+
+camera.position.z=cameraZ*1.8;
+
+scene.add(model);
+
 });
 
-// Animate
-function animate() {
-    requestAnimationFrame(animate);
-    if(model) model.rotation.y += 0.005;
-    renderer.render(scene, camera);
+function animate(){
+requestAnimationFrame(animate);
+if(model) model.rotation.y+=0.005;
+renderer.render(scene,camera);
 }
 animate();
 </script>
